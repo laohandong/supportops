@@ -46,4 +46,6 @@ Maven 报告生成于 `target/surefire-reports/`，场景报告生成于 `.local
 
 ## 发布边界
 
-GitHub Actions 工作流已配置，但尚未在远端仓库执行。上述检查不包含最新版本的完整浏览器视觉验收、生产部署、多实例故障演练、压力测试或外部模型质量结论。
+GitHub Actions 在隔离的 Ubuntu 环境中执行 JavaScript 测试、真实存储依赖下的 Maven 验证与打包，以及首次启动和六个来源场景检查。每次提交的执行状态、日志与报告见 [Verify 工作流](https://github.com/laohandong/supportops/actions/workflows/verify.yml)，应按提交版本核对结果。
+
+上述检查不包含最新版本的完整浏览器视觉验收、生产部署、多实例故障演练、压力测试或外部模型质量结论。
