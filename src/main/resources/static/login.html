@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>登录 · SupportOps</title><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/users.css">
+    <script type="module" src="/login.js"></script>
+</head>
+<body class="login-body">
+    <main class="login-shell">
+        <a href="/" class="brand">SupportOps</a>
+        <p class="muted">技术支持与故障诊断</p>
+        <form id="login-form" class="form-panel">
+            <h1 id="login-title">登录工作台</h1>
+            <p id="login-description">使用管理员为你创建的账号登录。</p>
+            <label for="username">用户名</label>
+            <input id="username" name="username" autocomplete="username" pattern="[A-Za-z0-9_]{3,32}" minlength="3" maxlength="32" aria-describedby="username-hint" required>
+            <p id="username-hint" class="muted">3–32 位字母、数字或下划线，不区分大小写。</p>
+            <label for="password">密码</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" minlength="1" maxlength="128" aria-describedby="password-hint" required>
+            <p id="password-hint" class="muted">请输入此账号的密码。</p>
+            <p id="login-error" class="knowledge-error" role="alert" hidden></p>
+            <button id="login-submit" class="primary" disabled>正在连接…</button>
+        </form>
+    </main>
+</body>
+</html>

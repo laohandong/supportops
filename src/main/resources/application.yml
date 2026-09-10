@@ -1,0 +1,139 @@
+server:
+  address: 127.0.0.1
+  port: ${PORT:18080}
+  servlet:
+    session:
+      timeout: 8h
+      cookie:
+        http-only: true
+        same-site: strict
+      tracking-modes: cookie
+  error:
+    include-message: never
+  tomcat:
+    # 有界吞掉被拒绝请求的剩余正文，保证 20 MiB 校验错误能完整返回给客户端。
+    max-swallow-size: 25MB
+spring:
+  config:
+    import: optional:file:./.local/providers.yml
+  datasource:
+    url: ${SUPPORTOPS_DB_URL:jdbc:mysql://127.0.0.1:13306/supportops?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC}
+    username: ${SUPPORTOPS_DB_USER:supportops}
+    password: ${SUPPORTOPS_DB_PASSWORD:}
+  sql:
+    init:
+      mode: never
+  flyway:
+    enabled: true
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 25MB
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    arg-name-based-constructor-auto-mapping: true
+  global-config:
+    banner: false
+springdoc:
+  packages-to-scan: io.supportops
+  paths-to-match: /api/**
+  override-with-generic-response: false
+  writer-with-default-pretty-printer: true
+  api-docs:
+    version: OPENAPI_3_0
+  swagger-ui:
+    path: /swagger-ui.html
+    disable-swagger-default-url: true
+    validator-url: none
+    doc-expansion: none
+    operations-sorter: alpha
+    display-request-duration: true
+    persist-authorization: false
+    try-it-out-enabled: false
+supportops:
+  knowledge:
+    storage:
+      endpoint: ${SUPPORTOPS_MINIO_ENDPOINT:http://127.0.0.1:19000}
+      access-key: ${SUPPORTOPS_MINIO_ACCESS_KEY:}
+      secret-key: ${SUPPORTOPS_MINIO_SECRET_KEY:}
+      bucket: ${SUPPORTOPS_MINIO_BUCKET:supportops}
+    elastic:
+      endpoint: ${SUPPORTOPS_ES_ENDPOINT:http://127.0.0.1:19200}
+      username: ${SUPPORTOPS_ES_USER:}
+      password: ${SUPPORTOPS_ES_PASSWORD:}
+      prefix: ${SUPPORTOPS_ES_PREFIX:supportops}
+    jobs:
+      enabled: true
+      scan-ms: 60000
+      concurrency: 2
+      lease-ms: 120000
+      heartbeat-ms: 30000
+      max-attempts: 5
+      timeout-ms: 1800000
+    excel:
+      schema: ${SUPPORTOPS_EXCEL_SCHEMA:supportops_excel}
+      query-user: ${SUPPORTOPS_EXCEL_QUERY_USER:supportops_reader}
+      query-password: ${SUPPORTOPS_EXCEL_QUERY_PASSWORD:}
+  reranking:
+    enabled: ${SUPPORTOPS_RERANK_ENABLED:false}
+    model-path: ${SUPPORTOPS_RERANK_MODEL_PATH:.local/models/reranker/model_quantized.onnx}
+    tokenizer-path: ${SUPPORTOPS_RERANK_TOKENIZER_PATH:.local/models/reranker/tokenizer.json}
+    candidates: ${SUPPORTOPS_RERANK_CANDIDATES:20}
+    max-input-tokens: ${SUPPORTOPS_RERANK_MAX_INPUT_TOKENS:512}
+    threads: ${SUPPORTOPS_RERANK_THREADS:2}
+    timeout-ms: ${SUPPORTOPS_RERANK_TIMEOUT_MS:30000}
+  model:
+    provider: ${SUPPORTOPS_MODEL_PROVIDER:bailian}
+    api-key: ${SUPPORTOPS_API_KEY:}
+    api-key-env: ${SUPPORTOPS_MODEL_API_KEY_ENV:}
+    base-url: ${SUPPORTOPS_MODEL_BASE_URL:}
+    name: ${SUPPORTOPS_MODEL:}
+    max-output-tokens: 2500
+    max-steps: 10
+    timeout-seconds: 120
+  embedding:
+    provider: ${SUPPORTOPS_EMBEDDING_PROVIDER:bailian}
+    api-key: ${SUPPORTOPS_EMBEDDING_API_KEY:}
+    api-key-env: ${SUPPORTOPS_EMBEDDING_API_KEY_ENV:}
+    base-url: ${SUPPORTOPS_EMBEDDING_BASE_URL:}
+    name: ${SUPPORTOPS_EMBEDDING_MODEL:}
+  providers:
+    bailian:
+      api: openai-completions
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+      api-key-env: DASHSCOPE_API_KEY
+      chat-model: qwen-plus
+      embedding-model: text-embedding-v3
+      embeddings: true
+      max-tokens-field: max_tokens
+      temperature: '0.1'
+    deepseek:
+      api: openai-completions
+      base-url: https://api.deepseek.com
+      api-key-env: DEEPSEEK_API_KEY
+      chat-model: deepseek-v4-flash
+      embeddings: false
+      max-tokens-field: max_tokens
+      thinking: disabled
+    openai:
+      api: openai-completions
+      base-url: https://api.openai.com/v1
+      api-key-env: OPENAI_API_KEY
+      chat-model: gpt-4.1-mini
+      embedding-model: text-embedding-3-small
+      embeddings: true
+      max-tokens-field: max_completion_tokens
+    custom:
+      api: openai-completions
+      embeddings: true
+      api-key-env: CUSTOM_API_KEY
+      max-tokens-field: max_tokens
+logging:
+  level:
+    io.agentscope: WARN
+    io.modelcontextprotocol: WARN

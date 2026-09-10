@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.supportops.knowledge.mapper.KnowledgeDocumentMapper">
+
+    <!-- 只读投影保留原接口字段，统计值不写入数据库实体。 -->
+    <sql id="documentProjection">
+        SELECT d.id, d.title, d.version, d.filename, d.created_at, d.embedding_key,
+               (SELECT COUNT(*) FROM chunks c WHERE c.document_id = d.id) AS chunks
+        FROM documents d
+    </sql>
+    <select id="selectDocuments" resultType="io.supportops.knowledge.vo.KnowledgeDocument">
+        <include refid="documentProjection"/>
+        ORDER BY d.created_at DESC
+    </select>
+    <select id="selectDocument" resultType="io.supportops.knowledge.vo.KnowledgeDocument">
+        <include refid="documentProjection"/>
+        WHERE d.id = #{id}
+    </select>
+</mapper>

@@ -1,0 +1,18 @@
+/* 账号页面沿用工作台配色和表单控件。 */
+.auth-pending { visibility: hidden; }
+.login-body { min-height: 100vh; display: grid; place-items: center; padding: 32px 16px; }
+.login-shell { margin: 0; width: min(100%, 440px); }
+.login-shell > p { margin: 8px 0 28px; }
+.login-shell h1 { font-size: 25px; margin-bottom: 12px; }
+.login-shell .muted { font-size: 12px; margin: 6px 0 12px; }
+.login-shell button { width: 100%; margin-top: 20px; min-height: 44px; }
+.account-controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.account-controls button { min-height: 36px; }
+#current-user { overflow-wrap: anywhere; }
+.user-row { display: flex; justify-content: space-between; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.user-row p { margin: 4px 0 0; font-size: 12px; color: var(--muted); }
+#user-feedback { min-height: 24px; margin-top: 16px; }
+@media (max-width: 680px) {
+    .topbar { height: auto; min-height: 64px; gap: 12px; flex-wrap: wrap; padding-block: 12px; }
+    .account-controls { gap: 8px; }
+}

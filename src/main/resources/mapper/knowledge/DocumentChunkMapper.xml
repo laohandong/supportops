@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.supportops.knowledge.mapper.DocumentChunkMapper">
+
+    <!-- 版本条件必须在数据库层执行，不能把其他版本正文交给模型自行判断。 -->
+    <select id="selectApplicablePassages" resultType="io.supportops.knowledge.dto.StoredPassage">
+        SELECT c.id, c.document_id, d.title, d.version, c.location, c.content,
+               c.embedding, d.embedding_key
+        FROM chunks c
+        JOIN documents d ON d.id = c.document_id
+        WHERE d.version = #{version} OR d.version = '*'
+        ORDER BY c.id
+    </select>
+</mapper>

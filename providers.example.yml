@@ -1,0 +1,17 @@
+# Copy to .local/providers.yml. API keys belong in the referenced environment variables.
+# Provider selection can also be set through SUPPORTOPS_MODEL_PROVIDER / SUPPORTOPS_EMBEDDING_PROVIDER.
+supportops:
+  model:
+    provider: deepseek
+    max-output-tokens: 2500
+  embedding:
+    provider: disabled
+  providers:
+    company-gateway:
+      api: openai-completions
+      base-url: https://gateway.example/v1
+      api-key-env: COMPANY_API_KEY
+      chat-model: your-chat-model
+      embedding-model: your-embedding-model
+      max-tokens-field: max_tokens
+      temperature: omit

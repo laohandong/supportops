@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.supportops.agent.mapper.DiagnosisRunMapper">
+
+    <select id="selectRecentRuns" resultType="io.supportops.agent.entity.DiagnosisRunEntity">
+        SELECT * FROM runs WHERE archived_at IS NULL ORDER BY created_at DESC LIMIT 100
+    </select>
+    <select id="selectRecentHistory" resultType="io.supportops.agent.memory.ConversationTurn">
+        SELECT question, answer FROM runs
+        WHERE session_id = #{sessionId} AND status = 'COMPLETED'
+        ORDER BY created_at DESC LIMIT 3
+    </select>
+    <!-- 终态条件同时保护迟到的成功、失败和重复取消。 -->
+    <update id="finishActiveRun">
+        UPDATE runs
+        SET status = #{run.status}, answer = #{run.answer}, error_code = #{run.errorCode},
+            finished_at = #{run.finishedAt}, elapsed_ms = #{run.elapsedMs}
+        WHERE id = #{run.id} AND status IN ('QUEUED', 'RUNNING')
+    </update>
+    <update id="incrementUsage">
+        UPDATE runs
+        SET input_tokens = input_tokens + #{inputTokens},
+            output_tokens = output_tokens + #{outputTokens}
+        WHERE id = #{id} AND status = 'RUNNING'
+    </update>
+    <sql id="usageMetrics">
+        COUNT(*) AS runs, COUNT(DISTINCT r.session_id) AS sessions,
+        COALESCE(SUM(CASE WHEN r.status = 'COMPLETED' THEN 1 ELSE 0 END), 0) AS completed,
+        COALESCE(SUM(CASE WHEN NOT EXISTS (SELECT 1 FROM run_events e WHERE e.run_id = r.id AND e.kind = 'USAGE') THEN 1 ELSE 0 END), 0) AS unreported,
+        COALESCE(SUM(r.input_tokens), 0) AS input_tokens,
+        COALESCE(SUM(r.output_tokens), 0) AS output_tokens,
+        COALESCE(SUM(r.elapsed_ms), 0) AS elapsed_ms
+    </sql>
+    <sql id="usageRange">FROM runs r WHERE r.created_at &gt;= #{from} AND r.created_at &lt; #{until}</sql>
+    <select id="selectUsageSummary" resultType="io.supportops.agent.vo.UsageGroup">
+        SELECT 'all' AS group_id, '' AS question, <include refid="usageMetrics"/> <include refid="usageRange"/>
+    </select>
+    <select id="selectUsageTimeline" resultType="io.supportops.agent.vo.UsageGroup">
+        SELECT SUBSTRING(r.created_at, 1, #{length}) AS group_id, '' AS question, <include refid="usageMetrics"/>
+        <include refid="usageRange"/> GROUP BY group_id ORDER BY group_id
+    </select>
+    <select id="selectUsageTop" resultType="io.supportops.agent.vo.UsageGroup">
+        SELECT r.session_id AS group_id, MIN(r.question) AS question, <include refid="usageMetrics"/>
+        <include refid="usageRange"/> GROUP BY r.session_id
+        ORDER BY SUM(r.input_tokens + r.output_tokens) DESC, r.session_id LIMIT 20
+    </select>
+    <select id="selectUsageSession" resultType="io.supportops.agent.vo.DiagnosisRun">
+        SELECT * FROM runs WHERE session_id = #{sessionId} ORDER BY created_at, id LIMIT 50 OFFSET #{offset}
+    </select>
+</mapper>

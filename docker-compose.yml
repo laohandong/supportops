@@ -1,0 +1,4 @@
+# 本地依赖入口；Compose 2.20+。相对挂载路径由被包含文件所在目录解析。
+name: supportops
+include:
+  - path: ./infrastructure/compose.yml

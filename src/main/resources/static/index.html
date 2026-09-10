@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>SupportOps · 诊断工作台</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/usage.css">
+    <link rel="stylesheet" href="/users.css">
+    <link rel="stylesheet" href="/workspace.css?v=20260908-2">
+    <script src="/vendor/markdown-it.min.js" defer></script>
+    <script src="/markdown.js" defer></script>
+    <script src="/vendor/chart.umd.min.js" defer></script>
+    <script type="module" src="/app.js?v=20260908-2"></script>
+</head>
+<body class="auth-pending">
+<aside class="sidebar">
+    <a class="brand" href="/" aria-label="SupportOps 首页">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M6 7h20v6H12v6h14v6H6v-6h14v-6H6z"/>
+        </svg>
+        SupportOps</a>
+    <p class="sidebar-caption">技术支持与故障诊断</p>
+    <section class="nav-group customer-navigation" aria-labelledby="customer-navigation-title">
+        <h2 class="nav-group-title" id="customer-navigation-title">客户工作区</h2>
+        <nav aria-labelledby="customer-navigation-title">
+            <button class="nav-item active" data-page="diagnosis" aria-current="page"><span class="ui-icon icon-chat" aria-hidden="true"></span>诊断工作台</button>
+        </nav>
+        <button class="new-conversation" id="new-session"><span class="ui-icon icon-plus" aria-hidden="true"></span>新建会话</button>
+        <div class="history-heading"><span id="history-title">最近诊断</span></div>
+        <div id="history" class="history" role="group" aria-labelledby="history-title"><p class="muted">暂无诊断记录</p></div>
+    </section>
+    <section class="nav-group admin-navigation" aria-labelledby="admin-navigation-title">
+        <h2 class="nav-group-title" id="admin-navigation-title">后台管理</h2>
+        <nav aria-labelledby="admin-navigation-title">
+            <button class="nav-item" data-page="knowledge"><span class="ui-icon icon-file" aria-hidden="true"></span>知识文档</button>
+            <button class="nav-item" data-page="memory"><span class="ui-icon icon-case" aria-hidden="true"></span>项目约束</button>
+            <button class="nav-item" data-page="demo"><span class="ui-icon icon-cube" aria-hidden="true"></span>示例环境</button>
+            <button class="nav-item" data-page="usage"><span class="ui-icon icon-chart" aria-hidden="true"></span>用量分析</button>
+            <button class="nav-item" data-page="models"><span class="ui-icon icon-settings" aria-hidden="true"></span>模型配置</button>
+            <button class="nav-item" data-page="users"><span class="ui-icon icon-users" aria-hidden="true"></span>用户管理</button>
+        </nav>
+    </section>
+    <div class="sidebar-bottom"><span class="status-dot"></span> 本地示例环境 <span class="version">v0.1</span></div>
+</aside>
+<main>
+    <header class="topbar"><span>OrderBridge <span class="muted">/ <span id="workspace-context" aria-live="polite">客户工作区</span></span></span><span class="local-label" id="workspace-purpose">只读诊断 · 人工处理</span>
+        <div class="account-controls"><span id="current-user"></span><button id="logout" class="secondary">退出登录</button></div>
+    </header>
+    <div id="notice" class="notice" role="alert" hidden></div>
+    <section id="page-diagnosis" class="page">
+        <div id="model-notice" class="config-notice" hidden><strong>配置模型后，即可开始诊断</strong>
+            <p>选择对话服务并填写密钥，保存后即可使用。文档上传、关键词检索与示例环境可以先行使用。</p>
+            <button class="secondary" data-page="models">前往模型配置</button>
+        </div>
+        <div class="diagnosis-layout">
+            <div class="conversation-column">
+        <div class="page-heading">
+            <div><h1 id="diagnosis-title">诊断工作台</h1>
+                <p>让每一项判断，都有可核查的依据。</p></div>
+            <div class="header-actions">
+                <button id="refresh-run" class="secondary" hidden>刷新诊断</button>
+                <button id="export-run" class="secondary" disabled><span class="ui-icon icon-download" aria-hidden="true"></span>导出诊断</button>
+            </div>
+        </div>
+
+                <div id="conversation" class="conversation" aria-live="polite">
+                    <div class="empty-diagnosis">
+                        <svg class="empty-symbol" viewBox="0 0 48 48" aria-hidden="true">
+                            <path d="M10 10h28v28H10zM17 19h14M17 25h9M17 31h6"/>
+                        </svg>
+                        <h2>从一个现场问题开始</h2>
+                        <p>
+                            描述异常现象、发生时间与已经尝试的操作。诊断助手会查询当前环境，核查适用资料，整理建议与证据缺口。</p>
+                        <button id="use-example" class="example-prompt">使用示例：升级后订单同步失败</button>
+                        <p id="first-use-note" class="subtle">首次体验可先导入示例文档，再配置对话模型。</p></div>
+                </div>
+                <form id="chat-form" class="composer"><label for="question">问题描述或补充信息</label><textarea
+                        id="question" maxlength="6000" rows="2"
+                        placeholder="例如：升级到 2.0 后订单同步一直失败，路径配置看起来没有变化。" required></textarea>
+                    <p id="session-ownership-note" class="muted" hidden>此会话属于其他用户或历史未归属记录。继续诊断请点击“新建”。</p>
+                    <div class="composer-footer"><label class="checkbox-label"><input id="lexical-only" type="checkbox">
+                        仅关键词检索</label>
+                        <div>
+                            <button id="cancel-run" type="button" class="secondary" hidden>取消诊断</button>
+                            <button id="start-run" type="submit" class="primary">发送</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <aside class="evidence-column">
+                <div class="section-heading"><h2>证据与执行记录</h2><span id="run-state" class="badge">待开始</span>
+                </div>
+                <p class="muted evidence-intro">工具返回现场事实，文档提供版本依据。</p>
+                <div class="evidence-filters" role="group" aria-label="筛选证据类型">
+                    <button type="button" data-evidence-filter="all" aria-pressed="true">全部</button>
+                    <button type="button" data-evidence-filter="config" aria-pressed="false">配置</button>
+                    <button type="button" data-evidence-filter="logs" aria-pressed="false">日志</button>
+                    <button type="button" data-evidence-filter="documents" aria-pressed="false">文档</button>
+                </div>
+                <div id="run-metrics" class="run-metrics" hidden></div>
+                <p id="evidence-filter-empty" class="muted" role="status" hidden>当前分类暂无证据。</p>
+                <div id="evidence">
+                    <div class="empty-evidence"><p>诊断开始后，工具查询和引用资料会显示在这里。</p><span>应用信息 · 生效配置 · 日志 · 下游状态</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </section>
+    <section id="page-users" class="page" hidden>
+        <div class="page-heading"><div><h1>用户管理</h1><p>为同事创建账号，并指定可访问的工作区。</p></div></div>
+        <div class="split-layout">
+            <form id="create-user-form" class="form-panel">
+                <h2>创建用户</h2>
+                <label for="new-username">用户名</label>
+                <input id="new-username" aria-describedby="new-username-hint" name="username" autocomplete="off" pattern="[A-Za-z0-9_]{3,32}" minlength="3" maxlength="32" required>
+                <p id="new-username-hint" class="muted">3–32 位字母、数字或下划线，不区分大小写。</p>
+                <label for="new-password">初始密码</label>
+                <input id="new-password" aria-describedby="new-password-hint" name="password" type="password" autocomplete="new-password" minlength="12" maxlength="128" required>
+                <p id="new-password-hint" class="muted">12–128 个字符，请通过可信渠道交给使用者。</p>
+                <label for="new-role">角色</label>
+                <select id="new-role" aria-describedby="new-role-hint" name="role"><option value="USER">普通用户</option><option value="ADMIN">管理员</option></select>
+                <p id="new-role-hint" class="muted">普通用户只能使用客户工作区，查看自己的对话。管理员可以访问全部菜单与记录。</p>
+                <button class="primary" id="create-user-submit">创建账号</button>
+                <p id="user-feedback" role="status"></p>
+            </form>
+            <section aria-label="用户列表"><h2>已有用户</h2><div id="user-list" aria-live="polite"></div></section>
+        </div>
+    </section>
+    <section id="page-knowledge" class="page" hidden>
+        <div class="page-heading">
+            <div><h1>知识文档</h1>
+                <p>收录产品专属规则，让诊断使用适用版本的资料。</p></div>
+            <button id="import-examples" class="secondary">导入示例文档</button>
+        </div>
+        <div class="split-layout">
+            <div>
+                <form id="upload-form" class="form-panel"><h2>上传文档</h2><label
+                        for="document-title">文档标题</label><input id="document-title" maxlength="180" required
+                                                                    placeholder="例如：OrderBridge 2.0 升级说明"><label
+                        for="document-version">适用版本</label><input id="document-version" maxlength="30" value="2.0"
+                                                                      required>
+                    <p class="field-help">与部署版本精确匹配；通用资料使用 *。产品版本与文档修订号分别记录。</p>
+                    <input id="document-owner" type="hidden">
+                    <p id="revision-target" class="field-help" hidden></p>
+                    <label for="document-note">修订说明（选填）</label><input id="document-note" maxlength="1000">
+                    <label for="document-file">文档或 Excel 文件</label><input id="document-file" type="file" accept=".md,.pdf,.xls,.xlsx" required>
+                    <p class="field-help">最大 20 MB。PDF 需要可提取的文字；Excel 数据导入后可进行表格查询。</p>
+                    <div class="knowledge-fields">
+                        <label for="chunk-size">每片字数上限<input id="chunk-size" type="number" min="100" max="8000" step="1" value="100" required></label>
+                        <label for="chunk-overlap">重叠字数<input id="chunk-overlap" type="number" min="0" max="7990" step="1" value="10" required></label>
+                    </div>
+                    <p class="field-help">默认每片最多 100 字，同章节相邻片段重叠 10 字。章节末片可更短，重叠不跨章节或 PDF 页；每次至少前进 10 字。仅用于文本分片。</p>
+                    <details class="excel-options"><summary>Excel 导入选项</summary>
+                        <label for="excel-sheets">Sheet 序号（选填）</label><input id="excel-sheets" placeholder="从 0 开始，以逗号分隔；留空读取全部">
+                        <label for="excel-header">表头行号</label><input id="excel-header" type="number" min="0" max="1000" value="0">
+                        <p class="field-help">从 1 开始；0 表示各 Sheet 的首个非空行。</p>
+                        <label class="checkbox-label"><input id="excel-preview" type="checkbox">先预览列类型，确认后再入表</label>
+                    </details>
+                    <div class="knowledge-upload-actions"><button class="primary" type="submit">上传并自动处理</button><button id="cancel-revision" type="button" class="secondary" hidden>改为新文档</button></div>
+                    <p id="upload-feedback" class="field-help" role="status" aria-live="polite"></p>
+                </form>
+                <p id="embedding-status" class="field-help"></p></div>
+            <div><h2 class="list-title">已收录文档</h2>
+                <div id="documents" class="data-list"><p class="muted">正在读取文档…</p></div>
+            </div>
+        </div>
+        <section id="knowledge-detail" class="knowledge-detail" hidden aria-label="文档修订与处理记录"></section>
+        <details id="upload-history" class="upload-history"><summary>最近上传记录</summary><div id="upload-history-content"></div></details>
+        <div class="search-panel"><h2>检索验证</h2>
+            <form id="search-form" class="search-form">
+                <div><label for="search-query">查询内容</label><input id="search-query" required maxlength="2000"
+                                                                      placeholder="错误码、配置键或排查问题"></div>
+                <div class="version-field"><label for="search-version">版本</label><input id="search-version"
+                                                                                          value="2.0" required></div>
+                <button class="secondary">检索</button>
+            </form>
+            <div id="search-results" aria-live="polite"></div>
+        </div>
+    </section>
+    <section id="page-memory" class="page" hidden>
+        <div class="page-heading">
+            <div><h1>项目约束</h1>
+                <p>保存由人员确认的稳定事实，在新会话中继续使用。</p></div>
+        </div>
+        <div class="split-layout">
+            <form id="memory-form" class="form-panel"><h2>添加已确认的约束</h2><label
+                    for="memory-content">约束内容</label><textarea id="memory-content" rows="5" maxlength="1000"
+                                                                   required
+                                                                   placeholder="例如：变更需在维护窗口内由实施负责人执行。"></textarea><label
+                    class="checkbox-label"><input id="memory-confirmed" type="checkbox" required> 我已确认这项约束适用于当前项目</label>
+                <button class="primary" type="submit">保存约束</button>
+                <p class="field-help">诊断助手不能自动写入记忆。删除后，新任务不再加载该项；历史诊断记录仍保留原始内容。</p>
+            </form>
+            <div><h2 class="list-title">已确认约束</h2>
+                <div id="memories" class="data-list"></div>
+            </div>
+        </div>
+    </section>
+    <section id="page-demo" class="page" hidden>
+        <div class="page-heading">
+            <div><h1>示例环境</h1>
+                <p>OrderBridge 是自建的 Java 订单同步示例，使用合成业务数据。</p></div>
+        </div>
+        <div class="split-layout">
+            <div class="form-panel"><h2>选择故障条件</h2><label for="scenario">场景</label><select id="scenario">
+                <option value="migration">升级后配置未迁移</option>
+                <option value="unavailable">下游不可用（503）</option>
+                <option value="credentials">凭据错误（401）</option>
+                <option value="stale-docs">历史文档版本不适用</option>
+                <option value="insufficient">日志来源不可用</option>
+                <option value="injection">文档干扰指令测试</option>
+                <option value="healthy">健康环境</option>
+            </select>
+                <button id="set-scenario" class="secondary">切换并发起同步</button>
+                <p class="field-help">切换会清空示例日志并产生一次真实 HTTP 请求。文档干扰材料需从 evaluation/fixtures
+                    单独上传。</p>
+                <div class="separator"></div>
+                <h2>人工操作</h2>
+                <p class="muted">确认诊断建议后，可在此调整示例配置，再检查业务请求是否恢复。</p>
+                <button id="repair-demo" class="primary">应用 2.0 路径配置</button>
+                <button id="sync-demo" class="secondary">发起一次同步</button>
+                <p class="field-help">这些操作不对 Agent 开放。诊断运行期间不能修改示例环境。</p></div>
+            <div><h2 class="list-title">当前环境事实</h2>
+                <pre id="demo-state" class="raw-data"></pre>
+            </div>
+        </div>
+    </section>
+    <section id="page-models" class="page" hidden>
+        <div class="page-heading">
+            <div><h1>模型配置</h1>
+                <p>分别选择对话与向量服务，保存后生效，无需重启。</p></div>
+            <button id="reload-model-settings" class="secondary">重新读取配置</button>
+        </div>
+        <div class="settings-note"><strong>先配好对话模型，就能开始诊断。</strong>
+            <p>向量服务用于建立索引与语义检索，可以暂不配置。诊断运行期间，请先完成或取消任务再保存。</p></div>
+        <div id="model-settings" class="settings-layout" aria-busy="true"><p class="muted">正在读取模型配置…</p></div>
+        <p class="settings-storage">界面保存的配置优先于文件与环境变量。密钥保存在本机 .local
+            目录的未加密文件中，不会回显到页面；请勿共享该目录。</p>
+    </section>
+    <section class="page usage-page" id="page-usage" hidden>
+        <!-- 用量分析：图表优先的分析工作区。先看时间变化，再定位高消耗会话，最后回看问答与证据；所有数值来自同一统计快照。 -->
+        <header class="usage-heading">
+            <div><h1>用量分析</h1><p>看清用量变化，找到值得复盘的对话。</p></div>
+            <span class="usage-timezone">UTC 时间统计</span>
+        </header>
+        <form id="usage-filter" class="usage-filter">
+            <div class="usage-presets" role="group" aria-label="快捷日期范围">
+                <button type="button" data-usage-days="1">今天</button>
+                <button type="button" data-usage-days="7" aria-pressed="true">近 7 天</button>
+                <button type="button" data-usage-days="30">近 30 天</button>
+                <button type="button" data-usage-days="90">近 90 天</button>
+            </div>
+            <div class="usage-date-fields">
+                <label>开始日期<input id="usage-from" type="date" required aria-label="开始日期（UTC）"></label>
+                <span class="usage-date-separator" aria-hidden="true">—</span>
+                <label>结束日期<input id="usage-to" type="date" required aria-label="结束日期（UTC）"></label>
+                <label>统计粒度<select id="usage-granularity"><option value="day">按天</option><option value="hour">按小时</option></select></label>
+                <button id="usage-refresh" type="submit" class="primary">更新图表</button>
+            </div>
+        </form>
+        <div class="usage-status-line"><p id="usage-feedback" role="status" aria-live="polite"></p><a href="#usage-method">统计口径</a></div>
+        <div id="usage-results" aria-busy="false"></div>
+        <section id="usage-detail" class="usage-detail" hidden aria-label="会话回看"></section>
+        <details id="usage-method" class="usage-method">
+            <summary>统计口径与阅读说明</summary>
+            <div>
+                <p>日期范围包含首尾，最多 90 天；按诊断创建时间归属。UTC 比北京时间晚 8 小时，图表和排行使用相同范围。</p>
+                <p>Token 仅含对话模型已报告的输入与输出，不含向量用量或费用。未报告不代表零消耗，已有报告也可能仅覆盖部分调用；累计曲线从所选范围起点重新累计。</p>
+                <p>每轮平均消耗 = 该时段已报告总 Token ÷ 该时段全部诊断轮数，无诊断时留空。完成轮数仅表示 COMPLETED 状态，不代表回答正确。会话回看包含所选日期之外的全部历史。</p>
+            </div>
+        </details>
+    </section>
+    <footer>SupportOps · 证据驱动的技术支持 <span id="model-label"></span></footer>
+</main>
+<dialog id="document-dialog">
+    <div class="dialog-heading"><h2 id="dialog-title">文档原文</h2>
+        <button id="close-dialog" class="secondary">关闭</button>
+    </div>
+    <div id="dialog-content"></div>
+</dialog>
+</body>
+</html>
+

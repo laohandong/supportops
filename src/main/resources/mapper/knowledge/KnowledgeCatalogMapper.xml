@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.supportops.knowledge.mapper.KnowledgeCatalogMapper">
+  <select id="lockDocument" resultType="io.supportops.knowledge.entity.KnowledgeDocumentEntity">
+    SELECT * FROM documents WHERE id=#{id} FOR UPDATE
+  </select>
+  <select id="sources" resultType="io.supportops.knowledge.dto.ChunkSource">
+    SELECT c.id,c.document_id,c.version_id,c.batch_id,v.file_id,v.title,f.filename,v.file_type,
+      v.product_version,v.revision,c.chunk_index,c.content,c.content_hash,c.heading,c.heading_path,c.location,
+      c.page_start,c.page_end,c.line_start,c.line_end,c.char_start,c.char_end,c.char_count
+    FROM chunks c JOIN document_versions v ON v.id=c.version_id JOIN source_files f ON f.id=v.file_id
+    WHERE c.batch_id=#{batchId} AND c.chunk_index &gt; #{after} ORDER BY c.chunk_index LIMIT #{limit}
+  </select>
+  <select id="applicableBatches" resultType="string">
+    SELECT r.batch_id FROM document_releases r JOIN documents d ON d.id=r.document_id
+    WHERE d.deleted=FALSE AND (r.product_version=#{version} OR r.product_version='*')
+  </select>
+</mapper>
