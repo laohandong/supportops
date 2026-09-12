@@ -33,6 +33,7 @@ SupportOps 的项目介绍、两条核心流程和快速启动命令见 [项目 
 
 ## 示例与随附资源
 
+- [排障演示](demo/README.md)：79 秒真实操作视频、中文字幕与场景说明。
 - [示例资料清单](../examples/knowledge/manifest.json)：三份自建 OrderBridge 版本手册与迁移说明，供工作台导入。
 - [评测场景定义](../evaluation/cases.json)：环境条件和人工审阅标准，不作为默认知识材料提供给 Agent。
 - [内置 Skills](../src/main/resources/skills)：排障与升级核查方法，不含脚本执行能力。

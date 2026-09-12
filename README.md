@@ -8,6 +8,14 @@
 
 > 模型诊断需要自行配置兼容接口的服务密钥。未配置时，应用提供文档管理、关键词检索和故障环境操作，并明确显示诊断不可用。固定协议测试用于验证工程链路，不代表真实模型诊断准确率。
 
+## 演示
+
+[![SupportOps 排障演示：根据现场证据定位升级后的订单同步故障](docs/demo/supportops-demo-cover.png)](https://github.com/laohandong/supportops/raw/refs/heads/main/docs/demo/supportops-demo-zh.mp4)
+
+**[观看 / 下载 79 秒演示](https://github.com/laohandong/supportops/raw/refs/heads/main/docs/demo/supportops-demo-zh.mp4)** · 中文字幕 · 无配音 · [场景说明与字幕](docs/demo/README.md)
+
+从升级后同步失败开始，展示文档索引、MCP 现场取证、适用版本检索与引用、人员处理，以及再次诊断确认本次请求恢复。画面来自自建 OrderBridge 合成环境中的真实操作和模型回答，推理等待片段已标注加速。
+
 ## 典型问题
 
 “升级到 2.0 后订单同步持续失败，路径配置看起来没有变化。”
