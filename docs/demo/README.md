@@ -2,6 +2,8 @@
 
 约 79 秒，1600 × 900，30 fps，H.264 MP4，中文字幕，无配音。
 
+https://github.com/user-attachments/assets/669a565e-0aa1-4b21-9b5a-3c141856840b
+
 演示使用项目自建的 OrderBridge 合成订单同步环境，画面来自真实工作台操作和已持久化的模型回答。推理等待片段已加速，并在字幕中标明。模型没有执行修复，配置调整由人员通过示例环境页面完成。
 
 ## 演示内容
@@ -17,7 +19,7 @@
 
 ## 文件
 
-- [演示视频（MP4）](https://github.com/laohandong/supportops/raw/refs/heads/main/docs/demo/supportops-demo-zh.mp4)：已内嵌中文字幕的视频。
+- [下载演示视频（MP4）](https://github.com/laohandong/supportops/raw/refs/heads/main/docs/demo/supportops-demo-zh.mp4)：已内嵌中文字幕的视频。
 - [独立中文字幕（SRT）](supportops-demo-zh.srt)：独立字幕，供重新剪辑使用。
 - [演示封面（PNG）](supportops-demo-cover.png)：视频中的真实诊断画面，可用作封面。
 

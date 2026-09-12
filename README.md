@@ -10,9 +10,9 @@
 
 ## 演示
 
-[![SupportOps 排障演示：根据现场证据定位升级后的订单同步故障](docs/demo/supportops-demo-cover.png)](https://github.com/laohandong/supportops/raw/refs/heads/main/docs/demo/supportops-demo-zh.mp4)
+https://github.com/user-attachments/assets/669a565e-0aa1-4b21-9b5a-3c141856840b
 
-**[观看 / 下载 79 秒演示](https://github.com/laohandong/supportops/raw/refs/heads/main/docs/demo/supportops-demo-zh.mp4)** · 中文字幕 · 无配音 · [场景说明与字幕](docs/demo/README.md)
+**79 秒排障演示** · 点击上方播放器即可观看 · 中文字幕 · 无配音 · [场景说明与字幕](docs/demo/README.md) · [下载 MP4](https://github.com/laohandong/supportops/raw/refs/heads/main/docs/demo/supportops-demo-zh.mp4)
 
 从升级后同步失败开始，展示文档索引、MCP 现场取证、适用版本检索与引用、人员处理，以及再次诊断确认本次请求恢复。画面来自自建 OrderBridge 合成环境中的真实操作和模型回答，推理等待片段已标注加速。
 
