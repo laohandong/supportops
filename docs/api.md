@@ -4,6 +4,8 @@ SupportOps 使用 springdoc-openapi 与 Swagger UI，从控制器和数据模型
 
 ## 访问入口
 
+飞书后台接口位于 `/api/feishu/**`，继承管理员 Cookie 与同源权限，不向平台开放 HTTP 回调。接口清单与账号绑定流程见 [飞书私聊诊断](feishu.md#管理接口)。
+
 启动应用后访问：
 
 | 入口 | 地址 |

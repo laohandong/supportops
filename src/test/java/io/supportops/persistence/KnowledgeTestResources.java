@@ -79,6 +79,7 @@ public final class KnowledgeTestResources implements AutoCloseable {
 
     /** Spring 集成测试隔离原件、索引、配置文件及数据库身份。 */
     public void properties(DynamicPropertyRegistry properties) {
+        properties.add("supportops.feishu.enabled", () -> false);
         properties.add("spring.datasource.url", this::url);
         properties.add("spring.datasource.username", () -> user);
         properties.add("spring.datasource.password", () -> password);

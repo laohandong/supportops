@@ -21,12 +21,16 @@ document.querySelector('#current-user').textContent = signedInUser.username + ' 
 
 import {renderUsageDashboard} from './usage-charts.js';
 import {initializeKnowledge} from './knowledge.js';
+import {initializeFeishu} from './feishu.js';
 let usageEpoch = 0, usageDetailEpoch = 0, historyEpoch = 0;
 let destroyUsageCharts = () => {};
 let usageReturnFocus = null;
 const tokenNumber = value => Number(value).toLocaleString('zh-CN');
 const $ = (selector) => document.querySelector(selector);
 const errors = {
+    FEISHU_NOT_CONFIGURED: '请先在本机配置飞书应用编号、企业编号与密钥，再重启服务。',
+    FEISHU_BINDING_NOT_FOUND: '绑定记录不存在，请刷新列表。',
+    USER_NOT_FOUND: '账号不存在，请刷新账号列表。',
     USERNAME_EXISTS: '用户名已存在，请换一个用户名。',
     ADMIN_REQUIRED: '此功能仅管理员可以使用。',
     AUTHENTICATION_REQUIRED: '登录已失效，请重新登录。',
@@ -83,6 +87,7 @@ const toolNames = {
 let selected = null, sessionId = crypto.randomUUID(), currentRun = null, currentEvents = [], status = null,
     pollTimer = null, pollEpoch = 0, pollFailures = 0, runStream = null, draftAnswer = '';
 const {documents, showDocument, originalLink, sqlEvidence} = initializeKnowledge({api, el, ownerLabel, canManage: isAdmin, errors, notify, action, $, getStatus: () => status});
+const feishu = initializeFeishu({api, el, action, $, isAdmin});
 
 function el(tag, text, className) {
     const node = document.createElement(tag);
@@ -163,6 +168,7 @@ document.querySelectorAll('[data-page]').forEach(b => b.addEventListener('click'
 async function refreshPage(name) {
     if (!isAdmin && name !== 'diagnosis') return;
     if (name === 'users') await loadUsers();
+    if (name === 'feishu') await feishu.refresh();
     if (name === 'usage') await loadUsage();
     if (name === 'knowledge') await documents();
     if (name === 'memory') await memoryList();
@@ -226,7 +232,7 @@ function message(role, text, css = '') {
     const body = el('div', text, 'message-body');
     if (css !== 'user-message') {
         body.className += ' markdown-body';
-        body.innerHTML = globalThis.renderMarkdown(text);
+        body.innerHTML = globalThis.renderDiagnosisMarkdown(text);
     }
     const avatar = el('span', css === 'user-message' ? '我' : 'S', 'message-avatar');
     avatar.setAttribute('aria-hidden', 'true');

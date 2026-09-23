@@ -70,6 +70,8 @@ if (!sourcesOnly && !args.some(arg => arg.startsWith('--config='))) {
         workspace = JSON.parse(prepared.stdout.split(/\r?\n/).find(line => line.startsWith('WORKSPACE:')).slice(10));
       } catch { throw new Error('Isolated MySQL preparation failed. Start the test infrastructure described in docs/knowledge.md.'); }
       const childEnv = {...env};
+      // 评测实例不接收真实飞书消息，也不继承工作台的应用凭据。
+      for (const key of Object.keys(childEnv).filter(key => key.startsWith('SUPPORTOPS_FEISHU_'))) delete childEnv[key];
       Object.assign(childEnv, {
         SUPPORTOPS_DB_URL: workspace.mysql + workspace.database + '?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC',
         SUPPORTOPS_DB_USER: 'supportops', SUPPORTOPS_DB_PASSWORD: 'synthetic-knowledge-app',
@@ -87,6 +89,7 @@ if (!sourcesOnly && !args.some(arg => arg.startsWith('--config='))) {
         '-Dpdfbox.fontcache=.cache/pdfbox', '-jar', runtimeJar,
         '--server.address=127.0.0.1', '--server.port=0', '--spring.config.location=classpath:application.yml',
         '--supportops.knowledge.jobs.scan-ms=1000',
+        '--supportops.feishu.enabled=false',
         `--supportops.settings.file=${groupSettings}`,
         ...(!hybrid ? ['--supportops.embedding.provider=disabled'] : []),
         '--supportops.model.max-steps=10', '--supportops.model.timeout-seconds=120',

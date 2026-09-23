@@ -1,6 +1,8 @@
 import {readFile} from 'node:fs/promises';
 
 const allowed = new Set([
+  'SUPPORTOPS_FEISHU_ENABLED', 'SUPPORTOPS_FEISHU_APP_ID', 'SUPPORTOPS_FEISHU_APP_SECRET',
+  'SUPPORTOPS_FEISHU_TENANT_KEY',
   'SUPPORTOPS_RERANK_ENABLED', 'SUPPORTOPS_RERANK_MODEL_PATH', 'SUPPORTOPS_RERANK_TOKENIZER_PATH',
   'SUPPORTOPS_RERANK_CANDIDATES', 'SUPPORTOPS_RERANK_MAX_INPUT_TOKENS', 'SUPPORTOPS_RERANK_THREADS', 'SUPPORTOPS_RERANK_TIMEOUT_MS',
   'SUPPORTOPS_API_KEY', 'SUPPORTOPS_MODEL_BASE_URL', 'SUPPORTOPS_MODEL',
@@ -16,8 +18,11 @@ const allowed = new Set([
   'SUPPORTOPS_EXCEL_SCHEMA', 'SUPPORTOPS_EXCEL_QUERY_USER', 'SUPPORTOPS_EXCEL_QUERY_PASSWORD',
 ]);
 
+// 兼容旧文件的已移除选项，仅校验格式与重复项，不再传递给应用。
+const retiredKeys = new Set(['SUPPORTOPS_FEISHU_LEXICAL_ONLY']);
+
 export function configurationSecrets(env) {
-  return Object.entries(env).filter(([key, value]) => /(_API_KEY|_PASSWORD|_SECRET_KEY)$/.test(key) && value)
+  return Object.entries(env).filter(([key, value]) => /(_API_KEY|_PASSWORD|_SECRET_KEY|_APP_SECRET)$/.test(key) && value)
     .map(([, value]) => value).sort((a, b) => b.length - a.length);
 }
 
@@ -28,7 +33,7 @@ export function parseLocalConfig(source) {
     const line = raw.trim();
     if (!line || line.startsWith('#')) continue;
     const match = /^([A-Z][A-Z0-9_]*)\s*=(.*)$/.exec(line);
-    if (!match || (!allowed.has(match[1]) && !/^[A-Z][A-Z0-9_]*_API_KEY$/.test(match[1])) || Object.hasOwn(values, match[1])) {
+    if (!match || (!allowed.has(match[1]) && !retiredKeys.has(match[1]) && !/^[A-Z][A-Z0-9_]*_API_KEY$/.test(match[1])) || Object.hasOwn(values, match[1])) {
       throw new Error(`Invalid or duplicate configuration entry at line ${index + 1}.`);
     }
     let value = match[2].trim();
@@ -39,6 +44,9 @@ export function parseLocalConfig(source) {
     if (value.includes('\0')) throw new Error(`Invalid configuration value at line ${index + 1}.`);
     values[match[1]] = value;
   }
+  for (const key of retiredKeys) {
+    delete values[key];
+  }
   return values;
 }
 
@@ -47,5 +55,9 @@ export async function loadLocalConfig(path, inherited = process.env) {
   try { values = parseLocalConfig(await readFile(path, 'utf8')); }
   catch (error) { if (error.code !== 'ENOENT') throw error; }
   // An empty template entry must not erase a key supplied through the caller's environment.
-  return {...inherited, ...Object.fromEntries(Object.entries(values).filter(([, value]) => value !== ''))};
+  const merged = {...inherited, ...Object.fromEntries(Object.entries(values).filter(([, value]) => value !== ''))};
+  for (const key of retiredKeys) {
+    delete merged[key];
+  }
+  return merged;
 }

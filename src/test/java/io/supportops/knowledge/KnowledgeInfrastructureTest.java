@@ -337,6 +337,32 @@ class KnowledgeInfrastructureTest {
         assertThat(knowledge.search("first", "2.0", 5, false).mode()).isEqualTo("HYBRID");
     }
 
+    /** 默认检索跟随共享向量配置，网页单次覆盖不改变后续请求，向量调用错误不得伪装成成功。 */
+    @Test
+    void defaultRetrievalFollowsSharedConfigurationWithoutKeepingPerRequestOverride() {
+        assertThat(knowledge.search("migration", "2.0", 5, false).mode()).isEqualTo("LEXICAL");
+        enableEmbedding();
+        assertThat(knowledge.search("migration", "2.0", 5, false).mode()).isEqualTo("LEXICAL");
+        assertThat(calls).hasValue(0);
+        upload("shared-retrieval.md", "# Migration\nmigration configuration".getBytes(StandardCharsets.UTF_8),
+                ImportOptions.defaults());
+        drain();
+        assertThat(knowledge.search("migration", "2.0", 5, false).mode()).isEqualTo("HYBRID");
+        int hybridCalls = calls.get();
+        assertThat(knowledge.search("migration", "2.0", 5, true).mode()).isEqualTo("LEXICAL");
+        assertThat(calls).hasValue(hybridCalls);
+        assertThat(knowledge.search("migration", "2.0", 5, false).mode()).isEqualTo("HYBRID");
+        assertThat(calls).hasValue(hybridCalls + 1);
+        database.environment.withProperty("supportops.embedding.provider", "disabled");
+        assertThat(knowledge.search("migration", "2.0", 5, false).mode()).isEqualTo("LEXICAL");
+        assertThat(calls).hasValue(hybridCalls + 1);
+        enableEmbedding();
+        assertThat(knowledge.search("migration", "2.0", 5, false).mode()).isEqualTo("HYBRID");
+        failAt.set(calls.get() + 1);
+        assertThatThrownBy(() -> knowledge.search("migration", "2.0", 5, false))
+                .hasMessageContaining("EMBEDDING_HTTP_503");
+    }
+
     /** 真实存储双路召回接入真实本地精排；嵌入协议仍使用合成 HTTP 夹具。 */
     @Test
     @EnabledIfSystemProperty(named = "rerank.test.model", matches = ".+")

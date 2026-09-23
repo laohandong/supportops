@@ -84,6 +84,7 @@ public final class MapperTestDatabase implements AutoCloseable {
         configuration.addMapper(ProjectMemoryMapper.class);
         configuration.addMappers("io.supportops.knowledge.mapper");
         configuration.addMappers("io.supportops.user.mapper");
+        configuration.addMappers("io.supportops.feishu.mapper");
         MybatisSqlSessionFactoryBean factory = new MybatisSqlSessionFactoryBean();
         factory.setDataSource(dataSource);
         factory.setConfiguration(configuration);

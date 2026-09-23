@@ -56,6 +56,11 @@ springdoc:
     persist-authorization: false
     try-it-out-enabled: false
 supportops:
+  feishu:
+    enabled: ${SUPPORTOPS_FEISHU_ENABLED:false}
+    app-id: ${SUPPORTOPS_FEISHU_APP_ID:}
+    app-secret: ${SUPPORTOPS_FEISHU_APP_SECRET:}
+    tenant-key: ${SUPPORTOPS_FEISHU_TENANT_KEY:}
   knowledge:
     storage:
       endpoint: ${SUPPORTOPS_MINIO_ENDPOINT:http://127.0.0.1:19000}
@@ -135,5 +140,7 @@ supportops:
       max-tokens-field: max_tokens
 logging:
   level:
+    # SDK 连接日志可能包含签名连接地址；只使用本应用提供的脱敏连接状态。
+    com.lark.oapi: 'OFF'
     io.agentscope: WARN
     io.modelcontextprotocol: WARN

@@ -35,7 +35,7 @@ class UserPersistenceTest {
             sql.execute("INSERT INTO runs(id,session_id,question,status,answer,error_code,created_at,elapsed_ms,input_tokens,output_tokens) "
                     + "VALUES ('legacy-run','legacy-session','合成历史问题','COMPLETED','合成历史回答','','2026-09-01T00:00:00Z',1,2,3)");
             assertThat(Flyway.configure().dataSource(resources.url(), resources.user, resources.password)
-                    .load().migrate().migrationsExecuted).isEqualTo(1);
+                    .load().migrate().migrationsExecuted).isEqualTo(2);
             try (ResultSet rows = sql.executeQuery("SELECT archived_at FROM runs WHERE id='legacy-run'")) {
                 assertThat(rows.next()).isTrue();
                 assertThat(rows.getString(1)).isNull();
@@ -52,7 +52,7 @@ class UserPersistenceTest {
             try (ResultSet rows = sql.executeQuery("SELECT COUNT(*) FROM information_schema.columns "
                     + "WHERE table_schema=DATABASE() AND table_name <> 'flyway_schema_history'")) {
                 assertThat(rows.next()).isTrue();
-                assertThat(rows.getInt(1)).isEqualTo(159);
+                assertThat(rows.getInt(1)).isEqualTo(190);
             }
             try (ResultSet rows = sql.executeQuery("SELECT COUNT(*) FROM information_schema.columns "
                     + "WHERE table_schema=DATABASE() AND table_name <> 'flyway_schema_history' "
@@ -64,7 +64,7 @@ class UserPersistenceTest {
                     + "WHERE table_schema=DATABASE() AND table_name <> 'flyway_schema_history' "
                     + "AND table_comment REGEXP '[一-龥]'")) {
                 assertThat(rows.next()).isTrue();
-                assertThat(rows.getInt(1)).isEqualTo(16);
+                assertThat(rows.getInt(1)).isEqualTo(19);
             }
         }
     }

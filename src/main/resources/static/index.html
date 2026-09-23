@@ -40,6 +40,7 @@
             <button class="nav-item" data-page="usage"><span class="ui-icon icon-chart" aria-hidden="true"></span>用量分析</button>
             <button class="nav-item" data-page="models"><span class="ui-icon icon-settings" aria-hidden="true"></span>模型配置</button>
             <button class="nav-item" data-page="users"><span class="ui-icon icon-users" aria-hidden="true"></span>用户管理</button>
+            <button class="nav-item" data-page="feishu"><span class="ui-icon icon-chat" aria-hidden="true"></span>飞书机器人</button>
         </nav>
     </section>
     <div class="sidebar-bottom"><span class="status-dot"></span> 本地示例环境 <span class="version">v0.1</span></div>
@@ -271,6 +272,29 @@
                 <p>每轮平均消耗 = 该时段已报告总 Token ÷ 该时段全部诊断轮数，无诊断时留空。完成轮数仅表示 COMPLETED 状态，不代表回答正确。会话回看包含所选日期之外的全部历史。</p>
             </div>
         </details>
+    </section>
+    <section id="page-feishu" class="page" hidden>
+        <div class="page-heading"><div><h1>飞书机器人</h1><p>绑定同事的飞书账号，在私聊中提交问题并接收诊断结果。</p></div>
+            <button id="feishu-refresh" class="secondary">刷新状态</button></div>
+        <div class="settings-note"><strong id="feishu-status" role="status">尚未读取连接状态</strong>
+            <p id="feishu-config-help">在本机配置文件中填写飞书应用凭据并启用，重启服务后生效。</p>
+            <p>当前支持文字私聊，每条消息创建独立诊断；同一时间只处理一个诊断。</p></div>
+        <div class="split-layout">
+            <form id="feishu-binding-form" class="form-panel">
+                <h2>绑定工作台账号</h2>
+                <label for="feishu-user">选择同事的账号</label><select id="feishu-user" required></select>
+                <p class="field-help">将绑定命令通过可信渠道交给该同事，由其发送到机器人的私聊。命令十分钟内有效，只能使用一次。</p>
+                <button id="feishu-issue" class="primary" type="submit">生成绑定命令</button>
+                <div id="feishu-issued" hidden>
+                    <label for="feishu-command">私聊绑定命令</label><textarea id="feishu-command" readonly rows="3" autocomplete="off"></textarea>
+                    <p id="feishu-expiry" class="field-help" role="status"></p>
+                </div>
+            </form>
+            <div><h2 class="list-title">账号绑定</h2><div id="feishu-bindings"><p class="muted">尚未读取</p></div></div>
+        </div>
+        <h2 class="list-title">最近消息</h2>
+        <p class="muted">诊断处理和消息投递分别记录。投递待核查时，请先检查飞书会话，避免重复发送。</p>
+        <div id="feishu-messages" aria-live="polite"><p class="muted">尚未读取</p></div>
     </section>
     <footer>SupportOps · 证据驱动的技术支持 <span id="model-label"></span></footer>
 </main>

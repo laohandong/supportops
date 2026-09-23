@@ -329,3 +329,52 @@ test('review keeps model content inside fences and does not infer a quality verd
     assert.match(markdown, /NOT_EVALUATED/);
     assert.match(markdown, /未报告/);
 });
+
+test('review preserves failed and successful field evidence in event order without making a quality decision', () => {
+    const events = [
+        {id: 10, kind: 'TOOL_CALL', content: {callId: 'logs-1', tool: 'get_recent_logs', arguments: '{}'}},
+        {id: 11, kind: 'TOOL_RESULT', createdAt: '2026-09-18T00:00:00Z', content: {callId: 'logs-1', tool: 'get_recent_logs', state: 'error', text: 'EVIDENCE_SOURCE_UNAVAILABLE\n```\n# forged heading'}},
+        {id: 12, kind: 'TOOL_RESULT', content: {callId: 'health-1', tool: 'get_downstream_health', state: 'success', text: '{"httpStatus":200,"body":{"status":"UP"}}'}},
+        {id: 13, kind: 'TOOL_RESULT', content: {callId: 'search-1', tool: 'search_knowledge', text: 'SEARCH_RESULT_NOT_FIELD_EVIDENCE'}}
+    ];
+    const report = {
+        createdAt: 'test', kind: 'MODEL_EVALUATION', retrieval: 'LEXICAL',
+        status: 'EXECUTION_FINISHED', modelQualityVerdict: 'NOT_EVALUATED',
+        cases: [{id: 'insufficient', run: {id: 'run', answer: '待核查'}, events}]
+    };
+    const before = structuredClone(report);
+    const markdown = renderReview(report);
+    const evidence = markdown.slice(markdown.indexOf('### 现场工具证据'));
+    assert.ok(evidence.indexOf('"id": 10') < evidence.indexOf('"id": 11'));
+    assert.ok(evidence.indexOf('"id": 11') < evidence.indexOf('"id": 12'));
+    assert.match(evidence, /"callId": "logs-1"/);
+    assert.match(evidence, /2026-09-18T00:00:00Z/);
+    assert.match(evidence, /EVIDENCE_SOURCE_UNAVAILABLE/);
+    assert.match(evidence, /"state": "error"/);
+    assert.match(evidence, /"state": "success"/);
+    assert.match(evidence, /````text/);
+    assert.doesNotMatch(evidence, /SEARCH_RESULT_NOT_FIELD_EVIDENCE/);
+    assert.match(markdown, /摘要与结论的证据一致性 \| 待审阅/);
+    assert.match(markdown, /NOT_EVALUATED/);
+    assert.deepEqual(report, before);
+});
+
+test('review distinguishes absent field events from a call with no result and retains repeated reads', () => {
+    const report = {
+        createdAt: 'test', kind: 'MODEL_EVALUATION', retrieval: 'LEXICAL',
+        modelQualityVerdict: 'NOT_EVALUATED',
+        cases: [{id: 'incomplete', run: {id: 'run', answer: ''}}]
+    };
+    assert.match(renderReview(report), /本次记录中没有现场工具调用或结果/);
+    report.cases[0].events = [
+        {id: 1, kind: 'TOOL_CALL', content: {callId: 'first-read', tool: 'get_recent_logs'}},
+        {id: 2, kind: 'TOOL_RESULT', content: {callId: 'first-read', tool: 'get_recent_logs', state: 'success', text: '{"entries":[]}'}},
+        {id: 3, kind: 'TOOL_CALL', content: {callId: 'second-read', tool: 'get_recent_logs'}}
+    ];
+    const evidence = renderReview(report).split('### 现场工具证据')[1];
+    assert.doesNotMatch(evidence, /本次记录中没有现场工具调用或结果/);
+    assert.match(evidence, /first-read/);
+    assert.match(evidence, /second-read/);
+    assert.equal((evidence.match(/"kind": "TOOL_RESULT"/g) ?? []).length, 1);
+    assert.doesNotMatch(evidence, /EVIDENCE_SOURCE_UNAVAILABLE/);
+});

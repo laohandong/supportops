@@ -87,7 +87,9 @@ public final class AgentEventRecorder {
             throw new IllegalStateException(
                     limitReached.get() ? "STEP_LIMIT_REACHED" : "EMPTY_MODEL_RESPONSE");
         }
-        return new Result(answer.get(), inputTokens.get(), outputTokens.get(), limitReached.get());
+        // 最终回答保留模型原文；时区转换只在网页或渠道回复的展示副本上执行。
+        return new Result(answer.get(),
+                inputTokens.get(), outputTokens.get(), limitReached.get());
     }
 
     /** 按调用编号累计有限长度文本，避免并行工具串用缓冲或无限占用内存。 */

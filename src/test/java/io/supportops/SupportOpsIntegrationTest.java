@@ -107,7 +107,9 @@ import java.util.concurrent.atomic.AtomicReference;
 /** 通过真实本地 HTTP、MCP 和数据库验证工程链路；固定模型夹具不代表真实诊断效果。 */
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-        properties = {"supportops.model.timeout-seconds=30", "spring.config.import="})
+        properties = {"supportops.model.timeout-seconds=30", "spring.config.import=",
+                "supportops.feishu.app-id=cli_http_fixture", "supportops.feishu.tenant-key=tenant_http_fixture",
+                "supportops.feishu.app-secret=synthetic-feishu-http-secret"})
 class SupportOpsIntegrationTest {
     static final KnowledgeTestResources RESOURCES = new KnowledgeTestResources();
     static final ObjectMapper JSON = new ObjectMapper();
@@ -709,13 +711,13 @@ class SupportOpsIntegrationTest {
                                                                                             + status
                                                                                                     .getKey()));
                                                 }));
-        assertThat(documented).containsExactlyInAnyOrderElementsOf(actual).hasSize(50);
+        assertThat(documented).containsExactlyInAnyOrderElementsOf(actual).hasSize(55);
         assertThat(
                         spec.at(
                                         "/paths/~1api~1runs~1{id}~1stream/get/responses/200/content/text~1event-stream/schema/$ref")
                                 .asText())
                 .isEqualTo("#/components/schemas/RunStreamSnapshot");
-        assertThat(spec.path("tags").size()).isEqualTo(8);
+        assertThat(spec.path("tags").size()).isEqualTo(9);
         assertThat(spec.at("/components/schemas/KnowledgeSearchResult/properties/ranking/allOf/0/$ref").asText())
                 .isEqualTo("#/components/schemas/RankingInfo");
         assertThat(spec.at("/components/schemas/KnowledgePassage/properties/rerankScore/description").asText())
@@ -1228,6 +1230,9 @@ class SupportOpsIntegrationTest {
                 .extracting(DiagnosisEvent::kind)
                 .contains("TOOL_CALL", "TOOL_RESULT", "KNOWLEDGE", "CONTEXT", "USAGE");
         assertThat(events.toString()).contains("\"versionFilter\":\"2.0\"");
+        DiagnosisEvent context = events.stream().filter(event -> "CONTEXT".equals(event.kind()))
+                .findFirst().orElseThrow();
+        assertThat(JSON.valueToTree(context.content()).path("lexicalOnly").asBoolean()).isTrue();
         assertThat(REQUESTS.getFirst().toString())
                 .contains(memory.content(), "get_app_info", "search_knowledge")
                 .doesNotContain("execute_shell", "repair_config\"", "injection-2.0");
@@ -1442,6 +1447,39 @@ class SupportOpsIntegrationTest {
                 .isZero();
     }
 
+    /** 飞书绑定经过真实 HTTP 管理接口，默认停用连接且所有读接口隐藏凭据和绑定码。 */
+    @Test
+    void feishuBindingHttpLifecycleDoesNotExposeSecrets() throws Exception {
+        assertThat(authRequest("GET", "/api/feishu/status", null, null).statusCode()).isEqualTo(401);
+        HttpResponse<String> status = authRequest("GET", "/api/feishu/status", adminCookie, null);
+        assertThat(status.statusCode()).isEqualTo(200);
+        assertThat(JSON.readTree(status.body()).path("connection").asText()).isEqualTo("DISABLED");
+        assertThat(status.body()).doesNotContain("synthetic-feishu-http-secret", "appSecret");
+        String userId = JSON.readTree(authRequest("GET", "/api/auth/me", adminCookie, null).body()).path("id").asText();
+        HttpResponse<String> issued = authRequest("POST", "/api/feishu/bindings", adminCookie,
+                JSON.writeValueAsString(Map.of("userId", userId)));
+        assertThat(issued.statusCode()).isEqualTo(200);
+        assertThat(issued.headers().firstValue("Cache-Control")).contains("no-store");
+        JsonNode code = JSON.readTree(issued.body());
+        String id = code.path("id").asText();
+        assertThat(code.path("command").asText()).matches("绑定 [a-f0-9]{48}");
+        assertThat(databaseBindingValue(id, "code_hash")).hasSize(64);
+        String listed = authRequest("GET", "/api/feishu/bindings", adminCookie, null).body();
+        assertThat(listed).contains(id).doesNotContain(code.path("command").asText(), "codeHash", "appSecret");
+        assertThat(authRequest("POST", "/api/feishu/bindings/" + id + "/delete", adminCookie, "{}").statusCode()).isEqualTo(200);
+        assertThat(authRequest("POST", "/api/feishu/bindings/" + id + "/delete", adminCookie, "{}").statusCode()).isEqualTo(200);
+        assertThat(db.queryForObject("SELECT revoked FROM feishu_bindings WHERE id=?", Boolean.class, id)).isTrue();
+        assertThat(databaseBindingValue(id, "code_hash")).isNull();
+        assertThat(authRequest("POST", "/api/feishu/bindings", adminCookie,
+                JSON.writeValueAsString(Map.of("userId", UUID.randomUUID().toString()))).statusCode()).isEqualTo(404);
+    }
+
+    /** 独立 JDBC 核对绑定码只保存摘要，字段名来自测试固定调用。 */
+    private String databaseBindingValue(String id, String field) {
+        assertThat(field).isEqualTo("code_hash");
+        return db.queryForObject("SELECT code_hash FROM feishu_bindings WHERE id=?", String.class, id);
+    }
+
     /** 真实 Cookie 登录、角色拒绝、跨用户隔离及上传归属均通过 HTTP 与独立 SQL 核对。 */
     @Test
     void userRolesAndRecordOwnershipUseAuthenticatedIdentity() throws Exception {
@@ -1468,10 +1506,14 @@ class SupportOpsIntegrationTest {
         assertThat(cookieHeader).contains("HttpOnly", "SameSite=Strict");
         String cookie = cookieHeader.split(";", 2)[0];
         assertThat(JSON.readTree(login.body()).path("role").asText()).isEqualTo("USER");
-        for (String path : List.of("/api/users", "/api/documents", "/api/documents/uploads", "/api/memories", "/api/demo", "/api/model-settings", "/api/usage", "/v3/api-docs")) {
+        for (String path : List.of("/api/users", "/api/documents", "/api/documents/uploads", "/api/memories", "/api/demo", "/api/model-settings", "/api/usage", "/v3/api-docs",
+                "/api/feishu/status", "/api/feishu/bindings", "/api/feishu/messages")) {
             assertThat(authRequest("GET", path, cookie, null).statusCode()).as(path).isEqualTo(403);
         }
         assertThat(authRequest("POST", "/api/users", cookie, userBody).statusCode()).isEqualTo(403);
+        assertThat(authRequest("POST", "/api/feishu/bindings", cookie,
+                JSON.writeValueAsString(Map.of("userId", userId))).statusCode()).isEqualTo(403);
+        assertThat(authRequest("POST", "/api/feishu/bindings/" + UUID.randomUUID() + "/delete", cookie, "{}").statusCode()).isEqualTo(403);
         complete("合成用户归属验证");
         HttpResponse<String> started = authRequest("POST", "/api/runs", cookie,
                 "{\"question\":\"验证归属\",\"lexicalOnly\":true,\"userId\":\"forged\"}");

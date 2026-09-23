@@ -110,6 +110,32 @@ public class RunServiceImpl implements RunService {
     /** 在同一准入锁内完成校验、持久化与任务注册，禁止同时修改现场。 */
     @Override
     public synchronized DiagnosisRun start(String question, String sessionId, boolean lexicalOnly) {
+        return startOwned(UUID.randomUUID().toString(), question, validateSessionId(sessionId),
+                CurrentUser.id(), lexicalOnly);
+    }
+
+    /** 外部请求编号由渠道先落库，检索遵循统一配置；重启或重复投递只返回同一任务。 */
+    @Override
+    public synchronized DiagnosisRun startExternal(
+            String requestId, String question, UserView owner) {
+        if (owner == null || owner.id() == null || requestId == null || requestId.isBlank()) {
+            throw new ResponseStatusException(BAD_REQUEST, "INVALID_EXTERNAL_IDENTITY");
+        }
+        validateSessionId(requestId);
+        DiagnosisRunEntity existing = runs.selectById(requestId);
+        if (existing != null) {
+            if (!owner.id().equals(existing.getUserId()) || !Objects.equals(question, existing.getQuestion())) {
+                throw new ResponseStatusException(CONFLICT, "EXTERNAL_REQUEST_CONFLICT");
+            }
+            return toView(existing);
+        }
+        // 渠道不强制覆盖检索方式，由共用检索服务按向量配置和适用索引决定召回方式。
+        return startOwned(requestId, question, requestId, owner.id(), false);
+    }
+
+    /** 在准入锁内保存明确归属；渠道与网页复用执行、超时、事件和终态语义。 */
+    private DiagnosisRun startOwned(
+            String id, String question, String effectiveSession, String userId, boolean lexicalOnly) {
         if (!engine.configured()) {
             throw new ResponseStatusException(SERVICE_UNAVAILABLE, "MODEL_NOT_CONFIGURED");
         }
@@ -118,10 +144,8 @@ public class RunServiceImpl implements RunService {
                 || question.length() > RunLimits.QUESTION_LENGTH) {
             throw new ResponseStatusException(BAD_REQUEST, "INVALID_QUESTION");
         }
-        String effectiveSession = validateSessionId(sessionId);
-        requireSessionOwner(effectiveSession);
+        requireSessionOwner(effectiveSession, userId);
         requireIdle();
-        String id = UUID.randomUUID().toString();
         Task task = new Task();
         DiagnosticEngine.Context context =
                 new DiagnosticEngine.Context(
@@ -139,7 +163,7 @@ public class RunServiceImpl implements RunService {
                         0L,
                         0L,
                         0L);
-        record.setUserId(CurrentUser.id());
+        record.setUserId(userId);
         requireSingleWrite(runs.insert(record));
         task.future =
                 new FutureTask<>(
@@ -154,12 +178,11 @@ public class RunServiceImpl implements RunService {
                         timeoutSeconds,
                         TimeUnit.SECONDS);
         worker.execute(task.future);
-        return get(id);
+        return toView(runs.selectById(id));
     }
 
     /** 会话只允许原提交人续聊；管理员可回看他人记录，但不能混入其上下文。 */
-    private void requireSessionOwner(String sessionId) {
-        String userId = CurrentUser.id();
+    private void requireSessionOwner(String sessionId, String userId) {
         List<DiagnosisRunEntity> records = runs.selectList(Wrappers.<DiagnosisRunEntity>lambdaQuery()
                 .eq(DiagnosisRunEntity::getSessionId, sessionId));
         if (records.stream().anyMatch(record -> !Objects.equals(record.getUserId(), userId))) {
@@ -399,6 +422,16 @@ public class RunServiceImpl implements RunService {
         DiagnosisRunEntity record = runs.selectById(id);
         UserView user = CurrentUser.get();
         if (record == null || (user != null && !user.isAdmin() && !user.id().equals(record.getUserId()))) {
+            throw new ResponseStatusException(NOT_FOUND, "RUN_NOT_FOUND");
+        }
+        return toView(record);
+    }
+
+    /** 后台渠道不依赖 HTTP 请求上下文，始终按已绑定的用户编号校验归属。 */
+    @Override
+    public DiagnosisRun getOwned(String id, String userId) {
+        DiagnosisRunEntity record = runs.selectById(id);
+        if (userId == null || record == null || !userId.equals(record.getUserId())) {
             throw new ResponseStatusException(NOT_FOUND, "RUN_NOT_FOUND");
         }
         return toView(record);

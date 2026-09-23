@@ -8,10 +8,37 @@ import {validChunkOptions, batchChunkOptions, batchChunkLabel} from '../../main/
 const knowledgeSource = (await readFile(new URL('../../main/resources/static/knowledge.js', import.meta.url), 'utf8'))
     .replace("import {validChunkOptions, batchChunkOptions, batchChunkLabel} from './chunk-settings.mjs';", '');
 const usageSource = (await readFile(new URL('../../main/resources/static/usage-charts.js', import.meta.url), 'utf8')).replaceAll('export function ', 'function ');
-const source = usageSource + '\n' + knowledgeSource.replace('export function initializeKnowledge', 'function initializeKnowledge') + '\n'
-    + (await readFile(new URL('../../main/resources/static/app.js', import.meta.url), 'utf8')).replace("import {initializeKnowledge} from './knowledge.js';", '').replace("import {renderUsageDashboard} from './usage-charts.js';", '');
+const feishuSource = (await readFile(new URL('../../main/resources/static/feishu.js', import.meta.url), 'utf8')).replace('export function initializeFeishu', 'function initializeFeishu');
+const source = usageSource + '\n' + feishuSource + '\n' + knowledgeSource.replace('export function initializeKnowledge', 'function initializeKnowledge') + '\n'
+    + (await readFile(new URL('../../main/resources/static/app.js', import.meta.url), 'utf8'))
+        .replace("import {initializeKnowledge} from './knowledge.js';", '')
+        .replace("import {renderUsageDashboard} from './usage-charts.js';", '')
+        .replace("import {initializeFeishu} from './feishu.js';", '');
 const markdownLibrary = await readFile(new URL('../../main/resources/static/vendor/markdown-it.min.js', import.meta.url), 'utf8');
 const markdownSource = await readFile(new URL('../../main/resources/static/markdown.js', import.meta.url), 'utf8');
+
+test('诊断时间统一为北京时间，同时保留原始证据和代码块', async () => {
+    const f = fixture();
+    const cases = JSON.parse(await readFile(new URL('../resources/diagnosis-time-cases.json', import.meta.url), 'utf8'));
+    for (const example of cases) {
+        assert.equal(f.context.formatDiagnosisTimes(example.input), example.expected);
+    }
+    assert.match(f.context.renderMarkdown('原文 2026-09-22T10:29:05Z'), /2026-09-22T10:29:05Z/);
+    assert.match(f.context.renderDiagnosisMarkdown('观测 2026-09-22T10:29:05Z'), /2026-09-22 18:29:05（北京时间）/);
+});
+
+test('跨流式片段的时间在完整到达后转换，终态与历史渲染一致', () => {
+    const f = fixture();
+    const body = f.get('#time-report');
+    const update = f.context.createMarkdownStream(body);
+    update('观测时间 2026-09-22T10:29:');
+    assert.match(body.children.at(-1).innerHTML, /2026-09-22T10:29:/);
+    const report = '观测时间 2026-09-22T10:29:05.837447400Z\n\n后续说明';
+    update(report);
+    assert.match(body.children[0].innerHTML, /2026-09-22 18:29:05（北京时间）/);
+    update(report, true);
+    assert.equal(body.innerHTML, f.context.renderDiagnosisMarkdown(report));
+});
 
 function fixture() {
     const nodes = new Map(), timers = [], frames = [];

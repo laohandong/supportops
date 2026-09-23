@@ -2,6 +2,7 @@ package io.supportops.agent.service;
 
 import io.supportops.agent.vo.DiagnosisEvent;
 import io.supportops.agent.vo.DiagnosisRun;
+import io.supportops.user.vo.UserView;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -10,6 +11,12 @@ import java.util.function.Supplier;
 public interface RunService {
     /** 校验并受理诊断；返回快照不代表模型已经执行完成。 */
     DiagnosisRun start(String question, String sessionId, boolean lexicalOnly);
+
+    /** 可信渠道使用绑定身份和固定请求编号受理独立诊断，检索遵循统一配置；重复编号只读取原任务。 */
+    DiagnosisRun startExternal(String requestId, String question, UserView owner);
+
+    /** 渠道读取必须严格匹配任务所属人，管理员渠道身份也不扩大读取范围。 */
+    DiagnosisRun getOwned(String id, String userId);
 
     /** 当前有任务尚未释放执行资源时拒绝操作。 */
     void requireIdle();
