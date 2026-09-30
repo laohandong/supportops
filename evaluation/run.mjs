@@ -40,15 +40,33 @@ export async function evaluate({base, directory, sourcesOnly = false, hybrid = f
           || hybrid && ['FAILED', 'BLOCKED', 'SUPERSEDED'].includes(document.vectorStatus)) {
         // 隔离资源随后会被回收；先保存状态与公开错误码，不复制响应正文或原件内容。
         const code = value => typeof value === 'string' && /^[A-Z][A-Z0-9_]{0,99}$/.test(value) ? value : 'UNKNOWN';
-        report.documentFailure = {documentId, processingStatus: code(document.processingStatus),
+        const observation = {documentId, processingStatus: code(document.processingStatus),
           textStatus: code(document.textStatus), vectorStatus: code(document.vectorStatus)};
+        let recoveringImport = false;
         try {
           const tasks = await api(`/documents/${documentId}/tasks`);
-          report.documentFailure.tasks = tasks.map(task => ({kind: code(task.kind), status: code(task.status),
+          observation.tasks = tasks.map(task => ({kind: code(task.kind), status: code(task.status),
             stage: code(task.stage), errorCode: code(task.errorCode)}));
+          // IMPORT 的单次失败先落批次，任务调度随后安排补偿；只等待同批次既有任务。
+          // SUCCEEDED 也需重新读取文档，不能将两次查询间的恢复误判为失败或直接判成功。
+          recoveringImport = document.processingStatus === 'FAILED' && Boolean(document.batchId)
+            && !['FAILED', 'BLOCKED'].includes(document.textStatus)
+            && !(hybrid && ['FAILED', 'BLOCKED', 'SUPERSEDED'].includes(document.vectorStatus))
+            && tasks.some(task => task.batchId === document.batchId && task.kind === 'IMPORT'
+              && ['RETRY_WAIT', 'RUNNING', 'SUCCEEDED'].includes(task.status));
         } catch {
-          report.documentFailure.diagnosticsStatus = 'UNAVAILABLE';
+          observation.diagnosticsStatus = 'UNAVAILABLE';
         }
+        if (recoveringImport) {
+          report.documentRetryObservations ??= [];
+          if (!report.documentRetryObservations.some(item => item.documentId === documentId)) {
+            report.documentRetryObservations.push(observation);
+            await save();
+          }
+          await new Promise(resolve => setTimeout(resolve, 250));
+          continue;
+        }
+        report.documentFailure = observation;
         throw new Error('Document processing failed; inspect documentFailure in report.json.');
       }
       if (document.processingStatus === 'READY' && document.textStatus === 'SUCCEEDED' && (!hybrid || document.vectorStatus === 'SUCCEEDED')) return;
