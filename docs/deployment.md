@@ -18,6 +18,8 @@ Compose 使用 `include` 复用 [infrastructure/compose.yml](../infrastructure/c
 
 Maven Wrapper 已包含在仓库中，不要求另外安装 Maven。首次构建和拉取容器镜像需要联网。Docker 需有足够可用内存运行三个服务；ES 堆大小固定为 512 MiB，但容器总内存还包括堆外开销。建议为 Docker 预留至少 4 GiB 可用内存，实际用量随文档和并发变化。
 
+MinIO 的旧发行镜像和二进制下载已不可公开获取，因此 Compose 使用 [Dockerfile](../infrastructure/minio/Dockerfile) 构建同一发行版的[官方源码](https://github.com/minio/minio/tree/0d7408fc9969caf07de6a8c3a84f9fbb10a6739e)。构建固定提交与源码归档 SHA-256，保留 AGPL 许可证；首次启动需下载 Go 构建镜像、源码和模块，耗时会增加，后续复用 Docker 构建缓存。宿主无需安装 Go。MinIO 健康检查使用 `/minio/health/ready`，既有端口、合成账号和数据卷保持兼容。
+
 **模型服务按功能选配：** 启动、账号初始化、文档上传与关键词检索不需要 API Key；Agent 诊断与自然语言生成 SQL 需要对话模型，管理员直接提交受限 SQL 不需要模型，向量索引需要嵌入服务。首次配置模板关闭向量与本地重排序；启用 ONNX 精排还需单独准备模型与 tokenizer，见 [本地重排序](reranking.md)。
 
 ## 首次启动
