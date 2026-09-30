@@ -34,7 +34,11 @@ jobs:
       - name: Verify and package
         run: sh ./mvnw -B -ntp -s .mvn/settings.xml verify
       - name: Validate first startup and six source scenarios
-        run: node scripts/evaluate.mjs --sources-only --config=infrastructure/local.env.example
+        run: |
+          # Each run creates and cleans a fresh workspace; repeat to cover asynchronous cold-start races.
+          for attempt in 1 2 3; do
+            node scripts/evaluate.mjs --sources-only --config=infrastructure/local.env.example
+          done
       - name: Capture dependency status on failure
         if: failure()
         run: |

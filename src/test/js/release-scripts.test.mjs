@@ -44,7 +44,9 @@ async function fixture(context, options = {}) {
         if (request.url === '/api/status') {
             response.end(JSON.stringify({embeddingConfigured: options.embedding ?? true}));
         } else if (request.url === '/api/documents/import-examples') {
-            if (options.writeFailure) {
+            if (options.disconnectWrite) {
+                request.socket.destroy();
+            } else if (options.writeFailure) {
                 response.writeHead(503);
                 response.end('synthetic-password-private');
             } else {
@@ -55,6 +57,10 @@ async function fixture(context, options = {}) {
             response.end('{}');
         } else if (request.url === '/api/documents/demo') {
             reads++;
+            options.onDocumentRead?.();
+            if (options.stallRead) {
+                return;
+            }
             response.end(JSON.stringify({document: {
                 id: 'demo', chunks: 5,
                 processingStatus: options.pending || reads < 2 ? 'PENDING' : 'READY',
@@ -132,10 +138,29 @@ test('vector errors remain failures after keyword success', async context => {
 });
 
 test('pending processing times out, retains accepted work and cleans its session', async context => {
-    const application = await fixture(context, {pending: true});
+    let now = Date.now();
+    context.mock.method(Date, 'now', () => now);
+    // 在已确认受理后的状态读取推进时钟，确定性覆盖下一次轮询前的截止时间检查。
+    const application = await fixture(context, {pending: true, onDocumentRead: () => { now += 300; }});
     await assert.rejects(application.run({timeoutMs: 300}), /超时/);
+    assert.equal(application.calls.filter(call => call.path === '/api/documents/demo').length, 1);
     assert.equal(application.calls.filter(call => call.path === '/api/documents/import-examples').length, 1);
     assert.equal(application.calls.at(-1).path, '/api/auth/logout');
+});
+
+test('in-flight read timeout warns against resubmission and cleans its session', async context => {
+    const application = await fixture(context, {stallRead: true});
+    await assert.rejects(application.run({timeoutMs: 1000}), /请求未完成.*不要据此重复提交写请求/);
+    assert.equal(application.calls.filter(call => call.path === '/api/documents/demo').length, 1);
+    assert.equal(application.calls.filter(call => call.path === '/api/documents/import-examples').length, 1);
+    assert.equal(application.calls.at(-1).path, '/api/auth/logout');
+});
+
+test('uncertain write response warns against resubmission without repeating accepted work', async context => {
+    const application = await fixture(context, {disconnectWrite: true});
+    await assert.rejects(application.run(), /请求未完成.*不要据此重复提交写请求/);
+    assert.deepEqual(application.calls.map(call => call.path),
+        ['/api/auth/login', '/api/documents/import-examples', '/api/auth/logout']);
 });
 
 test('write failures do not retry or disclose the response body', async context => {
