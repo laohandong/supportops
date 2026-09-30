@@ -235,6 +235,26 @@ test('failed async import stops evaluation without fabricating search success', 
     const f = await fixture(t, call => call.path === '/documents/current-doc' ? {body: {document: {processingStatus: 'FAILED', textStatus: 'PENDING'}}} : undefined);
     const result = await evaluate({...f, sourcesOnly: true});
     assert.equal(result.report.status, 'ERROR');
+    assert.equal(result.report.documentFailure.diagnosticsStatus, 'UNAVAILABLE');
+    assert.equal(f.calls.some(call => call.path === '/documents/search'), false);
+});
+
+test('failed document diagnostics retain task codes without copying raw response fields', async t => {
+    const f = await fixture(t, call => {
+        if (call.path === '/documents/current-doc') return {body: {document: {
+            processingStatus: 'FAILED', textStatus: 'PENDING', vectorStatus: 'PENDING'
+        }}};
+        if (call.path === '/documents/current-doc/tasks') return {body: [{kind: 'IMPORT', status: 'BLOCKED',
+            stage: 'PARSING', errorCode: 'DOCUMENT_MUST_BE_UTF8', detail: 'PRIVATE_RESPONSE_BODY'},
+            {kind: 'TEXT', status: 'FAILED', stage: 'private body', errorCode: 'Bearer private-token'}]};
+    });
+    const result = await evaluate({...f, sourcesOnly: true});
+    assert.equal(result.report.status, 'ERROR');
+    assert.deepEqual(result.report.documentFailure.tasks, [
+        {kind: 'IMPORT', status: 'BLOCKED', stage: 'PARSING', errorCode: 'DOCUMENT_MUST_BE_UTF8'},
+        {kind: 'TEXT', status: 'FAILED', stage: 'UNKNOWN', errorCode: 'UNKNOWN'}
+    ]);
+    assert.doesNotMatch(await readFile(result.reportPath, 'utf8'), /PRIVATE_RESPONSE_BODY|private-token|private body/);
     assert.equal(f.calls.some(call => call.path === '/documents/search'), false);
 });
 

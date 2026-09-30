@@ -37,7 +37,20 @@ export async function evaluate({base, directory, sourcesOnly = false, hybrid = f
       signal?.throwIfAborted();
       const {document} = await api(`/documents/${documentId}`);
       if (['FAILED', 'CANCELLED'].includes(document.processingStatus) || ['FAILED', 'BLOCKED'].includes(document.textStatus)
-          || hybrid && ['FAILED', 'BLOCKED', 'SUPERSEDED'].includes(document.vectorStatus)) throw new Error('Document processing failed; inspect its persisted task history.');
+          || hybrid && ['FAILED', 'BLOCKED', 'SUPERSEDED'].includes(document.vectorStatus)) {
+        // 隔离资源随后会被回收；先保存状态与公开错误码，不复制响应正文或原件内容。
+        const code = value => typeof value === 'string' && /^[A-Z][A-Z0-9_]{0,99}$/.test(value) ? value : 'UNKNOWN';
+        report.documentFailure = {documentId, processingStatus: code(document.processingStatus),
+          textStatus: code(document.textStatus), vectorStatus: code(document.vectorStatus)};
+        try {
+          const tasks = await api(`/documents/${documentId}/tasks`);
+          report.documentFailure.tasks = tasks.map(task => ({kind: code(task.kind), status: code(task.status),
+            stage: code(task.stage), errorCode: code(task.errorCode)}));
+        } catch {
+          report.documentFailure.diagnosticsStatus = 'UNAVAILABLE';
+        }
+        throw new Error('Document processing failed; inspect documentFailure in report.json.');
+      }
       if (document.processingStatus === 'READY' && document.textStatus === 'SUCCEEDED' && (!hybrid || document.vectorStatus === 'SUCCEEDED')) return;
       await new Promise(resolve => setTimeout(resolve, 250));
     }
