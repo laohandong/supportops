@@ -1,0 +1,13 @@
+import {mkdir} from 'node:fs/promises';
+import {resolve,join} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {execFile} from 'node:child_process';
+import {promisify} from 'node:util';
+const input=/^--output=(.+)$/.exec(process.argv[2]||'');
+if(!input||process.argv.length!==3||!process.env.JAVA_HOME)throw new Error('OUTPUT_AND_JDK21_REQUIRED');
+const output=resolve(input[1]),root=fileURLToPath(new URL('.',import.meta.url)),windows=process.platform==='win32';
+await mkdir(output);await mkdir(join(output,'classes'));
+const execute=promisify(execFile),jdk=process.env.JAVA_HOME;
+await execute(join(jdk,'bin',windows?'javac.exe':'javac'),['--release','21','-encoding','UTF-8','-d',join(output,'classes'),join(root,'src/DiagnosticSource.java')],{windowsHide:true});
+await execute(join(jdk,'bin',windows?'jar.exe':'jar'),['--create','--file',join(output,'diagnostic-source.jar'),'--main-class','DiagnosticSource','-C',join(output,'classes'),'.'],{windowsHide:true});
+console.log(JSON.stringify({status:'BUILT',jar:join(output,'diagnostic-source.jar'),data:'SYNTHETIC'}));

@@ -4,21 +4,20 @@ on:
   pull_request:
 jobs:
   javascript:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '22.16.0'
+      - run: npm ci
+      - run: npm audit --audit-level=high
       - run: node --test src/test/js/*.test.mjs
   java:
-    runs-on: ubuntu-latest
-    timeout-minutes: 25
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
     env:
-      COMPOSE_PROJECT_NAME: supportops-tests
-      MYSQL_PORT: '23306'
-      MINIO_PORT: '29000'
-      ES_PORT: '29200'
+      PLAYWRIGHT_BROWSERS_PATH: ${{ github.workspace }}/.cache/reliability-browsers
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -28,34 +27,50 @@ jobs:
           cache: maven
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '22.16.0'
+      - run: npm ci
+      - run: npm audit --audit-level=high
+      - name: Install pinned Chromium
+        run: npx playwright install --with-deps chromium
       - name: Start isolated storage
-        run: docker compose up -d --wait --wait-timeout 180
+        run: node scripts/isolate.mjs --create --directory=.local/ci-storage --fixed-test-ports
       - name: Verify and package
         run: sh ./mvnw -B -ntp -s .mvn/settings.xml verify
-      - name: Validate first startup and six source scenarios
-        run: |
-          # Each run creates and cleans a fresh workspace; repeat to cover asynchronous cold-start races.
-          for attempt in 1 2 3; do
-            node scripts/evaluate.mjs --sources-only --config=infrastructure/local.env.example
-          done
-      - name: Capture dependency status on failure
-        if: failure()
-        run: |
-          docker compose ps -a
-          docker compose logs --no-color --tail 100
+      - name: Package the independently consumable target
+        run: node scripts/package-evaluation-target.mjs --jar target/supportops-0.1.0-SNAPSHOT.jar --output .local/ci-target
+      - name: Archive program artifact
+        run: cd .local/ci-target && zip -q ../supportops-target.zip application.jar target.json source-snapshot.json && cd .. && sha256sum supportops-target.zip > supportops-target.zip.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: supportops-evaluation-target
+          path: |
+            .local/supportops-target.zip
+            .local/supportops-target.zip.sha256
+          include-hidden-files: true
+      - name: Refuse unregistered resources before cleanup
+        run: node scripts/test-isolation.mjs --deployment=.local/ci-storage/deployment.json --directory=.local/ci-isolation
+      - name: Record external dependencies without loading models
+        run: node scripts/test-dependencies.mjs --directory=.local/ci-dependencies
+      - name: Runtime, actual browser and fresh restore matrix
+        run: node scripts/test-delivery.mjs --deployment=.local/ci-storage/deployment.json --directory=.local/ci-delivery
+      - name: Real index capacity, health response and port compatibility boundaries
+        run: node scripts/test-reliability-boundaries.mjs --directory=.local/ci-boundaries
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: test-results
+          name: reliability-public-evidence
           path: |
-            target/surefire-reports/
-            .local/evaluation/**/report.json
-            .local/evaluation/**/review.md
-            .local/evaluation/**/application.log
-            .local/evaluation/**/runtime.json
-            .local/evaluation/**/launcher-error.json
+            .local/ci-isolation/public/isolation-report.json
+            .local/ci-dependencies/public/dependency-report.json
+            .local/ci-delivery/public/*.json
+            .local/ci-delivery/browser/public/*.png
+            .local/ci-delivery/recovery/public/*.png
+            .local/ci-boundaries/public/boundaries-report.json
           include-hidden-files: true
       - name: Stop isolated CI storage
         if: always()
-        run: docker compose down --volumes --remove-orphans
+        run: |
+          if [ -f .local/ci-storage/deployment.json ]; then
+            deployment_id=$(node -e "console.log(require('./.local/ci-storage/deployment.json').deploymentId)")
+            node scripts/isolate.mjs --cleanup --deployment=.local/ci-storage/deployment.json --deployment-id="$deployment_id"
+          fi

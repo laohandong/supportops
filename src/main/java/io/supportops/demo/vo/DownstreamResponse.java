@@ -21,4 +21,10 @@ public record DownstreamResponse(
                         })
                 String code,
         @Schema(description = "被废弃的请求路径，仅 ROUTE_RETIRED 时出现。", example = "/downstream/v1/orders")
-                String path) {}
+                String path,
+        @Schema(description = "本次受控业务请求回显 UUID；独立手工请求为 manual") String requestId) {
+    /** 兼容原有日志构造，未采集的回显编号为空。 */
+    public DownstreamResponse(Boolean accepted, String code, String path) {
+        this(accepted, code, path, null);
+    }
+}

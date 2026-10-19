@@ -2,6 +2,7 @@ package io.supportops.agent.service;
 
 import io.supportops.agent.memory.ConversationTurn;
 import io.supportops.memory.vo.ProjectMemory;
+import io.supportops.integration.vo.DiagnosticScope;
 
 import java.util.List;
 import java.util.function.BiConsumer;
@@ -13,7 +14,12 @@ public interface DiagnosticEngine {
             String question,
             List<ConversationTurn> history,
             List<ProjectMemory> memories,
-            boolean lexicalOnly) {}
+            boolean lexicalOnly, DiagnosticScope scope, String runId) {
+        /** 兼容历史示例和生命周期验证入口。 */
+        public Context(String question, List<ConversationTurn> history, List<ProjectMemory> memories, boolean lexicalOnly) {
+            this(question, history, memories, lexicalOnly, null, null);
+        }
+    }
 
     /** 模型执行汇总，包含回答、报告用量及是否触及推理轮数限制。 */
     record Result(String answer, long inputTokens, long outputTokens, boolean stepLimitReached) {}

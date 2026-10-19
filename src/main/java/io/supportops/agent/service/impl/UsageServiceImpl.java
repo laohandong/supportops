@@ -60,7 +60,7 @@ public class UsageServiceImpl implements UsageService {
                 granularity,
                 runs.selectUsageSummary(lower, upper),
                 timeline,
-                runs.selectUsageTop(lower, upper));
+                runs.selectUsageTop(lower, upper), runs.selectUsageApplications(lower, upper));
     }
 
     /** 限制为四位公历年份，格式错误统一返回参数错误。 */

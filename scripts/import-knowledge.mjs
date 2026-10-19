@@ -32,7 +32,10 @@ export async function importKnowledge({base, username, password, index = false, 
                 body: body ? JSON.stringify(body) : undefined,
                 signal: AbortSignal.timeout(Math.min(remaining, 30000))
             });
-        } catch {
+        } catch (error) {
+            if (error.name === 'TimeoutError' || Date.now() >= deadline) {
+                throw new Error('文档处理超时；已受理任务仍保留，请在工作台核对状态，不要重复提交写请求。');
+            }
             throw new Error('请求未完成；请核对服务及任务状态，不要据此重复提交写请求。');
         }
         if (!response.ok) {

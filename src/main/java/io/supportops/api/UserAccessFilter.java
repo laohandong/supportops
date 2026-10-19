@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
@@ -22,6 +23,10 @@ public class UserAccessFilter extends OncePerRequestFilter {
     private final UserService users;
     private long loginWindow;
     private int loginAttempts;
+    @Value("${supportops.enterprise.enabled:false}")
+    private boolean enterprise;
+    @Value("${supportops.enterprise.demo-enabled:false}")
+    private boolean demoEnabled;
     /** 注入用户查询服务，每次请求重新验证角色。 */
     public UserAccessFilter(UserService users) {
         this.users = users;
@@ -63,16 +68,22 @@ public class UserAccessFilter extends OncePerRequestFilter {
             return;
         }
         request.setAttribute(CurrentUser.ATTRIBUTE, user);
+        if (enterprise && !demoEnabled && "POST".equals(request.getMethod())
+                && (path.startsWith("/api/demo/") || path.matches("/api/remediations/[0-9a-fA-F-]{36}/execute"))) {
+            reject(response, 409, "DEMO_OPERATIONS_DISABLED");
+            return;
+        }
         chain.doFilter(request, response);
     }
     /** 只允许诊断及当前账号接口；新增后台接口默认仅管理员可用。 */
     private boolean customerEndpoint(String path, String method) {
         if ("GET".equals(method)) {
-            return path.equals("/api/auth/me") || path.equals("/api/status") || path.equals("/api/runs")
-                    || path.matches("/api/runs/[0-9a-fA-F-]{36}(/events|/stream)?");
+            return path.equals("/api/auth/me") || path.equals("/api/auth/command-scope") || path.equals("/api/status") || path.equals("/api/runs") || path.equals("/api/diagnosis-targets")
+                    || path.matches("/api/runs/[0-9a-fA-F-]{36}(/events|/stream|/target)?")
+                    || path.matches("/api/runs/[0-9a-fA-F-]{36}/outcome(/history|/requests/[0-9a-fA-F-]{36})?");
         }
         return "POST".equals(method) && (path.equals("/api/auth/logout") || path.equals("/api/runs")
-                || path.matches("/api/runs/[0-9a-fA-F-]{36}/(cancel|archive)"));
+                || path.matches("/api/runs/[0-9a-fA-F-]{36}/(cancel|archive|outcome)"));
     }
     /** 本地单实例每分钟最多受理 30 次认证尝试，限制密码派生成本。 */
     private synchronized boolean allowLoginAttempt() {

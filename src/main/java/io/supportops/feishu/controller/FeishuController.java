@@ -53,7 +53,7 @@ public class FeishuController {
     @PostMapping("/bindings")
     @Operation(summary = "签发飞书绑定码", description = "仅管理员；已有账号使用十分钟有效的一次性码在机器人私聊完成绑定。用户不存在返回 404 USER_NOT_FOUND；配置缺失返回 409 FEISHU_NOT_CONFIGURED。")
     public FeishuViews.BindingCode issue(@Valid @RequestBody CreateFeishuBinding request) {
-        return bindings.issue(request.userId());
+        return bindings.issue(request.userId(), request.environmentId());
     }
 
     /** 查询绑定资料，不返回明文码或摘要。 */

@@ -191,6 +191,12 @@ public class ProviderRegistry {
         return resolve(true);
     }
 
+    /** 在与配置保存相同的锁内一次捕获实验角色；来源检查不读取未使用的密钥。 */
+    public synchronized ModelExecutionSnapshot executionSnapshot(boolean useDialogue, boolean useEmbedding) {
+        return new ModelExecutionSnapshot(settings.revision(),
+                useDialogue ? resolve(false) : null, useEmbedding ? resolve(true) : null);
+    }
+
     /** 读取并规范化一个配置值，缺失时返回空字符串。 */
     private String value(String path) {
         return env.getProperty(path, "").trim();
@@ -208,7 +214,11 @@ public class ProviderRegistry {
 
     /** 根据角色覆盖与服务商预设解析端点，并返回可安全展示的配置错误。 */
     private Endpoint resolve(boolean embedding) {
-        return resolve(embedding, settings.role(embedding ? "embedding" : "model"));
+        String role = embedding ? "embedding" : "model";
+        try { return resolve(embedding, settings.role(role)); }
+        catch (ResponseStatusException exception) {
+            return failed(settings.selectedProvider(role), exception.getReason());
+        }
     }
 
     /** 读取角色覆盖值，未覆盖的字段才回退到进程配置。 */
@@ -362,8 +372,8 @@ public class ProviderRegistry {
                 route.configured(),
                 route.error(),
                 route.baseUrl(),
-                settings.role(role) != null,
-                !endpoint.apiKey().isEmpty(),
+                settings.hasOverride(role),
+                settings.secretStored(role) || !endpoint.apiKey().isEmpty(),
                 endpoint.generationDescriptor().reasoningEffort());
     }
 
@@ -402,7 +412,7 @@ public class ProviderRegistry {
         if (update == null
                 || update.provider() == null
                 || !providers.containsKey(update.provider())
-                        && !(role.equals("embedding") && update.provider().equals("disabled"))) {
+                        && !update.provider().equals("disabled")) {
             throw new ResponseStatusException(BAD_REQUEST, "MODEL_SETTINGS_INVALID_PROVIDER");
         }
         if (!Set.of("keep", "replace", "remove").contains(first(update.keyAction()))) {
@@ -420,6 +430,10 @@ public class ProviderRegistry {
         }
         boolean embedding = role.equals("embedding");
         Endpoint current = resolve(embedding);
+        if (update.keyAction().equals("keep") && !update.provider().equals("disabled") && settings.secretStored(role)
+                && (current.error.startsWith("MASTER_KEY_") || current.error.startsWith("CREDENTIAL_"))) {
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, current.error);
+        }
         Provider preset = providers.get(update.provider());
         base = first(base, preset == null ? "" : preset.baseUrl()).replaceAll("/+$", "");
         String presetModel = "";

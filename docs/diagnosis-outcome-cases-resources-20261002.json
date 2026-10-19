@@ -1,0 +1,3234 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "capturedAt": "2026-10-02T17:32:59.841Z",
+  "scope": ".local/outcome-cases-20261002/",
+  "originalResourceProof": ".local/outcome-cases-20261002/original-resources-final.json",
+  "originalContainers": 31,
+  "originalVolumes": 38,
+  "currentContainers": 31,
+  "currentVolumes": 38,
+  "deployments": [
+    {
+      "path": ".local/outcome-cases-20261002/http-fifth/storage/deployment.json",
+      "sha256": "fd4d2d3f8f9f6413908625db4cf41afaada24b31bf57902ddb397da1ecf8f4aa",
+      "deploymentId": "ef48fd43-f34f-40e9-b4de-b7c6418df32d",
+      "project": "so-rd-ef48fd43f34f40e9",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 58698,
+        "minio": 58699,
+        "elasticsearch": 58700
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "aa4a6b59fe14c252adb44a7fe3d5d49641ed18bcdd1af1332be52d56a30e3803",
+          "name": "so-rd-ef48fd43f34f40e9-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-ef48fd43f34f40e9_mysql-data"
+          ]
+        },
+        {
+          "id": "7189015ae13811eddc2fd5a06b0acbe8939f9122b046d90e082d29dd218225cf",
+          "name": "so-rd-ef48fd43f34f40e9-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-ef48fd43f34f40e9_minio-data"
+          ]
+        },
+        {
+          "id": "72d0b250f6101ab6a1e330f93729dcddd08bb8e1aacbd6f73cb4c3a02d3fda74",
+          "name": "so-rd-ef48fd43f34f40e9-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-ef48fd43f34f40e9_es-data",
+            "so-rd-ef48fd43f34f40e9_snapshots"
+          ]
+        }
+      ],
+      "processCount": 2
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-fourth/storage/deployment.json",
+      "sha256": "de415a6e12a043a405c7841da541943c345d5ab0e42c3d1ff2a45913b3fe5a7f",
+      "deploymentId": "08b885af-5c17-44e9-9201-922b30200a9b",
+      "project": "so-rd-08b885af5c1744e9",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 50447,
+        "minio": 50448,
+        "elasticsearch": 50449
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "3cc6bf6c77f9d367452b23b210e09a04e0dde3fce3fc375cadc51e14a5129a4d",
+          "name": "so-rd-08b885af5c1744e9-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-08b885af5c1744e9_mysql-data"
+          ]
+        },
+        {
+          "id": "04fdccf4b1d5f52a3e717865d7a4fe736469287929ee07cef307706dba91f058",
+          "name": "so-rd-08b885af5c1744e9-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-08b885af5c1744e9_minio-data"
+          ]
+        },
+        {
+          "id": "8a23acfca6a6511fdc337c88b2af24bddfe5db9aa823880c1b30fb618fa9ebb4",
+          "name": "so-rd-08b885af5c1744e9-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-08b885af5c1744e9_es-data",
+            "so-rd-08b885af5c1744e9_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-second/storage/deployment.json",
+      "sha256": "8a341f3837d020b104817093997ae62f4140952c474450457eccc8a6e96b0c09",
+      "deploymentId": "2194cb6d-35e2-43f1-ab57-97f2700add44",
+      "project": "so-rd-2194cb6d35e243f1",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 59024,
+        "minio": 59025,
+        "elasticsearch": 59028
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "17b6ee43a693331a5ae39274e9328fc25fadff4369bb39bacf92341b47f3ea31",
+          "name": "so-rd-2194cb6d35e243f1-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-2194cb6d35e243f1_mysql-data"
+          ]
+        },
+        {
+          "id": "c0dbf9062b0bcb1f430f7dd4d77ccedceaa51f9bcaf1574a3605936f8622fdb4",
+          "name": "so-rd-2194cb6d35e243f1-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-2194cb6d35e243f1_minio-data"
+          ]
+        },
+        {
+          "id": "13a633e78acc0ceec3e8c0880d3cd0cd852b69e199dd8ecf7dc7abeb60dc77bf",
+          "name": "so-rd-2194cb6d35e243f1-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-2194cb6d35e243f1_es-data",
+            "so-rd-2194cb6d35e243f1_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-sixth/storage/deployment.json",
+      "sha256": "dfe91aff10c870caf4002f47d0ad13b5a05dd142f00e2cc792cdba00b063eaf0",
+      "deploymentId": "35121e54-c146-4a97-a5c2-49f5cc41dc2c",
+      "project": "so-rd-35121e54c1464a97",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 55228,
+        "minio": 55229,
+        "elasticsearch": 55230
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "ab6cd13f0646ffa1cad2983ec56f2417cd18286e7e12868d2cab9a1e88ce0192",
+          "name": "so-rd-35121e54c1464a97-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-35121e54c1464a97_mysql-data"
+          ]
+        },
+        {
+          "id": "e67da7a12611c2d6520f5cae9ada982b1cbf94dafc4f0867869349030996d5ed",
+          "name": "so-rd-35121e54c1464a97-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-35121e54c1464a97_minio-data"
+          ]
+        },
+        {
+          "id": "46af0851f0c7ae3c66c4dc90115bac37517d58866eb171ac8031e74416612a2a",
+          "name": "so-rd-35121e54c1464a97-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-35121e54c1464a97_es-data",
+            "so-rd-35121e54c1464a97_snapshots"
+          ]
+        }
+      ],
+      "processCount": 7
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-third/storage/deployment.json",
+      "sha256": "1cbc1ec05ef59ad6400a29925d594a822fb955be1233477645ab55b47863aadf",
+      "deploymentId": "462fc63c-610e-4c64-a7c3-1c512a652417",
+      "project": "so-rd-462fc63c610e4c64",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 52229,
+        "minio": 52230,
+        "elasticsearch": 52231
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "95f64abe3d03dfd9a233642cc5c941def03c2d1f4bc48b0719f98822d1e6ab21",
+          "name": "so-rd-462fc63c610e4c64-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-462fc63c610e4c64_mysql-data"
+          ]
+        },
+        {
+          "id": "2fdd5f2407a15e6a15323b24e827f60dc29392b2c210f9aedbebda7b77b4c193",
+          "name": "so-rd-462fc63c610e4c64-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-462fc63c610e4c64_minio-data"
+          ]
+        },
+        {
+          "id": "92bfe521aa99378ac6e40151346301b90299a92650229e9ab9795017b7f4eab9",
+          "name": "so-rd-462fc63c610e4c64-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-462fc63c610e4c64_es-data",
+            "so-rd-462fc63c610e4c64_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/linux-final-attempt3/private/recovered/deployment.json",
+      "sha256": "399e687df17d3590bf4a7b5818e5a90bd36c85fa4e5ea1540860dd5dd4ab91fc",
+      "deploymentId": "570a024b-6f83-4164-b50c-f7325521df65",
+      "project": "so-rd-570a024b6f834164",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 43317,
+        "minio": 33567,
+        "elasticsearch": 44419
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "0c65f492b24ad5fb075d8f61383c23ed3c4353ce9d8f883cbce7a75bb2bac6bb",
+          "name": "so-rd-570a024b6f834164-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-570a024b6f834164_mysql-data"
+          ]
+        },
+        {
+          "id": "2cc952523088721954aadc5e4a3f9feb6f2734f9c8657c5d794ed47af6332e25",
+          "name": "so-rd-570a024b6f834164-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-570a024b6f834164_minio-data"
+          ]
+        },
+        {
+          "id": "3d115caaf53f369bb5a66f03867bf10cd787edaff8998fed4de50f0ca15b7b2c",
+          "name": "so-rd-570a024b6f834164-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-570a024b6f834164_es-data",
+            "so-rd-570a024b6f834164_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/windows/storage/deployment.json",
+      "sha256": "eb3987c9e1150aa3f0deec363389cc7beb4293cb2456f9f250619d4df9fd3b96",
+      "deploymentId": "348bbdd4-2a27-4ca9-93d0-fd2dbcd6e529",
+      "project": "so-rd-348bbdd42a274ca9",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 59285,
+        "minio": 59286,
+        "elasticsearch": 59287
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "53883f4ddbe6c4a385a1718113e6de2b1b0dafc59f12e815f546f52a1dacd91f",
+          "name": "so-rd-348bbdd42a274ca9-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-348bbdd42a274ca9_mysql-data"
+          ]
+        },
+        {
+          "id": "f44f674d134872d7609feeadc1cd1b81f56a69bd205fcd68fd5b1dae443bbc3f",
+          "name": "so-rd-348bbdd42a274ca9-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-348bbdd42a274ca9_minio-data"
+          ]
+        },
+        {
+          "id": "93044605059b1d4b792ee5f5cd9ad131b95c917e20e57a177c6258961573f6d3",
+          "name": "so-rd-348bbdd42a274ca9-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-348bbdd42a274ca9_es-data",
+            "so-rd-348bbdd42a274ca9_snapshots"
+          ]
+        }
+      ],
+      "processCount": 2
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/deployment.json",
+      "sha256": "886444174f9fa2fe7dfadfb672f772360c7e5d14b4bdeb99a0bee14461229e44",
+      "deploymentId": "48f70538-1dd5-432e-90ef-11826ac5d0ff",
+      "project": "so-rd-48f705381dd5432e",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 60218,
+        "minio": 60219,
+        "elasticsearch": 60220
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "8a46a80500dde25f0e234ffcc1e7d54971391f37f1887ba528b11ee4228beacb",
+          "name": "so-rd-48f705381dd5432e-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-48f705381dd5432e_mysql-data"
+          ]
+        },
+        {
+          "id": "b48bd586b9e323090cdb6e708f3d717218fde0da383fae7eb506daf4431e1818",
+          "name": "so-rd-48f705381dd5432e-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-48f705381dd5432e_minio-data"
+          ]
+        },
+        {
+          "id": "9e100774f1fbbb3c866c4538de6dd7900bdce04ca7069f7cfce2a0e6d10e3ef4",
+          "name": "so-rd-48f705381dd5432e-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-48f705381dd5432e_es-data",
+            "so-rd-48f705381dd5432e_snapshots"
+          ]
+        }
+      ],
+      "processCount": 7
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/deployment.json",
+      "sha256": "f4fec7a9c137ef7f9927e9fbabcdd1eea83007fa9101f61f7488b9de922af819",
+      "deploymentId": "aadb1f8c-72b6-472d-be35-dd2da2fb7d81",
+      "project": "so-rd-aadb1f8c72b6472d",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 58886,
+        "minio": 58887,
+        "elasticsearch": 58888
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "039aa311576dca31cff5b247915230c5b1bbfd29a905ca79a15ae772acd37af2",
+          "name": "so-rd-aadb1f8c72b6472d-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-aadb1f8c72b6472d_mysql-data"
+          ]
+        },
+        {
+          "id": "4412360a174b12ed4b2017527a32acc490561e60575ada70bde99f9ae85c32df",
+          "name": "so-rd-aadb1f8c72b6472d-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-aadb1f8c72b6472d_minio-data"
+          ]
+        },
+        {
+          "id": "19de9e779331955c2cf8ea5c06ed640078dc79f8e4f8e802aa0e8bb51845a0c3",
+          "name": "so-rd-aadb1f8c72b6472d-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-aadb1f8c72b6472d_es-data",
+            "so-rd-aadb1f8c72b6472d_snapshots"
+          ]
+        }
+      ],
+      "processCount": 7
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/upgrade/legacy-storage/deployment.json",
+      "sha256": "7c5138f75c75516a444da777e621c5cf26e08440138e36dc0968a5651d8e9b67",
+      "deploymentId": "9ee68f38-4fe2-4db0-8cdd-00d45edaa235",
+      "project": "so-rd-9ee68f384fe24db0",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 59019,
+        "minio": 59020,
+        "elasticsearch": 59021
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "18ec01c38da9bd903110fa4e80bfaf54e8d36cd2cb948a28f2a3b621e21f5a39",
+          "name": "so-rd-9ee68f384fe24db0-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-9ee68f384fe24db0_mysql-data"
+          ]
+        },
+        {
+          "id": "d815834ad4838f6ae06555e3614264e06f249f2b0a994d1068d8de5c3a5882f6",
+          "name": "so-rd-9ee68f384fe24db0-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-9ee68f384fe24db0_minio-data"
+          ]
+        },
+        {
+          "id": "fe7bd7ed758fab19d949918dc1cd241c0125cac814c62f50d66a935f84c2d26d",
+          "name": "so-rd-9ee68f384fe24db0-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-9ee68f384fe24db0_es-data",
+            "so-rd-9ee68f384fe24db0_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/upgrade/old-backup/configuration/deployment.json",
+      "sha256": "7629ecafce084d89a11dd47eb88bba1a4d904b9735369cf01f7cf75050c25e5d",
+      "deploymentId": "9ee68f38-4fe2-4db0-8cdd-00d45edaa235",
+      "project": "so-rd-9ee68f384fe24db0",
+      "lastRecordedState": "READY",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 59019,
+        "minio": 59020,
+        "elasticsearch": 59021
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "18ec01c38da9bd903110fa4e80bfaf54e8d36cd2cb948a28f2a3b621e21f5a39",
+          "name": "so-rd-9ee68f384fe24db0-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-9ee68f384fe24db0_mysql-data"
+          ]
+        },
+        {
+          "id": "d815834ad4838f6ae06555e3614264e06f249f2b0a994d1068d8de5c3a5882f6",
+          "name": "so-rd-9ee68f384fe24db0-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-9ee68f384fe24db0_minio-data"
+          ]
+        },
+        {
+          "id": "fe7bd7ed758fab19d949918dc1cd241c0125cac814c62f50d66a935f84c2d26d",
+          "name": "so-rd-9ee68f384fe24db0-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-9ee68f384fe24db0_es-data",
+            "so-rd-9ee68f384fe24db0_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/upgrade/upgraded-storage/archived-configuration/deployment.json",
+      "sha256": "7629ecafce084d89a11dd47eb88bba1a4d904b9735369cf01f7cf75050c25e5d",
+      "deploymentId": "9ee68f38-4fe2-4db0-8cdd-00d45edaa235",
+      "project": "so-rd-9ee68f384fe24db0",
+      "lastRecordedState": "READY",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 59019,
+        "minio": 59020,
+        "elasticsearch": 59021
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "18ec01c38da9bd903110fa4e80bfaf54e8d36cd2cb948a28f2a3b621e21f5a39",
+          "name": "so-rd-9ee68f384fe24db0-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-9ee68f384fe24db0_mysql-data"
+          ]
+        },
+        {
+          "id": "d815834ad4838f6ae06555e3614264e06f249f2b0a994d1068d8de5c3a5882f6",
+          "name": "so-rd-9ee68f384fe24db0-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-9ee68f384fe24db0_minio-data"
+          ]
+        },
+        {
+          "id": "fe7bd7ed758fab19d949918dc1cd241c0125cac814c62f50d66a935f84c2d26d",
+          "name": "so-rd-9ee68f384fe24db0-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-9ee68f384fe24db0_es-data",
+            "so-rd-9ee68f384fe24db0_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/upgrade/upgraded-storage/deployment.json",
+      "sha256": "2e991519d5ad311c47b8ade628ecd6ef93c0ab19e48826b58f0f8029ac763b56",
+      "deploymentId": "a69d2c21-92ac-43c5-a57f-98baec511500",
+      "project": "so-rd-a69d2c2192ac43c5",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 60839,
+        "minio": 60840,
+        "elasticsearch": 60841
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "dd3124a10dd08170ff36cc3d0cda0f741e96ca9f1b8e0f847c6809f25913abb4",
+          "name": "so-rd-a69d2c2192ac43c5-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-a69d2c2192ac43c5_mysql-data"
+          ]
+        },
+        {
+          "id": "115d33982e1d2b72a22438da58bbf51f04f7c899e54400c36e4efc729770cca3",
+          "name": "so-rd-a69d2c2192ac43c5-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-a69d2c2192ac43c5_minio-data"
+          ]
+        },
+        {
+          "id": "82f92332817829cc3d025dec2f27410ae4aec486dcf3b9d0234d4760b0f06d2e",
+          "name": "so-rd-a69d2c2192ac43c5-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-a69d2c2192ac43c5_es-data",
+            "so-rd-a69d2c2192ac43c5_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/configuration/deployment.json",
+      "sha256": "61a8e332f464e9f057a882785714ac3224dc7f59fe6f37df80907c5554b434cb",
+      "deploymentId": "668cb085-e780-44b3-a6d1-4e052cb5f62b",
+      "project": "so-rd-668cb085e78044b3",
+      "lastRecordedState": "READY",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 55146,
+        "minio": 55147,
+        "elasticsearch": 55148
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "f42889e9a181d322d42166ce2e2c6f66a4350c9b3ab619c616be8c4dd6bd7f5f",
+          "name": "so-rd-668cb085e78044b3-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-668cb085e78044b3_mysql-data"
+          ]
+        },
+        {
+          "id": "b9e08ac90276ccb7e48def2747bfbeb683954cacce8f280aaec4d7e54feb0c3d",
+          "name": "so-rd-668cb085e78044b3-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-668cb085e78044b3_minio-data"
+          ]
+        },
+        {
+          "id": "1eda64130d1aa54afc47926424c4fa233e86d0b7a4e447a239091dc9c49652c1",
+          "name": "so-rd-668cb085e78044b3-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-668cb085e78044b3_es-data",
+            "so-rd-668cb085e78044b3_snapshots"
+          ]
+        }
+      ],
+      "processCount": 7
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/archived-configuration/deployment.json",
+      "sha256": "61a8e332f464e9f057a882785714ac3224dc7f59fe6f37df80907c5554b434cb",
+      "deploymentId": "668cb085-e780-44b3-a6d1-4e052cb5f62b",
+      "project": "so-rd-668cb085e78044b3",
+      "lastRecordedState": "READY",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 55146,
+        "minio": 55147,
+        "elasticsearch": 55148
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "f42889e9a181d322d42166ce2e2c6f66a4350c9b3ab619c616be8c4dd6bd7f5f",
+          "name": "so-rd-668cb085e78044b3-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-668cb085e78044b3_mysql-data"
+          ]
+        },
+        {
+          "id": "b9e08ac90276ccb7e48def2747bfbeb683954cacce8f280aaec4d7e54feb0c3d",
+          "name": "so-rd-668cb085e78044b3-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-668cb085e78044b3_minio-data"
+          ]
+        },
+        {
+          "id": "1eda64130d1aa54afc47926424c4fa233e86d0b7a4e447a239091dc9c49652c1",
+          "name": "so-rd-668cb085e78044b3-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-668cb085e78044b3_es-data",
+            "so-rd-668cb085e78044b3_snapshots"
+          ]
+        }
+      ],
+      "processCount": 7
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/deployment.json",
+      "sha256": "46c18bffc05b856094fe88ed248fc7b715785756133ab02ee416fc096deb8c6a",
+      "deploymentId": "7f1fc611-8a02-4ab4-94c9-6d509be5b487",
+      "project": "so-rd-7f1fc6118a024ab4",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 55205,
+        "minio": 55206,
+        "elasticsearch": 55207
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "4c1f8b4d78967757edf8ab6fa4ca8e684b36539f03d726765980d3680ae16c60",
+          "name": "so-rd-7f1fc6118a024ab4-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-7f1fc6118a024ab4_mysql-data"
+          ]
+        },
+        {
+          "id": "70cf1e02c529a3fa2e8b8dc5176fd9533531e82f62622130c4c851d43c82904d",
+          "name": "so-rd-7f1fc6118a024ab4-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-7f1fc6118a024ab4_minio-data"
+          ]
+        },
+        {
+          "id": "9777df032786cbe9768f3473996b4b8c2d77cff04239ac3873d00f07dd6dcba3",
+          "name": "so-rd-7f1fc6118a024ab4-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-7f1fc6118a024ab4_es-data",
+            "so-rd-7f1fc6118a024ab4_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/deployment.json",
+      "sha256": "78a6d8a408f3916bb186709679a8cdd5d55276ee6d9cc5e4503d6ba2f0b9d03c",
+      "deploymentId": "668cb085-e780-44b3-a6d1-4e052cb5f62b",
+      "project": "so-rd-668cb085e78044b3",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 55146,
+        "minio": 55147,
+        "elasticsearch": 55148
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "f42889e9a181d322d42166ce2e2c6f66a4350c9b3ab619c616be8c4dd6bd7f5f",
+          "name": "so-rd-668cb085e78044b3-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-668cb085e78044b3_mysql-data"
+          ]
+        },
+        {
+          "id": "b9e08ac90276ccb7e48def2747bfbeb683954cacce8f280aaec4d7e54feb0c3d",
+          "name": "so-rd-668cb085e78044b3-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-668cb085e78044b3_minio-data"
+          ]
+        },
+        {
+          "id": "1eda64130d1aa54afc47926424c4fa233e86d0b7a4e447a239091dc9c49652c1",
+          "name": "so-rd-668cb085e78044b3-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-668cb085e78044b3_es-data",
+            "so-rd-668cb085e78044b3_snapshots"
+          ]
+        }
+      ],
+      "processCount": 7
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/deployment.json",
+      "sha256": "609f69af2ba1764c3e03aa3aa6d5f23a903646befdd808728f37531d26da522d",
+      "deploymentId": "2a461f28-2737-4d64-ab39-9a2087910a7a",
+      "project": "so-rd-2a461f2827374d64",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 36747,
+        "minio": 37197,
+        "elasticsearch": 45309
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "a24d4c24b9933ed04138771793ecb97dec731c1dd5fa61c0e0ab15f383b79aca",
+          "name": "so-rd-2a461f2827374d64-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-2a461f2827374d64_mysql-data"
+          ]
+        },
+        {
+          "id": "a4379d0225148059eccbf4d3cca1425c929b89cdee44775f87639ec582982459",
+          "name": "so-rd-2a461f2827374d64-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-2a461f2827374d64_minio-data"
+          ]
+        },
+        {
+          "id": "0a16c8b355918255a61f805d16a802673bb6a91b5839c60c1430b4b82a131657",
+          "name": "so-rd-2a461f2827374d64-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-2a461f2827374d64_es-data",
+            "so-rd-2a461f2827374d64_snapshots"
+          ]
+        }
+      ],
+      "processCount": 7
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/upgrade/legacy-storage/deployment.json",
+      "sha256": "64fe55fe58146d3903d86eb627f726c5c91aea140d511bef146fe3f3966c7833",
+      "deploymentId": "7a28a105-8886-4486-8abd-f77c59b9332f",
+      "project": "so-rd-7a28a10588864486",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 61785,
+        "minio": 61786,
+        "elasticsearch": 61787
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "203029c384dbfdfc505a71388aecce5011e94353d1d38f0e92f566b6606bf412",
+          "name": "so-rd-7a28a10588864486-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-7a28a10588864486_mysql-data"
+          ]
+        },
+        {
+          "id": "2fd55f42053da8144f7f03bb52bd52048748fda337982550903f650f7dc64801",
+          "name": "so-rd-7a28a10588864486-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-7a28a10588864486_minio-data"
+          ]
+        },
+        {
+          "id": "a549eb7f792dec9b8d9edc0a5f6032c65732dda05b29dd1e7cba106580cdced7",
+          "name": "so-rd-7a28a10588864486-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-7a28a10588864486_es-data",
+            "so-rd-7a28a10588864486_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/upgrade/old-backup/configuration/deployment.json",
+      "sha256": "cd3aafdac293875c290967ea7ceb883e355ac440259930f230fa24266f90c9ef",
+      "deploymentId": "7a28a105-8886-4486-8abd-f77c59b9332f",
+      "project": "so-rd-7a28a10588864486",
+      "lastRecordedState": "READY",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 61785,
+        "minio": 61786,
+        "elasticsearch": 61787
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "203029c384dbfdfc505a71388aecce5011e94353d1d38f0e92f566b6606bf412",
+          "name": "so-rd-7a28a10588864486-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-7a28a10588864486_mysql-data"
+          ]
+        },
+        {
+          "id": "2fd55f42053da8144f7f03bb52bd52048748fda337982550903f650f7dc64801",
+          "name": "so-rd-7a28a10588864486-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-7a28a10588864486_minio-data"
+          ]
+        },
+        {
+          "id": "a549eb7f792dec9b8d9edc0a5f6032c65732dda05b29dd1e7cba106580cdced7",
+          "name": "so-rd-7a28a10588864486-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-7a28a10588864486_es-data",
+            "so-rd-7a28a10588864486_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/upgrade/upgraded-storage/archived-configuration/deployment.json",
+      "sha256": "cd3aafdac293875c290967ea7ceb883e355ac440259930f230fa24266f90c9ef",
+      "deploymentId": "7a28a105-8886-4486-8abd-f77c59b9332f",
+      "project": "so-rd-7a28a10588864486",
+      "lastRecordedState": "READY",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 61785,
+        "minio": 61786,
+        "elasticsearch": 61787
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "203029c384dbfdfc505a71388aecce5011e94353d1d38f0e92f566b6606bf412",
+          "name": "so-rd-7a28a10588864486-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-7a28a10588864486_mysql-data"
+          ]
+        },
+        {
+          "id": "2fd55f42053da8144f7f03bb52bd52048748fda337982550903f650f7dc64801",
+          "name": "so-rd-7a28a10588864486-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-7a28a10588864486_minio-data"
+          ]
+        },
+        {
+          "id": "a549eb7f792dec9b8d9edc0a5f6032c65732dda05b29dd1e7cba106580cdced7",
+          "name": "so-rd-7a28a10588864486-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-7a28a10588864486_es-data",
+            "so-rd-7a28a10588864486_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/upgrade/upgraded-storage/deployment.json",
+      "sha256": "eb85d693d662a4342bf081f9646d9b5c49f304e7622a4bafd0aa99c8e671cbe1",
+      "deploymentId": "9f4b7e0c-3889-4451-abd2-21d75e6dd620",
+      "project": "so-rd-9f4b7e0c38894451",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 56417,
+        "minio": 56418,
+        "elasticsearch": 56419
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "93303e96ec7cb19f97992afe25dbebb36662c21d82ade25307982c5c50b893f1",
+          "name": "so-rd-9f4b7e0c38894451-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-9f4b7e0c38894451_mysql-data"
+          ]
+        },
+        {
+          "id": "afea84dc3b7c6d0b5e9d314475fbe1841237201d1da7e3986e8cd558368ca008",
+          "name": "so-rd-9f4b7e0c38894451-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-9f4b7e0c38894451_minio-data"
+          ]
+        },
+        {
+          "id": "785e053f9fd14e8bb8183e7754292ebbc09959f57ec449bafb92c069c82e2825",
+          "name": "so-rd-9f4b7e0c38894451-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-9f4b7e0c38894451_es-data",
+            "so-rd-9f4b7e0c38894451_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/configuration/deployment.json",
+      "sha256": "b787c8e9512760c13e3b25305847dd4df4f3e73771db54841963a28506d7c499",
+      "deploymentId": "5ec0050f-efac-47fb-8a3f-9f60c77b13f8",
+      "project": "so-rd-5ec0050fefac47fb",
+      "lastRecordedState": "READY",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 56007,
+        "minio": 56008,
+        "elasticsearch": 56009
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "078f703d3e55a3d2b635778340dfa8f9794cbd14fc9200bd3c1cebe7baf2ff22",
+          "name": "so-rd-5ec0050fefac47fb-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-5ec0050fefac47fb_mysql-data"
+          ]
+        },
+        {
+          "id": "cfc5e0e939b68456b829e89becf781e12b749bb59f4ad8333d9bab4917936cab",
+          "name": "so-rd-5ec0050fefac47fb-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-5ec0050fefac47fb_minio-data"
+          ]
+        },
+        {
+          "id": "012aa787b0aab36075c63e74232ed00b8097e4e345cb7dc025882ea2bb685181",
+          "name": "so-rd-5ec0050fefac47fb-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-5ec0050fefac47fb_es-data",
+            "so-rd-5ec0050fefac47fb_snapshots"
+          ]
+        }
+      ],
+      "processCount": 7
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/archived-configuration/deployment.json",
+      "sha256": "b787c8e9512760c13e3b25305847dd4df4f3e73771db54841963a28506d7c499",
+      "deploymentId": "5ec0050f-efac-47fb-8a3f-9f60c77b13f8",
+      "project": "so-rd-5ec0050fefac47fb",
+      "lastRecordedState": "READY",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 56007,
+        "minio": 56008,
+        "elasticsearch": 56009
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "078f703d3e55a3d2b635778340dfa8f9794cbd14fc9200bd3c1cebe7baf2ff22",
+          "name": "so-rd-5ec0050fefac47fb-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-5ec0050fefac47fb_mysql-data"
+          ]
+        },
+        {
+          "id": "cfc5e0e939b68456b829e89becf781e12b749bb59f4ad8333d9bab4917936cab",
+          "name": "so-rd-5ec0050fefac47fb-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-5ec0050fefac47fb_minio-data"
+          ]
+        },
+        {
+          "id": "012aa787b0aab36075c63e74232ed00b8097e4e345cb7dc025882ea2bb685181",
+          "name": "so-rd-5ec0050fefac47fb-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-5ec0050fefac47fb_es-data",
+            "so-rd-5ec0050fefac47fb_snapshots"
+          ]
+        }
+      ],
+      "processCount": 7
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/deployment.json",
+      "sha256": "2a392cf6f1444e872330334a6dce6bcec399e426fe0b4a4cb6f5462bf829a8e1",
+      "deploymentId": "1c315e12-a3f0-47ef-b147-6039a6c504c4",
+      "project": "so-rd-1c315e12a3f047ef",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 63831,
+        "minio": 63832,
+        "elasticsearch": 63833
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "5111a87b326a8272069fe67e48687bd1a25c78cf8b5b308cf1397d085ef5895b",
+          "name": "so-rd-1c315e12a3f047ef-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-1c315e12a3f047ef_mysql-data"
+          ]
+        },
+        {
+          "id": "1b7f5301fff3be9ceb5a074384535e8d0c3953aef19283f988090a2cf90c170b",
+          "name": "so-rd-1c315e12a3f047ef-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-1c315e12a3f047ef_minio-data"
+          ]
+        },
+        {
+          "id": "2250188111ada5806ecd1316f6bb1d9fbec54ab852638f2779a9b1b72bea8fc7",
+          "name": "so-rd-1c315e12a3f047ef-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-1c315e12a3f047ef_es-data",
+            "so-rd-1c315e12a3f047ef_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/deployment.json",
+      "sha256": "cf438f5948cec4d92e5671d34f65c787b24429f75c54751730b609f0a956d13b",
+      "deploymentId": "5ec0050f-efac-47fb-8a3f-9f60c77b13f8",
+      "project": "so-rd-5ec0050fefac47fb",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 56007,
+        "minio": 56008,
+        "elasticsearch": 56009
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "078f703d3e55a3d2b635778340dfa8f9794cbd14fc9200bd3c1cebe7baf2ff22",
+          "name": "so-rd-5ec0050fefac47fb-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-5ec0050fefac47fb_mysql-data"
+          ]
+        },
+        {
+          "id": "cfc5e0e939b68456b829e89becf781e12b749bb59f4ad8333d9bab4917936cab",
+          "name": "so-rd-5ec0050fefac47fb-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-5ec0050fefac47fb_minio-data"
+          ]
+        },
+        {
+          "id": "012aa787b0aab36075c63e74232ed00b8097e4e345cb7dc025882ea2bb685181",
+          "name": "so-rd-5ec0050fefac47fb-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-5ec0050fefac47fb_es-data",
+            "so-rd-5ec0050fefac47fb_snapshots"
+          ]
+        }
+      ],
+      "processCount": 7
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt1/legacy-storage/deployment.json",
+      "sha256": "0db02b0c4eace085599e24e792c8013214251e12a2741aa533394b68a9c0bf3e",
+      "deploymentId": "2084ab2c-1621-48a0-a4e6-5dbd9e2b9a96",
+      "project": "so-rd-2084ab2c162148a0",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 60322,
+        "minio": 60323,
+        "elasticsearch": 60324
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "cb2a19536872f582cb3ede6a46643745a71bc8f6a1d9e86f882277b7c1e9ec9c",
+          "name": "so-rd-2084ab2c162148a0-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-2084ab2c162148a0_mysql-data"
+          ]
+        },
+        {
+          "id": "8ffd2d442c95ce5ef4adaf1da31966fbfe10bf8034287833995537980fd6fdfe",
+          "name": "so-rd-2084ab2c162148a0-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-2084ab2c162148a0_minio-data"
+          ]
+        },
+        {
+          "id": "c1fb37603c3e4c9916d6a9068f84114ea3cac2ba99821a5647a2c72b885ecc9e",
+          "name": "so-rd-2084ab2c162148a0-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-2084ab2c162148a0_es-data",
+            "so-rd-2084ab2c162148a0_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt2/legacy-storage/deployment.json",
+      "sha256": "3afa6b29e696aad3e288320fa31cda16f7ea8c27af57d711de8350c749764c00",
+      "deploymentId": "9bc8023d-abb9-49b9-8bc9-063ee8033eb5",
+      "project": "so-rd-9bc8023dabb949b9",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 51715,
+        "minio": 51716,
+        "elasticsearch": 51717
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "5738381a05d81e542084b143e941c3417c912db68e5f0cb4b5f9285a2673ddd5",
+          "name": "so-rd-9bc8023dabb949b9-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-9bc8023dabb949b9_mysql-data"
+          ]
+        },
+        {
+          "id": "519aee91f153b2fd6f00c751a63b4db50cfc3f2fb75423d71e800df1f13455e0",
+          "name": "so-rd-9bc8023dabb949b9-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-9bc8023dabb949b9_minio-data"
+          ]
+        },
+        {
+          "id": "bc6f4162404f7204d27da556b759835ce5b1d5a02384d23e6e36536ff66b874a",
+          "name": "so-rd-9bc8023dabb949b9-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-9bc8023dabb949b9_es-data",
+            "so-rd-9bc8023dabb949b9_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt2/old-backup/configuration/deployment.json",
+      "sha256": "99f54f4075bd25e94e37d833782271d571313beeec83e2c411df8ad7a1eacf88",
+      "deploymentId": "9bc8023d-abb9-49b9-8bc9-063ee8033eb5",
+      "project": "so-rd-9bc8023dabb949b9",
+      "lastRecordedState": "READY",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 51715,
+        "minio": 51716,
+        "elasticsearch": 51717
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "5738381a05d81e542084b143e941c3417c912db68e5f0cb4b5f9285a2673ddd5",
+          "name": "so-rd-9bc8023dabb949b9-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-9bc8023dabb949b9_mysql-data"
+          ]
+        },
+        {
+          "id": "519aee91f153b2fd6f00c751a63b4db50cfc3f2fb75423d71e800df1f13455e0",
+          "name": "so-rd-9bc8023dabb949b9-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-9bc8023dabb949b9_minio-data"
+          ]
+        },
+        {
+          "id": "bc6f4162404f7204d27da556b759835ce5b1d5a02384d23e6e36536ff66b874a",
+          "name": "so-rd-9bc8023dabb949b9-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-9bc8023dabb949b9_es-data",
+            "so-rd-9bc8023dabb949b9_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt2/upgraded-storage/archived-configuration/deployment.json",
+      "sha256": "99f54f4075bd25e94e37d833782271d571313beeec83e2c411df8ad7a1eacf88",
+      "deploymentId": "9bc8023d-abb9-49b9-8bc9-063ee8033eb5",
+      "project": "so-rd-9bc8023dabb949b9",
+      "lastRecordedState": "READY",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 51715,
+        "minio": 51716,
+        "elasticsearch": 51717
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "5738381a05d81e542084b143e941c3417c912db68e5f0cb4b5f9285a2673ddd5",
+          "name": "so-rd-9bc8023dabb949b9-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-9bc8023dabb949b9_mysql-data"
+          ]
+        },
+        {
+          "id": "519aee91f153b2fd6f00c751a63b4db50cfc3f2fb75423d71e800df1f13455e0",
+          "name": "so-rd-9bc8023dabb949b9-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-9bc8023dabb949b9_minio-data"
+          ]
+        },
+        {
+          "id": "bc6f4162404f7204d27da556b759835ce5b1d5a02384d23e6e36536ff66b874a",
+          "name": "so-rd-9bc8023dabb949b9-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-9bc8023dabb949b9_es-data",
+            "so-rd-9bc8023dabb949b9_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt2/upgraded-storage/deployment.json",
+      "sha256": "317792b4d9ffe1fd6d41c27323d83f4c667d19b5feffcdad4aa7fefc1902ac85",
+      "deploymentId": "36d1d345-2718-4cdd-ac52-f144bc76cb35",
+      "project": "so-rd-36d1d34527184cdd",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 49684,
+        "minio": 49685,
+        "elasticsearch": 49686
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "168072e2f22178cb6fba45560d9fe64a7c9c790ad6633e0d5fd125f1e6fd7154",
+          "name": "so-rd-36d1d34527184cdd-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-36d1d34527184cdd_mysql-data"
+          ]
+        },
+        {
+          "id": "634bac31e1f6fe68d4848752efb27bf95581c0bcb0b1201c23c677bc0f334184",
+          "name": "so-rd-36d1d34527184cdd-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-36d1d34527184cdd_minio-data"
+          ]
+        },
+        {
+          "id": "4f4e0ed4085f9354b69715a78e891a73f00f861b00e47ee6292c7453ba41071f",
+          "name": "so-rd-36d1d34527184cdd-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-36d1d34527184cdd_es-data",
+            "so-rd-36d1d34527184cdd_snapshots"
+          ]
+        }
+      ],
+      "processCount": 0
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt3/legacy-storage/deployment.json",
+      "sha256": "8e2ec46379ca94d6991b1ca9b1078691a93a435aa8520cee3b67beb8410f0fcf",
+      "deploymentId": "0789cb41-0c15-42e2-a9d4-1876e78410b4",
+      "project": "so-rd-0789cb410c1542e2",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 50565,
+        "minio": 50566,
+        "elasticsearch": 50567
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "e3aaeaf7388fa995a59b448697444ae1373418a76aa0f206f5ebeb2d838f4638",
+          "name": "so-rd-0789cb410c1542e2-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-0789cb410c1542e2_mysql-data"
+          ]
+        },
+        {
+          "id": "16270e9da82902a3322083e56d9629873a762a00d8df0aa7ec73ede78bf952a6",
+          "name": "so-rd-0789cb410c1542e2-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-0789cb410c1542e2_minio-data"
+          ]
+        },
+        {
+          "id": "b622b4a058f3ad514af9fd4035089f96c49be0769a42feface173047b798209c",
+          "name": "so-rd-0789cb410c1542e2-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-0789cb410c1542e2_es-data",
+            "so-rd-0789cb410c1542e2_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt3/old-backup/configuration/deployment.json",
+      "sha256": "c6829c1d9099de34cbdcbb09f87e5283a6da90b74f661a9d2fcfd3af58696a30",
+      "deploymentId": "0789cb41-0c15-42e2-a9d4-1876e78410b4",
+      "project": "so-rd-0789cb410c1542e2",
+      "lastRecordedState": "READY",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 50565,
+        "minio": 50566,
+        "elasticsearch": 50567
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "e3aaeaf7388fa995a59b448697444ae1373418a76aa0f206f5ebeb2d838f4638",
+          "name": "so-rd-0789cb410c1542e2-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-0789cb410c1542e2_mysql-data"
+          ]
+        },
+        {
+          "id": "16270e9da82902a3322083e56d9629873a762a00d8df0aa7ec73ede78bf952a6",
+          "name": "so-rd-0789cb410c1542e2-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-0789cb410c1542e2_minio-data"
+          ]
+        },
+        {
+          "id": "b622b4a058f3ad514af9fd4035089f96c49be0769a42feface173047b798209c",
+          "name": "so-rd-0789cb410c1542e2-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-0789cb410c1542e2_es-data",
+            "so-rd-0789cb410c1542e2_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt3/upgraded-storage/deployment.json",
+      "sha256": "c5a44269a61afffb83740c8ed8959fd4d0cb93071bc9aad35402b0c6a2af4096",
+      "deploymentId": "589b4458-4760-4f92-bca8-684a4b1c4b69",
+      "project": "so-rd-589b445847604f92",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 61640,
+        "minio": 61641,
+        "elasticsearch": 61642
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [],
+      "processCount": 0
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt1/storage/deployment.json",
+      "sha256": "c2831845caadf505eb44785fa93cdddc526d459d7a7e2d7019182b13907d9c92",
+      "deploymentId": "44b8de0c-327c-4dc6-b4d1-5afa2d33e0e6",
+      "project": "so-rd-44b8de0c327c4dc6",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 61460,
+        "minio": 61461,
+        "elasticsearch": 61462
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "2ec0da37a2e491bbe79d24875dd5e95ea829fc3122ed710cc56b522f35746af6",
+          "name": "so-rd-44b8de0c327c4dc6-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-44b8de0c327c4dc6_mysql-data"
+          ]
+        },
+        {
+          "id": "1efdad1390a6839507ad2e542dcffa13182279c34fb40a6114610fb78b217404",
+          "name": "so-rd-44b8de0c327c4dc6-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-44b8de0c327c4dc6_minio-data"
+          ]
+        },
+        {
+          "id": "397ed18a22c10ae559705e037e111d61c4a28f94d6ecc04ad235831ec420f57a",
+          "name": "so-rd-44b8de0c327c4dc6-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-44b8de0c327c4dc6_es-data",
+            "so-rd-44b8de0c327c4dc6_snapshots"
+          ]
+        }
+      ],
+      "processCount": 7
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/storage/deployment.json",
+      "sha256": "a34d516e5e7eb2d120bf9423aa4aff571dfb709fd74d09a05270848d058ea9c6",
+      "deploymentId": "aa12e28d-7923-4903-9167-9ec19bd8360d",
+      "project": "so-rd-aa12e28d79234903",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 60271,
+        "minio": 60272,
+        "elasticsearch": 60273
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "e89143da29515fe9e3ac7bcdf3c29a3355387cf530a3b8fe6d784ab24a5c540a",
+          "name": "so-rd-aa12e28d79234903-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-aa12e28d79234903_mysql-data"
+          ]
+        },
+        {
+          "id": "294b9d44a957d1c100f9a984f215b84a187cc2d79072de94bddfbf172aac72d2",
+          "name": "so-rd-aa12e28d79234903-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-aa12e28d79234903_minio-data"
+          ]
+        },
+        {
+          "id": "447f6064b62c83f6d846c0907cf7d58bac6fc4b643b83771f15e9f3d3f095562",
+          "name": "so-rd-aa12e28d79234903-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-aa12e28d79234903_es-data",
+            "so-rd-aa12e28d79234903_snapshots"
+          ]
+        }
+      ],
+      "processCount": 7
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-storage/deployment.json",
+      "sha256": "619380f14fbe0294ea537e9d3e8538e5b47ef50bf732b637edf0eb55df0cabad",
+      "deploymentId": "d093abb4-2b59-498f-bad5-b7e798c027c4",
+      "project": "so-rd-d093abb42b59498f",
+      "lastRecordedState": "CLEANED",
+      "liveVerification": "NO_CONTAINER_OR_VOLUME_REMAINS",
+      "ports": {
+        "mysql": 49329,
+        "minio": 49330,
+        "elasticsearch": 49331
+      },
+      "daemonId": "94ae5770-72cc-43d2-aeb2-96f816174a85",
+      "containers": [
+        {
+          "id": "7b30014e03abda408387cce8d49419ae767028eaea311577c1ed282df0ede3da",
+          "name": "so-rd-d093abb42b59498f-mysql-1",
+          "image": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+          "volumes": [
+            "so-rd-d093abb42b59498f_mysql-data"
+          ]
+        },
+        {
+          "id": "3241e4352b51851e8ebde3fd5c6ad2444e3e44cb3f7df7c530cb3003b3fdec5b",
+          "name": "so-rd-d093abb42b59498f-minio-1",
+          "image": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+          "volumes": [
+            "so-rd-d093abb42b59498f_minio-data"
+          ]
+        },
+        {
+          "id": "0d15c9b63de0c60424ea3db2f61fc7248e3e80a9bb255e427c9dcbda13978b70",
+          "name": "so-rd-d093abb42b59498f-elasticsearch-1",
+          "image": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+          "volumes": [
+            "so-rd-d093abb42b59498f_es-data",
+            "so-rd-d093abb42b59498f_snapshots"
+          ]
+        }
+      ],
+      "processCount": 1
+    }
+  ],
+  "workspaces": [
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/unknown-submission/resources.json",
+      "sha256": "0c8781368861c900c7018eb05044a1427b2bd18274f10d8ac3730b7781ee18eb",
+      "workspaceKey": "f30048089e6b47e9a2df3adb",
+      "state": "CLEANED",
+      "database": "so_eval_f30048089e6b47e9a2df3adb",
+      "excel": "so_xl_f30048089e6b47e9a2df3adb",
+      "prefix": "so-eval-f30048089e6b47e9a2df3adb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/unknown-submission/resources.json",
+      "sha256": "76c3f24cdfa44e2b8282c0cb160876e4740b779766197717349c0a284612a537",
+      "workspaceKey": "21ed0f69b0a54f718d142a8b",
+      "state": "CLEANED",
+      "database": "so_eval_21ed0f69b0a54f718d142a8b",
+      "excel": "so_xl_21ed0f69b0a54f718d142a8b",
+      "prefix": "so-eval-21ed0f69b0a54f718d142a8b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/unknown-submission/resources.json",
+      "sha256": "b7d19c05fc4abb68cb3c960c69d89258369112a9aa5d9204a6268dfcbe20660c",
+      "workspaceKey": "50b6ee9eabaf4730984eec2a",
+      "state": "CLEANED",
+      "database": "so_eval_50b6ee9eabaf4730984eec2a",
+      "excel": "so_xl_50b6ee9eabaf4730984eec2a",
+      "prefix": "so-eval-50b6ee9eabaf4730984eec2a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/unknown-submission/resources.json",
+      "sha256": "aa96797cd9b9ff0c1cb46e0276a0c6f0f5fbef1b127d035c0690aec0a1ebb741",
+      "workspaceKey": "37fc63d7c46f48038532b6f4",
+      "state": "CLEANED",
+      "database": "so_eval_37fc63d7c46f48038532b6f4",
+      "excel": "so_xl_37fc63d7c46f48038532b6f4",
+      "prefix": "so-eval-37fc63d7c46f48038532b6f4"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/unknown-submission/resources.json",
+      "sha256": "b7c87aa1aa37d882347664b5ad9644976ffab7f982520cb668c38fad8cc4459f",
+      "workspaceKey": "b196dbb9dfd74c12a4d2f0af",
+      "state": "CLEANED",
+      "database": "so_eval_b196dbb9dfd74c12a4d2f0af",
+      "excel": "so_xl_b196dbb9dfd74c12a4d2f0af",
+      "prefix": "so-eval-b196dbb9dfd74c12a4d2f0af"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt1/unknown-submission/resources.json",
+      "sha256": "0cf7e2c70747168bf1fb95ac81e892500e6d8d8b3f3330307f822ffb2c98881c",
+      "workspaceKey": "6c66b22bbbee4505b9f718d8",
+      "state": "CLEANED",
+      "database": "so_eval_6c66b22bbbee4505b9f718d8",
+      "excel": "so_xl_6c66b22bbbee4505b9f718d8",
+      "prefix": "so-eval-6c66b22bbbee4505b9f718d8"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/unknown-submission/resources.json",
+      "sha256": "8b89051a78384ae8312da2718fc4585d34dbee393099eea3f5ecdd0556fe5015",
+      "workspaceKey": "6d628a6437f94d8a9bb7497d",
+      "state": "CLEANED",
+      "database": "so_eval_6d628a6437f94d8a9bb7497d",
+      "excel": "so_xl_6d628a6437f94d8a9bb7497d",
+      "prefix": "so-eval-6d628a6437f94d8a9bb7497d"
+    }
+  ],
+  "runtimes": [
+    {
+      "path": ".local/outcome-cases-20261002/http-fifth/storage/runtime/9a3455bc-ca48-4256-873c-57a2f83cac01/runtime.json",
+      "sha256": "58623834a62d8ba7563a35d4184097139f09631ea9bee1fe91070a59b84c96fa",
+      "runtimeId": "9a3455bc-ca48-4256-873c-57a2f83cac01",
+      "pid": 42124,
+      "processStartedAt": "2026-10-02T12:38:20.459Z",
+      "jarSha256": "447d8cba6775ae5ee3e93c5787fbbca94e9d8bc20c603950b619aadb9ae4befb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-fifth/storage/runtime/b9e68828-b4c9-4dc2-b836-0f8605a65640/runtime.json",
+      "sha256": "7341590e53e42e3871e3f75a82d3fb4fd3cfa220b636fb7bde39dc119201f395",
+      "runtimeId": "b9e68828-b4c9-4dc2-b836-0f8605a65640",
+      "pid": 41932,
+      "processStartedAt": "2026-10-02T12:38:49.963Z",
+      "jarSha256": "447d8cba6775ae5ee3e93c5787fbbca94e9d8bc20c603950b619aadb9ae4befb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-fourth/storage/runtime/8ac46e3d-d2ba-4d50-a232-3af7c1bfb92b/runtime.json",
+      "sha256": "d75e793b5016a3019b4d00119e8bd19c823719ffe56fb33d92021408d90b56ef",
+      "runtimeId": "8ac46e3d-d2ba-4d50-a232-3af7c1bfb92b",
+      "pid": 43248,
+      "processStartedAt": "2026-10-02T12:34:34.946Z",
+      "jarSha256": "447d8cba6775ae5ee3e93c5787fbbca94e9d8bc20c603950b619aadb9ae4befb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-second/storage/runtime/3d4e5abd-8b78-456d-9eb7-bb39192b6c7c/runtime.json",
+      "sha256": "2ff0ced980e25bafa02c3e97678531455d1ce3803f6e861e35cac047ac6f645b",
+      "runtimeId": "3d4e5abd-8b78-456d-9eb7-bb39192b6c7c",
+      "pid": 14156,
+      "processStartedAt": "2026-10-02T12:30:52.534Z",
+      "jarSha256": "447d8cba6775ae5ee3e93c5787fbbca94e9d8bc20c603950b619aadb9ae4befb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-sixth/storage/evaluation/55bb287b-7b46-435a-9a78-f7c09873fba0/group-1/runtime.json",
+      "sha256": "5157982242e386f99399d7fd1581322bf93ca8a9aa7906b25166cc43cbfad12a",
+      "pid": 17512,
+      "jarSha256": "447d8cba6775ae5ee3e93c5787fbbca94e9d8bc20c603950b619aadb9ae4befb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-sixth/storage/evaluation/55bb287b-7b46-435a-9a78-f7c09873fba0/group-2/runtime.json",
+      "sha256": "eab250df3992d05ff8930797da01f320205fec942fd80adc7e7f0fd138fd40a1",
+      "pid": 44892,
+      "jarSha256": "447d8cba6775ae5ee3e93c5787fbbca94e9d8bc20c603950b619aadb9ae4befb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-sixth/storage/evaluation/71854614-94b6-47ef-afcf-3724cd0d26c4/group-1/runtime.json",
+      "sha256": "09fbf25f0c2f309a356115e1079045fbb85b0c5b3da22b6729259e22165ae702",
+      "pid": 32308,
+      "jarSha256": "447d8cba6775ae5ee3e93c5787fbbca94e9d8bc20c603950b619aadb9ae4befb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-sixth/storage/evaluation/80ca1a7f-498c-4960-b2f7-2430ea116190/group-1/runtime.json",
+      "sha256": "80a648a7a70f66aa016a7375ee3a320f2e7cf7b8d74059ddc545eebcd70f5622",
+      "pid": 48336,
+      "jarSha256": "447d8cba6775ae5ee3e93c5787fbbca94e9d8bc20c603950b619aadb9ae4befb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-sixth/storage/evaluation/925215c9-9033-464f-a965-ed1f87ea1ccd/group-1/runtime.json",
+      "sha256": "8dcc80fd3f0f70937c0f551561b0666bfefe3eae84cd9ea270213818b63471c8",
+      "pid": 39980,
+      "jarSha256": "447d8cba6775ae5ee3e93c5787fbbca94e9d8bc20c603950b619aadb9ae4befb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-sixth/storage/evaluation/ca56bdd4-aa09-4078-bd4f-52d512c38621/group-1/runtime.json",
+      "sha256": "d5a78f994b0711965c64ed40cb3cb8242cadc6000913401bd6eeb271802d9b51",
+      "pid": 45964,
+      "jarSha256": "447d8cba6775ae5ee3e93c5787fbbca94e9d8bc20c603950b619aadb9ae4befb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-sixth/storage/runtime/4cea0702-cc77-4bc7-b4fe-315baab66026/runtime.json",
+      "sha256": "3715ce4c69b64decb043e098e8984716da00c7aeb5c2dea73e0a7a3122518c27",
+      "runtimeId": "4cea0702-cc77-4bc7-b4fe-315baab66026",
+      "pid": 40500,
+      "processStartedAt": "2026-10-02T12:41:47.154Z",
+      "jarSha256": "447d8cba6775ae5ee3e93c5787fbbca94e9d8bc20c603950b619aadb9ae4befb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-sixth/storage/runtime/786a08df-a100-483e-b2e1-9784520883ae/runtime.json",
+      "sha256": "8fe66316addea433ee767d45804ea1e0729d91151a702545ce3aba855a5ac4f2",
+      "runtimeId": "786a08df-a100-483e-b2e1-9784520883ae",
+      "pid": 49540,
+      "processStartedAt": "2026-10-02T13:13:10.256Z",
+      "jarSha256": "4fbdfeb59a349f8bcd03bc3c65bad06a3f080e2715c096254055c61b77f8a39d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-sixth/storage/runtime/8bde9468-04fc-4f10-8841-eeee9dbc7468/runtime.json",
+      "sha256": "e2db931f8c8e6b43f911f21adb19d134e6ee4217c6192cb15edd3c07df93006a",
+      "runtimeId": "8bde9468-04fc-4f10-8841-eeee9dbc7468",
+      "pid": 49704,
+      "processStartedAt": "2026-10-02T12:44:54.406Z",
+      "jarSha256": "447d8cba6775ae5ee3e93c5787fbbca94e9d8bc20c603950b619aadb9ae4befb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-sixth/storage/runtime/8f54f07c-1152-4545-b69c-89f3ac2e2992/runtime.json",
+      "sha256": "25bad326c0bc548856649f29f55896b11d5c419cd16209f2fe6990ded7fa6a37",
+      "runtimeId": "8f54f07c-1152-4545-b69c-89f3ac2e2992",
+      "pid": 48080,
+      "processStartedAt": "2026-10-02T12:45:47.960Z",
+      "jarSha256": "447d8cba6775ae5ee3e93c5787fbbca94e9d8bc20c603950b619aadb9ae4befb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-sixth/storage/runtime/c956614e-b4a1-4f84-81bb-996fb517784e/runtime.json",
+      "sha256": "ebcf9ba548d1305088b8ced4a584bf1c2ffebee0da913fa8f16b59ca43948d8b",
+      "runtimeId": "c956614e-b4a1-4f84-81bb-996fb517784e",
+      "pid": 32832,
+      "processStartedAt": "2026-10-02T12:42:14.538Z",
+      "jarSha256": "447d8cba6775ae5ee3e93c5787fbbca94e9d8bc20c603950b619aadb9ae4befb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-sixth/storage/runtime/d29cd076-5d88-4136-b9e3-013991c7c1e1/runtime.json",
+      "sha256": "a41224257f1147d54378b9f22778662a585cd052744f22bdc251f4049909dcfd",
+      "runtimeId": "d29cd076-5d88-4136-b9e3-013991c7c1e1",
+      "pid": 46640,
+      "processStartedAt": "2026-10-02T12:44:35.571Z",
+      "jarSha256": "447d8cba6775ae5ee3e93c5787fbbca94e9d8bc20c603950b619aadb9ae4befb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-sixth/storage/runtime/eb74334e-5d29-48d8-889f-afeadc305d95/runtime.json",
+      "sha256": "80cc71bc6bf9407fca3b2f3329a8c8b0261d14fdc9b87d1525e59d427cd8bbc4",
+      "runtimeId": "eb74334e-5d29-48d8-889f-afeadc305d95",
+      "pid": 10272,
+      "processStartedAt": "2026-10-02T12:46:30.521Z",
+      "jarSha256": "447d8cba6775ae5ee3e93c5787fbbca94e9d8bc20c603950b619aadb9ae4befb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-third/storage/runtime/220e8806-818a-417b-a695-13df7fe489f4/runtime.json",
+      "sha256": "c418080967cda43b781058adfafc909b8ca868fea73cf30503370376028accd2",
+      "runtimeId": "220e8806-818a-417b-a695-13df7fe489f4",
+      "pid": 4088,
+      "processStartedAt": "2026-10-02T12:33:20.689Z",
+      "jarSha256": "447d8cba6775ae5ee3e93c5787fbbca94e9d8bc20c603950b619aadb9ae4befb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/windows/storage/evaluation/13cc9314-16b5-4293-af2d-1290581f0cbf/group-1/runtime.json",
+      "sha256": "6b1705bc2207d4a27eedd843967a1214e3c08fc17d92426a02c92936f7063019",
+      "pid": 26276,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/windows/storage/evaluation/f4206bdb-670d-4425-90f4-7b5e8674d683/group-1/runtime.json",
+      "sha256": "dc71a3531de6b9bec20a2d1e5ccf5b9d7777934d54772620ba4c91f6450dc60f",
+      "pid": 37000,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/windows/storage/runtime/2eeb639f-7b53-46c4-9d79-b193d9850658/runtime.json",
+      "sha256": "da0d4048c97fd2201d66f97826df8ffd87ba0dfa81c94f9f9e3197c7f993777f",
+      "runtimeId": "2eeb639f-7b53-46c4-9d79-b193d9850658",
+      "pid": 45396,
+      "processStartedAt": "2026-10-02T16:04:38.076Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/windows/storage/runtime/eebe51fa-7058-4877-b01e-f76050a29771/runtime.json",
+      "sha256": "e5dd0f91045d4095642a1ec17022689d432cb04ff45bae2310653b9679f57726",
+      "runtimeId": "eebe51fa-7058-4877-b01e-f76050a29771",
+      "pid": 42480,
+      "processStartedAt": "2026-10-02T16:04:07.169Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/554c04b7-a1ef-4c4f-a43f-0cf3a689d98d/group-1/runtime.json",
+      "sha256": "330910fc8008d992eed645f25ea0391078c9f22695ae8a70de628421a9d65873",
+      "pid": 5064,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/56c14bea-a3ee-466f-986a-6ebb23f34f9d/group-1/runtime.json",
+      "sha256": "faee3694483950aaf6ac5efaeb6469ada814ae8cdd5c5654d8c067c324bd9b46",
+      "pid": 23816,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/7a66ad54-cf40-42fb-9f5f-fab0fd692402/group-1/runtime.json",
+      "sha256": "b4335c81192ced19a780a26c4625d8c0dfc5f65bc270780d5d6830f1ace22203",
+      "pid": 42048,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/839ada3c-ffe7-4323-9e99-49753056ef1e/group-1/runtime.json",
+      "sha256": "1d0a1195a8331ac29c405810a1091099694eb04fe4c2039f98804c046c9cfe9c",
+      "pid": 7416,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/839ada3c-ffe7-4323-9e99-49753056ef1e/group-2/runtime.json",
+      "sha256": "4d9d0f517d3bcf63ba4f8ca02e0e442d70f29801565731ae360e8c9406a358d0",
+      "pid": 28324,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/8baf44f5-75d3-4425-a47e-b100c3af7826/group-1/runtime.json",
+      "sha256": "115d472b7cefa587c7f191fd534ee1d46bf1fa85b64be70c71ca11aa6f5e9e9b",
+      "pid": 24380,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/928b7b1c-8a52-4a4b-b96b-540f271d6856/group-1/runtime.json",
+      "sha256": "d240aea428c82786ea7aeca4728494b8bfe12f9bbf02775010e7bfdce836e709",
+      "pid": 41888,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/runtime/186c13e5-8817-4838-87b5-ec0a0c242fe4/runtime.json",
+      "sha256": "b9824cae9182929e63f6f944ade028b2ed546fb7f62a2306cd30349abf10e29b",
+      "runtimeId": "186c13e5-8817-4838-87b5-ec0a0c242fe4",
+      "pid": 6936,
+      "processStartedAt": "2026-10-02T16:16:14.340Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/runtime/1c143ef9-f55d-4cf8-9cd8-dad0ce0a8ab0/runtime.json",
+      "sha256": "8702992409182a43f66138ccdb84236625a1614db93b7737a1003eebe742cd36",
+      "runtimeId": "1c143ef9-f55d-4cf8-9cd8-dad0ce0a8ab0",
+      "pid": 36284,
+      "processStartedAt": "2026-10-02T16:14:44.597Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/runtime/29ade345-4b00-4696-9d81-83875689441a/runtime.json",
+      "sha256": "44bfb019c89ddc6612a6d6da95da2da727e9ae4e907564d9150ae0fcae7f19e6",
+      "runtimeId": "29ade345-4b00-4696-9d81-83875689441a",
+      "pid": 10688,
+      "processStartedAt": "2026-10-02T16:14:27.632Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/runtime/2daea923-a988-437a-86f7-f652ba21b3ca/runtime.json",
+      "sha256": "9bb2bb9235e4804e8452242bc0a3f014e28c1839bfed4d3853e9c1b7bb3e6c82",
+      "runtimeId": "2daea923-a988-437a-86f7-f652ba21b3ca",
+      "pid": 29408,
+      "processStartedAt": "2026-10-02T16:11:51.091Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/runtime/cad0d7cc-4185-4fdb-be94-6798a50f001d/runtime.json",
+      "sha256": "d140abbf593ed18b707d65033223df40e336c232ce605be15e44b8ac57ea73f1",
+      "runtimeId": "cad0d7cc-4185-4fdb-be94-6798a50f001d",
+      "pid": 47724,
+      "processStartedAt": "2026-10-02T16:11:25.727Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/runtime/e8e467d5-ad71-410e-bf63-a4cb24193de3/runtime.json",
+      "sha256": "2620fedd05278a67b6eaebb78184886a978a6b9fe39c84afd2f8ffb47ae10c87",
+      "runtimeId": "e8e467d5-ad71-410e-bf63-a4cb24193de3",
+      "pid": 33556,
+      "processStartedAt": "2026-10-02T16:15:33.906Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/unknown-submission/runtime/c4fdd547-a030-4481-9b14-dbeed7d355aa/runtime.json",
+      "sha256": "653d34da784f6b55f660fd5c2761d2d08f3b232438ac5b339fd65534b027d2e3",
+      "runtimeId": "c4fdd547-a030-4481-9b14-dbeed7d355aa",
+      "pid": 44236,
+      "processStartedAt": "2026-10-02T16:17:18.693Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/6481df51-c42d-4247-9e33-407f63af2c8d/group-1/runtime.json",
+      "sha256": "150ff2d119aa8fcd3f8caddee0c54cd8e589d9fd1860bf36888f0dc7601559fe",
+      "pid": 28928,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/87b96ed4-8643-4e33-b2c6-0b77a7f5c082/group-1/runtime.json",
+      "sha256": "0c4ca1bfb7358dfd9f03d9975a9564147faad7fc724338832ace7b77d23b90f0",
+      "pid": 35088,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/a0b52987-52b6-4608-a715-568efa6790f6/group-1/runtime.json",
+      "sha256": "bde4685030b4528d4d224d02a4fbde0d4ea044990db6ae88beb62395f73a3f35",
+      "pid": 48400,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/a6dcf862-63e1-40cc-b442-2a9626dcf58a/group-1/runtime.json",
+      "sha256": "bb4fc610b28a118479384dd72d8582b70207acfca4b0596329c3ab4e83b3799f",
+      "pid": 45112,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/b4d50024-9e27-4dfb-82ed-ef2033cd84d3/group-1/runtime.json",
+      "sha256": "0f21faa71718fe5867b283dc032cf20104359571d02dd9936b8d0695d3968b2b",
+      "pid": 48616,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/da260a00-47cc-42b3-a13e-c70a11182338/group-1/runtime.json",
+      "sha256": "3262095f83e0740214e15b97d1d97a887f42e512aa337ed5d241cc45b1df4afd",
+      "pid": 21320,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/da260a00-47cc-42b3-a13e-c70a11182338/group-2/runtime.json",
+      "sha256": "1f612fd515f01a55eb128a9d4791e6c27f233631e297fb6ae006116a49414d43",
+      "pid": 49296,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/runtime/25b32c2f-af6a-497c-ae71-5628d5ce275c/runtime.json",
+      "sha256": "0027c1345153848d8e25abefa9152d3f317c9ad3be077c5eb0d23d596f94e758",
+      "runtimeId": "25b32c2f-af6a-497c-ae71-5628d5ce275c",
+      "pid": 18000,
+      "processStartedAt": "2026-10-02T16:26:45.384Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/runtime/3409a837-d199-4c09-9b81-37f2e0db8c2e/runtime.json",
+      "sha256": "7c96f138ab0002a0c8d047aa0788047967fe44e4c24860824f1c8c037ceb6b32",
+      "runtimeId": "3409a837-d199-4c09-9b81-37f2e0db8c2e",
+      "pid": 46176,
+      "processStartedAt": "2026-10-02T16:29:12.323Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/runtime/7226b56f-3865-4d90-8dce-fb9cff1de1b9/runtime.json",
+      "sha256": "187125b92263b37f8ef36b9282e2a5e2d9fe125a7fe60e6c22cad3bf23950669",
+      "runtimeId": "7226b56f-3865-4d90-8dce-fb9cff1de1b9",
+      "pid": 44300,
+      "processStartedAt": "2026-10-02T16:26:19.730Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/runtime/7a0a3923-ea31-41cb-909f-a463b33b83c4/runtime.json",
+      "sha256": "7ac14896a9d690a0cef9a401d896306b9e54f6157c33e5e7b1efcf0ee9cd7969",
+      "runtimeId": "7a0a3923-ea31-41cb-909f-a463b33b83c4",
+      "pid": 23416,
+      "processStartedAt": "2026-10-02T16:30:48.896Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/runtime/b8c8a458-4eb2-4f7b-8d55-c3990f53d2ce/runtime.json",
+      "sha256": "10ddf5bae2299361ad06cd31dc41ade94ddf6fc049f8a91f69f9703ba5997bf0",
+      "runtimeId": "b8c8a458-4eb2-4f7b-8d55-c3990f53d2ce",
+      "pid": 43676,
+      "processStartedAt": "2026-10-02T16:30:11.804Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/runtime/e3751b9b-bd86-4438-aea0-5af325d1033b/runtime.json",
+      "sha256": "fff1a8075a641c6072e1d5c9a67a160f1f2decfcdeaa329a51161d354bbc47b2",
+      "runtimeId": "e3751b9b-bd86-4438-aea0-5af325d1033b",
+      "pid": 46844,
+      "processStartedAt": "2026-10-02T16:29:27.194Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/unknown-submission/runtime/130c1a0f-6dd0-47af-b319-af5d00f2bb70/runtime.json",
+      "sha256": "7436e9f39ee3ed6cbed384c9ae2865f2c6611e9d99ace6b0b720dd03e77bf5d2",
+      "runtimeId": "130c1a0f-6dd0-47af-b319-af5d00f2bb70",
+      "pid": 31852,
+      "processStartedAt": "2026-10-02T16:31:26.065Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/upgrade/legacy-storage/runtime/33ef6b01-0db0-4aff-a141-209edf69dd50/runtime.json",
+      "sha256": "e7a607a24b477d69c0d681920615bb34fddc8cb93216cf5c77f80cf8ce8cdeda",
+      "runtimeId": "33ef6b01-0db0-4aff-a141-209edf69dd50",
+      "pid": 50020,
+      "processStartedAt": "2026-10-02T16:56:24.574Z",
+      "jarSha256": "d94c36f2a4a06544164b035f1ae2bbd395944b7c921db00c8301294feedf575f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/upgrade/upgraded-storage/runtime/5ee45760-03c7-44e7-a1fc-84458bdc30c4/runtime.json",
+      "sha256": "66ec41fefa92ff0398614db95978e9c9c46c0f90326822382f13131f85214213",
+      "runtimeId": "5ee45760-03c7-44e7-a1fc-84458bdc30c4",
+      "pid": 34608,
+      "processStartedAt": "2026-10-02T16:57:23.473Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/12c62f8f-799c-4de2-a4ee-d928a1f9f2b0/group-1/runtime.json",
+      "sha256": "50a906f8e7fc52622c861670077bbc269c09047ccec6eb543ecc7b06d736a991",
+      "pid": 34208,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/13c747c8-03d9-4ce7-a98b-deffdc2bc2b4/group-1/runtime.json",
+      "sha256": "a45d2d43ca7ababebc22f498c1dfab106befe7eae77fdba468a334e90e6ec4ce",
+      "pid": 44300,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/13c747c8-03d9-4ce7-a98b-deffdc2bc2b4/group-2/runtime.json",
+      "sha256": "f12c73bc92d3104e9806493d5616c1db52b9866a2a1120b091ff38703d4e250b",
+      "pid": 5552,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/14e12986-5509-4586-8e37-683346a2ebc1/group-1/runtime.json",
+      "sha256": "2f3224f6a7d6c50a66024112f493c5ecf8425dcc247f0467f56919518c4438eb",
+      "pid": 44836,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/16cfbf68-c96e-4fe2-82c9-9503acfe9d56/group-1/runtime.json",
+      "sha256": "aae4202d8c764af9e7f981a6f6343d0ffd537e7871a6dc2bfa78076cb8902bf2",
+      "pid": 23480,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/39133beb-105c-4b06-b160-3213a48f3495/group-1/runtime.json",
+      "sha256": "8969c075cebfe4beb9c3c6a319bc1fb77c70aa6c9423194c59afe9293cdead91",
+      "pid": 49992,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/69acab50-5e3a-4993-b979-0aa8746ee8c6/group-1/runtime.json",
+      "sha256": "22cee3ad14deccaa281e2d72215dc72ee5f8d25793bdeb5f65beccc637694d13",
+      "pid": 50944,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/cd310aaf-341a-4bf1-932e-2c19946eb78a/group-1/runtime.json",
+      "sha256": "eb4d6eec46e3f4d3e2c2b7f195a89b6c8b05ea0430a66c50e2f5f62e4b092fde",
+      "pid": 16588,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/12c62f8f-799c-4de2-a4ee-d928a1f9f2b0/group-1/runtime.json",
+      "sha256": "50a906f8e7fc52622c861670077bbc269c09047ccec6eb543ecc7b06d736a991",
+      "pid": 34208,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/13c747c8-03d9-4ce7-a98b-deffdc2bc2b4/group-1/runtime.json",
+      "sha256": "a45d2d43ca7ababebc22f498c1dfab106befe7eae77fdba468a334e90e6ec4ce",
+      "pid": 44300,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/13c747c8-03d9-4ce7-a98b-deffdc2bc2b4/group-2/runtime.json",
+      "sha256": "f12c73bc92d3104e9806493d5616c1db52b9866a2a1120b091ff38703d4e250b",
+      "pid": 5552,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/14e12986-5509-4586-8e37-683346a2ebc1/group-1/runtime.json",
+      "sha256": "2f3224f6a7d6c50a66024112f493c5ecf8425dcc247f0467f56919518c4438eb",
+      "pid": 44836,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/16cfbf68-c96e-4fe2-82c9-9503acfe9d56/group-1/runtime.json",
+      "sha256": "aae4202d8c764af9e7f981a6f6343d0ffd537e7871a6dc2bfa78076cb8902bf2",
+      "pid": 23480,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/39133beb-105c-4b06-b160-3213a48f3495/group-1/runtime.json",
+      "sha256": "8969c075cebfe4beb9c3c6a319bc1fb77c70aa6c9423194c59afe9293cdead91",
+      "pid": 49992,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/69acab50-5e3a-4993-b979-0aa8746ee8c6/group-1/runtime.json",
+      "sha256": "22cee3ad14deccaa281e2d72215dc72ee5f8d25793bdeb5f65beccc637694d13",
+      "pid": 50944,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/cd310aaf-341a-4bf1-932e-2c19946eb78a/group-1/runtime.json",
+      "sha256": "eb4d6eec46e3f4d3e2c2b7f195a89b6c8b05ea0430a66c50e2f5f62e4b092fde",
+      "pid": 16588,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/runtime/d915a563-2e79-47d4-97de-9c817309c060/runtime.json",
+      "sha256": "31519ce1bdf6a7c9ec63cfed2af2c2c2eb34037aa85159c0fe765aa40d2fcb9b",
+      "runtimeId": "d915a563-2e79-47d4-97de-9c817309c060",
+      "pid": 3440,
+      "processStartedAt": "2026-10-02T16:52:28.723Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/12c62f8f-799c-4de2-a4ee-d928a1f9f2b0/group-1/runtime.json",
+      "sha256": "50a906f8e7fc52622c861670077bbc269c09047ccec6eb543ecc7b06d736a991",
+      "pid": 34208,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/13c747c8-03d9-4ce7-a98b-deffdc2bc2b4/group-1/runtime.json",
+      "sha256": "a45d2d43ca7ababebc22f498c1dfab106befe7eae77fdba468a334e90e6ec4ce",
+      "pid": 44300,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/13c747c8-03d9-4ce7-a98b-deffdc2bc2b4/group-2/runtime.json",
+      "sha256": "f12c73bc92d3104e9806493d5616c1db52b9866a2a1120b091ff38703d4e250b",
+      "pid": 5552,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/14e12986-5509-4586-8e37-683346a2ebc1/group-1/runtime.json",
+      "sha256": "2f3224f6a7d6c50a66024112f493c5ecf8425dcc247f0467f56919518c4438eb",
+      "pid": 44836,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/16cfbf68-c96e-4fe2-82c9-9503acfe9d56/group-1/runtime.json",
+      "sha256": "aae4202d8c764af9e7f981a6f6343d0ffd537e7871a6dc2bfa78076cb8902bf2",
+      "pid": 23480,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/39133beb-105c-4b06-b160-3213a48f3495/group-1/runtime.json",
+      "sha256": "8969c075cebfe4beb9c3c6a319bc1fb77c70aa6c9423194c59afe9293cdead91",
+      "pid": 49992,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/69acab50-5e3a-4993-b979-0aa8746ee8c6/group-1/runtime.json",
+      "sha256": "22cee3ad14deccaa281e2d72215dc72ee5f8d25793bdeb5f65beccc637694d13",
+      "pid": 50944,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/cd310aaf-341a-4bf1-932e-2c19946eb78a/group-1/runtime.json",
+      "sha256": "eb4d6eec46e3f4d3e2c2b7f195a89b6c8b05ea0430a66c50e2f5f62e4b092fde",
+      "pid": 16588,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/runtime/0755b5dd-9082-4fe7-abff-2c1433d05ec4/runtime.json",
+      "sha256": "446c1114262cc0fbd7491640bb9a2c5e1c1e60b820779b4ea55715e6a75c4cc7",
+      "runtimeId": "0755b5dd-9082-4fe7-abff-2c1433d05ec4",
+      "pid": 37412,
+      "processStartedAt": "2026-10-02T16:46:04.667Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/runtime/0f5f3fa1-de85-43cb-8256-b624900811a1/runtime.json",
+      "sha256": "a2fc532fcca04c649840df2bf1cda1369134c972a2d68680d53425f01b2defcd",
+      "runtimeId": "0f5f3fa1-de85-43cb-8256-b624900811a1",
+      "pid": 46312,
+      "processStartedAt": "2026-10-02T16:47:40.513Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/runtime/686da0ee-0957-4d65-9223-c80de775d60f/runtime.json",
+      "sha256": "098916975117674d76b43d5ecbbfe56f5a6c0474d0dd46d28502641948f75735",
+      "runtimeId": "686da0ee-0957-4d65-9223-c80de775d60f",
+      "pid": 11756,
+      "processStartedAt": "2026-10-02T16:46:20.043Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/runtime/acd3d281-8a04-4a99-8c41-14a7d13020c4/runtime.json",
+      "sha256": "ea27c42542dbb0c4d4f0ab73fa7038209aeea4940f1697f865424eb88bf0e72e",
+      "runtimeId": "acd3d281-8a04-4a99-8c41-14a7d13020c4",
+      "pid": 2120,
+      "processStartedAt": "2026-10-02T16:47:03.853Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/runtime/e1df54d3-1a31-4a5f-ae6b-a5bd4324ba29/runtime.json",
+      "sha256": "128f1af2ff20a3799b929ea47b909549180806e93843147bb112d6fba10eee7c",
+      "runtimeId": "e1df54d3-1a31-4a5f-ae6b-a5bd4324ba29",
+      "pid": 12012,
+      "processStartedAt": "2026-10-02T16:43:49.684Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/runtime/fc4321df-9b3e-4bf1-9c98-3e72e235b341/runtime.json",
+      "sha256": "41783bb31ff2d84cf37474bc843680bcf01be83464e0e16262d4fea3e07ee0d0",
+      "runtimeId": "fc4321df-9b3e-4bf1-9c98-3e72e235b341",
+      "pid": 26092,
+      "processStartedAt": "2026-10-02T16:43:26.461Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/unknown-submission/runtime/fa281fab-0794-42a3-9845-7e3a933db0c8/runtime.json",
+      "sha256": "b06a8ca0e20a0ee75721726d02242d92fa42ebadbac6ae620bf402ccc94e18c7",
+      "runtimeId": "fa281fab-0794-42a3-9845-7e3a933db0c8",
+      "pid": 31580,
+      "processStartedAt": "2026-10-02T16:48:17.724Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/0cff403f-fe8e-4563-b780-ff499c7902c7/group-1/runtime.json",
+      "sha256": "f01a73126d02e05c9d5d9fae519b0533c21b3dd1f500e2c6fbda050537c9457d",
+      "pid": 1630,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/0cff403f-fe8e-4563-b780-ff499c7902c7/group-2/runtime.json",
+      "sha256": "3dec817ffe0572b62622ef20e90484484812c3f39ba0f7575962c96d151152f7",
+      "pid": 1879,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/1a654db6-f019-40f8-b222-33962c07caaf/group-1/runtime.json",
+      "sha256": "91b09a55f164c08a826bbfcaec36e99303b4c24c49a76f0c7f8b98df96e27a2b",
+      "pid": 3318,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/a473b9fc-19f5-47ba-85c1-9313cde70bf1/group-1/runtime.json",
+      "sha256": "043bedc7ca0a8ee65e57f54d75483d44e5a3c10aee2cec5d05290f1e2807fc33",
+      "pid": 2779,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/cc381f9a-cd8e-4073-b9b2-e8d21cf71875/group-1/runtime.json",
+      "sha256": "49712693207a80e01c4095098d618313db3db5c127f6799b0385c18e67265844",
+      "pid": 4243,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/ccfe41ab-6ceb-4afe-9229-951bab32fd52/group-1/runtime.json",
+      "sha256": "79d4d3703e3cc7ac5a3f48d9039790c47484644646d45d12c7bb99aff0bbd431",
+      "pid": 1328,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/d59cf456-edf9-4254-8ae8-7e40d29d5eb7/group-1/runtime.json",
+      "sha256": "3910f030b296b0a2ef614bc2c013306bff66f1a76979b8bf60610de204195f61",
+      "pid": 1020,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/runtime/2fbffac2-aa90-4f2d-8db7-7e743ba1dfcf/runtime.json",
+      "sha256": "016f0ea5101eb621587d0d5526d5d6d6fd34e735186f4c93b6024db559b53ac6",
+      "runtimeId": "2fbffac2-aa90-4f2d-8db7-7e743ba1dfcf",
+      "pid": 2289,
+      "processStartedAt": "2026-10-02T17:22:40.690Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/runtime/3ce03e46-f0ed-425c-93f4-ee82d774a328/runtime.json",
+      "sha256": "aeb8345cea479b9120180959a55ee65e07a5351c9b6b6ca327563624f702e610",
+      "runtimeId": "3ce03e46-f0ed-425c-93f4-ee82d774a328",
+      "pid": 2536,
+      "processStartedAt": "2026-10-02T17:22:51.420Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/runtime/70117bf3-745f-4c0e-9586-5bd6551d5b48/runtime.json",
+      "sha256": "51606498e65a315e1dcd15980639cf2967a2f217b3e274c4c65dda1973111c48",
+      "runtimeId": "70117bf3-745f-4c0e-9586-5bd6551d5b48",
+      "pid": 3534,
+      "processStartedAt": "2026-10-02T17:24:08Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/runtime/7f0d1c50-8d74-4eba-a337-4ccd3e0b6124/runtime.json",
+      "sha256": "2ea3d745b3e59d8468a70cc0bf78aab2d49933404e227031ca689cdbc96872e9",
+      "runtimeId": "7f0d1c50-8d74-4eba-a337-4ccd3e0b6124",
+      "pid": 3103,
+      "processStartedAt": "2026-10-02T17:23:37.350Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/runtime/a25716a4-d562-4444-ba1b-d1282542a378/runtime.json",
+      "sha256": "5b33d7c4080131b67250e91db63d2d37fc275ffcfde91a05f10993b771eb4572",
+      "runtimeId": "a25716a4-d562-4444-ba1b-d1282542a378",
+      "pid": 589,
+      "processStartedAt": "2026-10-02T17:20:26.630Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/runtime/adcfc5cc-8a01-4ea5-9864-882c59bafdd9/runtime.json",
+      "sha256": "f8980e470be9acda95cf60d77dfadd6eb25b0a9bbeb121b7397d46a9c1e91c2f",
+      "runtimeId": "adcfc5cc-8a01-4ea5-9864-882c59bafdd9",
+      "pid": 809,
+      "processStartedAt": "2026-10-02T17:20:46.740Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/unknown-submission/runtime/a76b7f86-faaa-4b05-9175-c80b9947835a/runtime.json",
+      "sha256": "3da43079212aa0c7001cf8d6d24cd2609473d2f83d72faab22f316cdd20bd15e",
+      "runtimeId": "a76b7f86-faaa-4b05-9175-c80b9947835a",
+      "pid": 3886,
+      "processStartedAt": "2026-10-02T17:24:46.690Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/upgrade/legacy-storage/runtime/c8cd4fde-6186-495a-af00-df5ddb7a820d/runtime.json",
+      "sha256": "d8e60bd328adea87cc24b22459f96baed07158630970fa4a1277496e9bb3b5cd",
+      "runtimeId": "c8cd4fde-6186-495a-af00-df5ddb7a820d",
+      "pid": 24168,
+      "processStartedAt": "2026-10-02T17:17:54.542Z",
+      "jarSha256": "d94c36f2a4a06544164b035f1ae2bbd395944b7c921db00c8301294feedf575f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/upgrade/upgraded-storage/runtime/f78da00c-7c6c-41b6-89d5-b9c20525c6d2/runtime.json",
+      "sha256": "20e93aeb7c88264c9c97efe0a51f209708d8c15fdefc6364732ecddc4d77956d",
+      "runtimeId": "f78da00c-7c6c-41b6-89d5-b9c20525c6d2",
+      "pid": 10016,
+      "processStartedAt": "2026-10-02T17:18:53.388Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/14f57892-6378-4d4d-ac81-05019558609c/group-1/runtime.json",
+      "sha256": "7a5e430f061ab4e2df44fa9f9a9ca40144b1d657a43413c3e76272ffc14f4454",
+      "pid": 37308,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3/group-1/runtime.json",
+      "sha256": "4ca0e1c253172fcc72690ab64ca8bac583b53934baf2268d1fa348135713d782",
+      "pid": 42216,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3/group-2/runtime.json",
+      "sha256": "11cb26d65f6d80a726ba379bc855dc0f3dd2a57c896e5ae5c46d1c8a7becd62a",
+      "pid": 43140,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/4ffca2d1-1655-4704-94a5-043cb81d3f20/group-1/runtime.json",
+      "sha256": "41dd999eabb385eadc310e82af1aa6b03a23a7ae99f97c40ebd01a69a663c02b",
+      "pid": 48108,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/7bebc6df-196a-4477-93e5-cb70aa7c536f/group-1/runtime.json",
+      "sha256": "287a7d99fbbe9b3a185c46eb1123f98bf819aa22408fa14eef528c5ac2aa3a90",
+      "pid": 4976,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/7efe7417-8d2e-41ca-8df7-c88d5767a295/group-1/runtime.json",
+      "sha256": "f152cdc7dd7e6402ae502e778b5d69f5026271f3840e954f2733db3376ec2916",
+      "pid": 28336,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/d2033b4d-947b-4bae-a9bd-e9dd2b0d1197/group-1/runtime.json",
+      "sha256": "aced1e80cc092b78320f5e7bb10a5f89f7a3913f59fc4bafc590b868c9cfba37",
+      "pid": 29028,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/e513cfd4-65f3-4c47-bfbe-98732fe6b920/group-1/runtime.json",
+      "sha256": "748e2d9481567118df350663ca1064e88e20a7d084887abe3f7b366819deaabc",
+      "pid": 24316,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/14f57892-6378-4d4d-ac81-05019558609c/group-1/runtime.json",
+      "sha256": "7a5e430f061ab4e2df44fa9f9a9ca40144b1d657a43413c3e76272ffc14f4454",
+      "pid": 37308,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3/group-1/runtime.json",
+      "sha256": "4ca0e1c253172fcc72690ab64ca8bac583b53934baf2268d1fa348135713d782",
+      "pid": 42216,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3/group-2/runtime.json",
+      "sha256": "11cb26d65f6d80a726ba379bc855dc0f3dd2a57c896e5ae5c46d1c8a7becd62a",
+      "pid": 43140,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/4ffca2d1-1655-4704-94a5-043cb81d3f20/group-1/runtime.json",
+      "sha256": "41dd999eabb385eadc310e82af1aa6b03a23a7ae99f97c40ebd01a69a663c02b",
+      "pid": 48108,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/7bebc6df-196a-4477-93e5-cb70aa7c536f/group-1/runtime.json",
+      "sha256": "287a7d99fbbe9b3a185c46eb1123f98bf819aa22408fa14eef528c5ac2aa3a90",
+      "pid": 4976,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/7efe7417-8d2e-41ca-8df7-c88d5767a295/group-1/runtime.json",
+      "sha256": "f152cdc7dd7e6402ae502e778b5d69f5026271f3840e954f2733db3376ec2916",
+      "pid": 28336,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/d2033b4d-947b-4bae-a9bd-e9dd2b0d1197/group-1/runtime.json",
+      "sha256": "aced1e80cc092b78320f5e7bb10a5f89f7a3913f59fc4bafc590b868c9cfba37",
+      "pid": 29028,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/e513cfd4-65f3-4c47-bfbe-98732fe6b920/group-1/runtime.json",
+      "sha256": "748e2d9481567118df350663ca1064e88e20a7d084887abe3f7b366819deaabc",
+      "pid": 24316,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/runtime/12558233-6c1a-49b4-b452-d1f850747cff/runtime.json",
+      "sha256": "d0f0e6a019da4ea6f2a550716060d3f9c97bf35d5192ac2ed95eb336e4452abc",
+      "runtimeId": "12558233-6c1a-49b4-b452-d1f850747cff",
+      "pid": 25392,
+      "processStartedAt": "2026-10-02T17:13:59.368Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/14f57892-6378-4d4d-ac81-05019558609c/group-1/runtime.json",
+      "sha256": "7a5e430f061ab4e2df44fa9f9a9ca40144b1d657a43413c3e76272ffc14f4454",
+      "pid": 37308,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3/group-1/runtime.json",
+      "sha256": "4ca0e1c253172fcc72690ab64ca8bac583b53934baf2268d1fa348135713d782",
+      "pid": 42216,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3/group-2/runtime.json",
+      "sha256": "11cb26d65f6d80a726ba379bc855dc0f3dd2a57c896e5ae5c46d1c8a7becd62a",
+      "pid": 43140,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/4ffca2d1-1655-4704-94a5-043cb81d3f20/group-1/runtime.json",
+      "sha256": "41dd999eabb385eadc310e82af1aa6b03a23a7ae99f97c40ebd01a69a663c02b",
+      "pid": 48108,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/7bebc6df-196a-4477-93e5-cb70aa7c536f/group-1/runtime.json",
+      "sha256": "287a7d99fbbe9b3a185c46eb1123f98bf819aa22408fa14eef528c5ac2aa3a90",
+      "pid": 4976,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/7efe7417-8d2e-41ca-8df7-c88d5767a295/group-1/runtime.json",
+      "sha256": "f152cdc7dd7e6402ae502e778b5d69f5026271f3840e954f2733db3376ec2916",
+      "pid": 28336,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/d2033b4d-947b-4bae-a9bd-e9dd2b0d1197/group-1/runtime.json",
+      "sha256": "aced1e80cc092b78320f5e7bb10a5f89f7a3913f59fc4bafc590b868c9cfba37",
+      "pid": 29028,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/e513cfd4-65f3-4c47-bfbe-98732fe6b920/group-1/runtime.json",
+      "sha256": "748e2d9481567118df350663ca1064e88e20a7d084887abe3f7b366819deaabc",
+      "pid": 24316,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/runtime/18554258-e284-463a-85f2-3adf213ddb60/runtime.json",
+      "sha256": "627a33180165752486d2f98dc76d856564599ff2f9a4ac6d57bb32cb3c84211a",
+      "runtimeId": "18554258-e284-463a-85f2-3adf213ddb60",
+      "pid": 38868,
+      "processStartedAt": "2026-10-02T17:04:59.744Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/runtime/193fd619-cb73-4747-9c21-810325f555ab/runtime.json",
+      "sha256": "063d03c8d06f232f38a1e7b94036c9cf240d96270db7a5711fe32d38b8a2a261",
+      "runtimeId": "193fd619-cb73-4747-9c21-810325f555ab",
+      "pid": 6108,
+      "processStartedAt": "2026-10-02T17:05:22.499Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/runtime/228d784b-3fd4-4884-91e6-2bd1f5680fdc/runtime.json",
+      "sha256": "0e753374ba75f8b0d5cfff297542d7e3d9e2e97af8c131ffdbd0b3ebc30d8760",
+      "runtimeId": "228d784b-3fd4-4884-91e6-2bd1f5680fdc",
+      "pid": 4584,
+      "processStartedAt": "2026-10-02T17:09:11.414Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/runtime/6e31ddc2-6b83-477b-9022-7423392f8f28/runtime.json",
+      "sha256": "c40f33313262268cdb54c42ed93a7bf0277f8c9ee2781034458ab40314447881",
+      "runtimeId": "6e31ddc2-6b83-477b-9022-7423392f8f28",
+      "pid": 6624,
+      "processStartedAt": "2026-10-02T17:07:51.573Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/runtime/77fb1aa7-2397-46a8-8618-06d6e342db89/runtime.json",
+      "sha256": "21d84fb67f3997a3d3854a799e617f5bb1c1122deb14e1de081fdfee84ffec94",
+      "runtimeId": "77fb1aa7-2397-46a8-8618-06d6e342db89",
+      "pid": 45864,
+      "processStartedAt": "2026-10-02T17:07:37.065Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/runtime/fb521144-bbaf-478a-9052-5ebe341500dc/runtime.json",
+      "sha256": "c328e953d093d19b7d2fbf8396d127459251b82bdea0749694c84939075a2031",
+      "runtimeId": "fb521144-bbaf-478a-9052-5ebe341500dc",
+      "pid": 20724,
+      "processStartedAt": "2026-10-02T17:08:35.456Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/unknown-submission/runtime/26348bcd-79f1-4bf0-ba87-71bb6d0d4db1/runtime.json",
+      "sha256": "c8f7a498cc98df68cd4ccbed0911797a26449fa5a8ebb90d6ea7735955a3ee04",
+      "runtimeId": "26348bcd-79f1-4bf0-ba87-71bb6d0d4db1",
+      "pid": 26948,
+      "processStartedAt": "2026-10-02T17:09:48.740Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt1/legacy-storage/runtime/6746662f-50cc-4bc0-811e-fd9b3e6502ef/runtime.json",
+      "sha256": "0f3614ba89ced9ac3f0bd3ff8a5ecd629318ed875d8b4a5d380c590037088055",
+      "runtimeId": "6746662f-50cc-4bc0-811e-fd9b3e6502ef",
+      "pid": 45500,
+      "processStartedAt": "2026-10-02T13:32:16.392Z",
+      "jarSha256": "d94c36f2a4a06544164b035f1ae2bbd395944b7c921db00c8301294feedf575f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt2/legacy-storage/runtime/0f054492-86e6-4b00-b805-7e5020749f55/runtime.json",
+      "sha256": "728477fccc38db7b374add7d6d48a5cd9177716ffeeafa387202200412b19197",
+      "runtimeId": "0f054492-86e6-4b00-b805-7e5020749f55",
+      "pid": 12708,
+      "processStartedAt": "2026-10-02T13:35:26.397Z",
+      "jarSha256": "d94c36f2a4a06544164b035f1ae2bbd395944b7c921db00c8301294feedf575f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt3/legacy-storage/runtime/1805ef93-712e-4c97-a23c-a35be931fea4/runtime.json",
+      "sha256": "a53a40a3083dfbf963a81febcd8598cf5dbec11964b6b56fb765c76c6ac8d64b",
+      "runtimeId": "1805ef93-712e-4c97-a23c-a35be931fea4",
+      "pid": 14496,
+      "processStartedAt": "2026-10-02T13:38:37.702Z",
+      "jarSha256": "d94c36f2a4a06544164b035f1ae2bbd395944b7c921db00c8301294feedf575f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt1/storage/evaluation/0cf6f1a9-4261-43dd-879c-df28560c0b62/group-1/runtime.json",
+      "sha256": "7c8e25a3da9e1075f46623f888aabb1e1eb0c9da1f4252505d09011f951a9d0e",
+      "pid": 10960,
+      "jarSha256": "4fbdfeb59a349f8bcd03bc3c65bad06a3f080e2715c096254055c61b77f8a39d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt1/storage/evaluation/8bd1ca50-2283-45ac-86ef-6c8ec7b68f25/group-1/runtime.json",
+      "sha256": "bbbd0d9a9a7298080cea060145fd47c2137c9d1144e2ea24fdfb03ed52e1135f",
+      "pid": 44700,
+      "jarSha256": "4fbdfeb59a349f8bcd03bc3c65bad06a3f080e2715c096254055c61b77f8a39d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt1/storage/evaluation/8bd1ca50-2283-45ac-86ef-6c8ec7b68f25/group-2/runtime.json",
+      "sha256": "82f1530b68d6ab7ee64a0095fa10a086495df12c5fc45b3c8a2e102d64bf3bc4",
+      "pid": 12956,
+      "jarSha256": "4fbdfeb59a349f8bcd03bc3c65bad06a3f080e2715c096254055c61b77f8a39d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt1/storage/evaluation/e1dc6e46-bd81-452f-bbf4-e8cd417ea434/group-1/runtime.json",
+      "sha256": "cd99e003c1104ae9b379d47325b340dc477ae78e58d6b612e38feae74eaa57dc",
+      "pid": 23264,
+      "jarSha256": "4fbdfeb59a349f8bcd03bc3c65bad06a3f080e2715c096254055c61b77f8a39d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt1/storage/evaluation/e480fee3-ddf7-4d64-8e8a-3c4dbb8466c8/group-1/runtime.json",
+      "sha256": "ebe5422456757b2ef59fb39396d853d7d27c648000e301b2e9be38dee3b49352",
+      "pid": 42940,
+      "jarSha256": "4fbdfeb59a349f8bcd03bc3c65bad06a3f080e2715c096254055c61b77f8a39d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt1/storage/evaluation/f0a25c3f-34ab-4ce1-8683-087948afedbe/group-1/runtime.json",
+      "sha256": "76a881e20355460fe3cb485aa3461c11149e4fe122de1e2899f860e0830f7a32",
+      "pid": 30972,
+      "jarSha256": "4fbdfeb59a349f8bcd03bc3c65bad06a3f080e2715c096254055c61b77f8a39d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt1/storage/runtime/7901e808-b78d-4026-8b73-8b2a5489dbab/runtime.json",
+      "sha256": "762923bfcc0921d04755d84f11c7c6717b3b222aa60017bf50059f2d6e64e943",
+      "runtimeId": "7901e808-b78d-4026-8b73-8b2a5489dbab",
+      "pid": 40968,
+      "processStartedAt": "2026-10-02T13:07:34.032Z",
+      "jarSha256": "4fbdfeb59a349f8bcd03bc3c65bad06a3f080e2715c096254055c61b77f8a39d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt1/storage/runtime/912eb6ad-07f5-4f35-9c12-0c04dfba2129/runtime.json",
+      "sha256": "ef15eb82bf6027d2c2ec5e0cba1f6d7b8a15b242479794aceae8c16deda53f00",
+      "runtimeId": "912eb6ad-07f5-4f35-9c12-0c04dfba2129",
+      "pid": 41412,
+      "processStartedAt": "2026-10-02T13:08:43.704Z",
+      "jarSha256": "4fbdfeb59a349f8bcd03bc3c65bad06a3f080e2715c096254055c61b77f8a39d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt1/storage/runtime/b0e8d435-f8b0-4b80-b99f-057752559506/runtime.json",
+      "sha256": "5f5738905aaa3ccd6d0bbb40b703d3f752cab0aadabbdf65549d24eafd3acfe6",
+      "runtimeId": "b0e8d435-f8b0-4b80-b99f-057752559506",
+      "pid": 18812,
+      "processStartedAt": "2026-10-02T13:09:28.401Z",
+      "jarSha256": "4fbdfeb59a349f8bcd03bc3c65bad06a3f080e2715c096254055c61b77f8a39d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt1/storage/runtime/b4c4f380-a854-4bb0-bee7-ae8a0d600ecc/runtime.json",
+      "sha256": "a004771ac37e8a97d68b0c8f204454304920425b620d9a2e6494c553918e5b3c",
+      "runtimeId": "b4c4f380-a854-4bb0-bee7-ae8a0d600ecc",
+      "pid": 31828,
+      "processStartedAt": "2026-10-02T13:07:50.734Z",
+      "jarSha256": "4fbdfeb59a349f8bcd03bc3c65bad06a3f080e2715c096254055c61b77f8a39d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt1/storage/runtime/dedadfd4-de1f-46f4-8374-dd860e18772e/runtime.json",
+      "sha256": "42a3c58591436782ded20d70665d33d843d11b65d0b7f8ed56f3d651e6875cc4",
+      "runtimeId": "dedadfd4-de1f-46f4-8374-dd860e18772e",
+      "pid": 36368,
+      "processStartedAt": "2026-10-02T13:04:16.679Z",
+      "jarSha256": "4fbdfeb59a349f8bcd03bc3c65bad06a3f080e2715c096254055c61b77f8a39d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt1/storage/runtime/edda24c7-2c77-4a27-8145-c02d798d2e38/runtime.json",
+      "sha256": "3a44ef1be091603b602457d53c525d069eb651538f7968c9cb48f184f7654b09",
+      "runtimeId": "edda24c7-2c77-4a27-8145-c02d798d2e38",
+      "pid": 30924,
+      "processStartedAt": "2026-10-02T13:04:45.289Z",
+      "jarSha256": "4fbdfeb59a349f8bcd03bc3c65bad06a3f080e2715c096254055c61b77f8a39d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt1/unknown-submission/runtime/94c308fc-d1ac-4a77-95e6-a29e1644759c/runtime.json",
+      "sha256": "a6556ce135d61d709e565f6993c7d831eb4f5ab07d6cc090a73cf7e41fb7e21b",
+      "runtimeId": "94c308fc-d1ac-4a77-95e6-a29e1644759c",
+      "pid": 9192,
+      "processStartedAt": "2026-10-02T13:10:08.087Z",
+      "jarSha256": "4fbdfeb59a349f8bcd03bc3c65bad06a3f080e2715c096254055c61b77f8a39d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/storage/evaluation/6b306769-a909-4103-b838-9665374ce5ee/group-1/runtime.json",
+      "sha256": "4c960d1420b7ab8366c76fc472648aec047039bd435de8bc89c863166cecf616",
+      "pid": 31868,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/storage/evaluation/7ab2bcab-e4c0-470c-b2a1-c44dbaea3298/group-1/runtime.json",
+      "sha256": "b3d69c329c7a6efe52b86a1cf7bd4b9a598db239c6950a9ebb513a8bea116520",
+      "pid": 36304,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/storage/evaluation/9c1bb2ba-875a-417f-831f-4dad563cc250/group-1/runtime.json",
+      "sha256": "c7be1feea84ededf5d265083b3f08407cd9c11ec20523cf1d41d1334181bbdef",
+      "pid": 37804,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/storage/evaluation/9d5721e6-36ae-476a-b3ef-a1b7544fabfe/group-1/runtime.json",
+      "sha256": "7e6cb45b97a9da33fb123bc99183995be9607d063e7b587cb7d7dfb65c16bbd2",
+      "pid": 17208,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/storage/evaluation/f6bb3465-59b9-41cd-8275-940b79cbea46/group-1/runtime.json",
+      "sha256": "4c260292bc884d720faa753855808485aa99c4953fbcf69cc41a4e71475485e2",
+      "pid": 35888,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/storage/evaluation/ff26cc04-065e-42eb-ab97-9b629586eda3/group-1/runtime.json",
+      "sha256": "bec7a637807d5ed33a61435e60222f4cef15ca1e87b81fda8f87e47de41e785e",
+      "pid": 29876,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/storage/evaluation/ff26cc04-065e-42eb-ab97-9b629586eda3/group-2/runtime.json",
+      "sha256": "e3725e66ec80f59f12bb5bea49d0b3186b9b279614556affa73f0986a354b9aa",
+      "pid": 30784,
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/storage/runtime/74758531-0664-4086-b5a9-dc04b8fe89dd/runtime.json",
+      "sha256": "be9c3fa11376b93c965d05fd872c9802c52bc82b1210a6cea567a5850363da07",
+      "runtimeId": "74758531-0664-4086-b5a9-dc04b8fe89dd",
+      "pid": 32272,
+      "processStartedAt": "2026-10-02T13:36:28.492Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/storage/runtime/77db1f03-6dfe-489d-9c5d-f3858e743252/runtime.json",
+      "sha256": "ae82b752668a1d70e362acae84eac924579a91108614ee00802eac9e1949f818",
+      "runtimeId": "77db1f03-6dfe-489d-9c5d-f3858e743252",
+      "pid": 41492,
+      "processStartedAt": "2026-10-02T13:37:15.346Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/storage/runtime/9f9611c4-8fc9-44f0-ba3e-081d4dc5dc7d/runtime.json",
+      "sha256": "f767487a13c6dad5d22efbd400ae8560893ded004a482ddcb5a6bae1ddfd2ce5",
+      "runtimeId": "9f9611c4-8fc9-44f0-ba3e-081d4dc5dc7d",
+      "pid": 19792,
+      "processStartedAt": "2026-10-02T13:32:23.155Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/storage/runtime/c291842f-faa9-4a1c-8122-6523d6480a49/runtime.json",
+      "sha256": "90cbcffba175e7860d277a461aea43a8ebd8f4dd51e94f3b992af1bc727924c3",
+      "runtimeId": "c291842f-faa9-4a1c-8122-6523d6480a49",
+      "pid": 44348,
+      "processStartedAt": "2026-10-02T13:35:09.705Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/storage/runtime/d3961389-90a7-42b1-8b90-f5b2ae99f776/runtime.json",
+      "sha256": "7faa21636e66007a67155d3e96865603d526200394ca76ca873f4ec834c9d1d9",
+      "runtimeId": "d3961389-90a7-42b1-8b90-f5b2ae99f776",
+      "pid": 2896,
+      "processStartedAt": "2026-10-02T13:35:29.967Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/storage/runtime/f4809667-82c1-49cc-911d-0296f6f3ded0/runtime.json",
+      "sha256": "814f1eaf0c9a04f05f6c665614e043398f09d020b39892d2478b3eaaf0809269",
+      "runtimeId": "f4809667-82c1-49cc-911d-0296f6f3ded0",
+      "pid": 40536,
+      "processStartedAt": "2026-10-02T13:31:52.118Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/unknown-submission/runtime/943b2233-685c-446c-83b0-638a6124cfae/runtime.json",
+      "sha256": "4fbfb61fddcece9003091b812f916227801ef684a251f61e16d905cbb77760e4",
+      "runtimeId": "943b2233-685c-446c-83b0-638a6124cfae",
+      "pid": 11528,
+      "processStartedAt": "2026-10-02T13:38:23.538Z",
+      "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-storage/runtime/c2755b0c-091d-4364-9ea8-6609cd5e7179/runtime.json",
+      "sha256": "9d5d3a983b50d3d4f34c08dbed64398617628bed4221a2b83d6f82cce24d013b",
+      "runtimeId": "c2755b0c-091d-4364-9ea8-6609cd5e7179",
+      "pid": 10316,
+      "processStartedAt": "2026-10-02T12:29:12.618Z",
+      "jarSha256": "447d8cba6775ae5ee3e93c5787fbbca94e9d8bc20c603950b619aadb9ae4befb"
+    }
+  ],
+  "cleanupRecords": [
+    ".local/outcome-cases-20261002/cleanup-interim.json",
+    ".local/outcome-cases-20261002/sixth-recovery-cleanup.json",
+    ".local/outcome-cases-20261002/cleanup-past.json",
+    ".local/outcome-cases-20261002/recovered-cleanup.json",
+    ".local/outcome-cases-20261002/java-storage-cleanup.json",
+    ".local/outcome-cases-20261002/package4-cleanup-writer-recheck.json",
+    ".local/outcome-cases-20261002/package4-cleanup-retest.json",
+    ".local/outcome-cases-20261002/runtime-jar-cleanup-first.json",
+    ".local/outcome-cases-20261002/runtime-jar-cleanup-second.json",
+    ".local/outcome-cases-20261002/runtime-jar-cleanup-third.json",
+    ".local/outcome-cases-20261002/runtime-jar-cleanup.json"
+  ],
+  "packageResources": [
+    {
+      "deploymentId": "5ec0050f-efac-47fb-8a3f-9f60c77b13f8",
+      "directory": "E:\\code\\agent\\.local\\outcome-cases-20261002\\package-final-attempt5\\windows\\storage",
+      "project": "so-rd-5ec0050fefac47fb",
+      "state": "CLEANED",
+      "stoppedWriterProof": {
+        "proof": {
+          "observedAt": "2026-10-02T17:16:51.425Z",
+          "applications": [
+            {
+              "runtimeId": "18554258-e284-463a-85f2-3adf213ddb60",
+              "pid": 38868,
+              "processStartedAt": "2026-10-02T17:04:59.744Z",
+              "code": "PROCESS_EXITED"
+            },
+            {
+              "runtimeId": "193fd619-cb73-4747-9c21-810325f555ab",
+              "pid": 6108,
+              "processStartedAt": "2026-10-02T17:05:22.499Z",
+              "code": "PROCESS_EXITED"
+            },
+            {
+              "runtimeId": "77fb1aa7-2397-46a8-8618-06d6e342db89",
+              "pid": 45864,
+              "processStartedAt": "2026-10-02T17:07:37.065Z",
+              "code": "PROCESS_EXITED"
+            },
+            {
+              "runtimeId": "6e31ddc2-6b83-477b-9022-7423392f8f28",
+              "pid": 6624,
+              "processStartedAt": "2026-10-02T17:07:51.573Z",
+              "code": "PROCESS_EXITED"
+            },
+            {
+              "runtimeId": "fb521144-bbaf-478a-9052-5ebe341500dc",
+              "pid": 20724,
+              "processStartedAt": "2026-10-02T17:08:35.456Z",
+              "code": "PROCESS_EXITED"
+            },
+            {
+              "runtimeId": "228d784b-3fd4-4884-91e6-2bd1f5680fdc",
+              "pid": 4584,
+              "processStartedAt": "2026-10-02T17:09:11.414Z",
+              "code": "PROCESS_EXITED"
+            },
+            {
+              "runtimeId": "26348bcd-79f1-4bf0-ba87-71bb6d0d4db1",
+              "pid": 26948,
+              "processStartedAt": "2026-10-02T17:09:48.740Z",
+              "code": "PROCESS_EXITED"
+            }
+          ],
+          "attempts": [
+            {
+              "id": "14f57892-6378-4d4d-ac81-05019558609c",
+              "experiment_id": "2e9bc787-5937-4874-94e4-dc7fb7b5b288",
+              "owner": "2336f0c9-d02b-4e17-b2ea-a74508768578",
+              "fencing_token": "7",
+              "state": "COMPLETED",
+              "lease_until": "1790961071010",
+              "heartbeat_at": "1790961041010",
+              "pid": "45892",
+              "process_started_at": "2026-10-02T17:10:15.857Z",
+              "executable_hash": "c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19",
+              "workspace_path": "E:\\code\\agent\\.local\\outcome-cases-20261002\\package-final-attempt5\\windows\\storage\\evaluation\\14f57892-6378-4d4d-ac81-05019558609c",
+              "resources_json": "[{\"groupKey\":\"group-1\",\"strategy\":\"LEXICAL_RRF\",\"repeatIndex\":1,\"caseKey\":null,\"result\":null,\"status\":null,\"error\":null,\"workspaceKey\":\"e19c64b8d5a44e8cae841fe6\",\"database\":\"so_eval_e19c64b8d5a44e8cae841fe6\",\"excel\":\"so_xl_e19c64b8d5a44e8cae841fe6\",\"prefix\":\"so-eval-e19c64b8d5a44e8cae841fe6\",\"inputSha256\":null,\"phase\":null,\"pid\":null,\"cleanupStatus\":null,\"elapsedMs\":null}]",
+              "process_json": "[{\"pid\":45892,\"startedAt\":\"2026-10-02T17:10:15.857Z\",\"executable\":\"E:\\\\code\\\\agent\\\\.cache\\\\reliability-tools\\\\node-v22.16.0-win-x64\\\\node.exe\",\"executableHash\":\"c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19\",\"argumentsHash\":\"6afe35a296841f54fa6cfb17247ceb50205f06f21510217805a48c70e5920782\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"14f57892-6378-4d4d-ac81-05019558609c\"},{\"pid\":23264,\"startedAt\":\"2026-10-02T17:10:16.292Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"fd9002426a17aa340c8971d354a6dd551d12140c68568cfb6ef6afc213d359c4\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"14f57892-6378-4d4d-ac81-05019558609c\"},{\"pid\":37308,\"startedAt\":\"2026-10-02T17:10:17.796Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"cacd4611bcffcd8f5db1694cb2f05b33d6158f3e1310e43d18d474c27bd00711\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"14f57892-6378-4d4d-ac81-05019558609c\"},{\"pid\":26952,\"startedAt\":\"2026-10-02T17:10:38.139Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"c9838d1cc7b0c2a39370b1365b05d753fe2cf0d745040ce7fc914b070898f584\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"14f57892-6378-4d4d-ac81-05019558609c\"}]",
+              "cleanup_status": "CLEANED",
+              "cleanup_error": "",
+              "version": 1,
+              "created_at": "2026-10-02T17:10:15.287391400Z",
+              "execution_token": "7",
+              "recovery_status": "NOT_REQUIRED",
+              "recovery_error": "",
+              "recovery_event_sha256": null,
+              "recovery_event_bytes": null
+            },
+            {
+              "id": "3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3",
+              "experiment_id": "df80017d-a548-437f-9814-02bedb052cbf",
+              "owner": "cfcbecab-b369-4be2-ba91-73419eaa497c",
+              "fencing_token": "3",
+              "state": "COMPLETED",
+              "lease_until": "1790960882981",
+              "heartbeat_at": "1790960852981",
+              "pid": "39700",
+              "process_started_at": "2026-10-02T17:06:37.652Z",
+              "executable_hash": "c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19",
+              "workspace_path": "E:\\code\\agent\\.local\\outcome-cases-20261002\\package-final-attempt5\\windows\\storage\\evaluation\\3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3",
+              "resources_json": "[{\"groupKey\":\"group-1\",\"strategy\":\"LEXICAL_RRF\",\"repeatIndex\":1,\"caseKey\":null,\"result\":null,\"status\":null,\"error\":null,\"workspaceKey\":\"c404e66965ed40cea490f0c7\",\"database\":\"so_eval_c404e66965ed40cea490f0c7\",\"excel\":\"so_xl_c404e66965ed40cea490f0c7\",\"prefix\":\"so-eval-c404e66965ed40cea490f0c7\",\"inputSha256\":null,\"phase\":null,\"pid\":null,\"cleanupStatus\":null,\"elapsedMs\":null},{\"groupKey\":\"group-2\",\"strategy\":\"LEXICAL_RRF\",\"repeatIndex\":2,\"caseKey\":null,\"result\":null,\"status\":null,\"error\":null,\"workspaceKey\":\"c5d92a01e4394973b8d0d96e\",\"database\":\"so_eval_c5d92a01e4394973b8d0d96e\",\"excel\":\"so_xl_c5d92a01e4394973b8d0d96e\",\"prefix\":\"so-eval-c5d92a01e4394973b8d0d96e\",\"inputSha256\":null,\"phase\":null,\"pid\":null,\"cleanupStatus\":null,\"elapsedMs\":null}]",
+              "process_json": "[{\"pid\":39700,\"startedAt\":\"2026-10-02T17:06:37.652Z\",\"executable\":\"E:\\\\code\\\\agent\\\\.cache\\\\reliability-tools\\\\node-v22.16.0-win-x64\\\\node.exe\",\"executableHash\":\"c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19\",\"argumentsHash\":\"3ad72e3f294296779f808aacc35429dd80a0276af3b62567033b67a85caed0e4\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3\"},{\"pid\":28392,\"startedAt\":\"2026-10-02T17:06:38.121Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"8c2e6b44f2b6d498ef482422c3768f83eef4e11c4acbfb03f9ee25aef30747e0\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3\"},{\"pid\":42216,\"startedAt\":\"2026-10-02T17:06:39.756Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"cfa2ba36ec94c3c257bf946acfed4a00f7715597f5d0b35351f8e42a8d303d44\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3\"},{\"pid\":47768,\"startedAt\":\"2026-10-02T17:07:00.549Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"c629614c6cf13eb010818cacac88b39a0b9ede10334de25a4aa953fb6265e340\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3\"},{\"pid\":9072,\"startedAt\":\"2026-10-02T17:07:03.792Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"f1297ece40d5546146ce021fe7e775d1a191d262b6b939137292d8c225407676\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3\"},{\"pid\":43140,\"startedAt\":\"2026-10-02T17:07:05.291Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"6846af6c84ae68ac409233b4a9b61a9125d639b7059a878b138cfebbe3091aa9\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3\"},{\"pid\":31296,\"startedAt\":\"2026-10-02T17:07:26.315Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"30382b5f881d6ea7e1381f82d44c3b8e05adff6ab14df0bbefeaeb9dc0837740\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3\"}]",
+              "cleanup_status": "CLEANED",
+              "cleanup_error": "",
+              "version": 1,
+              "created_at": "2026-10-02T17:06:37.234648600Z",
+              "execution_token": "3",
+              "recovery_status": "NOT_REQUIRED",
+              "recovery_error": "",
+              "recovery_event_sha256": null,
+              "recovery_event_bytes": null
+            },
+            {
+              "id": "4ffca2d1-1655-4704-94a5-043cb81d3f20",
+              "experiment_id": "b9313df5-d344-4bea-9c43-787d155c0423",
+              "owner": "6b261948-6168-4e72-b4c8-5fff9a5fce42",
+              "fencing_token": "4",
+              "state": "CANCELLED",
+              "lease_until": "1790960940723",
+              "heartbeat_at": "1790960910723",
+              "pid": "39880",
+              "process_started_at": "2026-10-02T17:08:05.559Z",
+              "executable_hash": "c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19",
+              "workspace_path": "E:\\code\\agent\\.local\\outcome-cases-20261002\\package-final-attempt5\\windows\\storage\\evaluation\\4ffca2d1-1655-4704-94a5-043cb81d3f20",
+              "resources_json": "[{\"groupKey\":\"group-1\",\"strategy\":\"LEXICAL_RRF\",\"repeatIndex\":1,\"caseKey\":null,\"result\":null,\"status\":null,\"error\":null,\"workspaceKey\":\"e712318b23534e6aadd51c88\",\"database\":\"so_eval_e712318b23534e6aadd51c88\",\"excel\":\"so_xl_e712318b23534e6aadd51c88\",\"prefix\":\"so-eval-e712318b23534e6aadd51c88\",\"inputSha256\":null,\"phase\":null,\"pid\":null,\"cleanupStatus\":null,\"elapsedMs\":null}]",
+              "process_json": "[{\"pid\":39880,\"startedAt\":\"2026-10-02T17:08:05.559Z\",\"executable\":\"E:\\\\code\\\\agent\\\\.cache\\\\reliability-tools\\\\node-v22.16.0-win-x64\\\\node.exe\",\"executableHash\":\"c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19\",\"argumentsHash\":\"7a01993dff4942fc58e6dae6e1b9fa33dfadc6707dfd2f1f9d24e88ccf61e141\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"4ffca2d1-1655-4704-94a5-043cb81d3f20\"},{\"pid\":44264,\"startedAt\":\"2026-10-02T17:08:05.993Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"fd821a58c64b7b7cdba12b29bdce489fa98fd456abdaab1a963f050da5d3066e\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"4ffca2d1-1655-4704-94a5-043cb81d3f20\"},{\"pid\":48108,\"startedAt\":\"2026-10-02T17:08:07.544Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"1a26fddb1b9936305c88f279ed21fa3997f9df9a9cfaac885e5079d52955d16c\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"4ffca2d1-1655-4704-94a5-043cb81d3f20\"},{\"pid\":33388,\"startedAt\":\"2026-10-02T17:08:27.143Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"1896811decdec128cb62112eb61b270d280af5aade1e7039653efcb2a86c93fe\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"4ffca2d1-1655-4704-94a5-043cb81d3f20\"}]",
+              "cleanup_status": "CLEANED",
+              "cleanup_error": "",
+              "version": 1,
+              "created_at": "2026-10-02T17:08:04.807280200Z",
+              "execution_token": "4",
+              "recovery_status": "NOT_REQUIRED",
+              "recovery_error": "",
+              "recovery_event_sha256": null,
+              "recovery_event_bytes": null
+            },
+            {
+              "id": "7bebc6df-196a-4477-93e5-cb70aa7c536f",
+              "experiment_id": "95cb1348-f99a-4940-be37-9171a5c48d76",
+              "owner": "recovery-6d44cd00-a774-4922-a520-23a9aa984fd2",
+              "fencing_token": "6",
+              "state": "INTERRUPTED",
+              "lease_until": "1790961013591",
+              "heartbeat_at": "1790960983591",
+              "pid": "33704",
+              "process_started_at": "2026-10-02T17:08:48.143Z",
+              "executable_hash": "c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19",
+              "workspace_path": "E:\\code\\agent\\.local\\outcome-cases-20261002\\package-final-attempt5\\windows\\storage\\evaluation\\7bebc6df-196a-4477-93e5-cb70aa7c536f",
+              "resources_json": "[{\"groupKey\":\"group-1\",\"strategy\":\"LEXICAL_RRF\",\"repeatIndex\":1,\"caseKey\":null,\"result\":null,\"status\":null,\"error\":null,\"workspaceKey\":\"94e72c45b79c419cb51b297f\",\"database\":\"so_eval_94e72c45b79c419cb51b297f\",\"excel\":\"so_xl_94e72c45b79c419cb51b297f\",\"prefix\":\"so-eval-94e72c45b79c419cb51b297f\",\"inputSha256\":null,\"phase\":null,\"pid\":null,\"cleanupStatus\":null,\"elapsedMs\":null}]",
+              "process_json": "[{\"pid\":33704,\"startedAt\":\"2026-10-02T17:08:48.143Z\",\"executable\":\"E:\\\\code\\\\agent\\\\.cache\\\\reliability-tools\\\\node-v22.16.0-win-x64\\\\node.exe\",\"executableHash\":\"c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19\",\"argumentsHash\":\"c86b5115748879bfad9fed405ac955c458f27e5a461cd51063d0bda423023b79\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"7bebc6df-196a-4477-93e5-cb70aa7c536f\"},{\"pid\":39888,\"startedAt\":\"2026-10-02T17:08:48.591Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"db024ad6fc3dc36411e5f8e8491c9995775b63a5ea9406c8e22c7fad50a32b62\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"7bebc6df-196a-4477-93e5-cb70aa7c536f\"},{\"pid\":4976,\"startedAt\":\"2026-10-02T17:08:50.134Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"d03d561b58601c608b80762bf68e3d89b2a40e7251a4e91aea1bda4d11ebce2c\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"7bebc6df-196a-4477-93e5-cb70aa7c536f\"}]",
+              "cleanup_status": "CLEANED",
+              "cleanup_error": "",
+              "version": 1,
+              "created_at": "2026-10-02T17:08:47.625414500Z",
+              "execution_token": "5",
+              "recovery_status": "COMPLETE",
+              "recovery_error": "",
+              "recovery_event_sha256": "79f4ff74f2d0ad1e744f4270714b89f5a38293a33222c113548b9fdbdbfde2e8",
+              "recovery_event_bytes": "9932"
+            },
+            {
+              "id": "7efe7417-8d2e-41ca-8df7-c88d5767a295",
+              "experiment_id": "dc80a957-8a31-43a2-995d-efc754ec7e58",
+              "owner": "2336f0c9-d02b-4e17-b2ea-a74508768578",
+              "fencing_token": "8",
+              "state": "COMPLETED",
+              "lease_until": "1790961108276",
+              "heartbeat_at": "1790961078276",
+              "pid": "44940",
+              "process_started_at": "2026-10-02T17:10:53.118Z",
+              "executable_hash": "c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19",
+              "workspace_path": "E:\\code\\agent\\.local\\outcome-cases-20261002\\package-final-attempt5\\windows\\storage\\evaluation\\7efe7417-8d2e-41ca-8df7-c88d5767a295",
+              "resources_json": "[{\"groupKey\":\"group-1\",\"strategy\":\"LEXICAL_RRF\",\"repeatIndex\":1,\"caseKey\":null,\"result\":null,\"status\":null,\"error\":null,\"workspaceKey\":\"dea1911e4a804643879f9949\",\"database\":\"so_eval_dea1911e4a804643879f9949\",\"excel\":\"so_xl_dea1911e4a804643879f9949\",\"prefix\":\"so-eval-dea1911e4a804643879f9949\",\"inputSha256\":null,\"phase\":null,\"pid\":null,\"cleanupStatus\":null,\"elapsedMs\":null}]",
+              "process_json": "[{\"pid\":44940,\"startedAt\":\"2026-10-02T17:10:53.118Z\",\"executable\":\"E:\\\\code\\\\agent\\\\.cache\\\\reliability-tools\\\\node-v22.16.0-win-x64\\\\node.exe\",\"executableHash\":\"c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19\",\"argumentsHash\":\"10cce905b99139d874b2c5bfd583459c330e7584383a31227c6769dc4d7a0f19\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"7efe7417-8d2e-41ca-8df7-c88d5767a295\"},{\"pid\":12968,\"startedAt\":\"2026-10-02T17:10:53.581Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"831cb6387bd12e12cfda2a0ceca99491d3cb57a4ac91f01df734040aefb5de9c\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"7efe7417-8d2e-41ca-8df7-c88d5767a295\"},{\"pid\":28336,\"startedAt\":\"2026-10-02T17:10:55.154Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"1553dda49c74f1e64ab46e0baaae6edf2f455b92216527c3cdcaddaaeabc502d\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"7efe7417-8d2e-41ca-8df7-c88d5767a295\"},{\"pid\":24908,\"startedAt\":\"2026-10-02T17:11:14.492Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"7c62f2d1b0fd8a843785ba5bae88ef548eee5b6d6711d81e01a2f1060d290440\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"7efe7417-8d2e-41ca-8df7-c88d5767a295\"}]",
+              "cleanup_status": "CLEANED",
+              "cleanup_error": "",
+              "version": 1,
+              "created_at": "2026-10-02T17:10:52.368347800Z",
+              "execution_token": "8",
+              "recovery_status": "NOT_REQUIRED",
+              "recovery_error": "",
+              "recovery_event_sha256": null,
+              "recovery_event_bytes": null
+            },
+            {
+              "id": "d2033b4d-947b-4bae-a9bd-e9dd2b0d1197",
+              "experiment_id": "2412468b-faa2-4eba-980d-d2741da588e5",
+              "owner": "cfcbecab-b369-4be2-ba91-73419eaa497c",
+              "fencing_token": "2",
+              "state": "COMPLETED",
+              "lease_until": "1790960823555",
+              "heartbeat_at": "1790960793555",
+              "pid": "3168",
+              "process_started_at": "2026-10-02T17:06:08.413Z",
+              "executable_hash": "c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19",
+              "workspace_path": "E:\\code\\agent\\.local\\outcome-cases-20261002\\package-final-attempt5\\windows\\storage\\evaluation\\d2033b4d-947b-4bae-a9bd-e9dd2b0d1197",
+              "resources_json": "[{\"groupKey\":\"group-1\",\"strategy\":\"LEXICAL_RRF\",\"repeatIndex\":1,\"caseKey\":null,\"result\":null,\"status\":null,\"error\":null,\"workspaceKey\":\"5e5edda444fd4d488b23b33a\",\"database\":\"so_eval_5e5edda444fd4d488b23b33a\",\"excel\":\"so_xl_5e5edda444fd4d488b23b33a\",\"prefix\":\"so-eval-5e5edda444fd4d488b23b33a\",\"inputSha256\":null,\"phase\":null,\"pid\":null,\"cleanupStatus\":null,\"elapsedMs\":null}]",
+              "process_json": "[{\"pid\":3168,\"startedAt\":\"2026-10-02T17:06:08.413Z\",\"executable\":\"E:\\\\code\\\\agent\\\\.cache\\\\reliability-tools\\\\node-v22.16.0-win-x64\\\\node.exe\",\"executableHash\":\"c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19\",\"argumentsHash\":\"f601c14435da154ebe16838d455c032410bcc805fcf2302a44541008360ce34f\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"d2033b4d-947b-4bae-a9bd-e9dd2b0d1197\"},{\"pid\":45048,\"startedAt\":\"2026-10-02T17:06:08.865Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"1d6cc65ce99ff96a54b4b9934b726704580098e523a8f3813bafaa72979a39f5\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"d2033b4d-947b-4bae-a9bd-e9dd2b0d1197\"},{\"pid\":29028,\"startedAt\":\"2026-10-02T17:06:10.386Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"0ae98bec71d61387ebea1ec0594843dee210d5439fb20d8507ae30ac8534d05d\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"d2033b4d-947b-4bae-a9bd-e9dd2b0d1197\"},{\"pid\":43452,\"startedAt\":\"2026-10-02T17:06:29.273Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"69432032d0de37a711e1bf8bc517e8d0b8f06714461f13140ac0b26c83ff46d1\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"d2033b4d-947b-4bae-a9bd-e9dd2b0d1197\"}]",
+              "cleanup_status": "CLEANED",
+              "cleanup_error": "",
+              "version": 1,
+              "created_at": "2026-10-02T17:06:08.310677Z",
+              "execution_token": "2",
+              "recovery_status": "NOT_REQUIRED",
+              "recovery_error": "",
+              "recovery_event_sha256": null,
+              "recovery_event_bytes": null
+            },
+            {
+              "id": "e513cfd4-65f3-4c47-bfbe-98732fe6b920",
+              "experiment_id": "1e004793-b12d-49c8-afd0-6c33ae13652c",
+              "owner": "cfcbecab-b369-4be2-ba91-73419eaa497c",
+              "fencing_token": "1",
+              "state": "COMPLETED",
+              "lease_until": "1790960794393",
+              "heartbeat_at": "1790960764393",
+              "pid": "10296",
+              "process_started_at": "2026-10-02T17:05:39.247Z",
+              "executable_hash": "c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19",
+              "workspace_path": "E:\\code\\agent\\.local\\outcome-cases-20261002\\package-final-attempt5\\windows\\storage\\evaluation\\e513cfd4-65f3-4c47-bfbe-98732fe6b920",
+              "resources_json": "[{\"groupKey\":\"group-1\",\"strategy\":\"LEXICAL_RRF\",\"repeatIndex\":1,\"caseKey\":null,\"result\":null,\"status\":null,\"error\":null,\"workspaceKey\":\"33ac104e0b284a8bbeee7125\",\"database\":\"so_eval_33ac104e0b284a8bbeee7125\",\"excel\":\"so_xl_33ac104e0b284a8bbeee7125\",\"prefix\":\"so-eval-33ac104e0b284a8bbeee7125\",\"inputSha256\":null,\"phase\":null,\"pid\":null,\"cleanupStatus\":null,\"elapsedMs\":null}]",
+              "process_json": "[{\"pid\":10296,\"startedAt\":\"2026-10-02T17:05:39.247Z\",\"executable\":\"E:\\\\code\\\\agent\\\\.cache\\\\reliability-tools\\\\node-v22.16.0-win-x64\\\\node.exe\",\"executableHash\":\"c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19\",\"argumentsHash\":\"b544e1f9c8e6e6d51ba72c7dcd526e7a5aacb057a8985e655a20c4bfbcda058e\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"e513cfd4-65f3-4c47-bfbe-98732fe6b920\"},{\"pid\":32504,\"startedAt\":\"2026-10-02T17:05:39.686Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"2958b00f5bdcf9c2a119d173fa9957524bd5efbad8a841f872935e45f318a92e\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"e513cfd4-65f3-4c47-bfbe-98732fe6b920\"},{\"pid\":24316,\"startedAt\":\"2026-10-02T17:05:41.231Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"f63303630e1257d87c74dc4cebd141e2a90b13456c22185c0cff36df78969920\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"e513cfd4-65f3-4c47-bfbe-98732fe6b920\"},{\"pid\":44616,\"startedAt\":\"2026-10-02T17:06:00.552Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"303d83dd86c2179cd64f77c661cbb8400cd858cddeb334a4e965e85bbb4beff4\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"e513cfd4-65f3-4c47-bfbe-98732fe6b920\"}]",
+              "cleanup_status": "CLEANED",
+              "cleanup_error": "",
+              "version": 1,
+              "created_at": "2026-10-02T17:05:38.718089800Z",
+              "execution_token": "1",
+              "recovery_status": "NOT_REQUIRED",
+              "recovery_error": "",
+              "recovery_event_sha256": null,
+              "recovery_event_bytes": null
+            }
+          ]
+        },
+        "rechecks": []
+      }
+    },
+    {
+      "deploymentId": "1c315e12-a3f0-47ef-b147-6039a6c504c4",
+      "directory": "E:\\code\\agent\\.local\\outcome-cases-20261002\\package-final-attempt5\\windows\\restored",
+      "project": "so-rd-1c315e12a3f047ef",
+      "state": "CLEANED",
+      "stoppedWriterProof": {
+        "proof": {
+          "observedAt": "2026-10-02T17:17:27.010Z",
+          "applications": [
+            {
+              "runtimeId": "12558233-6c1a-49b4-b452-d1f850747cff",
+              "pid": 25392,
+              "processStartedAt": "2026-10-02T17:13:59.368Z",
+              "code": "PROCESS_EXITED"
+            }
+          ],
+          "attempts": [
+            {
+              "id": "14f57892-6378-4d4d-ac81-05019558609c",
+              "experiment_id": "2e9bc787-5937-4874-94e4-dc7fb7b5b288",
+              "owner": "2336f0c9-d02b-4e17-b2ea-a74508768578",
+              "fencing_token": "7",
+              "state": "COMPLETED",
+              "lease_until": "1790961071010",
+              "heartbeat_at": "1790961041010",
+              "pid": "45892",
+              "process_started_at": "2026-10-02T17:10:15.857Z",
+              "executable_hash": "c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19",
+              "workspace_path": "E:\\code\\agent\\.local\\outcome-cases-20261002\\package-final-attempt5\\windows\\storage\\evaluation\\14f57892-6378-4d4d-ac81-05019558609c",
+              "resources_json": "[{\"groupKey\":\"group-1\",\"strategy\":\"LEXICAL_RRF\",\"repeatIndex\":1,\"caseKey\":null,\"result\":null,\"status\":null,\"error\":null,\"workspaceKey\":\"e19c64b8d5a44e8cae841fe6\",\"database\":\"so_eval_e19c64b8d5a44e8cae841fe6\",\"excel\":\"so_xl_e19c64b8d5a44e8cae841fe6\",\"prefix\":\"so-eval-e19c64b8d5a44e8cae841fe6\",\"inputSha256\":null,\"phase\":null,\"pid\":null,\"cleanupStatus\":null,\"elapsedMs\":null}]",
+              "process_json": "[{\"pid\":45892,\"startedAt\":\"2026-10-02T17:10:15.857Z\",\"executable\":\"E:\\\\code\\\\agent\\\\.cache\\\\reliability-tools\\\\node-v22.16.0-win-x64\\\\node.exe\",\"executableHash\":\"c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19\",\"argumentsHash\":\"6afe35a296841f54fa6cfb17247ceb50205f06f21510217805a48c70e5920782\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"14f57892-6378-4d4d-ac81-05019558609c\"},{\"pid\":23264,\"startedAt\":\"2026-10-02T17:10:16.292Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"fd9002426a17aa340c8971d354a6dd551d12140c68568cfb6ef6afc213d359c4\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"14f57892-6378-4d4d-ac81-05019558609c\"},{\"pid\":37308,\"startedAt\":\"2026-10-02T17:10:17.796Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"cacd4611bcffcd8f5db1694cb2f05b33d6158f3e1310e43d18d474c27bd00711\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"14f57892-6378-4d4d-ac81-05019558609c\"},{\"pid\":26952,\"startedAt\":\"2026-10-02T17:10:38.139Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"c9838d1cc7b0c2a39370b1365b05d753fe2cf0d745040ce7fc914b070898f584\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"14f57892-6378-4d4d-ac81-05019558609c\"}]",
+              "cleanup_status": "CLEANED",
+              "cleanup_error": "",
+              "version": 1,
+              "created_at": "2026-10-02T17:10:15.287391400Z",
+              "execution_token": "7",
+              "recovery_status": "NOT_REQUIRED",
+              "recovery_error": "",
+              "recovery_event_sha256": null,
+              "recovery_event_bytes": null
+            },
+            {
+              "id": "3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3",
+              "experiment_id": "df80017d-a548-437f-9814-02bedb052cbf",
+              "owner": "cfcbecab-b369-4be2-ba91-73419eaa497c",
+              "fencing_token": "3",
+              "state": "COMPLETED",
+              "lease_until": "1790960882981",
+              "heartbeat_at": "1790960852981",
+              "pid": "39700",
+              "process_started_at": "2026-10-02T17:06:37.652Z",
+              "executable_hash": "c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19",
+              "workspace_path": "E:\\code\\agent\\.local\\outcome-cases-20261002\\package-final-attempt5\\windows\\storage\\evaluation\\3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3",
+              "resources_json": "[{\"groupKey\":\"group-1\",\"strategy\":\"LEXICAL_RRF\",\"repeatIndex\":1,\"caseKey\":null,\"result\":null,\"status\":null,\"error\":null,\"workspaceKey\":\"c404e66965ed40cea490f0c7\",\"database\":\"so_eval_c404e66965ed40cea490f0c7\",\"excel\":\"so_xl_c404e66965ed40cea490f0c7\",\"prefix\":\"so-eval-c404e66965ed40cea490f0c7\",\"inputSha256\":null,\"phase\":null,\"pid\":null,\"cleanupStatus\":null,\"elapsedMs\":null},{\"groupKey\":\"group-2\",\"strategy\":\"LEXICAL_RRF\",\"repeatIndex\":2,\"caseKey\":null,\"result\":null,\"status\":null,\"error\":null,\"workspaceKey\":\"c5d92a01e4394973b8d0d96e\",\"database\":\"so_eval_c5d92a01e4394973b8d0d96e\",\"excel\":\"so_xl_c5d92a01e4394973b8d0d96e\",\"prefix\":\"so-eval-c5d92a01e4394973b8d0d96e\",\"inputSha256\":null,\"phase\":null,\"pid\":null,\"cleanupStatus\":null,\"elapsedMs\":null}]",
+              "process_json": "[{\"pid\":39700,\"startedAt\":\"2026-10-02T17:06:37.652Z\",\"executable\":\"E:\\\\code\\\\agent\\\\.cache\\\\reliability-tools\\\\node-v22.16.0-win-x64\\\\node.exe\",\"executableHash\":\"c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19\",\"argumentsHash\":\"3ad72e3f294296779f808aacc35429dd80a0276af3b62567033b67a85caed0e4\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3\"},{\"pid\":28392,\"startedAt\":\"2026-10-02T17:06:38.121Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"8c2e6b44f2b6d498ef482422c3768f83eef4e11c4acbfb03f9ee25aef30747e0\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3\"},{\"pid\":42216,\"startedAt\":\"2026-10-02T17:06:39.756Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"cfa2ba36ec94c3c257bf946acfed4a00f7715597f5d0b35351f8e42a8d303d44\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3\"},{\"pid\":47768,\"startedAt\":\"2026-10-02T17:07:00.549Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"c629614c6cf13eb010818cacac88b39a0b9ede10334de25a4aa953fb6265e340\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3\"},{\"pid\":9072,\"startedAt\":\"2026-10-02T17:07:03.792Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"f1297ece40d5546146ce021fe7e775d1a191d262b6b939137292d8c225407676\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3\"},{\"pid\":43140,\"startedAt\":\"2026-10-02T17:07:05.291Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"6846af6c84ae68ac409233b4a9b61a9125d639b7059a878b138cfebbe3091aa9\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3\"},{\"pid\":31296,\"startedAt\":\"2026-10-02T17:07:26.315Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"30382b5f881d6ea7e1381f82d44c3b8e05adff6ab14df0bbefeaeb9dc0837740\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3\"}]",
+              "cleanup_status": "CLEANED",
+              "cleanup_error": "",
+              "version": 1,
+              "created_at": "2026-10-02T17:06:37.234648600Z",
+              "execution_token": "3",
+              "recovery_status": "NOT_REQUIRED",
+              "recovery_error": "",
+              "recovery_event_sha256": null,
+              "recovery_event_bytes": null
+            },
+            {
+              "id": "4ffca2d1-1655-4704-94a5-043cb81d3f20",
+              "experiment_id": "b9313df5-d344-4bea-9c43-787d155c0423",
+              "owner": "6b261948-6168-4e72-b4c8-5fff9a5fce42",
+              "fencing_token": "4",
+              "state": "CANCELLED",
+              "lease_until": "1790960940723",
+              "heartbeat_at": "1790960910723",
+              "pid": "39880",
+              "process_started_at": "2026-10-02T17:08:05.559Z",
+              "executable_hash": "c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19",
+              "workspace_path": "E:\\code\\agent\\.local\\outcome-cases-20261002\\package-final-attempt5\\windows\\storage\\evaluation\\4ffca2d1-1655-4704-94a5-043cb81d3f20",
+              "resources_json": "[{\"groupKey\":\"group-1\",\"strategy\":\"LEXICAL_RRF\",\"repeatIndex\":1,\"caseKey\":null,\"result\":null,\"status\":null,\"error\":null,\"workspaceKey\":\"e712318b23534e6aadd51c88\",\"database\":\"so_eval_e712318b23534e6aadd51c88\",\"excel\":\"so_xl_e712318b23534e6aadd51c88\",\"prefix\":\"so-eval-e712318b23534e6aadd51c88\",\"inputSha256\":null,\"phase\":null,\"pid\":null,\"cleanupStatus\":null,\"elapsedMs\":null}]",
+              "process_json": "[{\"pid\":39880,\"startedAt\":\"2026-10-02T17:08:05.559Z\",\"executable\":\"E:\\\\code\\\\agent\\\\.cache\\\\reliability-tools\\\\node-v22.16.0-win-x64\\\\node.exe\",\"executableHash\":\"c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19\",\"argumentsHash\":\"7a01993dff4942fc58e6dae6e1b9fa33dfadc6707dfd2f1f9d24e88ccf61e141\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"4ffca2d1-1655-4704-94a5-043cb81d3f20\"},{\"pid\":44264,\"startedAt\":\"2026-10-02T17:08:05.993Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"fd821a58c64b7b7cdba12b29bdce489fa98fd456abdaab1a963f050da5d3066e\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"4ffca2d1-1655-4704-94a5-043cb81d3f20\"},{\"pid\":48108,\"startedAt\":\"2026-10-02T17:08:07.544Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"1a26fddb1b9936305c88f279ed21fa3997f9df9a9cfaac885e5079d52955d16c\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"4ffca2d1-1655-4704-94a5-043cb81d3f20\"},{\"pid\":33388,\"startedAt\":\"2026-10-02T17:08:27.143Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"1896811decdec128cb62112eb61b270d280af5aade1e7039653efcb2a86c93fe\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"4ffca2d1-1655-4704-94a5-043cb81d3f20\"}]",
+              "cleanup_status": "CLEANED",
+              "cleanup_error": "",
+              "version": 1,
+              "created_at": "2026-10-02T17:08:04.807280200Z",
+              "execution_token": "4",
+              "recovery_status": "NOT_REQUIRED",
+              "recovery_error": "",
+              "recovery_event_sha256": null,
+              "recovery_event_bytes": null
+            },
+            {
+              "id": "7bebc6df-196a-4477-93e5-cb70aa7c536f",
+              "experiment_id": "95cb1348-f99a-4940-be37-9171a5c48d76",
+              "owner": "recovery-6d44cd00-a774-4922-a520-23a9aa984fd2",
+              "fencing_token": "6",
+              "state": "INTERRUPTED",
+              "lease_until": "1790961013591",
+              "heartbeat_at": "1790960983591",
+              "pid": "33704",
+              "process_started_at": "2026-10-02T17:08:48.143Z",
+              "executable_hash": "c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19",
+              "workspace_path": "E:\\code\\agent\\.local\\outcome-cases-20261002\\package-final-attempt5\\windows\\storage\\evaluation\\7bebc6df-196a-4477-93e5-cb70aa7c536f",
+              "resources_json": "[{\"groupKey\":\"group-1\",\"strategy\":\"LEXICAL_RRF\",\"repeatIndex\":1,\"caseKey\":null,\"result\":null,\"status\":null,\"error\":null,\"workspaceKey\":\"94e72c45b79c419cb51b297f\",\"database\":\"so_eval_94e72c45b79c419cb51b297f\",\"excel\":\"so_xl_94e72c45b79c419cb51b297f\",\"prefix\":\"so-eval-94e72c45b79c419cb51b297f\",\"inputSha256\":null,\"phase\":null,\"pid\":null,\"cleanupStatus\":null,\"elapsedMs\":null}]",
+              "process_json": "[{\"pid\":33704,\"startedAt\":\"2026-10-02T17:08:48.143Z\",\"executable\":\"E:\\\\code\\\\agent\\\\.cache\\\\reliability-tools\\\\node-v22.16.0-win-x64\\\\node.exe\",\"executableHash\":\"c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19\",\"argumentsHash\":\"c86b5115748879bfad9fed405ac955c458f27e5a461cd51063d0bda423023b79\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"7bebc6df-196a-4477-93e5-cb70aa7c536f\"},{\"pid\":39888,\"startedAt\":\"2026-10-02T17:08:48.591Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"db024ad6fc3dc36411e5f8e8491c9995775b63a5ea9406c8e22c7fad50a32b62\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"7bebc6df-196a-4477-93e5-cb70aa7c536f\"},{\"pid\":4976,\"startedAt\":\"2026-10-02T17:08:50.134Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"d03d561b58601c608b80762bf68e3d89b2a40e7251a4e91aea1bda4d11ebce2c\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"7bebc6df-196a-4477-93e5-cb70aa7c536f\"}]",
+              "cleanup_status": "CLEANED",
+              "cleanup_error": "",
+              "version": 1,
+              "created_at": "2026-10-02T17:08:47.625414500Z",
+              "execution_token": "5",
+              "recovery_status": "COMPLETE",
+              "recovery_error": "",
+              "recovery_event_sha256": "79f4ff74f2d0ad1e744f4270714b89f5a38293a33222c113548b9fdbdbfde2e8",
+              "recovery_event_bytes": "9932"
+            },
+            {
+              "id": "7efe7417-8d2e-41ca-8df7-c88d5767a295",
+              "experiment_id": "dc80a957-8a31-43a2-995d-efc754ec7e58",
+              "owner": "2336f0c9-d02b-4e17-b2ea-a74508768578",
+              "fencing_token": "8",
+              "state": "COMPLETED",
+              "lease_until": "1790961108276",
+              "heartbeat_at": "1790961078276",
+              "pid": "44940",
+              "process_started_at": "2026-10-02T17:10:53.118Z",
+              "executable_hash": "c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19",
+              "workspace_path": "E:\\code\\agent\\.local\\outcome-cases-20261002\\package-final-attempt5\\windows\\storage\\evaluation\\7efe7417-8d2e-41ca-8df7-c88d5767a295",
+              "resources_json": "[{\"groupKey\":\"group-1\",\"strategy\":\"LEXICAL_RRF\",\"repeatIndex\":1,\"caseKey\":null,\"result\":null,\"status\":null,\"error\":null,\"workspaceKey\":\"dea1911e4a804643879f9949\",\"database\":\"so_eval_dea1911e4a804643879f9949\",\"excel\":\"so_xl_dea1911e4a804643879f9949\",\"prefix\":\"so-eval-dea1911e4a804643879f9949\",\"inputSha256\":null,\"phase\":null,\"pid\":null,\"cleanupStatus\":null,\"elapsedMs\":null}]",
+              "process_json": "[{\"pid\":44940,\"startedAt\":\"2026-10-02T17:10:53.118Z\",\"executable\":\"E:\\\\code\\\\agent\\\\.cache\\\\reliability-tools\\\\node-v22.16.0-win-x64\\\\node.exe\",\"executableHash\":\"c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19\",\"argumentsHash\":\"10cce905b99139d874b2c5bfd583459c330e7584383a31227c6769dc4d7a0f19\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"7efe7417-8d2e-41ca-8df7-c88d5767a295\"},{\"pid\":12968,\"startedAt\":\"2026-10-02T17:10:53.581Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"831cb6387bd12e12cfda2a0ceca99491d3cb57a4ac91f01df734040aefb5de9c\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"7efe7417-8d2e-41ca-8df7-c88d5767a295\"},{\"pid\":28336,\"startedAt\":\"2026-10-02T17:10:55.154Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"1553dda49c74f1e64ab46e0baaae6edf2f455b92216527c3cdcaddaaeabc502d\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"7efe7417-8d2e-41ca-8df7-c88d5767a295\"},{\"pid\":24908,\"startedAt\":\"2026-10-02T17:11:14.492Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"7c62f2d1b0fd8a843785ba5bae88ef548eee5b6d6711d81e01a2f1060d290440\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"7efe7417-8d2e-41ca-8df7-c88d5767a295\"}]",
+              "cleanup_status": "CLEANED",
+              "cleanup_error": "",
+              "version": 1,
+              "created_at": "2026-10-02T17:10:52.368347800Z",
+              "execution_token": "8",
+              "recovery_status": "NOT_REQUIRED",
+              "recovery_error": "",
+              "recovery_event_sha256": null,
+              "recovery_event_bytes": null
+            },
+            {
+              "id": "d2033b4d-947b-4bae-a9bd-e9dd2b0d1197",
+              "experiment_id": "2412468b-faa2-4eba-980d-d2741da588e5",
+              "owner": "cfcbecab-b369-4be2-ba91-73419eaa497c",
+              "fencing_token": "2",
+              "state": "COMPLETED",
+              "lease_until": "1790960823555",
+              "heartbeat_at": "1790960793555",
+              "pid": "3168",
+              "process_started_at": "2026-10-02T17:06:08.413Z",
+              "executable_hash": "c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19",
+              "workspace_path": "E:\\code\\agent\\.local\\outcome-cases-20261002\\package-final-attempt5\\windows\\storage\\evaluation\\d2033b4d-947b-4bae-a9bd-e9dd2b0d1197",
+              "resources_json": "[{\"groupKey\":\"group-1\",\"strategy\":\"LEXICAL_RRF\",\"repeatIndex\":1,\"caseKey\":null,\"result\":null,\"status\":null,\"error\":null,\"workspaceKey\":\"5e5edda444fd4d488b23b33a\",\"database\":\"so_eval_5e5edda444fd4d488b23b33a\",\"excel\":\"so_xl_5e5edda444fd4d488b23b33a\",\"prefix\":\"so-eval-5e5edda444fd4d488b23b33a\",\"inputSha256\":null,\"phase\":null,\"pid\":null,\"cleanupStatus\":null,\"elapsedMs\":null}]",
+              "process_json": "[{\"pid\":3168,\"startedAt\":\"2026-10-02T17:06:08.413Z\",\"executable\":\"E:\\\\code\\\\agent\\\\.cache\\\\reliability-tools\\\\node-v22.16.0-win-x64\\\\node.exe\",\"executableHash\":\"c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19\",\"argumentsHash\":\"f601c14435da154ebe16838d455c032410bcc805fcf2302a44541008360ce34f\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"d2033b4d-947b-4bae-a9bd-e9dd2b0d1197\"},{\"pid\":45048,\"startedAt\":\"2026-10-02T17:06:08.865Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"1d6cc65ce99ff96a54b4b9934b726704580098e523a8f3813bafaa72979a39f5\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"d2033b4d-947b-4bae-a9bd-e9dd2b0d1197\"},{\"pid\":29028,\"startedAt\":\"2026-10-02T17:06:10.386Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"0ae98bec71d61387ebea1ec0594843dee210d5439fb20d8507ae30ac8534d05d\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"d2033b4d-947b-4bae-a9bd-e9dd2b0d1197\"},{\"pid\":43452,\"startedAt\":\"2026-10-02T17:06:29.273Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"69432032d0de37a711e1bf8bc517e8d0b8f06714461f13140ac0b26c83ff46d1\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"d2033b4d-947b-4bae-a9bd-e9dd2b0d1197\"}]",
+              "cleanup_status": "CLEANED",
+              "cleanup_error": "",
+              "version": 1,
+              "created_at": "2026-10-02T17:06:08.310677Z",
+              "execution_token": "2",
+              "recovery_status": "NOT_REQUIRED",
+              "recovery_error": "",
+              "recovery_event_sha256": null,
+              "recovery_event_bytes": null
+            },
+            {
+              "id": "e513cfd4-65f3-4c47-bfbe-98732fe6b920",
+              "experiment_id": "1e004793-b12d-49c8-afd0-6c33ae13652c",
+              "owner": "cfcbecab-b369-4be2-ba91-73419eaa497c",
+              "fencing_token": "1",
+              "state": "COMPLETED",
+              "lease_until": "1790960794393",
+              "heartbeat_at": "1790960764393",
+              "pid": "10296",
+              "process_started_at": "2026-10-02T17:05:39.247Z",
+              "executable_hash": "c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19",
+              "workspace_path": "E:\\code\\agent\\.local\\outcome-cases-20261002\\package-final-attempt5\\windows\\storage\\evaluation\\e513cfd4-65f3-4c47-bfbe-98732fe6b920",
+              "resources_json": "[{\"groupKey\":\"group-1\",\"strategy\":\"LEXICAL_RRF\",\"repeatIndex\":1,\"caseKey\":null,\"result\":null,\"status\":null,\"error\":null,\"workspaceKey\":\"33ac104e0b284a8bbeee7125\",\"database\":\"so_eval_33ac104e0b284a8bbeee7125\",\"excel\":\"so_xl_33ac104e0b284a8bbeee7125\",\"prefix\":\"so-eval-33ac104e0b284a8bbeee7125\",\"inputSha256\":null,\"phase\":null,\"pid\":null,\"cleanupStatus\":null,\"elapsedMs\":null}]",
+              "process_json": "[{\"pid\":10296,\"startedAt\":\"2026-10-02T17:05:39.247Z\",\"executable\":\"E:\\\\code\\\\agent\\\\.cache\\\\reliability-tools\\\\node-v22.16.0-win-x64\\\\node.exe\",\"executableHash\":\"c5ff4c736112dd483c750fd4149d30c8a116db1a49b8b3ec88be4b65e6c86c19\",\"argumentsHash\":\"b544e1f9c8e6e6d51ba72c7dcd526e7a5aacb057a8985e655a20c4bfbcda058e\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"e513cfd4-65f3-4c47-bfbe-98732fe6b920\"},{\"pid\":32504,\"startedAt\":\"2026-10-02T17:05:39.686Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"2958b00f5bdcf9c2a119d173fa9957524bd5efbad8a841f872935e45f318a92e\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"e513cfd4-65f3-4c47-bfbe-98732fe6b920\"},{\"pid\":24316,\"startedAt\":\"2026-10-02T17:05:41.231Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"f63303630e1257d87c74dc4cebd141e2a90b13456c22185c0cff36df78969920\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"e513cfd4-65f3-4c47-bfbe-98732fe6b920\"},{\"pid\":44616,\"startedAt\":\"2026-10-02T17:06:00.552Z\",\"executable\":\"D:\\\\dev\\\\jdk21\\\\bin\\\\java.exe\",\"executableHash\":\"e4c702ab4d11cc094144ff91c91371ed9b35a38a2e54ed1e032a628cc5bd40f3\",\"argumentsHash\":\"303d83dd86c2179cd64f77c661cbb8400cd858cddeb334a4e965e85bbb4beff4\",\"jarSha256\":\"9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31\",\"attemptId\":\"e513cfd4-65f3-4c47-bfbe-98732fe6b920\"}]",
+              "cleanup_status": "CLEANED",
+              "cleanup_error": "",
+              "version": 1,
+              "created_at": "2026-10-02T17:05:38.718089800Z",
+              "execution_token": "1",
+              "recovery_status": "NOT_REQUIRED",
+              "recovery_error": "",
+              "recovery_event_sha256": null,
+              "recovery_event_bytes": null
+            }
+          ]
+        },
+        "rechecks": []
+      }
+    },
+    {
+      "deploymentId": "7a28a105-8886-4486-8abd-f77c59b9332f",
+      "directory": "E:\\code\\agent\\.local\\outcome-cases-20261002\\package-final-attempt5\\upgrade\\legacy-storage",
+      "project": "so-rd-7a28a10588864486",
+      "state": "CLEANED",
+      "stoppedWriterProof": {
+        "proof": {
+          "observedAt": "2026-10-02T17:19:07.717Z",
+          "applications": [
+            {
+              "runtimeId": "c8cd4fde-6186-495a-af00-df5ddb7a820d",
+              "pid": 24168,
+              "processStartedAt": "2026-10-02T17:17:54.542Z",
+              "code": "PROCESS_EXITED"
+            }
+          ],
+          "attempts": []
+        },
+        "rechecks": []
+      }
+    },
+    {
+      "deploymentId": "9f4b7e0c-3889-4451-abd2-21d75e6dd620",
+      "directory": "E:\\code\\agent\\.local\\outcome-cases-20261002\\package-final-attempt5\\upgrade\\upgraded-storage",
+      "project": "so-rd-9f4b7e0c38894451",
+      "state": "CLEANED",
+      "stoppedWriterProof": {
+        "proof": {
+          "observedAt": "2026-10-02T17:19:14.688Z",
+          "applications": [
+            {
+              "runtimeId": "f78da00c-7c6c-41b6-89d5-b9c20525c6d2",
+              "pid": 10016,
+              "processStartedAt": "2026-10-02T17:18:53.388Z",
+              "code": "PROCESS_EXITED"
+            }
+          ],
+          "attempts": []
+        },
+        "rechecks": []
+      }
+    }
+  ],
+  "linuxResources": [
+    {
+      "type": "container",
+      "id": "61a84d5d330fb9a8f9f10862db275d44c3e779155928c3284a7b109691e2f787",
+      "name": "so-oc-linux-7cb42f8f04d041ea",
+      "state": "CLEANED"
+    },
+    {
+      "type": "volume",
+      "name": "so-oc-linux-7cb42f8f04d041ea-work",
+      "state": "CLEANED"
+    }
+  ],
+  "hostRecovery": {
+    "authorized": true,
+    "dataReset": false,
+    "containerOrVolumeRecreation": false,
+    "preservedRuntimeDirectories": [
+      "%LOCALAPPDATA%/Docker/run.recovery-oc-20261002",
+      "%LOCALAPPDATA%/Docker/run.recovery-oc-20261002-second",
+      "%LOCALAPPDATA%/docker-secrets-engine.recovery-oc-20261002"
+    ],
+    "reason": "Archived stale communication endpoints during authorized Docker restart; these archives are retained, not task test resources"
+  },
+  "retainedFiles": {
+    "programs": "delivery-final/ and retained-programs/; duplicate runtime copies use recorded hash-to-program mapping",
+    "backups": "Complete backup directories are retained",
+    "privateEvidence": "Logs, synthetic requests and screenshots retained"
+  }
+}

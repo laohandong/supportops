@@ -8,6 +8,24 @@ import com.baomidou.mybatisplus.annotation.TableName;
 /** 人员显式确认的项目约束，不保存模型自动推测的记忆。 */
 @TableName("memories")
 public class ProjectMemoryEntity {
+    /** 所属项目 UUID；旧记录属于历史示例。 */
+    private String projectId;
+    /** 可选系统范围，空表示整个项目。 */
+    private String systemId;
+    /** 可选环境范围，空表示系统或项目。 */
+    private String environmentId;
+    /** 返回项目范围。 */
+    public String getProjectId() { return projectId; }
+    /** 设置项目范围。 */
+    public void setProjectId(String value) { projectId = value; }
+    /** 返回可选系统范围。 */
+    public String getSystemId() { return systemId; }
+    /** 设置系统范围。 */
+    public void setSystemId(String value) { systemId = value; }
+    /** 返回可选环境范围。 */
+    public String getEnvironmentId() { return environmentId; }
+    /** 设置环境范围。 */
+    public void setEnvironmentId(String value) { environmentId = value; }
     /** 项目记忆 UUID。 */
     @TableId(value = "id", type = IdType.INPUT)
     private String id;

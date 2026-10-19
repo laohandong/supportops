@@ -1,6 +1,6 @@
 # 模型服务配置
 
-SupportOps 将 Provider 定义、对话选择、向量选择和凭据引用分开。工作台和评测共用 Java 配置解析器，不在启动脚本中复制平台默认值或密钥回退规则。配置结构参考了 [DeepSeek Harness 的 Provider 配置](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/guide/providers.md)，采用服务商 ID、接口协议、基础地址和凭据变量名作为路由信息。
+SupportOps 将 Provider 定义、对话选择、向量选择和凭据引用分开。工作台使用Java配置解析器，AgentEval使用独立模型档案，不在启动脚本中复制平台默认值或密钥回退规则。配置结构参考了 [DeepSeek Harness 的 Provider 配置](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/guide/providers.md)，采用服务商 ID、接口协议、基础地址和凭据变量名作为路由信息。
 
 ## 在工作台中配置
 
@@ -104,19 +104,8 @@ OpenAI 预设使用 `max_completion_tokens` 并省略温度参数；DeepSeek 预
 
 ## 运行与检查
 
-```powershell
-# 构建后读取本地配置启动工作台。
-node scripts/start.mjs
+工作台使用node scripts/start.mjs，可通过--config指定文件。/api/status只返回配置状态，不回显秘密或主动鉴权；configured不代表真实调用成功。
 
-# 仅进行关键词检索的六个真实诊断案例。
-node scripts/evaluate.mjs
+AgentEval不读取工作台界面设置或.local/model.env。评测模型保存为独立不可变修订，改变端点必须提供新密钥；实验冻结明确修订，后续编辑不改变已受理输入。
 
-# 仅向量混合检索组，需要所选向量路由可用。
-node scripts/evaluate.mjs --hybrid
-```
-
-两种脚本都支持 `--config=另一份本地.env路径`。默认评测在开始时复制界面配置到独立评测目录，整个评测套件使用这一快照；快照也包含本地密钥，应与 `.local/` 一并保护。评测显式指定 `--config` 时使用该文件而不读取界面覆盖值；`--sources-only` 同样不读取界面密钥。
-
-`/api/status` 返回当前路由、模型、凭据来源标识和配置错误码，不返回密钥，也不进行服务端鉴权探测。`configured: true` 只说明本地配置完整，真实 API 调用仍可能失败。任务 `CONTEXT` 事件与评测报告保存当时的路由和生成参数，便于核对实验条件。
-
-更换向量接口或模型后，旧索引与新配置不再匹配，需要重建索引。新的索引建立之前使用关键词检索；评测要求混合模式时，不会把这种回退记作混合检索成功。
+工作台向量模型改变后需要重建匹配索引；评测报告记录实际检索模式，不把降级当作混合检索成功。

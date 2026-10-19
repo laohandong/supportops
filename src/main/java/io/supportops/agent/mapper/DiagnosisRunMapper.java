@@ -9,12 +9,17 @@ import io.supportops.agent.vo.UsageGroup;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
 /** 诊断任务持久化与带旧状态条件的并发更新。 */
 @Mapper
 public interface DiagnosisRunMapper extends BaseMapper<DiagnosisRunEntity> {
+    /** 处理结果与案例发布共用来源轮次锁，调用方必须处于短事务。 */
+    @Select("SELECT * FROM runs WHERE id = #{id} FOR UPDATE")
+    DiagnosisRunEntity lockOutcomeSource(@Param("id") String id);
+
     /** 汇总全部范围记录，不受历史列表限制。 */
     UsageGroup selectUsageSummary(@Param("from") String from, @Param("until") String until);
 
@@ -24,6 +29,8 @@ public interface DiagnosisRunMapper extends BaseMapper<DiagnosisRunEntity> {
 
     /** 按会话累计 Token 降序返回前二十名。 */
     List<UsageGroup> selectUsageTop(@Param("from") String from, @Param("until") String until);
+    /** 应用任务单独汇总，不把空 userId 解释为未知人员。 */
+    List<UsageGroup> selectUsageApplications(@Param("from") String from, @Param("until") String until);
 
     /** 分页读取问答，每页五十轮。 */
     List<DiagnosisRun> selectUsageSession(

@@ -2,6 +2,7 @@ package io.supportops;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.assertj.core.api.SoftAssertions;
 
 import com.alibaba.excel.EasyExcel;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -334,6 +335,7 @@ class SupportOpsIntegrationTest {
             }
         }
         db.update("DELETE FROM run_events");
+        db.update("DELETE FROM run_target_snapshots");
         db.update("DELETE FROM runs");
         for (String table :
                 List.of(
@@ -618,9 +620,17 @@ class SupportOpsIntegrationTest {
     void realHttpFaultsAndHumanRepair() {
         assertThat(demo.operatorView().lastRequest().toString())
                 .contains("httpStatus=410", "targetPath=/v1/orders");
-        SyncResult repaired = demo.repairConfiguration();
-        assertThat(repaired.httpStatus()).isEqualTo(200);
-        assertThat(repaired.success()).isTrue();
+        JsonNode proposal = http.postForObject("/api/remediations", Map.of("requestId", UUID.randomUUID().toString(),
+                "actionId", "ORDERBRIDGE_MIGRATE_SYNC_PATH", "name", "HTTP迁移", "reason", "合成环境验证"), JsonNode.class);
+        String planId = proposal.path("id").asText();
+        JsonNode approved = http.postForObject("/api/remediations/" + planId + "/approve",
+                Map.of("requestId", UUID.randomUUID().toString(), "expectedVersion", proposal.path("version").asInt(),
+                        "planHash", proposal.path("planHash").asText()), JsonNode.class);
+        JsonNode repaired = http.postForObject("/api/remediations/" + planId + "/execute",
+                Map.of("requestId", UUID.randomUUID().toString(), "expectedVersion", approved.path("version").asInt(),
+                        "planHash", approved.path("planHash").asText()), JsonNode.class);
+        assertThat(repaired.path("execution").path("status").asText()).isEqualTo("SUCCEEDED");
+        assertThat(repaired.path("execution").path("receipt").path("verification").path("httpStatus").asInt()).isEqualTo(200);
         demo.configure("unavailable");
         assertThat(demo.health().httpStatus()).isEqualTo(503);
         demo.configure("credentials");
@@ -648,7 +658,7 @@ class SupportOpsIntegrationTest {
                 .forEach(
                         (mapping, handler) -> {
                             for (String path : mapping.getPatternValues()) {
-                                if (!path.startsWith("/api/")) {
+                                if (!path.startsWith("/api/") && !path.startsWith("/open-api/v1/")) {
                                     continue;
                                 }
                                 // 同时检查真实映射，防止无限制的 RequestMapping 或文档隐藏绕过请求方式约定。
@@ -711,13 +721,15 @@ class SupportOpsIntegrationTest {
                                                                                             + status
                                                                                                     .getKey()));
                                                 }));
-        assertThat(documented).containsExactlyInAnyOrderElementsOf(actual).hasSize(55);
+        assertThat(documented).containsExactlyInAnyOrderElementsOf(actual).hasSize(113);
+        assertThat(spec.at("/paths/~1api~1ops~1runtime/get/responses/200/content/application~1json/schema/$ref").asText())
+                .isEqualTo("#/components/schemas/RuntimeView");
         assertThat(
                         spec.at(
                                         "/paths/~1api~1runs~1{id}~1stream/get/responses/200/content/text~1event-stream/schema/$ref")
                                 .asText())
                 .isEqualTo("#/components/schemas/RunStreamSnapshot");
-        assertThat(spec.path("tags").size()).isEqualTo(9);
+        assertThat(spec.path("tags").size()).isEqualTo(22);
         assertThat(spec.at("/components/schemas/KnowledgeSearchResult/properties/ranking/allOf/0/$ref").asText())
                 .isEqualTo("#/components/schemas/RankingInfo");
         assertThat(spec.at("/components/schemas/KnowledgePassage/properties/rerankScore/description").asText())
@@ -725,25 +737,24 @@ class SupportOpsIntegrationTest {
         assertThat(spec.at("/components/schemas/RankingInfo/properties/method/enum").toString())
                 .contains("ONNX", "RRF", "EMPTY");
         assertResolvableReferences(spec, spec);
+        SoftAssertions schemaAssertions = new SoftAssertions();
         spec.path("components")
                 .path("schemas")
                 .fields()
                 .forEachRemaining(
                         schema -> {
-                            assertChinese(
-                                    schema.getValue().path("description"),
-                                    "schema " + schema.getKey());
+                            schemaAssertions.assertThat(schema.getValue().path("description").asText())
+                                    .as("schema " + schema.getKey()).containsPattern("[\\p{IsHan}]");
                             schema.getValue()
                                     .path("properties")
                                     .fields()
                                     .forEachRemaining(
                                             property ->
-                                                    assertChinese(
-                                                            schemaDescription(property.getValue()),
-                                                            schema.getKey()
-                                                                    + "."
-                                                                    + property.getKey()));
+                                                    schemaAssertions.assertThat(schemaDescription(property.getValue()).asText())
+                                                            .as(schema.getKey() + "." + property.getKey())
+                                                            .containsPattern("[\\p{IsHan}]"));
                         });
+        schemaAssertions.assertAll();
         assertThat(spec.toString())
                 .doesNotContain(
                         "test-only",
@@ -945,7 +956,8 @@ class SupportOpsIntegrationTest {
                                 .asText())
                 .isEqualTo("METHOD_NOT_ALLOWED");
         assertThat(spec.path("paths").has("/mcp")).isFalse();
-        assertThat(spec.path("components").path("securitySchemes").isMissingNode()).isTrue();
+        assertThat(spec.at("/components/securitySchemes/ApplicationBearer/type").asText()).isEqualTo("http");
+        assertThat(spec.at("/components/securitySchemes/ApplicationBearer/scheme").asText()).isEqualTo("bearer");
     }
 
     /** 验证文档资源的本地访问边界及格式错误的统一响应。 */
@@ -1472,6 +1484,88 @@ class SupportOpsIntegrationTest {
         assertThat(databaseBindingValue(id, "code_hash")).isNull();
         assertThat(authRequest("POST", "/api/feishu/bindings", adminCookie,
                 JSON.writeValueAsString(Map.of("userId", UUID.randomUUID().toString()))).statusCode()).isEqualTo(404);
+    }
+
+    /** R04/R05/R08/R09/R13：旧入口零旁路，严格正文，新旧入口重放同一执行。 */
+    @Test
+    void remediationHttpAuthorizationBindingAndLegacyReplay() throws Exception {
+        assertThat(authRequest("GET", "/api/remediations", null, null).statusCode()).isEqualTo(401);
+        assertThat(authRequest("POST", "/api/demo/repair-config", adminCookie, "{}").statusCode()).isEqualTo(409);
+        assertThat(demo.config().provided()).containsKey("orders.path");
+        String suffix = UUID.randomUUID().toString().substring(0, 8);
+        authRequest("POST", "/api/users", adminCookie, JSON.writeValueAsString(Map.of("username", "repair_reader_" + suffix,
+                "password", "synthetic-reader-password", "role", "USER")));
+        HttpResponse<String> login = authRequest("POST", "/api/auth/login", null, JSON.writeValueAsString(Map.of("username", "repair_reader_" + suffix, "password", "synthetic-reader-password")));
+        String userCookie = login.headers().firstValue("Set-Cookie").orElseThrow().split(";", 2)[0];
+        assertThat(authRequest("GET", "/api/remediations", userCookie, null).statusCode()).isEqualTo(403);
+        assertThat(authRequest("POST", "/api/remediations", userCookie, "{}").statusCode()).isEqualTo(403);
+        String create = JSON.writeValueAsString(Map.of("requestId", UUID.randomUUID().toString(), "actionId", "ORDERBRIDGE_MIGRATE_SYNC_PATH", "name", "旧入口验收", "reason", "合成场景"));
+        HttpRequest missingHeader = HttpRequest.newBuilder(URI.create("http://127.0.0.1:" + port + "/api/remediations"))
+                .header("Cookie", adminCookie).header("Content-Type", "application/json").POST(HttpRequest.BodyPublishers.ofString(create)).build();
+        assertThat(HttpClient.newHttpClient().send(missingHeader, HttpResponse.BodyHandlers.ofString()).statusCode()).isEqualTo(403);
+        JsonNode plan = JSON.readTree(authRequest("POST", "/api/remediations", adminCookie, create).body());
+        String id = plan.path("id").asText();
+        String hash = plan.path("planHash").asText();
+        String tampered = JSON.writeValueAsString(Map.of("requestId", UUID.randomUUID().toString(), "expectedVersion", 1, "planHash", hash, "approvedBy", "forged"));
+        assertThat(authRequest("POST", "/api/remediations/" + id + "/approve", adminCookie, tampered).statusCode()).isEqualTo(400);
+        JsonNode approved = JSON.readTree(authRequest("POST", "/api/remediations/" + id + "/approve", adminCookie,
+                JSON.writeValueAsString(Map.of("requestId", UUID.randomUUID().toString(), "expectedVersion", 1, "planHash", hash))).body());
+        String requestId = UUID.randomUUID().toString();
+        String execute = JSON.writeValueAsString(Map.of("requestId", requestId, "expectedVersion", approved.path("version").asInt(), "planHash", hash));
+        HttpResponse<String> completed = authRequest("POST", "/api/remediations/" + id + "/execute", adminCookie, execute);
+        assertThat(completed.statusCode()).isEqualTo(200);
+        String executionId = JSON.readTree(completed.body()).path("execution").path("id").asText();
+        int logCount = demo.logs().entries().size();
+        String legacy = JSON.writeValueAsString(Map.of("planId", id, "requestId", requestId, "expectedVersion", 2, "planHash", hash));
+        assertThat(JSON.readTree(authRequest("POST", "/api/demo/repair-config", adminCookie, legacy).body()).path("execution").path("id").asText()).isEqualTo(executionId);
+        assertThat(demo.logs().entries()).hasSize(logCount);
+        assertThat(authRequest("GET", "/api/remediations/requests/" + requestId, userCookie, null).statusCode()).isEqualTo(403);
+        assertThat(authRequest("GET", "/api/remediations/" + id + "/execute", adminCookie, null).statusCode()).isEqualTo(405);
+        assertThat(authRequest("POST", "/api/remediations/" + id + "/execute", adminCookie,
+                JSON.writeValueAsString(Map.of("requestId", requestId, "expectedVersion", 99, "planHash", hash))).statusCode()).isEqualTo(409);
+        assertThat(authRequest("GET", "/api/remediations/" + id + "/report?format=markdown", adminCookie, null).body()).contains("合成", "SUCCEEDED", executionId);
+    }
+
+    /** CR-F01：字段拒绝可查询、重发稳定，变更正文不能复活原编号。 */
+    @Test
+    void invalidRemediationWritesHaveDurableRejectionAndNeverReplaceAcceptedIntent() throws Exception {
+        String requestId = UUID.randomUUID().toString();
+        String body = JSON.writeValueAsString(Map.of("requestId", requestId, "actionId", "ORDERBRIDGE_MIGRATE_SYNC_PATH",
+                "name", "空白恢复", "reason", "   "));
+        int before = db.queryForObject("SELECT COUNT(*) FROM remediation_plans", Integer.class);
+        assertThat(authRequest("POST", "/api/remediations", adminCookie, body).statusCode()).isEqualTo(400);
+        JsonNode rejected = JSON.readTree(authRequest("GET", "/api/remediations/requests/" + requestId, adminCookie, null).body());
+        assertThat(rejected.path("httpStatus").asInt()).isEqualTo(400);
+        assertThat(rejected.path("errorCode").asText()).isEqualTo("INVALID_INPUT");
+        assertThat(authRequest("POST", "/api/remediations", adminCookie, body).statusCode()).isEqualTo(400);
+        assertThat(db.queryForObject("SELECT COUNT(*) FROM remediation_requests WHERE request_id=?", Integer.class, requestId)).isEqualTo(1);
+        assertThat(db.queryForObject("SELECT COUNT(*) FROM remediation_plans", Integer.class)).isEqualTo(before);
+        assertThat(authRequest("POST", "/api/remediations", adminCookie, body.replace("   ", "有效理由")).statusCode()).isEqualTo(409);
+        assertThat(authRequest("GET", "/api/remediations/requests/" + UUID.randomUUID(), adminCookie, null).statusCode()).isEqualTo(404);
+        String acceptedId = UUID.randomUUID().toString();
+        String acceptedBody = body.replace(requestId, acceptedId).replace("   ", "有效理由");
+        assertThat(authRequest("POST", "/api/remediations", adminCookie, acceptedBody).statusCode()).isEqualTo(200);
+        assertThat(authRequest("POST", "/api/remediations", adminCookie, acceptedBody.replace("有效理由", "   ")).statusCode()).isEqualTo(409);
+        assertThat(db.queryForObject("SELECT http_status FROM remediation_requests WHERE request_id=?", Integer.class, acceptedId)).isEqualTo(200);
+    }
+
+    /** CR-F03：人工切换和同名重置均有独立审计，不需要伪造提案外键。 */
+    @Test
+    void scenarioResetsPersistIndependentAuditsAndDocumentTheReadApi() throws Exception {
+        long after = db.queryForObject("SELECT COALESCE(MAX(id),0) FROM demo_environment_events", Long.class);
+        long revision = demo.snapshot().revision();
+        assertThat(authRequest("POST", "/api/demo/scenario", adminCookie, "{\"scenario\":\"migration\"}").statusCode()).isEqualTo(200);
+        assertThat(authRequest("POST", "/api/demo/scenario", adminCookie, "{\"scenario\":\"migration\"}").statusCode()).isEqualTo(200);
+        JsonNode events = JSON.readTree(authRequest("GET", "/api/demo/environment-events?after=" + after, adminCookie, null).body());
+        assertThat(events.size()).isEqualTo(2);
+        assertThat(events.get(0).path("beforeRevision").asLong()).isEqualTo(revision);
+        assertThat(events.get(1).path("afterRevision").asLong()).isEqualTo(revision + 2);
+        assertThat(events.get(0).path("actorId").asText()).isEqualTo(events.get(1).path("actorId").asText()).isNotEmpty();
+        assertThat(events.get(0).path("instanceId").asText()).isEqualTo(demo.instanceId());
+        assertThat(events.get(1).path("status").asText()).isEqualTo("APPLIED");
+        assertThat(db.queryForObject("SELECT COUNT(*) FROM demo_environment_events WHERE id>? AND after_revision=before_revision+1 AND status='APPLIED'", Integer.class, after)).isEqualTo(2);
+        assertThat(authRequest("GET", "/api/demo/environment-events?after=-1", adminCookie, null).statusCode()).isEqualTo(400);
+        assertThat(authRequest("GET", "/api/demo/environment-events", null, null).statusCode()).isEqualTo(401);
     }
 
     /** 独立 JDBC 核对绑定码只保存摘要，字段名来自测试固定调用。 */

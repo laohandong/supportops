@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -40,8 +41,10 @@ public class MemoryController {
             description = "按创建时间正序返回项目记忆；没有记录时返回空数组。")
     @ApiResponse(responseCode = "200", description = "已确认约束列表。")
     @GetMapping
-    List<ProjectMemory> list() {
-        return memories.list();
+    List<ProjectMemory> list(@Parameter(description = "所属项目UUID，省略兼容示例项目") @RequestParam(required = false) String projectId,
+            @Parameter(description = "限定系统UUID，空表示项目级约束") @RequestParam(required = false) String systemId,
+            @Parameter(description = "限定环境UUID，空表示项目和系统级约束") @RequestParam(required = false) String environmentId) {
+        return projectId == null ? memories.list() : memories.scoped(projectId, systemId, environmentId);
     }
 
     /** 保存已确认的项目约束 */
@@ -61,7 +64,8 @@ public class MemoryController {
             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @PostMapping
     ProjectMemory add(@RequestBody CreateProjectMemoryRequest request) {
-        return memories.add(request.content(), request.confirmed());
+        return memories.addScoped(request.content(), request.confirmed(), request.projectId() == null
+                ? io.supportops.integration.service.support.EnterpriseIds.PROJECT : request.projectId(), request.systemId(), request.environmentId());
     }
 
     /** 删除项目约束 */

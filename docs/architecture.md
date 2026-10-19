@@ -1,5 +1,9 @@
 # SupportOps 架构说明
 
+## 评测集成边界
+
+评测管理和执行属于独立AgentEval。SupportOps保留诊断和人工结果，通过source/outcome脱敏来源包协作，不查询评测库或启动评测Worker。导出检查当前结果修订并保存固定回执，详见[协作说明](evaluation-split.md)。
+
 ## 模块与边界
 
 | 模块 | 职责 |
@@ -7,6 +11,12 @@
 | `agent` | AgentScope 适配、异步任务、上下文组装、事件与终态持久化、SSE、会话归档与用量分析 |
 | `mcp` | 固定四个只读工具，通过 Streamable HTTP 提供服务 |
 | `demo` | 生成实际 HTTP 交互的 Java 示例应用与受控下游 |
+| `remediation` | 固定动作、不可变提案、人工审批、一次执行、应用和验证回执、幂等请求与追加审计 |
+| `outcome` | 人工处理结果、不可变修订、固定请求与来源导出 |
+| `source` | 版本化来源协议与规范 JSON 编码 |
+| `project` | 项目、系统、环境、成员授权与只读连接 |
+| `integration` | 应用身份、访问密钥、环境权限与诊断 API |
+| `ops` | 管理员运行信息、部署与维护状态 |
 | `knowledge` | 文档解析、分片、索引事务、版本筛选和检索 |
 | `memory` | 人员确认的单项目约束，显式写入和删除 |
 | `api` | 本地来源、登录认证与角色接口边界、统一错误响应 |
@@ -16,7 +26,7 @@
 
 模型只能接触注册的四个 MCP 工具、知识检索、Excel 数据集目录及只读 SQL 查询、Skill 加载工具。不存在执行命令、任意地址请求、写配置或写记忆工具。Excel 查询不允许指定数据库、物理表或部署版本。工作台的示例操作接口与模型工具注册分离。
 
-诊断输出区分本次现场观测、适用文档规则和待验证推断。配置值、凭据配置状态及健康端点结果分别限定在其观测范围内，不能替代实际业务请求证据；摘要、标题、原因与结尾保持同一证据强度。评测审阅报告展示现场工具的原始调用与结果，便于核对来源失败和结论范围；报告不自动裁定自然语言结论是否正确。
+诊断输出区分本次现场观测、适用文档规则和待验证推断。配置值、凭据配置状态及健康端点结果分别限定在其观测范围内，不能替代实际业务请求证据；摘要、标题、原因与结尾保持同一证据强度。诊断记录保留现场工具的原始调用与结果，便于核对来源失败和结论范围；执行终态不自动裁定自然语言结论是否正确。
 
 诊断提示词与内置排障 Skill 要求在形成处理建议前检查业务恢复证据：已有资料缺少复验方法或成功条件时，按当前业务操作补查适用版本的恢复验证资料。回答应关联人工复验动作、新请求标识、响应状态和业务成功条件；具体值来自检索原文。资料缺失或检索失败时说明证据缺口，未取得变更后的业务请求证据时不得宣称恢复。该流程由模型执行，任务完成状态不代替建议质量审阅。
 
@@ -31,12 +41,18 @@ agent/       controller · service/impl · service/support · mapper · entity �
 knowledge/   controller · service/impl · service/support · mapper · entity · dto · vo · constant
 memory/      controller · service/impl · mapper · entity · dto · vo · constant
 demo/        controller · service/impl · dto · vo
+remediation/ controller · service/impl · service/support · mapper · entity · dto · vo · constant · config
+outcome/     controller · service/impl · mapper · entity · dto · vo
+source/      来源协议与规范编码
 config/      controller · dto · vo · 配置与路由组件
 api/         vo · 来源检查与统一异常处理
 mcp/         MCP 传输和只读工具注册
 user/        controller · service/impl · mapper · entity · dto · vo · 身份与密码组件
 feishu/      controller · service/impl · mapper · entity · dto · vo · transport
-migration/   H2 离线迁移与隔离评测存储管理入口
+project/     项目、系统、环境、只读连接与授权
+integration/ 应用身份、密钥与开放诊断接口
+ops/         运行与维护状态
+migration/   H2 离线迁移与历史评测数据写保护
 ```
 
 `agent/memory/ConversationTurn` 表达一次已完成问答；顶层 `memory` 模块保存人员确认的项目约束。`DocumentParser` 处理正文提取与分片，`ElasticKnowledgeIndex` 封装 ES 协议，`ReadOnlySqlCompiler` 校验并重建 SELECT，`AgentEventRecorder` 合并模型流式事件。
@@ -123,3 +139,13 @@ MySQL 承载业务事实，MinIO 承载原件，ES 承载可重建的关键词�
 统计按诊断创建时间归属，UTC = 北京时间减 8 小时；不是请求发生时刻的计费账单。包含执行中、失败、取消等状态的已报告用量，不包含向量服务用量或费用。没有 USAGE 事件的轮次单独计数，零值不代表没有消耗；已有用量事件也不保证覆盖全部调用。完成状态仅表示执行结果，回答质量仍需结合问答与证据人工审阅。
 
 复用 runs 的 session_id、question、answer、时间、状态和累计 Token，以及 run_events 的 USAGE 事实。用户问题在受理时保存，最终回答在终态保存，公开回答片段与工具证据保存在事件表；用量事件和累计值在同一事务内写入。无需新增表、清空数据库或回填虚构计量，旧记录直接纳入查询。对话记录包含提交用户 user_id；当前排行仍按会话聚合，由管理员查看，不记录内部思维。
+
+## 受控修复边界
+
+`remediation` 通过服务接口单向协作诊断准入、账号与内置示例适配器，形成不可变提案、一次审批、一次执行、固定请求和追加审计五类持久化记录。受理和完成分为短事务，外部 HTTP 位于事务之外；共享本进程诊断准入覆盖最终校验至收尾。模型和四个 MCP 工具仍只读。重启只失效旧提案并保守标记确认退出的旧执行，不继续写入。详见 [受控修复中心](controlled-remediation.md)。
+
+`DemoScenarioService` 在共享准入内捕获管理员身份，先登记无提案的场景审计意图，再调用内置环境，最后条件更新读回结果；V10独立审计表保存跨实例历史。修复HTTP响应正文通过有界订阅接收，完整响应截止后取消读取，网络等待不持有环境监视器；最终准入仍覆盖证据收尾。输入拒绝与业务受理使用同一账号范围请求唯一约束，页面只在查询到持久化结果后确认原意图。
+
+## 人工处理结果与案例沉淀
+
+outcome保存人工结果与修订，不改诊断回答、事件、用量和归档。管理员确认脱敏并锁定所见修订；AgentEval独立接收快照和发布案例，不依赖来源在线。选择新来源必须重新确认，旧发布正文和哈希保留。

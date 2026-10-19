@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(name = "UpdateModelSettingsRequest", description = "保存一个角色的完整配置。保存不调用服务商；未填写密钥也可保存草稿。")
 public record UpdateModelSettingsRequest(
         @Schema(
-                        description = "服务商标识，取自读取接口 providers 字典；仅 embedding 角色还可使用 disabled。",
+                        description = "服务商标识，取自读取接口 providers 字典；两个角色均可使用 disabled 停用。",
                         example = "deepseek",
                         requiredMode = Schema.RequiredMode.REQUIRED)
                 String provider,

@@ -1,0 +1,1273 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "SupportOps 应用诊断 API",
+    "version": "1.0",
+    "description": "单企业独立部署的应用身份接口；实际服务地址由部署者提供。"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/open-api/v1/diagnoses": {
+      "post": {
+        "tags": [
+          "开放诊断 API V1"
+        ],
+        "summary": "受理独立诊断",
+        "description": "固定 requestId；问题1至6000字符；unknown字段拒绝。首次202、重放200、异参409；响应丢失查询原请求",
+        "operationId": "submit",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OpenDiagnosisCommand"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "run、目标、固定回执已提交；任务异步执行",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "请求参数或 JSON 格式不正确。INVALID_INPUT：字段类型、必填参数或请求体无效。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "INVALID_INPUT"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "应用密钥缺失、失效、过期或已撤销；Cookie 不能替代",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "应用权限或环境授权不足",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "本应用无该请求、任务或证据",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED：该路径不支持此请求方式，请按接口定义使用 GET 或 POST。Allow 响应头列出路径支持的方法。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "METHOD_NOT_ALLOWED"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "同键异参或目标未启用",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "速率、应用活动任务或全局环境容量不足",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_ERROR：操作失败。可能包括存储故障或已选择的外部向量服务调用失败；不会返回服务商原始错误信息或伪造成功结果。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "INTERNAL_ERROR"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApplicationBearer": []
+          }
+        ]
+      }
+    },
+    "/open-api/v1/diagnoses/{runId}/cancel": {
+      "post": {
+        "tags": [
+          "开放诊断 API V1"
+        ],
+        "summary": "取消诊断",
+        "description": "要求 CANCEL；重复取消保持原终态；资源释放前仍占容量",
+        "operationId": "cancel",
+        "parameters": [
+          {
+            "name": "runId",
+            "in": "path",
+            "description": "诊断任务UUID，仅本主体可读",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "请求参数或 JSON 格式不正确。INVALID_INPUT：字段类型、必填参数或请求体无效。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "INVALID_INPUT"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "应用密钥缺失、失效、过期或已撤销；Cookie 不能替代",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Diagnosis"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "应用权限或环境授权不足",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Diagnosis"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "本应用无该请求、任务或证据",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Diagnosis"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED：该路径不支持此请求方式，请按接口定义使用 GET 或 POST。Allow 响应头列出路径支持的方法。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "METHOD_NOT_ALLOWED"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "速率、应用活动任务或全局环境容量不足",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Diagnosis"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_ERROR：操作失败。可能包括存储故障或已选择的外部向量服务调用失败；不会返回服务商原始错误信息或伪造成功结果。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "INTERNAL_ERROR"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApplicationBearer": []
+          }
+        ]
+      }
+    },
+    "/open-api/v1/requests/{requestId}": {
+      "get": {
+        "tags": [
+          "开放诊断 API V1"
+        ],
+        "summary": "查询受理回执",
+        "description": "404后仅重发同一 requestId 和请求体；查询失败维持 UNKNOWN，不产生新键",
+        "operationId": "request",
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "description": "固定请求UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "请求参数或 JSON 格式不正确。INVALID_INPUT：字段类型、必填参数或请求体无效。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "INVALID_INPUT"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "应用密钥缺失、失效、过期或已撤销；Cookie 不能替代",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "应用权限或环境授权不足",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "本应用无该请求、任务或证据",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED：该路径不支持此请求方式，请按接口定义使用 GET 或 POST。Allow 响应头列出路径支持的方法。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "METHOD_NOT_ALLOWED"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "速率、应用活动任务或全局环境容量不足",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_ERROR：操作失败。可能包括存储故障或已选择的外部向量服务调用失败；不会返回服务商原始错误信息或伪造成功结果。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "INTERNAL_ERROR"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApplicationBearer": []
+          }
+        ]
+      }
+    },
+    "/open-api/v1/environments": {
+      "get": {
+        "tags": [
+          "开放诊断 API V1"
+        ],
+        "summary": "查询授权环境",
+        "description": "要求 READ；不返回地址和凭据",
+        "operationId": "environments",
+        "responses": {
+          "400": {
+            "description": "请求参数或 JSON 格式不正确。INVALID_INPUT：字段类型、必填参数或请求体无效。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "INVALID_INPUT"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "应用密钥缺失、失效、过期或已撤销；Cookie 不能替代",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TargetView"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "应用权限或环境授权不足",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TargetView"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "本应用无该请求、任务或证据",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TargetView"
+                  }
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED：该路径不支持此请求方式，请按接口定义使用 GET 或 POST。Allow 响应头列出路径支持的方法。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "METHOD_NOT_ALLOWED"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "速率、应用活动任务或全局环境容量不足",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TargetView"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_ERROR：操作失败。可能包括存储故障或已选择的外部向量服务调用失败；不会返回服务商原始错误信息或伪造成功结果。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "INTERNAL_ERROR"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApplicationBearer": []
+          }
+        ]
+      }
+    },
+    "/open-api/v1/diagnoses/{runId}": {
+      "get": {
+        "tags": [
+          "开放诊断 API V1"
+        ],
+        "summary": "查询诊断任务",
+        "description": "本应用所有权和当前环境授权重新核对；读取不重新执行",
+        "operationId": "diagnosis",
+        "parameters": [
+          {
+            "name": "runId",
+            "in": "path",
+            "description": "诊断任务UUID，仅本主体可读",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "请求参数或 JSON 格式不正确。INVALID_INPUT：字段类型、必填参数或请求体无效。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "INVALID_INPUT"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "应用密钥缺失、失效、过期或已撤销；Cookie 不能替代",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Diagnosis"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "应用权限或环境授权不足",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Diagnosis"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "本应用无该请求、任务或证据",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Diagnosis"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED：该路径不支持此请求方式，请按接口定义使用 GET 或 POST。Allow 响应头列出路径支持的方法。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "METHOD_NOT_ALLOWED"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "速率、应用活动任务或全局环境容量不足",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Diagnosis"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_ERROR：操作失败。可能包括存储故障或已选择的外部向量服务调用失败；不会返回服务商原始错误信息或伪造成功结果。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "INTERNAL_ERROR"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApplicationBearer": []
+          }
+        ]
+      }
+    },
+    "/open-api/v1/diagnoses/{runId}/result": {
+      "get": {
+        "tags": [
+          "开放诊断 API V1"
+        ],
+        "summary": "查询终态结果",
+        "description": "执行中409 RESULT_NOT_READY；失败、取消和中断等终态也200，状态保留真实事实",
+        "operationId": "result",
+        "parameters": [
+          {
+            "name": "runId",
+            "in": "path",
+            "description": "诊断任务UUID，仅本主体可读",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "请求参数或 JSON 格式不正确。INVALID_INPUT：字段类型、必填参数或请求体无效。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "INVALID_INPUT"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "应用密钥缺失、失效、过期或已撤销；Cookie 不能替代",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "应用权限或环境授权不足",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "本应用无该请求、任务或证据",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED：该路径不支持此请求方式，请按接口定义使用 GET 或 POST。Allow 响应头列出路径支持的方法。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "METHOD_NOT_ALLOWED"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "速率、应用活动任务或全局环境容量不足",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_ERROR：操作失败。可能包括存储故障或已选择的外部向量服务调用失败；不会返回服务商原始错误信息或伪造成功结果。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "INTERNAL_ERROR"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApplicationBearer": []
+          }
+        ]
+      }
+    },
+    "/open-api/v1/diagnoses/{runId}/evidence/{eventId}": {
+      "get": {
+        "tags": [
+          "开放诊断 API V1"
+        ],
+        "summary": "读取持久化证据",
+        "description": "仅现场事实、资料及SQL结果；最多2MiB，超限413；不返回原始模型请求或重读现场",
+        "operationId": "evidence",
+        "parameters": [
+          {
+            "name": "runId",
+            "in": "path",
+            "description": "诊断任务UUID，仅本主体可读",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "eventId",
+            "in": "path",
+            "description": "本任务安全事实事件编号，正整数",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "请求参数或 JSON 格式不正确。INVALID_INPUT：字段类型、必填参数或请求体无效。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "INVALID_INPUT"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "应用密钥缺失、失效、过期或已撤销；Cookie 不能替代",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Evidence"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "应用权限或环境授权不足",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Evidence"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "本应用无该请求、任务或证据",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Evidence"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED：该路径不支持此请求方式，请按接口定义使用 GET 或 POST。Allow 响应头列出路径支持的方法。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "METHOD_NOT_ALLOWED"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "速率、应用活动任务或全局环境容量不足",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Evidence"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_ERROR：操作失败。可能包括存储故障或已选择的外部向量服务调用失败；不会返回服务商原始错误信息或伪造成功结果。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "INTERNAL_ERROR"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApplicationBearer": []
+          }
+        ]
+      }
+    },
+    "/open-api/v1/diagnoses/{runId}/events": {
+      "get": {
+        "tags": [
+          "开放诊断 API V1"
+        ],
+        "summary": "轮询诊断事件",
+        "description": "after非负，limit默认100、1至200；nextAfter继续；页小于1MiB，事件大于16KiB返回摘要",
+        "operationId": "events",
+        "parameters": [
+          {
+            "name": "runId",
+            "in": "path",
+            "description": "诊断任务UUID，仅本主体可读",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "description": "已读事件游标，非负整数",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "每页条数，1至200",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "请求参数或 JSON 格式不正确。INVALID_INPUT：字段类型、必填参数或请求体无效。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "INVALID_INPUT"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "应用密钥缺失、失效、过期或已撤销；Cookie 不能替代",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventPage"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "应用权限或环境授权不足",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventPage"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "本应用无该请求、任务或证据",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventPage"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "METHOD_NOT_ALLOWED：该路径不支持此请求方式，请按接口定义使用 GET 或 POST。Allow 响应头列出路径支持的方法。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "METHOD_NOT_ALLOWED"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "速率、应用活动任务或全局环境容量不足",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventPage"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "INTERNAL_ERROR：操作失败。可能包括存储故障或已选择的外部向量服务调用失败；不会返回服务商原始错误信息或伪造成功结果。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "error": "INTERNAL_ERROR"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApplicationBearer": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "OpenDiagnosisCommand": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "description": "固定请求 UUID，与 runId 不同"
+          },
+          "environmentId": {
+            "type": "string",
+            "description": "明确授权环境 UUID"
+          },
+          "question": {
+            "type": "string",
+            "description": "问题1至6000个 UTF-16字符，禁止孤立代理字符"
+          },
+          "lexicalOnly": {
+            "type": "boolean",
+            "description": "是否仅关键词检索，默认false"
+          },
+          "externalReference": {
+            "description": "可选外部工单或事件引用，仅作事实关联",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExternalReference"
+              }
+            ]
+          }
+        },
+        "description": "开放 API 受理载荷，所有未知字段由专用严格解码器拒绝。"
+      },
+      "Receipt": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "description": "固定请求 UUID"
+          },
+          "runId": {
+            "type": "string",
+            "description": "诊断 UUID"
+          },
+          "status": {
+            "type": "string",
+            "description": "当前任务状态"
+          },
+          "acceptedAt": {
+            "type": "string",
+            "description": "受理时间"
+          },
+          "target": {
+            "description": "安全目标摘要",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TargetView"
+              }
+            ]
+          },
+          "replayed": {
+            "type": "boolean",
+            "description": "是否重放同一受理"
+          },
+          "diagnosisPath": {
+            "type": "string",
+            "description": "任务读取路径"
+          },
+          "eventsPath": {
+            "type": "string",
+            "description": "事件轮询路径"
+          },
+          "resultPath": {
+            "type": "string",
+            "description": "终态读取路径"
+          }
+        },
+        "description": "可恢复的异步受理回执。"
+      },
+      "ApiError": {
+        "required": [
+          "error"
+        ],
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "错误码，具体含义见当前接口对应的 HTTP 错误响应说明。",
+            "example": "INVALID_INPUT"
+          }
+        },
+        "description": "业务接口统一错误响应。error 是稳定错误码；不返回凭据、服务商原始错误正文或异常消息。"
+      },
+      "Diagnosis": {
+        "type": "object",
+        "properties": {
+          "runId": {
+            "type": "string",
+            "description": "诊断 UUID"
+          },
+          "requestId": {
+            "type": "string",
+            "description": "固定请求 UUID"
+          },
+          "status": {
+            "type": "string",
+            "description": "QUEUED、RUNNING 或既有终态枚举"
+          },
+          "target": {
+            "description": "安全目标摘要",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TargetView"
+              }
+            ]
+          },
+          "answerMarkdown": {
+            "type": "string",
+            "description": "持久化模型回答 Markdown"
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "受控错误代码，正常为空"
+          },
+          "usage": {
+            "description": "已报告用量",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Usage"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "创建时间"
+          },
+          "finishedAt": {
+            "type": "string",
+            "description": "终态时间，执行中为空"
+          },
+          "elapsedMs": {
+            "type": "integer",
+            "description": "耗时毫秒",
+            "format": "int64"
+          }
+        },
+        "description": "独立应用任务快照。"
+      },
+      "TargetView": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "description": "项目 UUID"
+          },
+          "projectName": {
+            "type": "string",
+            "description": "项目名称"
+          },
+          "systemId": {
+            "type": "string",
+            "description": "系统 UUID"
+          },
+          "systemCode": {
+            "type": "string",
+            "description": "系统编码"
+          },
+          "systemName": {
+            "type": "string",
+            "description": "系统名称"
+          },
+          "environmentId": {
+            "type": "string",
+            "description": "环境 UUID"
+          },
+          "environmentCode": {
+            "type": "string",
+            "description": "环境编码"
+          },
+          "environmentName": {
+            "type": "string",
+            "description": "环境名称"
+          },
+          "productKey": {
+            "type": "string",
+            "description": "产品标识"
+          },
+          "productVersion": {
+            "type": "string",
+            "description": "预期产品版本"
+          },
+          "connectorRevisionId": {
+            "type": "string",
+            "description": "启用连接修订 UUID"
+          }
+        },
+        "description": "服务器解析的完整诊断目标；不接受模型修改身份字段。"
+      },
+      "Result": {
+        "type": "object",
+        "properties": {
+          "diagnosis": {
+            "description": "终态快照；失败终态也返回200",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Diagnosis"
+              }
+            ]
+          },
+          "evidenceRefs": {
+            "type": "array",
+            "description": "持久化事实读取路径",
+            "items": {
+              "type": "string",
+              "description": "持久化事实读取路径"
+            }
+          }
+        },
+        "description": "终态结果与引用分开描述，不自动声称故障解决。"
+      },
+      "Evidence": {
+        "type": "object",
+        "properties": {
+          "eventId": {
+            "type": "integer",
+            "description": "证据事件编号",
+            "format": "int64"
+          },
+          "kind": {
+            "type": "string",
+            "description": "证据种类"
+          },
+          "content": {
+            "description": "最多2MiB的安全事实",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JsonNode"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "保存时间"
+          }
+        },
+        "description": "安全证据只读持久化快照，不再次访问现场。"
+      },
+      "EventPage": {
+        "type": "object",
+        "properties": {
+          "events": {
+            "type": "array",
+            "description": "最多200项且整页小于1MiB",
+            "items": {
+              "$ref": "#/components/schemas/Event"
+            }
+          },
+          "nextAfter": {
+            "type": "integer",
+            "description": "下一页 after 游标",
+            "format": "int64"
+          },
+          "hasMore": {
+            "type": "boolean",
+            "description": "本页是否达到数量限制或大小限制，可能还有记录"
+          }
+        },
+        "description": "有界事件页，以 nextAfter 继续，不因内部事件被省略而无限读取同一页。"
+      },
+      "ExternalReference": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "TICKET、INCIDENT 或 OTHER"
+          },
+          "id": {
+            "type": "string",
+            "description": "来源标识，最多128字符"
+          }
+        },
+        "description": "固定外部引用，不接受 URL 或可执行指令字段。"
+      },
+      "Usage": {
+        "type": "object",
+        "properties": {
+          "inputTokens": {
+            "type": "integer",
+            "description": "已报告输入 Token",
+            "format": "int64"
+          },
+          "outputTokens": {
+            "type": "integer",
+            "description": "已报告输出 Token",
+            "format": "int64"
+          },
+          "reported": {
+            "type": "boolean",
+            "description": "是否至少收到一次用量报告；不保证每轮均完整"
+          }
+        },
+        "description": "Token 是既有逐轮报告累计，未报告时不能解释为零费用。"
+      },
+      "JsonNode": {
+        "type": "object",
+        "description": "按明确事件种类定义的有界JSON事实；不含内部推理、连接地址或秘密。"
+      },
+      "Event": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "持久化单调递增游标",
+            "format": "int64"
+          },
+          "kind": {
+            "type": "string",
+            "description": "公开事件种类"
+          },
+          "content": {
+            "description": "按种类决定的安全协议事实",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JsonNode"
+              }
+            ]
+          },
+          "truncated": {
+            "type": "boolean",
+            "description": "是否截断正文"
+          },
+          "evidenceRef": {
+            "type": "string",
+            "description": "可为空的持久化安全证据路径"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "事实保存时间"
+          }
+        },
+        "description": "单个白名单事件，超过16KiB只返回摘要及证据链接。"
+      }
+    },
+    "securitySchemes": {
+      "ApplicationBearer": {
+        "type": "http",
+        "description": "独立应用访问密钥；仅一次签发，不使用人员 Cookie",
+        "scheme": "bearer"
+      }
+    }
+  }
+}

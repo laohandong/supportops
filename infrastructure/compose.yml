@@ -3,6 +3,7 @@ name: supportops
 services:
   mysql:
     image: mysql:8.4
+    command: ["--log-bin-trust-function-creators=1"]
     environment:
       MYSQL_ROOT_PASSWORD: synthetic-knowledge-root
     ports:

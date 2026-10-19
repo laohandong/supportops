@@ -18,6 +18,8 @@ import java.net.http.HttpResponse;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.time.Duration;
 import java.util.Map;
 import java.util.Set;
@@ -35,7 +37,7 @@ public final class IsolatedKnowledgeWorkspace {
             throw new IllegalArgumentException("INVALID_EVALUATION_WORKSPACE");
         }
         String mysql = value("SUPPORTOPS_TEST_MYSQL", "jdbc:mysql://127.0.0.1:23306/");
-        if (!mysql.matches("jdbc:mysql://127\\.0\\.0\\.1:[0-9]+/")) {
+        if (!mysql.matches("jdbc:mysql://127\\.0\\.0\\.1:[0-9]+/") || mysql.equals("jdbc:mysql://127.0.0.1:13306/")) {
             throw new IllegalArgumentException("EVALUATION_REQUIRES_LOOPBACK_MYSQL");
         }
         String database = "so_eval_" + args[1];
@@ -52,13 +54,21 @@ public final class IsolatedKnowledgeWorkspace {
             if (args[0].equals("prepare")) {
                 statement.execute(
                         "CREATE DATABASE `"
-                                + database
+                                + excel
                                 + "` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci");
+                // 标记放在 Excel 库，保持应用库为空，让 Flyway 正常初始化；DDL 失败保留归属。
+                statement.execute("CREATE TABLE `" + excel + "`._evaluation_workspace_owner (workspace_key VARCHAR(24) PRIMARY KEY, owns_main BOOLEAN NOT NULL DEFAULT FALSE)");
+                try (PreparedStatement ownership = connection.prepareStatement(
+                        "INSERT INTO `" + excel + "`._evaluation_workspace_owner (workspace_key) VALUES (?)")) {
+                    ownership.setString(1, args[1]);
+                    ownership.executeUpdate();
+                }
                 try {
                     statement.execute(
                             "CREATE DATABASE `"
-                                    + excel
+                                    + database
                                     + "` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci");
+                    statement.execute("UPDATE `" + excel + "`._evaluation_workspace_owner SET owns_main=TRUE");
                     statement.execute(
                             "GRANT ALL PRIVILEGES ON `" + database + "`.* TO 'supportops'@'%'");
                     statement.execute(
@@ -66,14 +76,38 @@ public final class IsolatedKnowledgeWorkspace {
                     statement.execute(
                             "GRANT SELECT ON `" + excel + "`.* TO 'supportops_reader'@'%'");
                 } catch (Exception exception) {
-                    // 主库由本调用独占创建；失败时保留可能存在的其他资源，避免误删同名库。
-                    statement.execute("DROP DATABASE `" + database + "`");
+                    // 保留所有权标记，调用方按提前登记清单回收已经创建的资源。
                     throw new IllegalStateException("EVALUATION_PREPARATION_FAILED");
                 }
             } else {
-                cleanupStores(prefix);
-                statement.execute("DROP DATABASE IF EXISTS `" + excel + "`");
-                statement.execute("DROP DATABASE IF EXISTS `" + database + "`");
+                boolean owned = databaseExists(connection, excel);
+                boolean ownsMain = false;
+                if (owned) {
+                    try (Statement ownership = connection.createStatement();
+                            ResultSet records = ownership.executeQuery("SELECT workspace_key, owns_main FROM `" + excel + "`._evaluation_workspace_owner")) {
+                        if (!records.next() || !args[1].equals(records.getString(1))) {
+                            throw new IllegalStateException("EVALUATION_OWNERSHIP_UNCONFIRMED");
+                        }
+                        ownsMain = records.getBoolean(2);
+                        if (records.next()) {
+                            throw new IllegalStateException("EVALUATION_OWNERSHIP_UNCONFIRMED");
+                        }
+                    }
+                } else if (databaseExists(connection, database)) {
+                    throw new IllegalStateException("EVALUATION_OWNERSHIP_UNCONFIRMED");
+                }
+                if (owned && !ownsMain && databaseExists(connection, database)) {
+                    // CREATE DATABASE 与归属标记之间的未知结果不能推断拥有主库；保留标记等待核查。
+                    throw new IllegalStateException("EVALUATION_OWNERSHIP_UNCONFIRMED");
+                }
+                cleanupStores(prefix, owned);
+                if (owned) {
+                    if (ownsMain) {
+                        statement.execute("DROP DATABASE IF EXISTS `" + database + "`");
+                    }
+                    // 归属标记最后删除，存储清理失败时可以继续精确核对。
+                    statement.execute("DROP DATABASE `" + excel + "`");
+                }
             }
         }
         System.out.println(
@@ -92,7 +126,7 @@ public final class IsolatedKnowledgeWorkspace {
     }
 
     /** 回收严格前缀匹配的索引及同名桶，禁止使用通配符删除索引。 */
-    private static void cleanupStores(String prefix) throws Exception {
+    private static void cleanupStores(String prefix, boolean owned) throws Exception {
         String es = loopback(value("SUPPORTOPS_TEST_ES", "http://127.0.0.1:29200"));
         try (HttpClient http =
                 HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5)).build()) {
@@ -116,6 +150,9 @@ public final class IsolatedKnowledgeWorkspace {
                 if (!index.startsWith(prefix + "-") || !index.matches("[a-z0-9-]+")) {
                     throw new IllegalStateException("INVALID_EVALUATION_INDEX");
                 }
+                if (!owned) {
+                    throw new IllegalStateException("EVALUATION_OWNERSHIP_UNCONFIRMED");
+                }
                 int status =
                         http.send(
                                         HttpRequest.newBuilder(URI.create(es + "/" + index))
@@ -138,6 +175,9 @@ public final class IsolatedKnowledgeWorkspace {
                         .build()) {
             minio.setTimeout(5000, 10000, 10000);
             if (minio.bucketExists(BucketExistsArgs.builder().bucket(prefix).build())) {
+                if (!owned) {
+                    throw new IllegalStateException("EVALUATION_OWNERSHIP_UNCONFIRMED");
+                }
                 for (Result<Item> result :
                         minio.listObjects(
                                 ListObjectsArgs.builder().bucket(prefix).recursive(true).build())) {
@@ -152,9 +192,20 @@ public final class IsolatedKnowledgeWorkspace {
         }
     }
 
+    /** 存储管理工具只读核对精确库名，不枚举或清理其他数据库。 */
+    private static boolean databaseExists(Connection connection, String database) throws Exception {
+        try (PreparedStatement query = connection.prepareStatement("SELECT COUNT(*) FROM information_schema.schemata WHERE schema_name=?")) {
+            query.setString(1, database);
+            try (ResultSet result = query.executeQuery()) {
+                result.next();
+                return result.getInt(1) == 1;
+            }
+        }
+    }
+
     /** 评测管理接口只允许无凭据的本机端点。 */
     private static String loopback(String value) {
-        if (!value.matches("http://127\\.0\\.0\\.1:[0-9]+")) {
+        if (!value.matches("http://127\\.0\\.0\\.1:[0-9]+") || Set.of("http://127.0.0.1:19000", "http://127.0.0.1:19200").contains(value)) {
             throw new IllegalArgumentException("EVALUATION_REQUIRES_LOOPBACK_STORAGE");
         }
         return value;

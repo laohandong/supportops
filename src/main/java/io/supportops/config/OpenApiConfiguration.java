@@ -2,8 +2,11 @@ package io.supportops.config;
 
 import io.supportops.api.vo.ErrorResponse;
 import io.supportops.api.vo.LocalAccessError;
+import io.supportops.outcome.service.EvaluationExportService;
+import io.supportops.source.vo.SourcePackage;
 import io.swagger.v3.core.converter.ModelConverters;
 import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.parameters.Parameter;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -30,6 +33,8 @@ public class OpenApiConfiguration {
     @Bean
     OpenAPI supportOpsOpenApi() {
         return new OpenAPI()
+                .components(new Components().addSecuritySchemes("ApplicationBearer", new SecurityScheme()
+                        .type(SecurityScheme.Type.HTTP).scheme("bearer").description("独立应用访问密钥；仅一次签发，不使用人员 Cookie")))
                 .info(
                         new Info()
                                 .title("SupportOps 后端接口文档")
@@ -58,7 +63,14 @@ public class OpenApiConfiguration {
                                 tag("文档版本与处理任务", "管理原件、上传历史、修订、异步补偿及 Excel 关系查询。"),
                                 tag("项目记忆", "保存人员明确确认的项目约束，在后续诊断中使用。"),
                                 tag("示例环境", "人工操作自建 OrderBridge 故障环境，不向 Agent 开放写入能力。"),
-                                tag("模型配置", "分别管理对话和向量服务，立即生效，密钥只写入不回显。")));
+                                tag("模型配置", "分别管理对话和向量服务，立即生效，密钥只写入不回显。"),
+                                tag("企业项目与环境", "维护企业内部项目、系统、环境及人员授权。"),
+                                tag("企业只读连接", "保存不可变草稿，验证标准只读能力并启用。"),
+                                tag("企业调用应用", "应用权限、环境授权和一次性访问密钥。"),
+                                tag("企业管理回执", "恢复同一管理员的固定管理请求。"),
+                                tag("企业资料外发策略", "分别批准系统资料进入对话与向量服务。"),
+                                tag("诊断目标", "查看受理时公开目标，不暴露连接地址或秘密。"),
+                                tag("开放诊断 API V1", "独立应用Bearer身份的固定请求、诊断及安全事件。")));
     }
 
     /** 创建包含中文名称和职责说明的接口分组。 */
@@ -79,6 +91,18 @@ public class OpenApiConfiguration {
                 ModelConverters.getInstance().read(type).forEach(api.getComponents()::addSchemas);
             }
             // 共享 record 引用的描述可能被转换器折叠；以合法的 allOf 保留属性语义。
+            Schema<?> dynamic = api.getComponents().getSchemas().get("JsonNode");
+            if (dynamic != null) { dynamic.setDescription("按明确事件种类定义的有界JSON事实；不含内部推理、连接地址或秘密。"); }
+            for (Class<? extends Record> type : List.of(
+                    io.supportops.integration.dto.OpenDiagnosisCommand.class, io.supportops.integration.dto.ConnectorCommand.class,
+                    io.supportops.integration.vo.ConnectorView.class, io.supportops.integration.vo.AccessKeyIssuance.class,
+                    io.supportops.integration.vo.ManagementReceipt.class, io.supportops.integration.vo.OpenViews.Receipt.class,
+                    io.supportops.integration.vo.OpenViews.Diagnosis.class, io.supportops.integration.vo.OpenViews.Event.class,
+                    io.supportops.integration.vo.OpenViews.Evidence.class, io.supportops.integration.vo.OpenViews.Result.class,
+                    io.supportops.integration.controller.RunTargetController.Snapshot.class,
+                    EvaluationExportService.Receipt.class, SourcePackage.class)) {
+                restoreRecordDescriptions(api, type);
+            }
             Schema<?> analysis = api.getComponents().getSchemas().get("UsageAnalysis");
             if (analysis != null) {
                 analysis.addProperty(
@@ -95,10 +119,17 @@ public class OpenApiConfiguration {
                                     path.readOperations()
                                             .forEach(
                                                     operation -> {
-                                                        operation.addParametersItem(new Parameter()
+                                                        operation.getResponses().forEach((code, response) -> {
+                                                            if (response.getDescription() == null || !java.util.regex.Pattern.compile("[\\p{IsHan}]").matcher(response.getDescription()).find()) {
+                                                                response.setDescription(code.equals("202") ? "请求已受理，需按任务状态确认执行结果。" : "请求已完成，返回公开结果或受控错误。");
+                                                            }
+                                                        });
+                                                        boolean application = operation.getSecurity() != null && operation.getSecurity().stream()
+                                                                .anyMatch(requirement -> requirement.containsKey("ApplicationBearer"));
+                                                        if (!application) { operation.addParametersItem(new Parameter()
                                                                 .in("header").name("X-SupportOps-Request")
                                                                 .description("写请求必填固定值 1，防止跨站表单提交。")
-                                                                .schema(new StringSchema()._default("1")));
+                                                                .schema(new StringSchema()._default("1"))); }
                                                         operation.getResponses().putIfAbsent("401",
                                                                 error("未登录或会话失效。", "AUTHENTICATION_REQUIRED"));
                                                         operation
@@ -155,6 +186,22 @@ public class OpenApiConfiguration {
                                                                                 "INTERNAL_ERROR"));
                                                     }));
         };
+    }
+
+    /** 从record字段注解恢复被共享模型引用折叠的语义，保留原引用及校验结构。 */
+    private static void restoreRecordDescriptions(OpenAPI api, Class<? extends Record> type) {
+        io.swagger.v3.oas.annotations.media.Schema annotation = type.getAnnotation(io.swagger.v3.oas.annotations.media.Schema.class);
+        String name = annotation == null || annotation.name().isBlank() ? type.getSimpleName() : annotation.name();
+        Schema<?> schema = api.getComponents().getSchemas().get(name);
+        if (schema == null || schema.getProperties() == null) { return; }
+        for (java.lang.reflect.RecordComponent component : type.getRecordComponents()) {
+            io.swagger.v3.oas.annotations.media.Schema field = component.getAccessor().getAnnotation(io.swagger.v3.oas.annotations.media.Schema.class);
+            Schema<?> property = schema.getProperties().get(component.getName());
+            if (field == null || property == null || field.description().isBlank()) { continue; }
+            if (property.get$ref() != null) {
+                schema.addProperty(component.getName(), new ComposedSchema().description(field.description()).addAllOfItem(property));
+            } else { property.setDescription(field.description()); }
+        }
     }
 
     /** 构造引用统一错误模型的 JSON 响应说明，并提供与实际状态匹配的错误码示例。 */

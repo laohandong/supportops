@@ -1,0 +1,28 @@
+# 显式可选：仅为独立专属部署配置官方 ES 快照仓库。
+services:
+  mysql:
+    labels:
+      io.supportops.deployment: ${SUPPORTOPS_DEPLOYMENT_ID:?Explicit deployment identity required}
+  minio:
+    labels:
+      io.supportops.deployment: ${SUPPORTOPS_DEPLOYMENT_ID:?Explicit deployment identity required}
+  elasticsearch:
+    environment:
+      path.repo: /snapshots
+    volumes:
+      - snapshots:/snapshots
+    labels:
+      io.supportops.deployment: ${SUPPORTOPS_DEPLOYMENT_ID:?Explicit deployment identity required}
+volumes:
+  mysql-data:
+    labels:
+      io.supportops.deployment: ${SUPPORTOPS_DEPLOYMENT_ID:?Explicit deployment identity required}
+  minio-data:
+    labels:
+      io.supportops.deployment: ${SUPPORTOPS_DEPLOYMENT_ID:?Explicit deployment identity required}
+  es-data:
+    labels:
+      io.supportops.deployment: ${SUPPORTOPS_DEPLOYMENT_ID:?Explicit deployment identity required}
+  snapshots:
+    labels:
+      io.supportops.deployment: ${SUPPORTOPS_DEPLOYMENT_ID:?Explicit deployment identity required}

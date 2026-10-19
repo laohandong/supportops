@@ -61,7 +61,7 @@ public class ModelSettingsController {
             summary = "保存一个角色的模型配置",
             description =
                     "对话和向量分别保存，成功后立即生效并持久化，优先于文件和环境变量。密钥留空可保存未就绪配置；不会在保存时验证连通性。切换服务商或基础地址不沿用旧密钥。embedding"
-                        + " 可选 disabled。诊断运行期间不能保存。密钥存储在本机未加密配置文件。",
+                        + " 可选 disabled。诊断运行期间不能保存。企业模式密钥存为数据库加密引用，本地兼容模式使用原本机配置文件。",
             requestBody =
                     @io.swagger.v3.oas.annotations.parameters.RequestBody(
                             description =
@@ -112,7 +112,7 @@ public class ModelSettingsController {
                     @PathVariable
                     String role,
             @RequestBody UpdateModelSettingsRequest update) {
-        return safe(runs.whenIdle(() -> providers.saveSettings(role, update)));
+        return safe(runs.whenGloballyIdle(() -> providers.saveSettings(role, update)));
     }
 
     /** 使用当前草稿获取目录，既不保存配置，也不调用模型生成。 */
@@ -185,7 +185,7 @@ public class ModelSettingsController {
             @Parameter(description = "读取配置时返回的最新版本标记。", example = "从读取接口复制当前 revision")
                     @RequestParam
                     String revision) {
-        return safe(runs.whenIdle(() -> providers.resetSettings(role, revision)));
+        return safe(runs.whenGloballyIdle(() -> providers.resetSettings(role, revision)));
     }
 
     /** 为配置响应设置禁止缓存，避免浏览器持久保存角色配置。 */

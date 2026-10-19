@@ -599,7 +599,11 @@ public class ExcelDataServiceImpl implements ExcelDataService {
     /** 数据集范围先由 MySQL 文档发布关系过滤。 */
     @Override
     public List<KnowledgeViews.Dataset> applicable(String productVersion) {
-        List<String> batches = catalog.applicableBatches(productVersion);
+        return applicableScoped(io.supportops.integration.service.support.EnterpriseIds.SYSTEM, productVersion);
+    }
+    /** 目录在数据库发布关系中先限定系统，避免同版本跨系统暴露表格。 */
+    @Override public List<KnowledgeViews.Dataset> applicableScoped(String systemId, String productVersion) {
+        List<String> batches = catalog.scopedBatches(systemId, productVersion);
         if (batches.isEmpty()) {
             return List.of();
         }
@@ -616,10 +620,14 @@ public class ExcelDataServiceImpl implements ExcelDataService {
     /** 用独立数据库身份执行受控 SELECT，返回前再次核对资料未被删除或替换。 */
     @Override
     public KnowledgeViews.SqlResult query(String datasetId, String sql, String productVersion) {
+        return queryScoped(datasetId, sql, io.supportops.integration.service.support.EnterpriseIds.SYSTEM, productVersion);
+    }
+    /** 数据集执行前和执行后均重新检查本系统发布关系。 */
+    @Override public KnowledgeViews.SqlResult queryScoped(String datasetId, String sql, String systemId, String productVersion) {
         ExcelDatasetEntity dataset = datasets.selectById(datasetId);
         if (dataset == null
                 || !dataset.getStatus().equals("READY")
-                || !catalog.applicableBatches(productVersion).contains(dataset.getBatchId())) {
+                || !catalog.scopedBatches(systemId, productVersion).contains(dataset.getBatchId())) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "DATASET_NOT_APPLICABLE");
         }
         List<ExcelColumnEntity> definitions = columnDefinitions(datasetId);
@@ -636,7 +644,7 @@ public class ExcelDataServiceImpl implements ExcelDataService {
             // Agent 工具也会转述异常；不得把驱动错误中的物理表名、SQL 或连接信息带入模型。
             throw new IllegalStateException("SQL_QUERY_FAILED");
         }
-        if (!catalog.applicableBatches(productVersion).contains(dataset.getBatchId())) {
+        if (!catalog.scopedBatches(systemId, productVersion).contains(dataset.getBatchId())) {
             throw new IllegalStateException("DATASET_CHANGED_DURING_QUERY");
         }
         List<List<String>> rows = new ArrayList<>();

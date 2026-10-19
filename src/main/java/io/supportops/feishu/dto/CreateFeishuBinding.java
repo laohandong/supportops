@@ -9,4 +9,8 @@ import jakarta.validation.constraints.Pattern;
 public record CreateFeishuBinding(
         @NotBlank @Pattern(regexp = "[0-9a-fA-F-]{36}")
         @Schema(description = "待绑定的已有工作台用户 UUID", requiredMode = Schema.RequiredMode.REQUIRED)
-        String userId) {}
+        String userId,
+        @Schema(description = "管理员指定的默认环境 UUID；本地省略使用示例环境") String environmentId) {
+    /** 原调用兼容示例环境。 */
+    public CreateFeishuBinding(String userId) { this(userId, null); }
+}

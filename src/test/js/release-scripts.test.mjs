@@ -150,7 +150,7 @@ test('pending processing times out, retains accepted work and cleans its session
 
 test('in-flight read timeout warns against resubmission and cleans its session', async context => {
     const application = await fixture(context, {stallRead: true});
-    await assert.rejects(application.run({timeoutMs: 1000}), /请求未完成.*不要据此重复提交写请求/);
+    await assert.rejects(application.run({timeoutMs: 1000}), /文档处理超时.*已受理任务仍保留.*不要重复提交写请求/);
     assert.equal(application.calls.filter(call => call.path === '/api/documents/demo').length, 1);
     assert.equal(application.calls.filter(call => call.path === '/api/documents/import-examples').length, 1);
     assert.equal(application.calls.at(-1).path, '/api/auth/logout');
@@ -190,13 +190,13 @@ test('import rejects non-local targets and credentials in URLs before making req
     }
 });
 
-test('legacy evaluation CLI routes to the isolated launcher and rejects existing-instance targets', async () => {
+test('legacy evaluation CLI exits 2 with an explicit independent-project destination', async () => {
     const env = {...process.env};
     delete env.SUPPORTOPS_URL;
     const run = promisify(execFile);
-    const help = await run(process.execPath, ['evaluation/run.mjs', '--help'], {env, windowsHide: true});
-    assert.match(help.stdout, /scripts\/evaluate.mjs/);
+    await assert.rejects(run(process.execPath, ['evaluation/run.mjs', '--help'], {env, windowsHide: true}),
+        error => error.code === 2 && error.stderr.includes('AgentEval'));
     await assert.rejects(run(process.execPath, ['evaluation/run.mjs', '--sources-only'], {
         env: {...env, SUPPORTOPS_URL: 'http://127.0.0.1:18080'}, windowsHide: true
-    }), error => error.code === 1 && error.stderr.includes('评测不接受 SUPPORTOPS_URL'));
+    }), error => error.code === 2 && error.stderr.includes('AgentEval'));
 });

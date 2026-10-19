@@ -38,7 +38,9 @@ public record DiagnosisRun(
                 long elapsedMs,
         @Schema(description = "模型累计报告的输入 Token 数；未报告时为 0，不代表实际未消耗。") long inputTokens,
         @Schema(description = "模型累计报告的输出 Token 数；未报告时为 0。") long outputTokens,
-        @Schema(description = "提交用户 UUID；null 表示历史未归属或内部任务", nullable = true) String userId) {
+        @Schema(description = "提交用户 UUID；应用任务为空，历史未归属不能虚构用户", nullable = true) String userId,
+        @Schema(description = "提交应用 UUID，仅 APPLICATION 任务存在", nullable = true) String applicationId,
+        @Schema(description = "发起主体类型：USER人员、APPLICATION应用、LEGACY_UNKNOWN旧记录未归属") String actorType) {
     /** 主构造器用于 Mapper 按字段名映射包含归属的记录。 */
     @AutomapConstructor
     public DiagnosisRun {}
@@ -49,5 +51,12 @@ public record DiagnosisRun(
             long inputTokens, long outputTokens) {
         this(id, sessionId, question, status, answer, errorCode, createdAt, finishedAt,
                 elapsedMs, inputTokens, outputTokens, null);
+    }
+    /** 保留原人员归属构造器，旧调用不虚构应用身份。 */
+    public DiagnosisRun(String id, String sessionId, String question, String status, String answer,
+            String errorCode, String createdAt, String finishedAt, long elapsedMs,
+            long inputTokens, long outputTokens, String userId) {
+        this(id, sessionId, question, status, answer, errorCode, createdAt, finishedAt,
+                elapsedMs, inputTokens, outputTokens, userId, null, userId == null ? "LEGACY_UNKNOWN" : "USER");
     }
 }

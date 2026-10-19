@@ -1,0 +1,1113 @@
+{
+  "schemaVersion": 1,
+  "scope": "ENTERPRISE_INTEGRATION_V1_CORE_DEVELOPMENT",
+  "generatedAt": "2026-10-04T16:12:23.191Z",
+  "program": {
+    "path": ".local/enterprise-development/candidate-enterprise-4.jar",
+    "sha256": "a416ec8cb01c0fa6be57346c00dc92d6066dc985ea65701ffb3424ffbd35aa37",
+    "legacyJarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+  },
+  "finalBundle": {
+    "path": ".local/enterprise-development/bundle-7",
+    "manifestSha256": "f3284d77161e57593a49f7eec8cf63870865ccb646d01ae1e7548d528545a3b9",
+    "images": {
+      "app": {
+        "name": "supportops-enterprise:0527f280b7c69a35",
+        "id": "sha256:0527f280b7c69a358f3928ccc18c2b5aa3897078050f9d1a9eb7406cc31e4251",
+        "registryDigest": "supportops-enterprise-build@sha256:0527f280b7c69a358f3928ccc18c2b5aa3897078050f9d1a9eb7406cc31e4251"
+      },
+      "mysql": {
+        "name": "supportops-dependency-mysql:b3b90af2a6552ae3",
+        "id": "sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb",
+        "registryDigest": "mysql@sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb"
+      },
+      "minio": {
+        "name": "supportops-dependency-minio:a1ea29fa28355559",
+        "id": "sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e",
+        "registryDigest": "supportops-dependency-minio@sha256:a1ea29fa28355559ef137d71fc570e508a214ec84ff8083e39bc5428980b015e"
+      },
+      "elasticsearch": {
+        "name": "supportops-dependency-elasticsearch:13bb550524faa2ae",
+        "id": "sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599",
+        "registryDigest": "docker.elastic.co/elasticsearch/elasticsearch@sha256:13bb550524faa2aef6950b13fb6414c73b957e97e6169e5808743c8378614599"
+      }
+    },
+    "packagedFileSha256": {
+      "application.jar": "a416ec8cb01c0fa6be57346c00dc92d6066dc985ea65701ffb3424ffbd35aa37",
+      "backup.mjs": "2639a90a9612d57f8bb7f5b2aace37cd38dd8fd36299de3577c3bad3e1049542",
+      "build/application.jar": "a416ec8cb01c0fa6be57346c00dc92d6066dc985ea65701ffb3424ffbd35aa37",
+      "build/Dockerfile": "69e3fe8496ef639f222c32903cd66b171751e3f8feccf921e17467fbb72746c1",
+      "build/enterprise.yml": "72af4c11b68e8d9f20c65c397d9c6c6ae3a114044b2abf308ebd56f575fed0e9",
+      "build/initialize.mjs": "4318f633c431eb872bf3da336d90cec0fc145233d2f19dbc8d5a53c2e2a924fa",
+      "compose.yml": "613b11338391d67d084a0aed1fcb775866741de9b009192d8ab874665cd42b1e",
+      "diagnostic-source.jar": "c9fc55645558029d071836ef699e99f491f33f30b78dd253ea9b97d806c63161",
+      "enterprise-deployment.md": "e64646521b03c44c4535e0b6ecf25b3f5f0cfc15c28bc22806046db2a69bc5ea",
+      "enterprise-integration.md": "74a24680f0d585020d9fbee89c04ab0c5df19e9f3565601f2e2bf215513b2d5a",
+      "enterprise-source-protocol.md": "3589068964ac312b55aa2f1170e8e2d45dccf90e14f8fa8b697f7653a2262bf6",
+      "enterprise.yml": "72af4c11b68e8d9f20c65c397d9c6c6ae3a114044b2abf308ebd56f575fed0e9",
+      "examples/client/diagnosis-client.mjs": "2166394e10ef177f1cae1338f899fbbd8743f735b101818a085e9b5ff5c57ff8",
+      "examples/client/openapi.json": "a73f6e9606d48b98044dff65d4e8bb35b805580d630a5a335144fce2a79d9d2d",
+      "examples/client/README.md": "1bc5fdc7e62821e30ca42b7de2dfbddfbfa9719f75c2a3b8f0ed7d3ce7db38c8",
+      "examples/java-diagnostic-source/build.mjs": "a3d33baf23d81cf7f64a69920f7253cc903913b1fee8aa6b0fbcbb3d1b685169",
+      "examples/java-diagnostic-source/openapi.json": "d4f782ec462b9bc256cc1232bc0c833305812dc66d84922cc1e40b6897ad6369",
+      "examples/java-diagnostic-source/README.md": "4994f8616235f9efbb8684f7b9dd6b75ec873860049dbf07e06fc9e0114f5dbe",
+      "examples/java-diagnostic-source/src/DiagnosticSource.java": "7aef2ef7210b82fa8fd00ed4d54a6779e5cfaab7973411d089470d54a098cdd0",
+      "images.tar": "6fd3830fa993e6f5c0e36803ad3a913f2c1ccfed37d5cdb64468185e5a340d81",
+      "initialize.mjs": "4318f633c431eb872bf3da336d90cec0fc145233d2f19dbc8d5a53c2e2a924fa",
+      "install.sh": "b6fedf164c8afd7e56b1833124a3c6ace2b1b05d7be9fcd8d2a2000d9ac468e3",
+      "minio-entrypoint.sh": "9c63cc473bc3ec3ef83c69fab16463e7614448a41b24a2732ef7ae33ce4fab6a",
+      "mysql-init.sh": "858a5250017ae6ceee83c0404a2903c6b9758c09365e70f02f5437cbfac9265a",
+      "ops.mjs": "ea0895ef2c350f9d4967ffb22b0015ec4f23f7ede58ebf8eafccb8ff296e0506",
+      "restore.mjs": "a3985051123a9a1e14dd0f46ab71b4fd31c3fdbb117d18de4550d4e462983bf9",
+      "runtime.mjs": "46e04ae458fa8e64255541c07fce2821e4f5778510d357659307d557561afcce",
+      "source-classes/DiagnosticSource.class": "2e7f0215c0dfdcbb0911724e4340a15319f77f103bfb7fa96d27b689ff20e1bf",
+      "verify-images.sh": "2297aff97d856cf76fa20fa3c583817fbc49a4fb1365d3075f4c1768a07501cc"
+    }
+  },
+  "validation": {
+    "fullRegressionBeforeFinalFixes": {
+      "log": ".local/enterprise-development/full-verify-fourth.log",
+      "tests": 179,
+      "passed": 174,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 5,
+      "skipReason": "Optional real ONNX weights/tokenizer absent",
+      "finalProgramFullRerun": false
+    },
+    "finalJavaAffectedRun": {
+      "log": ".local/enterprise-development/enterprise-recheck-20.log",
+      "tests": 21,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "passed": 20,
+      "junit": [
+        {
+          "name": "io.supportops.integration.EnterpriseBoundaryTest",
+          "path": ".local/enterprise-development/evidence/targeted-20/TEST-io.supportops.integration.EnterpriseBoundaryTest.xml",
+          "sha256": "219b6cc447d8820bdfbd9de12cd20777ddc64b811b0fb2450fc585813174b993",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "name": "io.supportops.integration.EnterpriseCredentialTest",
+          "path": ".local/enterprise-development/evidence/targeted-20/TEST-io.supportops.integration.EnterpriseCredentialTest.xml",
+          "sha256": "e3cd895d03daaabccc53902fac94c14b7b228b9782093a4de9a6c0f22b9557e6",
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "name": "io.supportops.integration.EnterpriseIntegrationTest",
+          "path": ".local/enterprise-development/evidence/targeted-20/TEST-io.supportops.integration.EnterpriseIntegrationTest.xml",
+          "sha256": "6967992c8042988e6788ccc3251332e96bb6d5e2e245eb51dfbc9b1fe5b65653",
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "name": "io.supportops.knowledge.KnowledgeInfrastructureTest",
+          "path": ".local/enterprise-development/evidence/targeted-20/TEST-io.supportops.knowledge.KnowledgeInfrastructureTest.xml",
+          "sha256": "04a1684fcdce514768e0092703a96352736770460b29a52d217069ddae18f2ea",
+          "tests": 12,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 1
+        }
+      ]
+    },
+    "javascript": {
+      "log": ".local/enterprise-development/javascript-linux-4.log",
+      "runtime": "Linux Node 22.16.0",
+      "tests": 111,
+      "passed": 111
+    },
+    "finalActualLinux": {
+      "report": ".local/enterprise-development/linux-13/report.json",
+      "suiteId": "194e6174-1e3b-486b-98f2-f22d27385f4d",
+      "status": "PASSED",
+      "checks": 21,
+      "allExecutedPassed": true,
+      "finishedAt": "2026-10-04T16:03:38.701Z"
+    },
+    "actualV11Upgrade": {
+      "report": ".local/enterprise-development/upgrade-linux-2/report.json",
+      "suiteId": "99210359-ef2c-43a3-9da6-12f968c0421c",
+      "status": "PASSED",
+      "checks": [
+        {
+          "id": "EIT-01",
+          "status": "PASS",
+          "proof": {
+            "oldMigrationsUnchanged": 9,
+            "realV11Upgrade": true,
+            "oldRunEventsTokensPreserved": true,
+            "newOutcomeWritable": true,
+            "oldModulesRead": [
+              "users",
+              "runs",
+              "archives",
+              "legacy-unknown",
+              "knowledge",
+              "excel",
+              "original-files",
+              "chunks",
+              "memory",
+              "feishu",
+              "evaluations",
+              "outcomes",
+              "case-library",
+              "remediation"
+            ],
+            "legacyLexicalPassages": 3
+          }
+        },
+        {
+          "id": "EIT-31",
+          "status": "PASS",
+          "proof": {
+            "backupId": "5922832c-f1c6-4fbc-bc14-b55702e5c267",
+            "restoredExactBeforeStartup": true,
+            "oldApprovalStale": true,
+            "unknownNotReplayed": true,
+            "realStorage": true
+          }
+        }
+      ]
+    }
+  },
+  "acceptance": {
+    "requirementCount": 34,
+    "passed": 24,
+    "notRun": 10,
+    "completeV1Acceptance": false,
+    "matrix": [
+      {
+        "id": "EIT-01",
+        "status": "PASSED",
+        "evidenceAndLimits": "真实空 MySQL 与真实 V11→V15；旧9份迁移摘要一致，最终程序升级复验"
+      },
+      {
+        "id": "EIT-02",
+        "status": "PASSED",
+        "evidenceAndLimits": "资源 CRUD、唯一性、关系和软归档；独立 SQL 与 HTTP"
+      },
+      {
+        "id": "EIT-03",
+        "status": "PASSED",
+        "evidenceAndLimits": "审计故障注入连同主体/回执回滚，同版本并发200/409，原请求恢复"
+      },
+      {
+        "id": "EIT-04",
+        "status": "PASSED",
+        "evidenceAndLimits": "项目成员与环境授权同时成立；普通用户未授权目标拒绝；原示例回归"
+      },
+      {
+        "id": "EIT-05",
+        "status": "PASSED",
+        "evidenceAndLimits": "本人诊断、应用所有权、跨应用404、伪造所有者400、历史无归属限制"
+      },
+      {
+        "id": "EIT-06",
+        "status": "PASSED",
+        "evidenceAndLimits": "实际密文/摘要、AAD、用途、破坏及缺 keyId 拒绝；轮换中途失败整事务回滚"
+      },
+      {
+        "id": "EIT-07",
+        "status": "NOT_RUN",
+        "evidenceAndLimits": "停写导入保留原文件，同键重放只读原回执；format2引用、全凭据轮换后移除旧keyId仍可解密及轮换中途失败回滚通过；导入进程中断后按原请求续办尚未单独注入"
+      },
+      {
+        "id": "EIT-08",
+        "status": "PASSED",
+        "evidenceAndLimits": "首次显示/回执无秘密、24小时轮换、两枚上限、撤销与真实过期拒绝"
+      },
+      {
+        "id": "EIT-09",
+        "status": "PASSED",
+        "evidenceAndLimits": "Linux HTTPS、初始化秘密、Secure Cookie、伪造 Host/Origin/转发头、内部 MCP 和第二 JVM 拒绝"
+      },
+      {
+        "id": "EIT-10",
+        "status": "NOT_RUN",
+        "evidenceAndLimits": "两套独立 Java 源四能力与严格结构通过；缺可选能力启用及目标401/403/503完整故障矩阵未全部独立执行"
+      },
+      {
+        "id": "EIT-11",
+        "status": "PASSED",
+        "evidenceAndLimits": "实际 DNS 地址变化、IPv6、禁止地址零请求、跨地址重定向与路径逃逸拒绝"
+      },
+      {
+        "id": "EIT-12",
+        "status": "NOT_RUN",
+        "evidenceAndLimits": "实际正文停滞、1MiB上限和压缩拒绝通过；连接/DNS/总时限和JSON深度全组合故障未单独覆盖"
+      },
+      {
+        "id": "EIT-13",
+        "status": "PASSED",
+        "evidenceAndLimits": "产品身份及版本漂移在模型前拒绝，陈旧观测拒绝，零额外模型请求"
+      },
+      {
+        "id": "EIT-14",
+        "status": "PASSED",
+        "evidenceAndLimits": "草稿保存/测试及繁忙时禁止激活；独立SQL置旧测试时间后显示STALE并拒绝启用，重新测试/同键回执/空闲启用"
+      },
+      {
+        "id": "EIT-15",
+        "status": "PASSED",
+        "evidenceAndLimits": "双环境实际并发、全局维护与示例写入排他、实际资源归还边界"
+      },
+      {
+        "id": "EIT-16",
+        "status": "PASSED",
+        "evidenceAndLimits": "生命周期回归覆盖取消/超时/迟到/终态与末尾事件；真实应用取消及 Token SQL 核对"
+      },
+      {
+        "id": "EIT-17",
+        "status": "NOT_RUN",
+        "evidenceAndLimits": "最终包执行中KILL、停容器证明释放guard、重启INTERRUPTED及原回执保留、模型零重跑通过；独立 JVM 提交后调度前退出窗口未单独注入"
+      },
+      {
+        "id": "EIT-18",
+        "status": "NOT_RUN",
+        "evidenceAndLimits": "两系统同版本关键词/实际向量协议与物理ES范围、错误版本为空、向量请求期间撤销403及零后续外发通过；真实ONNX启用路径缺模型文件"
+      },
+      {
+        "id": "EIT-19",
+        "status": "PASSED",
+        "evidenceAndLimits": "真实 Excel 只读SQL、跨系统数据集拒绝、项目/系统/环境三级约束与快照"
+      },
+      {
+        "id": "EIT-20",
+        "status": "PASSED",
+        "evidenceAndLimits": "同字节跨系统分别归属，真实对象/索引/发布、版本过滤、删除及知识基础设施回归"
+      },
+      {
+        "id": "EIT-21",
+        "status": "PASSED",
+        "evidenceAndLimits": "同应用并发同键唯一任务、不同应用同键不同任务、同键异参409；真实事务与SQL数量"
+      },
+      {
+        "id": "EIT-22",
+        "status": "PASSED",
+        "evidenceAndLimits": "后端提交后真实断线、原回执恢复、客户端读取失败不POST、404仅同键重发；重复客户端零模型重跑"
+      },
+      {
+        "id": "EIT-23",
+        "status": "NOT_RUN",
+        "evidenceAndLimits": "实际分页/取消、读取429/Retry-After与环境容量无回执通过；应用活动额度与不同环境组合尚未单独完整注入"
+      },
+      {
+        "id": "EIT-24",
+        "status": "NOT_RUN",
+        "evidenceAndLimits": "应用运行中撤销阻止后续工具/模型，向量请求期间撤销拒绝返回且不新增向量请求；人员/目标/全部外发种类中途撤销组合未全部执行"
+      },
+      {
+        "id": "EIT-25",
+        "status": "NOT_RUN",
+        "evidenceAndLimits": "原会话/归档/飞书回归与旧库绑定保留通过；企业飞书默认环境端到端及真实平台本轮未执行"
+      },
+      {
+        "id": "EIT-26",
+        "status": "PASSED",
+        "evidenceAndLimits": "原结果、案例、评测与受控修复回归/升级；企业现场不进入内置执行，旧UNKNOWN不重放"
+      },
+      {
+        "id": "EIT-27",
+        "status": "PASSED",
+        "evidenceAndLimits": "实际 Chromium 管理员创建/连接/授权，普通用户选目标并完成诊断；1280/960/760无水平溢出及键盘焦点"
+      },
+      {
+        "id": "EIT-28",
+        "status": "NOT_RUN",
+        "evidenceAndLimits": "前端时序/固定请求/游标相关111项回归通过；企业页面真实SSE断线/未知管理请求/刷新完整组合未独立重跑"
+      },
+      {
+        "id": "EIT-29",
+        "status": "PASSED",
+        "evidenceAndLimits": "实际用量API与独立SQL总任务/input/output完全一致，应用单独分组且不吞并人员任务"
+      },
+      {
+        "id": "EIT-30",
+        "status": "PASSED",
+        "evidenceAndLimits": "实际SHA256SUMS/离线docker load/镜像ID、Node22、HTTPS初始化和完整样例接入，三项存储无宿主端口，主密钥0600"
+      },
+      {
+        "id": "EIT-31",
+        "status": "PASSED",
+        "evidenceAndLimits": "最终程序真实升级前冷备份和全新目标恢复，启动前存储完全一致，启动后历史与原API复验"
+      },
+      {
+        "id": "EIT-32",
+        "status": "PASSED",
+        "evidenceAndLimits": "最终离线包实际冷备份，源主密钥不进备份；提供源密钥时新部署重新加密，旧应用密钥及外部批准失效；缺源密钥时原件可读、现场凭据明确失败、零自动模型调用"
+      },
+      {
+        "id": "EIT-33",
+        "status": "PASSED",
+        "evidenceAndLimits": "实际生成所有业务GET/POST定义与响应/日志已知4份测试秘密指纹扫描；独立机器定义8路径/12模型/67引用，无后台路由"
+      },
+      {
+        "id": "EIT-34",
+        "status": "NOT_RUN",
+        "evidenceAndLimits": "两套独立HTTPS Java源不同系统/凭据/资料，第二源实际诊断证据；仅资源配置变化已通过。未参与开发的人独立接入尚未执行"
+      }
+    ]
+  },
+  "actualDependencies": [
+    "MySQL 8.4.11",
+    "MinIO",
+    "Elasticsearch 8.19.4",
+    "Java 21 HTTPS sources",
+    "Chromium"
+  ],
+  "modelBoundary": "SYNTHETIC_HTTP_PROTOCOL_ONLY; no paid provider or enterprise diagnosis-quality claim.",
+  "retainedFailureDirectories": [
+    "linux-1",
+    "linux-10",
+    "linux-11",
+    "linux-12",
+    "linux-2",
+    "linux-3",
+    "linux-4",
+    "linux-5",
+    "linux-6",
+    "linux-7",
+    "linux-8",
+    "linux-9",
+    "upgrade-linux-1"
+  ],
+  "files": [
+    {
+      "path": ".local/enterprise-development/affected-recheck-3.log",
+      "sha256": "78ba894aea9b25f738245f28882cbbcafcc758a2f1be0300d73b8e3f01029eaf"
+    },
+    {
+      "path": ".local/enterprise-development/affected-recheck-4.log",
+      "sha256": "21c113a6e2957058fa2ec2cd9f3e4a32545cbd66575e618ceecb1b2d8bff6142"
+    },
+    {
+      "path": ".local/enterprise-development/bundle-7/manifest.json",
+      "sha256": "f3284d77161e57593a49f7eec8cf63870865ccb646d01ae1e7548d528545a3b9"
+    },
+    {
+      "path": ".local/enterprise-development/bundle-7/SHA256SUMS",
+      "sha256": "d43bdf6f85001ea716e8156c5ec2d7b18082d4cf5e97d56f5b35dc028e386f5e"
+    },
+    {
+      "path": ".local/enterprise-development/client-1.log",
+      "sha256": "d41c8bbde9ea12cea2d7b2cacbae08d95f802b94d6ab57cc0372f9b3fb322a72"
+    },
+    {
+      "path": ".local/enterprise-development/compile-recheck.log",
+      "sha256": "990f21deedd03fd76ba668f59b119d9246ee0fd2c2be059001a0815775fd2dae"
+    },
+    {
+      "path": ".local/enterprise-development/diff-check-crlf.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".local/enterprise-development/diff-check-default.log",
+      "sha256": "f9baec4654ec0042aed5103e72fcd8d55f8ea0506c1cfa6511cb34db38bf3dce"
+    },
+    {
+      "path": ".local/enterprise-development/docker-ipc-recovery-second.json",
+      "sha256": "dca1c9d6763ab388332264c4948287ddddfc2f95cb96a11c6ee7c14bd12df594"
+    },
+    {
+      "path": ".local/enterprise-development/docker-recovery-second-stderr.log",
+      "sha256": "6695d2e465c549a82a2109da78c4c9931ab84c880cc0a4302e3d23d0e7daaa07"
+    },
+    {
+      "path": ".local/enterprise-development/docker-recovery-second-stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".local/enterprise-development/docker-restart-stderr.log",
+      "sha256": "03a0373707458a7d743c9e60731051dafa6578e930b05f4e0d58ce86e099fafe"
+    },
+    {
+      "path": ".local/enterprise-development/docker-restart-stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".local/enterprise-development/enterprise-integration-first.log",
+      "sha256": "42d061068125896300f7f809f7434b403ac3273994d867a82a260d44a014ca9f"
+    },
+    {
+      "path": ".local/enterprise-development/enterprise-recheck-10.log",
+      "sha256": "98843785ca22a8d931ef880ecb5949405bf98dd47cb718b5b36a41028854bdf4"
+    },
+    {
+      "path": ".local/enterprise-development/enterprise-recheck-11.log",
+      "sha256": "4b8713c453258f3310a205fe41e1ea951886b6807afccea695bae84c972aa755"
+    },
+    {
+      "path": ".local/enterprise-development/enterprise-recheck-12.log",
+      "sha256": "f00276908ec7137b76526c95ce430b19d42558c09ed6de36e060aeca590ee08f"
+    },
+    {
+      "path": ".local/enterprise-development/enterprise-recheck-13.log",
+      "sha256": "4bea5f5e2e2c7b9c46d009751038bfa21b4f533483e3e18a1c88e43d9401ef10"
+    },
+    {
+      "path": ".local/enterprise-development/enterprise-recheck-14.log",
+      "sha256": "80b37086b658eae841caced6aa1eb92bb1b7ff696d73210fae5a7723f1978f8f"
+    },
+    {
+      "path": ".local/enterprise-development/enterprise-recheck-15.log",
+      "sha256": "bb5454ab7e414fa73eb326dba8085856097ccff7884b7afbfaed2da0fe6dc98d"
+    },
+    {
+      "path": ".local/enterprise-development/enterprise-recheck-17.log",
+      "sha256": "b581cf79a32f69c56f5dc124023d35e9fd9b6ebdece37c7e20238d30d25ca40c"
+    },
+    {
+      "path": ".local/enterprise-development/enterprise-recheck-19.log",
+      "sha256": "95ae09c60636e26c1be0e7a97c58f5dcb281bafe51bb384da0c24f96b89b4e92"
+    },
+    {
+      "path": ".local/enterprise-development/enterprise-recheck-2.log",
+      "sha256": "89aa622eadff3939e814055ce7acd06626f62b2846da64bde393edf5745be26c"
+    },
+    {
+      "path": ".local/enterprise-development/enterprise-recheck-20.log",
+      "sha256": "fd73922febe1228970e995e9ad97d93f30b4e3f7ac12ef600411a35f46b39b11"
+    },
+    {
+      "path": ".local/enterprise-development/enterprise-recheck-7.log",
+      "sha256": "c599d1884d4c3642ea7d81ebff7855c924273a73bc392fa76920c9fc7e6e0bf7"
+    },
+    {
+      "path": ".local/enterprise-development/enterprise-recheck-8.log",
+      "sha256": "00710ccdc7446ab11b43358ef07fbfea2874ad9f3ac2d26faf558a2b513f013e"
+    },
+    {
+      "path": ".local/enterprise-development/enterprise-recheck-9.log",
+      "sha256": "5f1179e9c09e25a3150e33df47fbb6927b36442ebb5b9019f1a9d43e9103ee4c"
+    },
+    {
+      "path": ".local/enterprise-development/evidence/targeted-20/provenance.json",
+      "sha256": "a2062aaece9f9994690d5ee8a8d8d1994bef3545c2fd512b21755a991ab4119c"
+    },
+    {
+      "path": ".local/enterprise-development/evidence/targeted-20/TEST-io.supportops.integration.EnterpriseBoundaryTest.xml",
+      "sha256": "219b6cc447d8820bdfbd9de12cd20777ddc64b811b0fb2450fc585813174b993"
+    },
+    {
+      "path": ".local/enterprise-development/evidence/targeted-20/TEST-io.supportops.integration.EnterpriseCredentialTest.xml",
+      "sha256": "e3cd895d03daaabccc53902fac94c14b7b228b9782093a4de9a6c0f22b9557e6"
+    },
+    {
+      "path": ".local/enterprise-development/evidence/targeted-20/TEST-io.supportops.integration.EnterpriseIntegrationTest.xml",
+      "sha256": "6967992c8042988e6788ccc3251332e96bb6d5e2e245eb51dfbc9b1fe5b65653"
+    },
+    {
+      "path": ".local/enterprise-development/evidence/targeted-20/TEST-io.supportops.knowledge.KnowledgeInfrastructureTest.xml",
+      "sha256": "04a1684fcdce514768e0092703a96352736770460b29a52d217069ddae18f2ea"
+    },
+    {
+      "path": ".local/enterprise-development/final-delivery-check.json",
+      "sha256": "84abdb4ee4dc02847317ad9d14d77efc7453552f027b0813fc4710dbbab3a10e"
+    },
+    {
+      "path": ".local/enterprise-development/first-storage-test.log",
+      "sha256": "b8c7ddb3614c4ebfc0c2912d137927ad2fade4fa50d9f4a4e33ef59c430ec643"
+    },
+    {
+      "path": ".local/enterprise-development/full-verify-first.log",
+      "sha256": "c766e611095a1f5dd8495c7595d341c93270b558f292ae61b1ed44b02acdc8ce"
+    },
+    {
+      "path": ".local/enterprise-development/full-verify-fourth.log",
+      "sha256": "d07e22cedbe6da83e2d9d893cd00c9997c4dd8f29d786556760e546241ceb60d"
+    },
+    {
+      "path": ".local/enterprise-development/full-verify-second.log",
+      "sha256": "0ce86badd5ac2d017f6b8f9c89b1cd2d31b324f10922ef5442e740e6f198cf64"
+    },
+    {
+      "path": ".local/enterprise-development/full-verify-third.log",
+      "sha256": "a9a8856255e6aa2be3d6027a5b856fdf67a5163c07a5e943804a14ad3bb5b47e"
+    },
+    {
+      "path": ".local/enterprise-development/javascript-first.log",
+      "sha256": "30e8648ac59dce50f6e43fa9507baf98388ed7f8a00fcc5e5f613e51c0b1fb35"
+    },
+    {
+      "path": ".local/enterprise-development/javascript-linux-1.log",
+      "sha256": "fad7c84d5090ef4c775b4f9997348d77553073d898db032f7b0e8d652dd48480"
+    },
+    {
+      "path": ".local/enterprise-development/javascript-linux-2.log",
+      "sha256": "6770048320ff09ea45e978970b3a5fda623bfbd94eaaf9a95935dee1c09d49a3"
+    },
+    {
+      "path": ".local/enterprise-development/javascript-linux-3.log",
+      "sha256": "c8b3ba37fa12dff59cb074916e98a0589196989b2eefbc343655356d6aadfe82"
+    },
+    {
+      "path": ".local/enterprise-development/javascript-linux-4.log",
+      "sha256": "65ff50d853a0091a5f1f9df9d228cf4b8a322cda5c962491535873b821e81b8a"
+    },
+    {
+      "path": ".local/enterprise-development/javascript-polling-recheck-2.log",
+      "sha256": "418884d995f17aa9affc343dc4cba12bdeea4a55dfd160bba00705fca7dffea5"
+    },
+    {
+      "path": ".local/enterprise-development/javascript-polling-recheck-3.log",
+      "sha256": "e71b85f84e96cd3e974a91af72abfaebf892a7572a19b35cc9642235975ca529"
+    },
+    {
+      "path": ".local/enterprise-development/javascript-recheck-4.log",
+      "sha256": "a9aaf02ff6e9599a55c3967f4cda1f992d3fa2f269637479bbc3a500cf29fb75"
+    },
+    {
+      "path": ".local/enterprise-development/linux-1.log",
+      "sha256": "5bc98c1e6c2e587caa57db3761960380d303237e33df7bacd0187ed5da2f5cbd"
+    },
+    {
+      "path": ".local/enterprise-development/linux-1/captured/report.json",
+      "sha256": "8ff31e7aad21b88df70f94cffc6d4dd7b320800151b31c80bac16498f1b3113f"
+    },
+    {
+      "path": ".local/enterprise-development/linux-1/console.log",
+      "sha256": "b3c339d9861adf8e05002352536761029252451656c92ef33bf5950b303a989d"
+    },
+    {
+      "path": ".local/enterprise-development/linux-1/failure.txt",
+      "sha256": "785cfa7c00d26a1bf93400046731a58e02d7e5de8f473c489f6f9a2d70e52cd6"
+    },
+    {
+      "path": ".local/enterprise-development/linux-1/report.json",
+      "sha256": "90d7adc8d1abf4edf40e7288985830217b0c70657d6979bebb77af99733a8c63"
+    },
+    {
+      "path": ".local/enterprise-development/linux-1/resources.json",
+      "sha256": "8bb01c08209d74d7d6d537e5490b0ce85192caefacffc6c66e83b2a67bce2476"
+    },
+    {
+      "path": ".local/enterprise-development/linux-10/captured/report.json",
+      "sha256": "cae6f20618ebf805546d7fd5d8792c030b61b906169004406595c07b3ffb08c8"
+    },
+    {
+      "path": ".local/enterprise-development/linux-10/console.log",
+      "sha256": "4b3e8553469e5a4757496926aa26e343130671bfadc8999f81675ac83e60a9ac"
+    },
+    {
+      "path": ".local/enterprise-development/linux-10/failure.txt",
+      "sha256": "d46c489898216eaf3e2bcbc87c460eb68402896812f6e0d8c129d287ad2a7da6"
+    },
+    {
+      "path": ".local/enterprise-development/linux-10/report.json",
+      "sha256": "2eba7deabdd8a3a7b5b86522f95b03100da82f6d0cff5c24b805c0966d19d093"
+    },
+    {
+      "path": ".local/enterprise-development/linux-10/resources.json",
+      "sha256": "e575eb4ab27148a340af09beaa5f5f5aca7ade3e1a1b9c35df526e8ec60cd005"
+    },
+    {
+      "path": ".local/enterprise-development/linux-11/captured/report.json",
+      "sha256": "9c168369e087b73ed00aba1761d81072093f837029df91744be3319a881c94f6"
+    },
+    {
+      "path": ".local/enterprise-development/linux-11/console.log",
+      "sha256": "9d1ac826754bbbc68543c24eb9222790fb79a4243200b004e7c607ffb13e1836"
+    },
+    {
+      "path": ".local/enterprise-development/linux-11/failure.txt",
+      "sha256": "234847305349591c51b0865af55c4bb9e13c65f048a632f416c337f9e70910b1"
+    },
+    {
+      "path": ".local/enterprise-development/linux-11/guard-same-request-recheck-2.log",
+      "sha256": "76410f8a80a0f3b5daad1defe52c88db907b7f5d14e94a8304422bf756bb1bb1"
+    },
+    {
+      "path": ".local/enterprise-development/linux-11/report.json",
+      "sha256": "d69a8f052ae4db64e8e3a5b1165b1af3ff4e34e7c21ea06e781ccd439a4f90d9"
+    },
+    {
+      "path": ".local/enterprise-development/linux-11/resources.json",
+      "sha256": "3b2d5218ba4715eb44f228b0ca8bde59d87afcf7443bc5e06ce0589fe1e955a3"
+    },
+    {
+      "path": ".local/enterprise-development/linux-12/captured/report.json",
+      "sha256": "57a422eb13bff88b379317a14dbbde5c85b6694e63176c8a719fa5dce4665559"
+    },
+    {
+      "path": ".local/enterprise-development/linux-12/console.log",
+      "sha256": "f738ee42ade0307206a97120a893794cb8cc2acaf11566518ba1112454e17be5"
+    },
+    {
+      "path": ".local/enterprise-development/linux-12/failure.txt",
+      "sha256": "9afb926a4a2d066357c4ce50e2b9195e8f4a3949ef5ad38f42587d5760909fd5"
+    },
+    {
+      "path": ".local/enterprise-development/linux-12/report.json",
+      "sha256": "3210535e3fb7e081259fc0e623feb5b1a3355d4552e1b3f6f0e50e4b92012a07"
+    },
+    {
+      "path": ".local/enterprise-development/linux-12/resources.json",
+      "sha256": "627c759a48590e2a1ece086eb46e1517aa950433ff23ad9bf6595d5bd11ee1e5"
+    },
+    {
+      "path": ".local/enterprise-development/linux-13/captured/report.json",
+      "sha256": "4933eebaa96111c350ab92b3612dd6ff45246a090cc343cadeb63c21ddb2f6d0"
+    },
+    {
+      "path": ".local/enterprise-development/linux-13/console.log",
+      "sha256": "832647befc9296e2d445962c234e83e4fa1c4aba264c8218f01e1f0386fca202"
+    },
+    {
+      "path": ".local/enterprise-development/linux-13/report.json",
+      "sha256": "12e1eb9b992974aced890a72fd247bd14c7ce6c8b65610044de319f00dd93c44"
+    },
+    {
+      "path": ".local/enterprise-development/linux-13/resources.json",
+      "sha256": "941c05626cd527015245191917dff8a3cc824def3a09692430320f1b6ca6786d"
+    },
+    {
+      "path": ".local/enterprise-development/linux-2/captured/report.json",
+      "sha256": "fa008cd0f77e700e9e202e46fdc1085cb2a8e8df9248f564aa198f5283aeefd8"
+    },
+    {
+      "path": ".local/enterprise-development/linux-2/console.log",
+      "sha256": "4b3e8553469e5a4757496926aa26e343130671bfadc8999f81675ac83e60a9ac"
+    },
+    {
+      "path": ".local/enterprise-development/linux-2/failure.txt",
+      "sha256": "1222e8764f66de8ce28125bb4660141736439d2bddaa27df66bc83f1d3c4d337"
+    },
+    {
+      "path": ".local/enterprise-development/linux-2/report.json",
+      "sha256": "d30263ebe2b62920c4ced03c8e3a44b7b084930be41c7ae102b8b83433bd32c9"
+    },
+    {
+      "path": ".local/enterprise-development/linux-2/resources.json",
+      "sha256": "dd0223ce0b6eabdc831ba68267547ff14afc0ca65bba58f0582381974311c57d"
+    },
+    {
+      "path": ".local/enterprise-development/linux-3/captured/report.json",
+      "sha256": "9d35afeaf6be7cb4fd530365e78f9c16314ba312676cc346959a0246b56a930d"
+    },
+    {
+      "path": ".local/enterprise-development/linux-3/console.log",
+      "sha256": "4b3e8553469e5a4757496926aa26e343130671bfadc8999f81675ac83e60a9ac"
+    },
+    {
+      "path": ".local/enterprise-development/linux-3/failure.txt",
+      "sha256": "4ab3df4f0f1ff24d4e1c5fabd3e774a21d3a4a091817f3c1c4d19520b615b8ff"
+    },
+    {
+      "path": ".local/enterprise-development/linux-3/report.json",
+      "sha256": "1c69429030fc3c91d477415d7a05f9f378021375ed759d2eac271806f36c6af3"
+    },
+    {
+      "path": ".local/enterprise-development/linux-3/resources.json",
+      "sha256": "e922486f9a98e9da0bffd768db1546c545e95378dec88a81b28e5921bb8830d3"
+    },
+    {
+      "path": ".local/enterprise-development/linux-4/captured/report.json",
+      "sha256": "9b3d9b4f546bd656e9e5b758c35013679c61536d7f109a43a4b3a85aec15a233"
+    },
+    {
+      "path": ".local/enterprise-development/linux-4/console.log",
+      "sha256": "052a407708e1da78a5bf5c7bdfd109245d5caeda5e0a49c31fc4bd5b3e992d3c"
+    },
+    {
+      "path": ".local/enterprise-development/linux-4/failure.txt",
+      "sha256": "07a2fba559f9c1f1944728047607c5a11c9ffa2f7a78165f7877218f6fdd4303"
+    },
+    {
+      "path": ".local/enterprise-development/linux-4/report.json",
+      "sha256": "d26a5975a887d3767f15ac27e9960648f4e21792636099127417bf8faf4751e0"
+    },
+    {
+      "path": ".local/enterprise-development/linux-4/resources.json",
+      "sha256": "7c9bc698d3a9a00b732e1628b3712a080d563f7d3c69b828817ea3ac2df4af90"
+    },
+    {
+      "path": ".local/enterprise-development/linux-5/captured/report.json",
+      "sha256": "d04a15b32b8876dbe1cee2bb80ab65d2cb9ab194ddc7e02dba23136da1c3bf55"
+    },
+    {
+      "path": ".local/enterprise-development/linux-5/console.log",
+      "sha256": "dce602f224dce372a43c3863115f9c94c4ada4878822a460c18f407686831793"
+    },
+    {
+      "path": ".local/enterprise-development/linux-5/failure.txt",
+      "sha256": "52b05de35a72b4d6a332cdbb58918563ce5a3bfc56652d3d7adad466073e8b7d"
+    },
+    {
+      "path": ".local/enterprise-development/linux-5/report.json",
+      "sha256": "fadc34e9a29d7f26082e29fd4485d15e6ff93acc1b1e76692010a898c4c8e06a"
+    },
+    {
+      "path": ".local/enterprise-development/linux-5/resources.json",
+      "sha256": "48a63c39e0611a9747e62ab33862bdd94d90af0973b5f79cb355931ee3b7b2c0"
+    },
+    {
+      "path": ".local/enterprise-development/linux-6/captured/report.json",
+      "sha256": "37c956bccef67bf8e606512bba96993d63198c29dfbdd8bcfa4645d7ddc3b241"
+    },
+    {
+      "path": ".local/enterprise-development/linux-6/console.log",
+      "sha256": "43cf0d1f1e65ea14e70eb8537d65cb1e8f01b092910a2529792b6911a1678a2f"
+    },
+    {
+      "path": ".local/enterprise-development/linux-6/failure.txt",
+      "sha256": "e25f9fa6d32e485e4662f73e07c324cab776a4bd7d50b1c09873acd0dcbf9a66"
+    },
+    {
+      "path": ".local/enterprise-development/linux-6/report.json",
+      "sha256": "cc3b7bbc2a7a24c5735678c8e6ac7f7a83684ab331dcc5ec5dd9a00ecd73a5a5"
+    },
+    {
+      "path": ".local/enterprise-development/linux-6/resources.json",
+      "sha256": "7f12b6a055b24ec2841becf422b1c96324331a1e542c198c280cbc6880aba60e"
+    },
+    {
+      "path": ".local/enterprise-development/linux-7/captured/report.json",
+      "sha256": "4b2f6f48055e57146f28287388b3388f851354dc65a6a5879f0c1a619c77e8ad"
+    },
+    {
+      "path": ".local/enterprise-development/linux-7/console.log",
+      "sha256": "43cf0d1f1e65ea14e70eb8537d65cb1e8f01b092910a2529792b6911a1678a2f"
+    },
+    {
+      "path": ".local/enterprise-development/linux-7/failure.txt",
+      "sha256": "68cf832926f89f68127b3f9bcbe8cc7e6a102444c47c1321fb01ea6585aa5128"
+    },
+    {
+      "path": ".local/enterprise-development/linux-7/report.json",
+      "sha256": "cac0310179fd2647bc95620007f45528f0a59b2bf2ea15514cd6366986fb7fca"
+    },
+    {
+      "path": ".local/enterprise-development/linux-7/resources.json",
+      "sha256": "ee0e5bed0b858cbfed97c12822487030a603f93cbbdf97fec808fd3e318efb5d"
+    },
+    {
+      "path": ".local/enterprise-development/linux-8/captured/report.json",
+      "sha256": "f08913a0b71062f36bba37a84c0784b87a00367c53830ff53f3dd511181f7be2"
+    },
+    {
+      "path": ".local/enterprise-development/linux-8/console.log",
+      "sha256": "a6e75648fd6568d06bf00fd9a5547690aaaa9eb1e09fbaa34d86e0e4d83f5bde"
+    },
+    {
+      "path": ".local/enterprise-development/linux-8/failure.txt",
+      "sha256": "e0d9869c832e87f6630c2e2c16e4d4d6e067a20f9b9f4ce8b7bdba77d47e3918"
+    },
+    {
+      "path": ".local/enterprise-development/linux-8/report.json",
+      "sha256": "73e1f5848901c30861494ba0103e8f1e74adf00af030997e906bf9b37d7e5df1"
+    },
+    {
+      "path": ".local/enterprise-development/linux-8/resources.json",
+      "sha256": "24a9a74b41b264a19179506f6429e583f1668e368e8d4548bf75557cbd866f8e"
+    },
+    {
+      "path": ".local/enterprise-development/linux-9/captured/report.json",
+      "sha256": "77b62a005ee9c25b5b479c85ce415758fa8a7203e23a3b2ad4c7bebb955e247e"
+    },
+    {
+      "path": ".local/enterprise-development/linux-9/console.log",
+      "sha256": "a6e75648fd6568d06bf00fd9a5547690aaaa9eb1e09fbaa34d86e0e4d83f5bde"
+    },
+    {
+      "path": ".local/enterprise-development/linux-9/failure.txt",
+      "sha256": "c4a7419423a04203e9522e71d2abd3edd6c2fab8a206064886177a6598433f98"
+    },
+    {
+      "path": ".local/enterprise-development/linux-9/report.json",
+      "sha256": "37bf4faf6fbcf4b2308a513efb598c2dd35e47c7f8de85900122fc784403105d"
+    },
+    {
+      "path": ".local/enterprise-development/linux-9/resources.json",
+      "sha256": "c35dee60fb578783e3c6a2c128d013a1d38fe19b619e45f40a4aaf16e27d16b2"
+    },
+    {
+      "path": ".local/enterprise-development/linux-suite-10.log",
+      "sha256": "a2a9b1fc0d3efbc85007cd20be277dc8265d20d5588d397bfc8b7c49250d45a6"
+    },
+    {
+      "path": ".local/enterprise-development/linux-suite-11.log",
+      "sha256": "03d7cdf3b556d38c170e558cbd7c40b7a531f9512d61492447756b5bb859eb20"
+    },
+    {
+      "path": ".local/enterprise-development/linux-suite-12.log",
+      "sha256": "15bd666f4c6ef2e8e0b8dc1185d57208422dec27f77820c44917a5c1958e3453"
+    },
+    {
+      "path": ".local/enterprise-development/linux-suite-13.log",
+      "sha256": "37841260f96ced39e33458bc7e60e30dee2f66b62457f0d14f45bb0918e4e78b"
+    },
+    {
+      "path": ".local/enterprise-development/linux-suite-2.log",
+      "sha256": "a533c810a21605ff8dad15a64791349c23a1ee33df1c59b2e2a1273862fd2e7f"
+    },
+    {
+      "path": ".local/enterprise-development/linux-suite-3.log",
+      "sha256": "77cacdd96d64f308ca551ba288bce2d80b4cb3c22c0a8afcbd21d81f18b2601f"
+    },
+    {
+      "path": ".local/enterprise-development/linux-suite-4.log",
+      "sha256": "2fdb77ee1c202ccc2326f14433bb26c09d6c7ac6f8cf28bff3af1bc263ee64e7"
+    },
+    {
+      "path": ".local/enterprise-development/linux-suite-5.log",
+      "sha256": "be3f1e93d4bce1e5a9823fdc14e4b566bcf7ff386d6a589db1398ac74624a2cd"
+    },
+    {
+      "path": ".local/enterprise-development/linux-suite-6.log",
+      "sha256": "2d6ba74f96ed78a1a4cfe909ee47c9b07150b74490b66c1867fe7f189f476231"
+    },
+    {
+      "path": ".local/enterprise-development/linux-suite-7.log",
+      "sha256": "26a6ec9f0bdd28731757d87b7c9c09de6a0d376c3fb4e2b25e16249d74c3bb57"
+    },
+    {
+      "path": ".local/enterprise-development/linux-suite-8.log",
+      "sha256": "faaca2b52e0941b43477dc6d3877ffc6f0f7847fca3cd4317a4d4d3de50730be"
+    },
+    {
+      "path": ".local/enterprise-development/offline-package-1.log",
+      "sha256": "1367ba373781f0376f7cf21630ed3ee5ba81850fe4128080639ae0d36aa67c8e"
+    },
+    {
+      "path": ".local/enterprise-development/offline-package-2.log",
+      "sha256": "880c34cfacc1fdd657cacaac00f383e81e63117c2711fe40c32c61fc860d9785"
+    },
+    {
+      "path": ".local/enterprise-development/offline-package-3.log",
+      "sha256": "71966a36c1d1944f2a804a17b43adbfd5db137dee4b82916354d31c9b62e00c9"
+    },
+    {
+      "path": ".local/enterprise-development/offline-package-4.log",
+      "sha256": "37adbc5bbc7551d4e589218042fc4efb350234dbe8845614dc77b3a1b7d0ab95"
+    },
+    {
+      "path": ".local/enterprise-development/offline-package-5.log",
+      "sha256": "1f57dd6c30efb928ec687b6a631c7464c15572962e6537d882668a3b0c7536e0"
+    },
+    {
+      "path": ".local/enterprise-development/offline-package-6.log",
+      "sha256": "34a2e9e3f44b9007ac112255bcdd02687be8435c4b33b19b7fa9b1db7c36fb2e"
+    },
+    {
+      "path": ".local/enterprise-development/offline-package-7.log",
+      "sha256": "b574eba490f8f0458385ecabbade8ea96be6a7ddfa688166999ccd78e1415e29"
+    },
+    {
+      "path": ".local/enterprise-development/openapi-recheck-5.log",
+      "sha256": "d66a2927e71de6fed0b43a68aa370b489842f67bac97788bea4f99b15a0a5281"
+    },
+    {
+      "path": ".local/enterprise-development/own-inactive-network-release-2.json",
+      "sha256": "c980fd3ffcad069b3f821311b04f2b20e8f73f6053c2ae9730441d86c1cfab30"
+    },
+    {
+      "path": ".local/enterprise-development/own-inactive-network-release-3.json",
+      "sha256": "19cbeed0fb4f7dda1e3745b5707a7fa868b7de76ec776f2291b3b4bdfddabc64"
+    },
+    {
+      "path": ".local/enterprise-development/package-recheck-16.log",
+      "sha256": "0a6597dc20b85a777601869ae1bfc3e8442d0dddf0cb34b95c49a523dbbfad72"
+    },
+    {
+      "path": ".local/enterprise-development/package-recheck-18.log",
+      "sha256": "90ef1139186babceff00153475399114ea64f62b60023b2b99c599bb8b212914"
+    },
+    {
+      "path": ".local/enterprise-development/package-recheck-6.log",
+      "sha256": "053846665f629efd0a8ccd4b637c24cc9bb23a783dbb7736b4e8b2eead30c947"
+    },
+    {
+      "path": ".local/enterprise-development/upgrade-linux-1/captured/report.json",
+      "sha256": "6300d44e4e9ca556fede1bde4a6bdb62a72039ee6aa2f1e542a9349bc7f81803"
+    },
+    {
+      "path": ".local/enterprise-development/upgrade-linux-1/console.log",
+      "sha256": "a9bac1bb55f81ef68197944bfaa068c06fd17f391c5dbbd21052ce48f07804a1"
+    },
+    {
+      "path": ".local/enterprise-development/upgrade-linux-1/report.json",
+      "sha256": "807c887cc9c99c4c7b40af5d97d77e43f986e06e0453fd9e960ebe4f2963f9e5"
+    },
+    {
+      "path": ".local/enterprise-development/upgrade-linux-1/resources.json",
+      "sha256": "2907e06883572571722b2082629d3250d750c2be5afcd027467d4e61d99fc120"
+    },
+    {
+      "path": ".local/enterprise-development/upgrade-linux-2/captured/report.json",
+      "sha256": "f9bdef462463451209033fafe6500a7d153b7d36d88adbe8dac40644caa5243e"
+    },
+    {
+      "path": ".local/enterprise-development/upgrade-linux-2/console.log",
+      "sha256": "a9bac1bb55f81ef68197944bfaa068c06fd17f391c5dbbd21052ce48f07804a1"
+    },
+    {
+      "path": ".local/enterprise-development/upgrade-linux-2/report.json",
+      "sha256": "d54f30c7214176cff1ffcac0009c17277708ff65ea068364976e0c6ce79c986e"
+    },
+    {
+      "path": ".local/enterprise-development/upgrade-linux-2/resources.json",
+      "sha256": "6de7f7e18486a605495f63a3d4e08c4a046cfef6691fff2fb7412f9ba02bb02a"
+    },
+    {
+      "path": ".local/enterprise-development/upgrade-linux-suite-1.log",
+      "sha256": "57b77de630caafc01b0ba57fb04cc26fc86c542535a62b14616390065430e31c"
+    },
+    {
+      "path": ".local/enterprise-development/upgrade-linux-suite-2.log",
+      "sha256": "9b594b05369a4869150c5e27e6906d7924cbfb072a536307cf5318c7f6ad0571"
+    },
+    {
+      "path": ".local/enterprise-development/upgrade-suite-1.log",
+      "sha256": "f97e2708fcfe504c2f4f65e592837b753c6716e7817f45cc3f5fdeeee56a9d5e"
+    },
+    {
+      "path": ".local/enterprise-development/workbench-port-recheck.json",
+      "sha256": "0fdc6e1293f25dc94398a58a190512838a48cea4944f43e035610b3e63dd2123"
+    },
+    {
+      "path": "docs/enterprise-deployment.md",
+      "sha256": "e64646521b03c44c4535e0b6ecf25b3f5f0cfc15c28bc22806046db2a69bc5ea"
+    },
+    {
+      "path": "docs/enterprise-integration-acceptance-20261004.md",
+      "sha256": "3deea8f7fdf30738a8b1fa5660cbe19118630e6b20ceaa1b568f91991ddbad3f"
+    },
+    {
+      "path": "docs/enterprise-integration-resources-20261004.json",
+      "sha256": "fc53bbd0a3796b0ad565853bdf5bc1f1b1ec0046a725b18d45e04fbbdc0a3255"
+    },
+    {
+      "path": "docs/enterprise-integration.md",
+      "sha256": "74a24680f0d585020d9fbee89c04ab0c5df19e9f3565601f2e2bf215513b2d5a"
+    },
+    {
+      "path": "docs/enterprise-source-protocol.md",
+      "sha256": "3589068964ac312b55aa2f1170e8e2d45dccf90e14f8fa8b697f7653a2262bf6"
+    },
+    {
+      "path": "docs/plans/enterprise-integration-design.md",
+      "sha256": "5299847aeda57f68906caa10342134d8417bdee5fd009ff14fa54722b5c1c752"
+    },
+    {
+      "path": "docs/plans/enterprise-integration-tasks.md",
+      "sha256": "2c682e012648c7cd41bfafff14adc036a9bb42599d04487763eb3f6d1124a00c"
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "0b4a0330348ef997e13e3741edc841bb159d10ca5384bcbf1bd21bdae049f761"
+    },
+    {
+      "path": "docs/validation.md",
+      "sha256": "a44fece267eb6fc3247da8a80f6667ab72c5573202b3544af91ddad4ceb4932d"
+    },
+    {
+      "path": "examples/integration/client/diagnosis-client.mjs",
+      "sha256": "2166394e10ef177f1cae1338f899fbbd8743f735b101818a085e9b5ff5c57ff8"
+    },
+    {
+      "path": "examples/integration/client/openapi.json",
+      "sha256": "a73f6e9606d48b98044dff65d4e8bb35b805580d630a5a335144fce2a79d9d2d"
+    },
+    {
+      "path": "examples/integration/java-diagnostic-source/src/DiagnosticSource.java",
+      "sha256": "7aef2ef7210b82fa8fd00ed4d54a6779e5cfaab7973411d089470d54a098cdd0"
+    },
+    {
+      "path": "scripts/enterprise/backup.mjs",
+      "sha256": "2639a90a9612d57f8bb7f5b2aace37cd38dd8fd36299de3577c3bad3e1049542"
+    },
+    {
+      "path": "scripts/enterprise/initialize.mjs",
+      "sha256": "4318f633c431eb872bf3da336d90cec0fc145233d2f19dbc8d5a53c2e2a924fa"
+    },
+    {
+      "path": "scripts/enterprise/install.sh",
+      "sha256": "b6fedf164c8afd7e56b1833124a3c6ace2b1b05d7be9fcd8d2a2000d9ac468e3"
+    },
+    {
+      "path": "scripts/enterprise/linux-acceptance.mjs",
+      "sha256": "a9bfd4e08f1a723148b17781e553df2e62c8062a14f3d8cbaa86bda723521109"
+    },
+    {
+      "path": "scripts/enterprise/machine-openapi.mjs",
+      "sha256": "c5cd8d1067adb55c2a9d8dd43c6483955b6f409eb495ccb9e8a2dfd8f112f490"
+    },
+    {
+      "path": "scripts/enterprise/ops.mjs",
+      "sha256": "ea0895ef2c350f9d4967ffb22b0015ec4f23f7ede58ebf8eafccb8ff296e0506"
+    },
+    {
+      "path": "scripts/enterprise/package.mjs",
+      "sha256": "85dafb807235dedb66e28c54823e1403159cdcd77777d2ba2880b82b74b5e823"
+    },
+    {
+      "path": "scripts/enterprise/restore.mjs",
+      "sha256": "a3985051123a9a1e14dd0f46ab71b4fd31c3fdbb117d18de4550d4e462983bf9"
+    },
+    {
+      "path": "scripts/enterprise/runtime.mjs",
+      "sha256": "46e04ae458fa8e64255541c07fce2821e4f5778510d357659307d557561afcce"
+    },
+    {
+      "path": "scripts/test-enterprise-linux.mjs",
+      "sha256": "19cc5609715075187c9d646e2656351d06061e863e8321c14e7b9d65d444cef4"
+    },
+    {
+      "path": "scripts/test-enterprise-upgrade-linux.mjs",
+      "sha256": "1033f8a6458424d8e446f5e3d2578cc88af1d2537271338af3142c88672e2657"
+    },
+    {
+      "path": "scripts/test-enterprise-upgrade.mjs",
+      "sha256": "ee94e0ee587b9fd03c019058e56295dc5264339dfbca5063506b0eb53b6b3c26"
+    },
+    {
+      "path": "src/main/resources/db/migration/V12__enterprise_integration.sql",
+      "sha256": "e347c290e220a806bfa85617c31b71ccf24119f5d7c8b374cc1153ab825f93c3"
+    },
+    {
+      "path": "src/main/resources/db/migration/V13__enterprise_data_policy.sql",
+      "sha256": "6d97b3eb69a1fb68c9c7ab89df5bed510b02c288d0f267609a5bb9472f7306b4"
+    },
+    {
+      "path": "src/main/resources/db/migration/V14__enterprise_column_comments.sql",
+      "sha256": "b3d750d8d27c5991332746d648a70be2db226f71f044f5399278bbb4ea39faa1"
+    },
+    {
+      "path": "src/main/resources/db/migration/V15__enterprise_restore_generation.sql",
+      "sha256": "f33a42a66b90432ee0cf8e6076c1a10a6bb9e83925f49bb2ebc61369a99d94dc"
+    },
+    {
+      "path": "src/test/e2e/enterprise-model-fixture.mjs",
+      "sha256": "0cd141c434e5edd438f4bf1d264992072d6522b4f55e147701c655dbb9f27ebc"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": ".local/enterprise-development/linux-13/captured/enterprise-1280.png",
+      "sha256": "c3b5397b8dff86d79961ea8c8aeda62524e58cd039f4fbb490cf2ec6afe6be69"
+    },
+    {
+      "path": ".local/enterprise-development/linux-13/captured/enterprise-960.png",
+      "sha256": "2974753c9a98970d2ffda4f71b7ec7fc868d8ed1eeaf1468f2f02224f0e15c82"
+    },
+    {
+      "path": ".local/enterprise-development/linux-13/captured/enterprise-760.png",
+      "sha256": "a811124e16daf0ca57efd56a5c9bbd248189f3b4a496aa2711fe5b73ce752996"
+    },
+    {
+      "path": ".local/enterprise-development/linux-13/captured/enterprise-user-diagnosis.png",
+      "sha256": "ea860a5be56c3d7b68f9c3aba420b6ceece7a319621968f2b5b471c600aecdd5"
+    }
+  ]
+}

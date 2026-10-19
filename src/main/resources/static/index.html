@@ -7,21 +7,33 @@
     <title>SupportOps · 诊断工作台</title>
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="/usage.css">
+    <link rel="stylesheet" href="/remediation.css">
+    <link rel="stylesheet" href="/outcome-cases.css">
     <link rel="stylesheet" href="/users.css">
-    <link rel="stylesheet" href="/workspace.css?v=20260908-2">
+    <link rel="stylesheet" href="/enterprise.css?v=20261005-layout">
+    <link rel="stylesheet" href="/workspace.css?v=20261005-hybrid">
+    <link rel="stylesheet" href="/workbench-theme.css?v=20261005-hybrid">
     <script src="/vendor/markdown-it.min.js" defer></script>
     <script src="/markdown.js" defer></script>
     <script src="/vendor/chart.umd.min.js" defer></script>
-    <script type="module" src="/app.js?v=20260908-2"></script>
+    <script type="module" src="/app.js?v=20261005-init"></script>
 </head>
 <body class="auth-pending">
-<aside class="sidebar">
+<a class="skip-link" href="#workspace-main">跳到主要内容</a>
+<div id="navigation-backdrop" class="navigation-backdrop" hidden></div>
+<aside class="sidebar" id="workspace-navigation" aria-label="工作台导航">
+    <div class="sidebar-heading">
     <a class="brand" href="/" aria-label="SupportOps 首页">
         <svg viewBox="0 0 32 32" aria-hidden="true">
             <path d="M6 7h20v6H12v6h14v6H6v-6h14v-6H6z"/>
         </svg>
         SupportOps</a>
+        <button id="navigation-close" type="button" class="navigation-close secondary" aria-label="关闭导航菜单">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+        </button>
+    </div>
     <p class="sidebar-caption">技术支持与故障诊断</p>
+    <div class="sidebar-scroll">
     <section class="nav-group customer-navigation" aria-labelledby="customer-navigation-title">
         <h2 class="nav-group-title" id="customer-navigation-title">客户工作区</h2>
         <nav aria-labelledby="customer-navigation-title">
@@ -40,13 +52,21 @@
             <button class="nav-item" data-page="usage"><span class="ui-icon icon-chart" aria-hidden="true"></span>用量分析</button>
             <button class="nav-item" data-page="models"><span class="ui-icon icon-settings" aria-hidden="true"></span>模型配置</button>
             <button class="nav-item" data-page="users"><span class="ui-icon icon-users" aria-hidden="true"></span>用户管理</button>
+            <button class="nav-item" data-page="enterprise"><span class="ui-icon icon-settings" aria-hidden="true"></span>企业接入</button>
+            <a id="agent-eval-link" class="nav-item" target="_blank" rel="noopener noreferrer" hidden>打开 AgentEval ↗</a>
+            <button class="nav-item" data-page="remediation"><span class="ui-icon icon-settings" aria-hidden="true"></span>修复中心</button>
             <button class="nav-item" data-page="feishu"><span class="ui-icon icon-chat" aria-hidden="true"></span>飞书机器人</button>
         </nav>
     </section>
-    <div class="sidebar-bottom"><span class="status-dot"></span> 本地示例环境 <span class="version">v0.1</span></div>
+    </div>
+    <div class="sidebar-bottom"><span class="status-dot"></span> <span id="workspace-deployment">独立诊断工作台</span> <span class="version">v0.1</span></div>
 </aside>
-<main>
-    <header class="topbar"><span>OrderBridge <span class="muted">/ <span id="workspace-context" aria-live="polite">客户工作区</span></span></span><span class="local-label" id="workspace-purpose">只读诊断 · 人工处理</span>
+<main id="workspace-main" tabindex="-1">
+    <header class="topbar">
+        <button id="navigation-toggle" type="button" class="navigation-toggle secondary" aria-label="打开导航菜单" aria-controls="workspace-navigation" aria-expanded="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <span class="workspace-breadcrumb"><span id="workspace-product">SupportOps</span> <span class="muted">/ <span id="workspace-context" aria-live="polite">客户工作区</span></span></span><span class="local-label" id="workspace-purpose">只读诊断 · 人工处理</span>
         <div class="account-controls"><span id="current-user"></span><button id="logout" class="secondary">退出登录</button></div>
     </header>
     <div id="notice" class="notice" role="alert" hidden></div>
@@ -63,7 +83,11 @@
             <div class="header-actions">
                 <button id="refresh-run" class="secondary" hidden>刷新诊断</button>
                 <button id="export-run" class="secondary" disabled><span class="ui-icon icon-download" aria-hidden="true"></span>导出诊断</button>
+                <button id="create-remediation-from-run" class="secondary" hidden>创建修复提案</button>
             </div>
+                    <div class="composer-target"><label for="diagnosis-environment">诊断目标</label>
+                    <select id="diagnosis-environment" form="chat-form" aria-describedby="diagnosis-target-note"><option value="">正在读取可用环境…</option></select>
+                    <p id="diagnosis-target-note" class="field-help">请选择项目、系统与环境。同一会话的诊断目标保持一致。</p></div>
         </div>
 
                 <div id="conversation" class="conversation" aria-live="polite">
@@ -77,7 +101,8 @@
                         <button id="use-example" class="example-prompt">使用示例：升级后订单同步失败</button>
                         <p id="first-use-note" class="subtle">首次体验可先导入示例文档，再配置对话模型。</p></div>
                 </div>
-                <form id="chat-form" class="composer"><label for="question">问题描述或补充信息</label><textarea
+                <form id="chat-form" class="composer">
+                    <label for="question">问题描述或补充信息</label><textarea
                         id="question" maxlength="6000" rows="2"
                         placeholder="例如：升级到 2.0 后订单同步一直失败，路径配置看起来没有变化。" required></textarea>
                     <p id="session-ownership-note" class="muted" hidden>此会话属于其他用户或历史未归属记录。继续诊断请点击“新建”。</p>
@@ -108,6 +133,11 @@
                 </div>
             </aside>
         </div>
+        <section id="diagnosis-outcome" aria-labelledby="outcome-title">
+            <h2 id="outcome-title">处理结果 · 人员确认</h2>
+            <p id="outcome-feedback" role="status" aria-live="polite"></p>
+            <div id="outcome-content"><p class="muted">选择诊断轮次后回填处理结果。</p></div>
+        </section>
     </section>
     <section id="page-users" class="page" hidden>
         <div class="page-heading"><div><h1>用户管理</h1><p>为同事创建账号，并指定可访问的工作区。</p></div></div>
@@ -143,6 +173,7 @@
                         for="document-version">适用版本</label><input id="document-version" maxlength="30" value="2.0"
                                                                       required>
                     <p class="field-help">与部署版本精确匹配；通用资料使用 *。产品版本与文档修订号分别记录。</p>
+                    <label for="document-system">所属系统</label><select id="document-system" required><option value="">请选择系统</option></select>
                     <input id="document-owner" type="hidden">
                     <p id="revision-target" class="field-help" hidden></p>
                     <label for="document-note">修订说明（选填）</label><input id="document-note" maxlength="1000">
@@ -171,6 +202,7 @@
         <details id="upload-history" class="upload-history"><summary>最近上传记录</summary><div id="upload-history-content"></div></details>
         <div class="search-panel"><h2>检索验证</h2>
             <form id="search-form" class="search-form">
+                <div class="version-field"><label for="search-system">所属系统</label><select id="search-system" required></select></div>
                 <div><label for="search-query">查询内容</label><input id="search-query" required maxlength="2000"
                                                                       placeholder="错误码、配置键或排查问题"></div>
                 <div class="version-field"><label for="search-version">版本</label><input id="search-version"
@@ -186,7 +218,11 @@
                 <p>保存由人员确认的稳定事实，在新会话中继续使用。</p></div>
         </div>
         <div class="split-layout">
-            <form id="memory-form" class="form-panel"><h2>添加已确认的约束</h2><label
+            <form id="memory-form" class="form-panel"><h2>添加已确认的约束</h2>
+                <label for="memory-project">所属项目</label><select id="memory-project" required><option value="">请选择项目</option></select>
+                <label for="memory-system">约束适用系统</label><select id="memory-system"><option value="">整个项目</option></select>
+                <label for="memory-environment">约束适用环境</label><select id="memory-environment"><option value="">整个系统或项目</option></select>
+                <label
                     for="memory-content">约束内容</label><textarea id="memory-content" rows="5" maxlength="1000"
                                                                    required
                                                                    placeholder="例如：变更需在维护窗口内由实施负责人执行。"></textarea><label
@@ -215,12 +251,12 @@
                 <option value="healthy">健康环境</option>
             </select>
                 <button id="set-scenario" class="secondary">切换并发起同步</button>
-                <p class="field-help">切换会清空示例日志并产生一次真实 HTTP 请求。文档干扰材料需从 evaluation/fixtures
+                <p class="field-help">切换会清空示例日志并产生一次真实 HTTP 请求。文档干扰验证由独立 AgentEval 的固定数据包提供
                     单独上传。</p>
                 <div class="separator"></div>
                 <h2>人工操作</h2>
                 <p class="muted">确认诊断建议后，可在此调整示例配置，再检查业务请求是否恢复。</p>
-                <button id="repair-demo" class="primary">应用 2.0 路径配置</button>
+                <button id="repair-demo" class="primary">创建修复提案</button>
                 <button id="sync-demo" class="secondary">发起一次同步</button>
                 <p class="field-help">这些操作不对 Agent 开放。诊断运行期间不能修改示例环境。</p></div>
             <div><h2 class="list-title">当前环境事实</h2>
@@ -283,6 +319,7 @@
             <form id="feishu-binding-form" class="form-panel">
                 <h2>绑定工作台账号</h2>
                 <label for="feishu-user">选择同事的账号</label><select id="feishu-user" required></select>
+                <label for="feishu-environment">绑定默认诊断环境</label><select id="feishu-environment" required></select>
                 <p class="field-help">将绑定命令通过可信渠道交给该同事，由其发送到机器人的私聊。命令十分钟内有效，只能使用一次。</p>
                 <button id="feishu-issue" class="primary" type="submit">生成绑定命令</button>
                 <div id="feishu-issued" hidden>
@@ -296,7 +333,64 @@
         <p class="muted">诊断处理和消息投递分别记录。投递待核查时，请先检查飞书会话，避免重复发送。</p>
         <div id="feishu-messages" aria-live="polite"><p class="muted">尚未读取</p></div>
     </section>
-    <footer>SupportOps · 证据驱动的技术支持 <span id="model-label"></span></footer>
+    <section id="page-remediation" class="page" hidden>
+        <div class="page-heading"><div><h1>修复中心</h1><p>审阅配置差异，人工批准，执行后核查。</p></div><button id="remediation-refresh" class="secondary">刷新修复中心</button></div>
+        <p id="remediation-feedback" class="settings-feedback" role="status" aria-live="polite"></p>
+        <div id="remediation-content"></div>
+    </section>
+    <section id="page-enterprise" class="page" hidden>
+        <div class="page-heading"><div><h1>企业接入</h1><p>创建项目与环境，测试只读连接，再为人员或业务系统授权。</p></div><button id="enterprise-refresh" class="secondary" type="button">刷新状态</button></div>
+        <p id="enterprise-feedback" class="enterprise-feedback" role="status" aria-live="polite"></p>
+        <section id="enterprise-recovery" hidden aria-label="原请求恢复"><p>提交结果尚未确认。原请求：<code id="enterprise-original-request"></code></p><div class="enterprise-actions"><button id="enterprise-recover" type="button" class="primary">查询原请求</button><button id="enterprise-retry" type="button" class="secondary">重试原请求</button></div><p class="enterprise-muted">刷新不会更换请求编号。签发秘密只能恢复状态；丢失时撤销原密钥再签发。</p></section>
+        <div id="enterprise-content" class="enterprise-layout">
+            <aside class="enterprise-tree" aria-label="项目资源"><h2>项目、系统与环境</h2><div class="enterprise-actions"><button type="button" data-enterprise-create="PROJECT" class="secondary">新建项目</button><button type="button" data-enterprise-create="SYSTEM" class="secondary">新建系统</button><button type="button" data-enterprise-create="ENVIRONMENT" class="secondary">新建环境</button></div><ul id="enterprise-tree"></ul></aside>
+            <div class="enterprise-editor">
+                <div class="enterprise-tabs" role="tablist" aria-label="企业接入设置">
+                    <button id="enterprise-tab-resources" type="button" role="tab" aria-selected="true" aria-controls="enterprise-panel-resources" data-enterprise-tab="resources">资源设置</button>
+                    <button id="enterprise-tab-connections" type="button" role="tab" aria-selected="false" aria-controls="enterprise-panel-connections" tabindex="-1" data-enterprise-tab="connections">连接与授权</button>
+                    <button id="enterprise-tab-applications" type="button" role="tab" aria-selected="false" aria-controls="enterprise-panel-applications" tabindex="-1" data-enterprise-tab="applications">应用与密钥</button>
+                </div>
+                <div id="enterprise-panel-resources" role="tabpanel" aria-labelledby="enterprise-tab-resources" data-enterprise-panel="resources">
+                <section><h2 id="enterprise-editor-heading">新建项目</h2><form id="enterprise-resource-form">
+                    <input id="enterprise-kind" type="hidden"><input id="enterprise-id" type="hidden">
+                    <div class="enterprise-fields"><div id="enterprise-parent-field"><label for="enterprise-parent">所属项目或系统</label><select id="enterprise-parent"></select></div><div><label for="enterprise-code">稳定编码</label><input id="enterprise-code" pattern="[a-z][a-z0-9_-]{0,63}" maxlength="64" required></div><div><label for="enterprise-name">名称</label><input id="enterprise-name" maxlength="128" required></div><div><label for="enterprise-status">资源状态</label><select id="enterprise-status"><option value="ACTIVE">可用</option><option value="DISABLED">停用</option><option value="ARCHIVED">归档 · 不可恢复</option></select></div><div id="enterprise-product-field"><label for="enterprise-product-key">产品标识</label><input id="enterprise-product-key" maxlength="64"></div><div id="enterprise-version-field"><label for="enterprise-product-version">预期产品版本</label><input id="enterprise-product-version" maxlength="30"></div></div>
+                    <p class="enterprise-muted">编码及归属创建后固定。更新采用版本检查；停用阻止新诊断，归档保留历史。</p><button id="enterprise-resource-submit" type="submit" class="primary">保存资源</button>
+                </form></section>
+        <form id="enterprise-data-policy" class="form-panel" hidden>
+          <h3>系统资料外发策略</h3>
+          <p class="muted">新系统默认关闭。分别确认本系统文档和项目约束可以提交到已配置的模型服务。</p>
+          <label><input id="enterprise-document-chat" type="checkbox"> 允许资料进入对话模型</label>
+          <label><input id="enterprise-document-embedding" type="checkbox"> 允许资料进入向量服务</label>
+          <button type="submit" class="primary">保存资料策略</button>
+        </form>
+                </div>
+                <div id="enterprise-panel-connections" role="tabpanel" aria-labelledby="enterprise-tab-connections" data-enterprise-panel="connections" hidden>
+                    <p class="enterprise-selection-hint muted">请先在资源列表中选择一个已保存的环境，再配置只读连接与人员授权。</p>
+        <section id="enterprise-environment-settings" hidden>
+                    <h2>只读连接</h2><p class="enterprise-muted">保存草稿后测试，通过后在环境空闲时启用。测试状态与连接状态分别显示。</p>
+                    <form id="enterprise-connector-form"><div class="enterprise-fields"><div><label for="enterprise-base-url">诊断服务基础地址</label><input id="enterprise-base-url" type="url" placeholder="https://diagnostics.example.internal/supportops" required></div><div><label for="enterprise-addresses">批准的目标 IP</label><input id="enterprise-addresses" placeholder="逗号分隔的精确 IP 地址" required></div><div><label for="enterprise-bearer">现场访问凭据</label><select id="enterprise-secret-action" aria-label="凭据动作"><option value="REPLACE">写入新凭据</option><option value="KEEP">保留同环境已有凭据</option><option value="CLEAR">清空新草稿凭据</option></select><input id="enterprise-bearer" type="password" autocomplete="new-password" required><small>仅写入，服务端加密保存。</small></div></div>
+                    <fieldset class="enterprise-policy"><legend>批准的只读能力</legend><p class="enterprise-muted">应用信息为必需能力。额外能力同时需要现场支持和管理员批准。</p><label><input type="checkbox" name="enterprise-capability" value="EFFECTIVE_CONFIG">有效配置</label><label><input type="checkbox" name="enterprise-capability" value="RECENT_LOGS">近期日志</label><label><input type="checkbox" name="enterprise-capability" value="DOWNSTREAM_HEALTH" checked>下游健康</label></fieldset>
+                    <fieldset class="enterprise-policy"><legend>允许发送模型的事实</legend><p class="enterprise-muted">应用信息默认允许。配置和日志必须另行批准。</p><label><input type="checkbox" name="enterprise-model-data" value="EFFECTIVE_CONFIG">批准配置外发</label><label><input type="checkbox" name="enterprise-model-data" value="RECENT_LOGS">批准日志外发</label><label><input type="checkbox" name="enterprise-model-data" value="DOWNSTREAM_HEALTH" checked>批准健康外发</label><label id="enterprise-local-http-field"><input id="enterprise-local-http" type="checkbox">本地合成回环 HTTP</label></fieldset><button type="submit" class="primary">保存新草稿</button></form><div id="enterprise-connectors"></div>
+                    <h2>人员授权</h2><form id="enterprise-member-form"><div class="enterprise-fields"><div><label for="enterprise-member-user">用户</label><select id="enterprise-member-user" required></select></div><div><label for="enterprise-grant-kind">授权范围</label><select id="enterprise-grant-kind"><option value="PROJECT">所属项目成员</option><option value="ENVIRONMENT">当前环境访问</option></select></div><div><label for="enterprise-granted">操作</label><select id="enterprise-granted"><option value="true">授予</option><option value="false">撤销</option></select></div></div><p class="enterprise-muted">普通用户须同时具备项目成员资格与环境授权。先授予项目，再授予环境。</p><button type="submit" class="primary">保存授权</button></form>
+                </section>
+                </div>
+                <div id="enterprise-panel-applications" role="tabpanel" aria-labelledby="enterprise-tab-applications" data-enterprise-panel="applications" hidden>
+                <section><h2>业务系统调用</h2><p class="enterprise-muted">应用使用独立密钥与环境授权，提交诊断并轮询结果，不获得人员后台权限。</p>
+                    <form id="enterprise-application-form"><div class="enterprise-fields"><div><label for="enterprise-application-project">所属项目</label><select id="enterprise-application-project" required></select></div><div><label for="enterprise-application-code">应用编码</label><input id="enterprise-application-code" pattern="[a-z][a-z0-9_-]{0,63}" required></div><div><label for="enterprise-application-name">应用名称</label><input id="enterprise-application-name" maxlength="128" required></div><div><label for="enterprise-application-environments">授权环境 · 可多选</label><select id="enterprise-application-environments" multiple size="4" required></select></div></div><div class="enterprise-fields"><div><label for="enterprise-submit-limit">每分钟提交上限</label><input id="enterprise-submit-limit" type="number" min="1" max="300" value="30" required></div><div><label for="enterprise-read-limit">每分钟读取上限</label><input id="enterprise-read-limit" type="number" min="1" max="1200" value="120" required></div><div><label for="enterprise-active-limit">活动任务上限</label><input id="enterprise-active-limit" type="number" min="1" max="4" value="2" required></div></div><fieldset class="enterprise-policy"><legend>应用权限</legend><label><input type="checkbox" name="enterprise-permission" value="DIAGNOSE" checked>提交诊断</label><label><input type="checkbox" name="enterprise-permission" value="READ" checked>读取本应用结果</label><label><input type="checkbox" name="enterprise-permission" value="CANCEL">取消本应用诊断</label></fieldset><button class="primary" type="submit">创建应用</button></form><div id="enterprise-applications"></div>
+                </section>
+                <section><h2>应用访问密钥</h2><form id="enterprise-key-form"><div class="enterprise-fields"><div><label for="enterprise-key-application">调用应用</label><select id="enterprise-key-application" required></select></div><div><label for="enterprise-key-days">有效天数</label><input id="enterprise-key-days" type="number" min="1" max="90" value="30" required></div></div><label class="checkbox-label"><input id="enterprise-key-rotate" type="checkbox">轮换密钥 · 旧密钥重叠最多24小时</label><div class="enterprise-actions"><button type="submit" class="primary">签发一次性密钥</button></div></form>
+                    <div id="enterprise-secret-area" class="enterprise-secret" hidden><strong>请立即保存，原文只显示这一次</strong><p>密钥编号：<code id="enterprise-key-id"></code></p><code id="enterprise-one-time-secret"></code><button id="enterprise-hide-secret" type="button" class="secondary">已保存，隐藏原文</button></div><div id="enterprise-keys"></div>
+                </section>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>SupportOps · 证据驱动的技术支持 <span id="model-label"></span>
+        <details id="runtime-information" hidden><summary>运行信息与故障指引</summary>
+            <p id="runtime-summary" role="status">正在读取实际程序身份</p>
+            <p>启动或存储故障请在本机执行 doctor 检查；运行状态请指定本次 runtime.json 执行 status。完整步骤见部署目录的 docs/reliability-delivery.md。</p>
+        </details>
+    </footer>
 </main>
 <dialog id="document-dialog">
     <div class="dialog-heading"><h2 id="dialog-title">文档原文</h2>

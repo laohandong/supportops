@@ -47,4 +47,10 @@
     <select id="selectUsageSession" resultType="io.supportops.agent.vo.DiagnosisRun">
         SELECT * FROM runs WHERE session_id = #{sessionId} ORDER BY created_at, id LIMIT 50 OFFSET #{offset}
     </select>
+    <select id="selectUsageApplications" resultType="io.supportops.agent.vo.UsageGroup">
+        SELECT r.application_id AS group_id, MIN(a.name) AS question, <include refid="usageMetrics"/>
+        FROM runs r JOIN integration_applications a ON a.id=r.application_id
+        WHERE r.created_at &gt;= #{from} AND r.created_at &lt; #{until}
+        GROUP BY r.application_id ORDER BY SUM(r.input_tokens+r.output_tokens) DESC, r.application_id
+    </select>
 </mapper>

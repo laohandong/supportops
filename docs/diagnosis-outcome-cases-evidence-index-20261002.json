@@ -1,0 +1,4300 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "capturedAt": "2026-10-02T17:33:54.809Z",
+  "counts": {
+    "PASS": 29,
+    "FAIL": 0,
+    "NOT_RUN": 0
+  },
+  "checks": [
+    {
+      "id": "O01",
+      "status": "PASS",
+      "durationMs": 672,
+      "proof": {
+        "terminalStatuses": [
+          "COMPLETED",
+          "FAILED",
+          "CANCELLED",
+          "TIMED_OUT",
+          "INTERRUPTED",
+          "LIMIT_REACHED"
+        ],
+        "outcomeStatuses": 4,
+        "missingDistinct": true,
+        "archivedEditable": true,
+        "nonterminalWrites": 0
+      }
+    },
+    {
+      "id": "O02",
+      "status": "PASS",
+      "durationMs": 88,
+      "proof": {
+        "anonymous": 401,
+        "foreignSource": 404,
+        "adminOnlyEvidence": 403,
+        "readOnly": true,
+        "forgedActorRejected": 400
+      }
+    },
+    {
+      "id": "O03",
+      "status": "PASS",
+      "durationMs": 332,
+      "proof": {
+        "missingAndForeignEventsRejected": true,
+        "foreignRemediationRejected": true,
+        "userFieldsExcluded": [
+          "remediationId",
+          "sourceHash",
+          "receipt",
+          "operationId"
+        ]
+      }
+    },
+    {
+      "id": "O04",
+      "status": "PASS",
+      "durationMs": 201,
+      "proof": {
+        "preDiagnosisFaultRejected": true,
+        "unknownRejected": true,
+        "appliedFailedVerificationRejected": true,
+        "independentManualStatement": true,
+        "seedMethod": "isolated SQL fault state, no operation replay"
+      }
+    },
+    {
+      "id": "O05",
+      "status": "PASS",
+      "durationMs": 283,
+      "proof": {
+        "sameKeySingleRevision": true,
+        "twoKeysOneVersion": true,
+        "changedBody": 409,
+        "rollbackNoParent": true
+      }
+    },
+    {
+      "id": "O06",
+      "status": "PASS",
+      "durationMs": 13596,
+      "proof": {
+        "restartReadable": true,
+        "oldRevisionsImmutable": true,
+        "originalAnswerEventsUsageUnchanged": true
+      }
+    },
+    {
+      "id": "C01",
+      "status": "PASS",
+      "durationMs": 600,
+      "proof": {
+        "sourceUnique": true,
+        "missingOutcomeRejected": true,
+        "adminOnly": 403
+      }
+    },
+    {
+      "id": "C02",
+      "status": "PASS",
+      "durationMs": 332,
+      "proof": {
+        "incompleteCandidateRetained": true,
+        "publishBlocked": true,
+        "unknownSceneAdapterMaterialScriptEndpoint": 400
+      }
+    },
+    {
+      "id": "C03",
+      "status": "PASS",
+      "durationMs": 102,
+      "proof": {
+        "sensitiveAndMarkupNotPersisted": true,
+        "limitsEnforced": true,
+        "errorAndRecoveryNoEcho": true
+      }
+    },
+    {
+      "id": "C04",
+      "status": "PASS",
+      "durationMs": 608,
+      "proof": {
+        "staleDraftAndSourceRejected": true,
+        "sameKeySinglePublication": true,
+        "sourcePublishRace": "fulfilled",
+        "sourceLockOrder": true
+      }
+    },
+    {
+      "id": "C05",
+      "status": "PASS",
+      "durationMs": 222,
+      "proof": {
+        "publishedHistoryImmutable": true,
+        "datasetSha256": "66e2b19eefee009269727d6cfc14f14662358417484b23e8bf62d41229977c67",
+        "logicalArchive": true,
+        "restored": true
+      }
+    },
+    {
+      "id": "C06",
+      "status": "PASS",
+      "durationMs": 311,
+      "proof": {
+        "groupImmutable": true,
+        "mixedGroupRejected": true,
+        "duplicateRejected": true,
+        "max31Rejected": true,
+        "builtinGroupUnchanged": true
+      }
+    },
+    {
+      "id": "C07",
+      "status": "PASS",
+      "durationMs": 273,
+      "proof": {
+        "independentIdentities": 3,
+        "scenes": 2,
+        "sortedSamples": 6,
+        "reviewDimensions": 7,
+        "frozenDataset": "66e2b19eefee009269727d6cfc14f14662358417484b23e8bf62d41229977c67"
+      }
+    },
+    {
+      "id": "C08",
+      "status": "PASS",
+      "durationMs": 58665,
+      "proof": {
+        "builtins": 6,
+        "libraryCases": 3,
+        "realStorage": true,
+        "mcpToolsPerCase": 4,
+        "modelRequests": 0,
+        "embeddingRequests": 0
+      }
+    },
+    {
+      "id": "C09",
+      "status": "PASS",
+      "durationMs": 58976,
+      "proof": {
+        "samples": 6,
+        "repeats": 2,
+        "evidenceClass": "PROTOCOL_FIXTURE",
+        "actualHttpRequests": 36,
+        "embeddingRequests": 0
+      }
+    },
+    {
+      "id": "C10",
+      "status": "PASS",
+      "durationMs": 10,
+      "proof": {
+        "actualRequests": 36,
+        "criteriaOutcomeOriginalAnswerReviewAbsent": true,
+        "toolRetrievalContentCaptured": true,
+        "embeddingRequests": 0
+      }
+    },
+    {
+      "id": "C11",
+      "status": "PASS",
+      "durationMs": 172,
+      "proof": {
+        "fixtureNoQualityInference": true,
+        "changedRevisionOrCriteriaIncompatible": true,
+        "reasonCount": 3
+      }
+    },
+    {
+      "id": "C12",
+      "status": "PASS",
+      "durationMs": 28015,
+      "proof": {
+        "driftBeforeStartBlocked": true,
+        "materialDigestDriftBlocked": true,
+        "unknownVersionBlocked": true,
+        "unknownFieldsBlocked": true,
+        "noAdditionalModelRequests": true
+      }
+    },
+    {
+      "id": "C13",
+      "status": "PASS",
+      "durationMs": 130539,
+      "proof": {
+        "actualCancel": true,
+        "executionRestartInterrupted": true,
+        "sameStartRequestNoReplay": true,
+        "eventDuplicates": 0,
+        "unknownSubmission": {
+          "realAcceptedHttpResponseLost": true,
+          "submissions": 1,
+          "persistedTasks": 1,
+          "noSecondCaseOrResubmission": true
+        }
+      }
+    },
+    {
+      "id": "C14",
+      "status": "PASS",
+      "durationMs": 30907,
+      "proof": {
+        "injectionFollowedByNormal": true,
+        "cleanedBetweenCases": true,
+        "attackExposure": "EXPOSED",
+        "qualityVerdict": "NOT_EVALUATED"
+      }
+    },
+    {
+      "id": "U01",
+      "status": "PASS",
+      "durationMs": 0,
+      "proof": {
+        "title": "U01 浏览器结果确认、冻结案例、组成评测集、模型夹具实验、七维审阅与报告",
+        "attempts": [
+          {
+            "status": "passed",
+            "durationMs": 35250
+          }
+        ],
+        "reportHash": "194d1e0cce3c43866748da67a3fbd1ad206be54244374ba4a5629e81d20de69e"
+      }
+    },
+    {
+      "id": "U02",
+      "status": "PASS",
+      "durationMs": 0,
+      "proof": {
+        "title": "U02 保存、发布和组成响应丢失，401或404查询及刷新保留原请求",
+        "attempts": [
+          {
+            "status": "passed",
+            "durationMs": 5072
+          }
+        ],
+        "reportHash": "194d1e0cce3c43866748da67a3fbd1ad206be54244374ba4a5629e81d20de69e"
+      }
+    },
+    {
+      "id": "U03",
+      "status": "PASS",
+      "durationMs": 0,
+      "proof": {
+        "title": "U03 双标签页冲突、切换案例和迟到响应、登出换账号隔离",
+        "attempts": [
+          {
+            "status": "passed",
+            "durationMs": 8398
+          }
+        ],
+        "reportHash": "194d1e0cce3c43866748da67a3fbd1ad206be54244374ba4a5629e81d20de69e"
+      }
+    },
+    {
+      "id": "U04",
+      "status": "PASS",
+      "durationMs": 1,
+      "proof": {
+        "title": "U04 存储失败、窄屏、键盘、页面重开与空列表不自动提交",
+        "attempts": [
+          {
+            "status": "passed",
+            "durationMs": 2791
+          }
+        ],
+        "reportHash": "194d1e0cce3c43866748da67a3fbd1ad206be54244374ba4a5629e81d20de69e"
+      }
+    },
+    {
+      "id": "R01",
+      "status": "PASS",
+      "proof": {
+        "freshWindows": {
+          "freshSchema": true,
+          "migrations": 9,
+          "incrementalUpgrade": "covered by upgrade entry, not this fresh-schema assertion"
+        },
+        "v10Upgrade": {
+          "oldMigrationsUnchanged": 8,
+          "realV10Upgrade": true,
+          "oldRunEventsTokensPreserved": true,
+          "newOutcomeWritable": true,
+          "oldModulesRead": [
+            "users",
+            "runs",
+            "knowledge",
+            "memory",
+            "feishu",
+            "evaluations",
+            "remediation"
+          ],
+          "legacyLexicalPassages": 3
+        }
+      }
+    },
+    {
+      "id": "R02",
+      "status": "PASS",
+      "durationMs": 151962,
+      "proof": {
+        "backupId": "705fea87-0026-4bff-8efb-b332437ba97b",
+        "source": "5ec0050f-efac-47fb-8a3f-9f60c77b13f8",
+        "target": "1c315e12-a3f0-47ef-b147-6039a6c504c4",
+        "tableCount": 43,
+        "newTables": [
+          "diagnosis_outcomes",
+          "diagnosis_outcome_revisions",
+          "diagnosis_outcome_requests",
+          "evaluation_case_entries",
+          "evaluation_case_revisions",
+          "evaluation_case_events",
+          "evaluation_library_requests"
+        ],
+        "exactSnapshot": true
+      }
+    },
+    {
+      "id": "R03",
+      "status": "PASS",
+      "durationMs": 68,
+      "proof": {
+        "legacyDatasetAndReport": true,
+        "frozenManifestReadable": true,
+        "publicEventsVersion1": true,
+        "oldQueueAndRecovery": "Java real storage regression"
+      }
+    },
+    {
+      "id": "R04",
+      "status": "PASS",
+      "proof": {
+        "backupId": "635307a2-7d32-4cde-afc2-f29013bb3cbb",
+        "restoredExactBeforeStartup": true,
+        "oldApprovalStale": true,
+        "unknownNotReplayed": true,
+        "realStorage": true
+      }
+    },
+    {
+      "id": "R05",
+      "status": "PASS",
+      "proof": {
+        "status": "PASS",
+        "changed": [],
+        "preservedContainers": 31,
+        "preservedVolumes": 38,
+        "addedContainers": [],
+        "addedVolumes": []
+      },
+      "cleanupFailed": false
+    }
+  ],
+  "program": {
+    "path": ".local/outcome-cases-20261002/delivery-final/supportops.jar",
+    "jarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31",
+    "executionBundle": {
+      "schemaVersion": 1,
+      "files": [
+        {
+          "path": "scripts/evaluate.mjs",
+          "sha256": "aa60062debed09fe2a5e9a630af3bdffa4523cbaa91896dba5c65aa88aad77a6"
+        },
+        {
+          "path": "scripts/center-runner.mjs",
+          "sha256": "fdd067d224f0b46db68539d1a08fea8d24a1dd19ed4c425c963ad88106bcbbe5"
+        },
+        {
+          "path": "scripts/local-config.mjs",
+          "sha256": "d1f7493ee36794ef204a117423710ce04a11855c0b0b347d48079ddbcef695d9"
+        },
+        {
+          "path": "evaluation/run.mjs",
+          "sha256": "d3d74931871787283d3d59a8d085968cf515f85847fbb0887487e389afd5ab61"
+        },
+        {
+          "path": "evaluation/report.mjs",
+          "sha256": "3e682a61b387a5cea6e21d954768f8d4b10f6d32d4d2c4d56ba40a68c859c75d"
+        },
+        {
+          "path": "evaluation/contracts.mjs",
+          "sha256": "931ff09d3d1643df4d83f60c730fe2b66365f863c022fd3dd238ea85f1e9a6f4"
+        },
+        {
+          "path": "evaluation/cases.json",
+          "sha256": "b4c77bc73a8fcb59cb2bf6a0f333eed7371534cef6c561a924ef83e8422c9b5b"
+        },
+        {
+          "path": "evaluation/fixtures/injection-2.0.md",
+          "sha256": "a82bd751680a43d04bfabccab886f4c6ed4043dc2da7406d2e79c202c30d612d"
+        }
+      ]
+    },
+    "embeddedFilesVerified": 447,
+    "legacyJarPath": ".local/reliability-independent-recheck-20261002/boundaries/backup-empty/application.jar",
+    "legacyJarSha256": "d94c36f2a4a06544164b035f1ae2bbd395944b7c921db00c8301294feedf575f"
+  },
+  "source": [
+    {
+      "path": "src/main/resources/db/migration/V11__diagnosis_outcomes_and_case_library.sql",
+      "sha256": "48b45bc92740345000ae32a5a3b36210ee89994e48804f1c57c91a0b22653cff"
+    },
+    {
+      "path": "src/main/java/io/supportops/outcome/service/impl/DiagnosisOutcomeServiceImpl.java",
+      "sha256": "71593af8d26d310c51d137779e2d310424a16c08a6a88921b62e54402c2f12e2"
+    },
+    {
+      "path": "src/main/java/io/supportops/evaluation/service/impl/EvaluationCaseLibraryServiceImpl.java",
+      "sha256": "64a1a663b7bb306badf874f541d0d92778f58c85f97be6929db116df6e624f8f"
+    },
+    {
+      "path": "src/main/java/io/supportops/evaluation/service/support/EvaluationSnapshotService.java",
+      "sha256": "69ca7641339dfa150791892c6c77d3deeb5f8c778e37611a0a4bfd8972d95214"
+    },
+    {
+      "path": "src/main/java/io/supportops/evaluation/service/impl/EvaluationResultServiceImpl.java",
+      "sha256": "232da61f6bebaf735c73046d3df852043bebe50708ffced62b307cc292a20275"
+    },
+    {
+      "path": "src/main/java/io/supportops/api/support/FixedCommandJson.java",
+      "sha256": "c9fea228507392b3f89bc665869ed782ad07f765f9c45208fc93e32e9a832dc5"
+    },
+    {
+      "path": "src/main/resources/static/fixed-command.js",
+      "sha256": "fe87794bf1ebd83a1d73f0e4400a24d30c20e4f8cd0bf91fcbb4af9d24e51498"
+    },
+    {
+      "path": "src/main/resources/static/outcome.js",
+      "sha256": "7974ae307ebce4288db7ca55a10ba227222de63d410d43f98b09be182325d1f7"
+    },
+    {
+      "path": "src/main/resources/static/case-library.js",
+      "sha256": "1ff8343221da7a9aa438fa020d8fcbd09ba6444633a01dc79a6596b466c77795"
+    },
+    {
+      "path": "scripts/test-outcome-cases-package.mjs",
+      "sha256": "1e0fa2dc5a7817693726cd61d5c7215745097ac9b845108411f01377d65762f2"
+    },
+    {
+      "path": "scripts/test-outcome-cases.mjs",
+      "sha256": "0377c9589fba9f1edaea5e584e658d0131813f74f45c68fcbcf1676c7531e222"
+    },
+    {
+      "path": "scripts/test-outcome-cases-upgrade.mjs",
+      "sha256": "66975325196aa3f96976645136e5285f486e5bb749c3650ff670fd58e70709f8"
+    },
+    {
+      "path": "scripts/test-outcome-cases-linux.mjs",
+      "sha256": "87387b86955d32c29d952f18d541ca8f794a218dc39d843dd2dbc80553f7a10d"
+    },
+    {
+      "path": "scripts/outcome-cases/functional.mjs",
+      "sha256": "5dab50b1895492bf47935094b48d2fe86aba46e87a75db2385785ae612472481"
+    },
+    {
+      "path": "scripts/outcome-cases/execution.mjs",
+      "sha256": "0f07479b589cf7065f3847e283833d66ee43e69c39ee0b3c7d42be0c486f8616"
+    },
+    {
+      "path": "scripts/outcome-cases/unknown-submission.mjs",
+      "sha256": "8d579482bba8c5f7aa150027f1f60a09645cfac128d96ebd6e478e7391cb209b"
+    },
+    {
+      "path": "scripts/outcome-cases/browser.mjs",
+      "sha256": "61dcfcf7d729983d84f77a4daa86be4c1e34abee504eff943ad477dea7230ccb"
+    },
+    {
+      "path": "scripts/outcome-cases/capacity.mjs",
+      "sha256": "802241b75dd54e6f63a36cc5bab89b8b7a73574ccfa4fa06433765753e7c483b"
+    },
+    {
+      "path": "scripts/outcome-cases/cleanup.mjs",
+      "sha256": "8195f050aabe5ad15fae6db7005a30cb075920d4222f417f958430cc6fdf13e8"
+    },
+    {
+      "path": "scripts/outcome-cases/resources.mjs",
+      "sha256": "139c3aa2d4e2796a2696f5a7271bd0f06d6ef8067ecaab200049523272d3cbba"
+    },
+    {
+      "path": "scripts/outcome-cases/identity.mjs",
+      "sha256": "68bdf09a9bd6de85406d1504ef8ae3400036234d64aa3fad23b60141c99101b3"
+    },
+    {
+      "path": "scripts/outcome-cases/export-evidence.mjs",
+      "sha256": "8ef2869cf0d20f3a6b3598ccdddcb8f6ff046288ba0e0c80fee29a053dbe2554"
+    },
+    {
+      "path": "src/test/e2e/outcome-cases.spec.mjs",
+      "sha256": "9fb7f5dd4dcb380d6338c860e185de2b6b91ba6422a52a6afc4148b883e95c6c"
+    },
+    {
+      "path": "src/test/e2e/helpers.mjs",
+      "sha256": "aa287109c8382f2d58841978b59959a7f25f97a175698562ab587af9b6c6f809"
+    },
+    {
+      "path": "src/test/js/outcome-capacity.test.mjs",
+      "sha256": "79c81da0f8108bafd634bc20c3944ac411663726ece4493950a58eca1f77acf8"
+    },
+    {
+      "path": "src/test/js/outcome-cleanup.test.mjs",
+      "sha256": "2f629a94ff31f091544cda383b794f8c18cb0a2dacbbdc01b1d2d0bfa1cebb48"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": ".local/outcome-cases-20261002/development-status.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "fd63ef9609cbb23519c1a86f7a1b920828e5dd5df0c0ab94a32a9e871947ccbd"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/failure-history.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "a0bb1036298eac724f6d09a87b55e957a9afa31f1a109d99d66547ae83867454"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/source-before.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "36544ad9dfdeec8839abda933b796d78b7f8b86c8612351d70531b92c5020d81"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/source-after.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "7e9b9eaf3b7ce77322f005b68709d3b7cc244cfba281e00b1d9440519d37ac49"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/source-delta.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "69e3a8f906e2823c223c7dfb58c31bfb683adf226b9a2adedf49b15617e7461c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/git-before.txt",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "9f703662cbbce17ebd7f0689f19f659995c413645857a6f5291f0c57939a7e7e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/git-after.txt",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "c4ae99cfcd4245f88545778790bda8cf5098675ed2b2a716b72b1c2b18003363"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/containers-before.jsonl",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "e46813e388157a0af85642bbcfc19a19b6e937f7b2efe1ef053bf5b59920e094"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/volumes-before.jsonl",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "308551c468950651160a71c451d4b4397d7795113917b72c7dd56586b73f232c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/environment-incident.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "5081a5e566d8964bb195379638465c2dd7c2191ea2596950d9a2665c8961bcfa"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/environment-node-stops.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "e8c2dd887411bbcf90a1d2692e33e77e3e40a7513b07eebc7aca1daaee7cfe51"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/cleanup-interim.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "197b8ba849f2f5825905e5e76b1b9b561e1caf80119d86c2d10a924d329bb1d6"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/sixth-recovery-cleanup.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "ec2b21e153f983482def73841c2ee9b078b256935a4e08169da62d43040f5ae4"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/cleanup-past.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "b784b373b177a3028a8c5de567e37e837fa1ff97b51a25c4e78e4e97ab17195c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/recovered-cleanup.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "de7e71378ae02ed823327af0af8b5c6897bd23b2d5967f87f57b093079b47ce6"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-storage-cleanup.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "0bf34efc066fc3965a5ba5215b7796842ceb57dad2caa44e648fb9bdbedfb744"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/runtime-jar-cleanup-first.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "6ec0a717a8b17a6431d036651d1f2e300c9f1b184a8cea95f26e290921d09121"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/runtime-jar-cleanup.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "36ba620b6b71c44755e0fa339b72ff8e1b3e27e8e4022c06baeee4a127953ccd"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/jar-copy-inventory-before.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "ba755a2f7e41b5df7ff65e05a5eaa504da7c1cdd09cae3fbecaf4f3645977c9c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/original-resources-after-restart.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "8acf426dee0f73bbefadc4a1d9c21072bf632ae29e326e66a95d5a8bbadf3a7e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/original-resources-after-restart-retest.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "8adb5abf35628b4f9cf9f3b4cc3583ba3bbef097921fc35ac59a582bf650f24a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/original-resources-final.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "1fe1ad6d6ca71f7c4c623bdc9bb4823feb25b749be01106a8ad2ca74339b8aa2"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/resources-after-restart-before-cleanup.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "6d754e526c77e3000fb735b6ab4dfefea94db30e28edb831b1291e856a031690"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/resources-after-recovered-cleanup.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "7ebaf3b709d369c5dce5d13459550fc5e9689bdc100495ba17032c42eb0792e7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/docker-restart-processes.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "c666d836aa4aaab41f2d322f3f03d5aa7adfec3f6d6e81bee69ec3ff2b690f60"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/final-java-regression.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "7d3a41ac785ff5f9569cb48da0fc988265ea22c5847714fa53580fc7b22cec0d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/delivery-final/program.json",
+      "kind": "DEVELOPMENT_METADATA",
+      "checks": [],
+      "sha256": "6ca3abcf6d22a6ef7ca174cde2ef8350af1fdee0f2613d286de272e4a9bf7c9d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/delivery-final/supportops.jar",
+      "kind": "FROZEN_PROGRAM",
+      "checks": [],
+      "sha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/development-report-before-final.md",
+      "kind": "ORIGINAL_DEVELOPER_CHECKPOINT",
+      "checks": [],
+      "sha256": "1761a01afe9f342ff253823fc00e3e2656882ec7bac8a9db3ce58860287d2f65"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/development-status-before-final.json",
+      "kind": "ORIGINAL_DEVELOPER_CHECKPOINT",
+      "checks": [],
+      "sha256": "7bebf94a229162936bcef8cb0efe014a84dac59d8a3a608b97e1a9e7b3632969"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package4-cleanup-writer-recheck.json",
+      "kind": "ACTUAL_STOPPED_WRITER_RECHECK",
+      "checks": [
+        "R05"
+      ],
+      "sha256": "9105275f07681df3acf6e15e6ca29bdb8d0d4106db14fbcce5f3d3ef7998d59e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package4-cleanup-retest.json",
+      "kind": "SCOPED_CLEANUP_RETEST",
+      "checks": [
+        "R05"
+      ],
+      "sha256": "43ec9be0e0060b5e1ab1790619dd3ab0de255b66458eed40231754512530f49a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/runtime-jar-cleanup-second.json",
+      "kind": "SCOPED_COPY_CLEANUP_HISTORY",
+      "checks": [
+        "R05"
+      ],
+      "sha256": "0e86dde38cdee65f920b17001c2b52171c803b1be9bf7c61bd7058b6e92d9149"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/runtime-jar-cleanup-third.json",
+      "kind": "SCOPED_COPY_CLEANUP_HISTORY",
+      "checks": [
+        "R05"
+      ],
+      "sha256": "0084c0fc09b4c92f2e23944104005033a958b634f455eb240019dbb4cbb0073a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/runtime-jar-cleanup-second-failure.txt",
+      "kind": "ORIGINAL_CLEANUP_FAILURE",
+      "checks": [
+        "R05"
+      ],
+      "sha256": "59e16b649093d38ed51e9765880442d912be877687c5c8d58af6408ddfdaf94c"
+    },
+    {
+      "path": "docs/diagnosis-outcome-cases-acceptance-20261002.md",
+      "kind": "DEVELOPER_REPORT",
+      "checks": [],
+      "sha256": "ed0dfa72728cc3fadd62c6b01e18c154721923fa373204d710341a6057d48520"
+    },
+    {
+      "path": "docs/diagnosis-outcome-cases-resources-20261002.json",
+      "kind": "RESOURCE_LEDGER",
+      "checks": [
+        "R05"
+      ],
+      "sha256": "46877ac578f3efacce32ffdabef66aaf6d387ab7cd34d3e8962c354a5a0a64e0"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/compile-first.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "d7e11ae7803ee1fb61cf50571273bb3cf2338e55d5dcdd8983857b6f9b2249b1"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/compile-second.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "f188e93ac68c46445376d48fd0089a6e5bf329e10183d9ae02e4570d55ee9838"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/git-whitespace-crlf-retest.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "a9dce547f2d7f70596b864a5517d2f03cb69c2fe91eb41ed5c70c72bc67d76cc"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/git-whitespace-first.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "a7fefcb8d7a4345a129d09f5c9cf05b0fe744b8be431f560bd906c21589f2106"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-fifth-console.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "0c8ea9b457cf13813cdfbea71515e0f54a367fe16de21c453010e1bfe6f7ff64"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-first-console.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "169e218b725444a568293717a7d8b448223da90e26e69aba9a83017b2cf2f98e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-fourth-console.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "691957cfdc196bc8ef6c0710fe981f6328d68368e1e70251f21fec81e7aa2726"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-second-console.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "c436bc4835bffdaeb8d71a26e0bfda50b2b4a9d1b37908519d205a764933134e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-sixth-console.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "88733db813c7d0e2d60a12762ff70e243bec9f3fcfde364f06f54913a74dfdb8"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-third-console.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "e85564e72e8990b9ce92536ec648dc44251f2c25a829054d19ad67d7f4a51010"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "aaa54dbafe339cf057e8aad48c97045eaa35bc03975796e52334566205a4d0c8"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-openapi-final-retest.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "fc48b41f608c6fb3f95d5d926c2f3325ca9da2e08fd5fa196b0588408ae40699"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-openapi-final-retest2.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "a0890dbe5d9cc7b43670c7d693d7d19f35bb41fe0dd635ef7104879b880ce5df"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-openapi-final-retest3.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "a0746f2d5a47bc2cee168b7d44e77e4c530e0fffb90d15b8ae3d7b1d45a6e59d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-targeted-retest.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "2da476c566839d1025e5ccc7217cec078e632d7a28670144c706af89271b6621"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/js-final.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "761b60fee2a833b1838f948e294b19972c0ac14ba7b6bb86e5def884965141a3"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/js-first.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "d043a53ce9b3b2e4efe6de03c72e550b57148262eb0a7eb91b203d36190cc7c5"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/js-fourth.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "6846f02b19133b00a7b4bf03958333315eec87ccdc01418c6e293a1ff4af043b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/js-outcome-first.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "2d57e36918d8d40117f4472cf247fa7c45a46a9ed448859ecaa40149650e2483"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/js-outcome-retest.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "b9e46a8ab2cd735a79749e332fa1b01406574f8089c821b48e1da900f9881e2f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/js-polling-retest.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "50b0d5f9787bccaedc4ae7d8efefca4734cdfc595add4519df3a3f0d290ee096"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/js-resource-guard.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "a21ded39780657356c003545a3eb3ba60f84ed68d9f7a3ff14471f50fa6a1b4c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/js-second.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "846a8ec9c7841edf8b2dcfd190e25d473a8883c9fe5cc244800ba39698efb400"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/js-third.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "32438045e8fb6c6d65ce64146d773026758828a054b88107e8fdc0d37d94ef8c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/linux-final-attempt1-console.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "2fb2d45264b1e8f34a02e6a57b2b2fda5e2b7e4c38c959f9a6533d34ccafdb5a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/linux-final-attempt2-console.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "87d301b9055ac1b936a23e8f174b2ee54897668e46946539ec0f15c8f30d5577"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/linux-final-attempt3-console.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/original-resource-retest.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "e7bc178d13379617c67abc37f262e56194e2fff3ba9575f006b111c36f839684"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "c9025ffbb4391d4574a6942540a8687186c161b92fc8e3b2195a4a57665c6f1f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "fb4d7a3e606f21275a9b58acf153cb89bbcd5317acf0be9fb6ce1d1089773a1f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "33b19814db4cf91b29e101727d3bd0c6a4d7f264e3dfcc0dab675691447c03f0"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "8acc5a6a4193e0c58cb36b5f1754f560a576e77d8df245b5c372b8327ad0d1a0"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "66bce1e019b09ef69091a4a3ba2ba88d0228e9c1dcebb0ad73ad1c54ce625f71"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-first.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "4ddbff650560ada471264b7de13ae67f9ef0b2815542af25f3a7256048c58391"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-http.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "5f6b74232417655dafbd613b6b0e96b292d556af650ffe538f17f3994ff4b889"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/sixth-recovery-application.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "6b2770bdfb0609b41b3df8101e4a1728a0f2f046d98788e566b6afd1939fe4bd"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/sixth-recovery-console.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "d938fa189912f8776c3deb31a6bec42f403f57b9c8e3ed936bdb076caf6bd61c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt1-console.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "2f2dff86ffd3d5f84aceda9190755151201952a597dff923a9333571713c632f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt2-console.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "c0c17739863e551ec8c3a513e6aedaff4db30efcdc2c5d99f2032974b02dad98"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt3-console.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "0c9d040128862c793269f7f6bd2c1443a1cd1b7f29df350e87b02fc16ce90b24"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/verify-fifth.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "22cea5e7e09c653eb6c3a74b5f2d25796069dc2d143281e729342a3801d97d93"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/verify-first.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "39aad3b791cb0a770c4dfd3fc813a86d634b640f56cec0392e1c977db14d0ced"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/verify-fourth.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "38631d97e333d3d63f43eaefc33f3a2f3defea3235b176088d340e77abe400b5"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/verify-second.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "064831d6c72f36d0a35ce84f33220e7d3578ae479750b975c93b9647e42dd6cb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/verify-sixth.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "de1057c12c7a5a6c60dd27742cf7719e4a1ef3efac4dd9e72515a3c538f16540"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/verify-third.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "2580c782421ca48e8c00181786f3ee3a4913a5e1e496db21e1aa2e54ea7ee64e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt1-console.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "45265b84eb9abe478cc2e82c4e42ca4623498b08c1230c99d42e0510c1f18ab2"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2-console.log",
+      "kind": "ORIGINAL_LOG",
+      "checks": [],
+      "sha256": "7d0c3db5f3eb60245de0f9800c3c7fae1217011848e68779042592e44306358e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/private/functional-snapshots.json",
+      "kind": "PRIVATE_SYNTHETIC_PROOF",
+      "checks": [
+        "O01",
+        "O02",
+        "O03",
+        "O04",
+        "O05",
+        "O06",
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06"
+      ],
+      "sha256": "29c5e1233b5e5eb784c84e2325c43208d8db78871ede160b59eee391f55c99f5"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/private/source-check-results.json",
+      "kind": "PRIVATE_SYNTHETIC_PROOF",
+      "checks": [
+        "C08"
+      ],
+      "sha256": "4e55853c54a933c49ed420232363a30b4fc0b9f549990997b71d458ce3c48cb7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/private/model-experiment.json",
+      "kind": "PRIVATE_SYNTHETIC_PROOF",
+      "checks": [
+        "C09"
+      ],
+      "sha256": "8f4a1e1aef14e0e51978a53ffa973252de9570f850e37a7cbbd01769618d9d72"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/private/report.json",
+      "kind": "PRIVATE_SYNTHETIC_PROOF",
+      "checks": [
+        "C07",
+        "C09"
+      ],
+      "sha256": "2e8be1aff744bcf4c4fa50faa22e6fc1d3dcc7733cea43807ed55b824bc3c403"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/private/report.md",
+      "kind": "PRIVATE_SYNTHETIC_PROOF",
+      "checks": [
+        "C07"
+      ],
+      "sha256": "288140c3f0dcb680301b7af77a6e7a81fa02c03e8ee1c5a35b77c7983a9cd4db"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/private/input-capture.json",
+      "kind": "PRIVATE_SYNTHETIC_PROOF",
+      "checks": [
+        "C10"
+      ],
+      "sha256": "d8c185c626b9a069636abf6861a0ad3c5677048e1b8038eb858edebcbabb69b9"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/private/comparison.json",
+      "kind": "PRIVATE_SYNTHETIC_PROOF",
+      "checks": [
+        "C11"
+      ],
+      "sha256": "1cc21c0502a002e2dfdb730e47e69da1e009f82f64818323f0a737ccf8f67c19"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/private/cancel-restart.json",
+      "kind": "PRIVATE_SYNTHETIC_PROOF",
+      "checks": [
+        "C13"
+      ],
+      "sha256": "c9b214af11637a862729e09a79a0abd7188adf200091af09d87d576643ef6704"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/private/injection-followed.json",
+      "kind": "PRIVATE_SYNTHETIC_PROOF",
+      "checks": [
+        "C14"
+      ],
+      "sha256": "5834bd3eb07484bd2c7889b624427755e0e3f9f8bf118042425da178dd4c8fca"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/private/old-format.json",
+      "kind": "PRIVATE_SYNTHETIC_PROOF",
+      "checks": [
+        "R03"
+      ],
+      "sha256": "7f8dc52fdb849ba0ba76859dbc1605f3fea7805c07f68294b982ed5dc2dec56d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/public/report.json",
+      "kind": "HTTP_CHECKPOINT",
+      "checks": [],
+      "sha256": "767d2e65c5c1136cb044ead42f90a7a375851761f3e94a041a733327c174ba2b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/browser-results/playwright-private.json",
+      "kind": "ORIGINAL_BROWSER_FAILURE",
+      "checks": [
+        "U01",
+        "U02",
+        "U03",
+        "U04"
+      ],
+      "sha256": "922c2072aa6750168c8b9e7a04c5fb68e1cb5f37eafd4f2f66224989d7b61960"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-first/public/report.json",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "4ce5c1b13ba53a3e834e11171f272e51c3d9e8584f5bbf6831a677da273bbe75"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-first/private/suite-failure.txt",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "9e29de9426cfc17df4211ac241043305e15f2bddc931c8510322e4a3081ffaf5"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-second/public/report.json",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "1f113099742d2c3e8d4b2e311673ce58287c9a0f230d5cf88a5cf0b26d5a4039"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-second/private/suite-failure.txt",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "9506356e87239db712d109d7a9a82f5b341a4ede4d99809c4beee9b31bb3e58b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-third/public/report.json",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "b64208a1a1dfcc83324d271ec117c9a4a2ec60246bb5eb659616e19d410c9ec1"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-third/private/suite-failure.txt",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "f803eea8d4a8182fa25df61c9720de887321e5a0300e1280459245bc8e809b59"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-fourth/public/report.json",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "84eb82b2e1cd3bfc71d16f58b993709b8c0a805e1c4054cdccace88135c7aa63"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-fourth/private/suite-failure.txt",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "8a285694001b9afc81f8ceb0b839ecc648d3e723d67bb40bc7b4e6ea7313a70d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-fifth/public/report.json",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "0326c0caa14f2a63e3ae1852a0253a114d2b0a9e01e4f9e617d9b6e04df54d23"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-fifth/private/suite-failure.txt",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "4569ed5de64166916adc46bed81373b9e347c67f483dc35035bac0817a8b9030"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-sixth/public/report.json",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "fda87af2a81311188519db8229ed74f1dfffc257498d2eb5ed36ed582a3420fd"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/http-sixth/private/suite-failure.txt",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "9862886b59e3464caa9acc76fd9754dfef8deaf8f3f5dd8367cd54b39d1ed251"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt1/public/report.json",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "f1a9e2bdede336c8974178dd39890c26ea897b935d761d568316bcc4311fa13b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt1/private/suite-failure.txt",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "136b82798b17fa4c0eaf453138e0fdfac011a9524d9049ac99a4baaa79a9d4e8"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/public/report.json",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "767d2e65c5c1136cb044ead42f90a7a375851761f3e94a041a733327c174ba2b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/windows-final-attempt2/private/suite-failure.txt",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "c16b213f997889d501560d7a32f7c87b157277198079c23ae57bc940d015811a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt1/public/report.json",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "345cf04330e70790af9e84d01e61509d7a657fdc3abda11f5e458dc731d04ff7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt1/private/failure.txt",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "02a59ad964670312fb4f40cbeb55916bd2836f10bb6ace1b244a4c4f8a3077c4"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt2/public/report.json",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "96a532291e87128f7527ecc65da87093a74e42c356e443c7cdef935187d36364"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt2/private/failure.txt",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "c2013b1b0ec218ad28952a1b8a9077827506be370997366b0581ab95137e3eb7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt3/public/report.json",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "eeb5824fc9c120a9045a767951b5ce50cdb14572f2dd28d870935ed5dba31cc7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/upgrade-final-attempt3/private/failure.txt",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "7b511fdaf10a5580e6ba2b1f3221c5e6d3d8c5744ee659b05e3f0b4a609e890f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/linux-final-attempt1/public/report.json",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "d97e9cc4b1181cc60485195aea2e27202ae4a46d9a70ce4ba0308f180da8381e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/linux-final-attempt1/private/failure.txt",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "a76c65c839be66ab0507c5f9f43b6904316c41b5e49f6d66d6ca329a410f43bd"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/linux-final-attempt1/private/captured/js.log",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "131765f8708c2bc4810427bb39614bee5457551633124485a8a02a9f86b034d7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/linux-final-attempt2/public/report.json",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "60628f1ec919a9a3d000d99b7ac98bc8335070ad9dcea32a9c140736827511e6"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/linux-final-attempt2/private/failure.txt",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "fcbcea2f2cb2c3ec3dfca19d4e001caa1b0f124459c6913646ddeb840c9ac3c0"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/linux-final-attempt2/private/captured/js.log",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "d1beeeeed7c14798f6a0f8967297a00ac5e797232249b535ac5ee2f2736ad765"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/linux-final-attempt3/public/report.json",
+      "kind": "ORIGINAL_ATTEMPT",
+      "checks": [],
+      "sha256": "0f8c6a9e2b526c1c8e330d0cb965778c6742ceada86627e3daf7422453dcc68e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.agent.service.support.DiagnosisTimeFormatterTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "2b73cc17d911a3638ed4e9ea080d42ecd58b076961399777d4f0b4b7dfc68776"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.config.ModelCatalogClientTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "b6c83718036e44c23e8b0bde16d308d5a1eb07655410ebbb34753150c1fa14ab"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.config.ModelSettingsTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "627e106a701e2a46ba42b9b72b7cc91cec6e858bde9c54c996657f9edef03664"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.demo.DemoScenarioPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "a75fd6eee08b24a8a12fe8f75b0303f5803fd3315ef34633fb1d317e6b81e6e0"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.evaluation.EvaluationApiTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "29d09acdd2ba45f826c7d43e8c6fd435d78f498401ab8ac025c017552f90c520"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.evaluation.EvaluationComparisonTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "2fd0164d0507d64fb36f852988be0ae4a85e15df3b1d9dc3db457b1edf064d23"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.evaluation.EvaluationLifecycleTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "6cb5925dcd894546c7f4a4ebbaff7cb33dba1cad8a786221651e64607cac925c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.evaluation.EvaluationMigrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "a09beb267aec2f6262b9f71d82891df02c32a4afc7b1b3f9660aa4261f299f5f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.evaluation.EvaluationPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "db025e33ddc9e7ac1a7fa5b12c27080b8e5454cc21d9c2c3d213d3845895e3c5"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.feishu.transport.FeishuConnectionTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "b97b541caa857993397b572525a26d1896916ae897d60bc54c480919636708f8"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.feishu.transport.FeishuProtocolTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "ef7988374a442bc0f4a9a8c5086293526e9486604a61ad5c54851042393870ef"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.HarnessLifecycleTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "e0c317c77dab83b820d64e31005f8f166d0e814195902d366d4e1d5911de7742"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.knowledge.DocumentParserTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "862a96a89f7dfabdef08b378cab7d73eddc4145b58c498133d53bc0fe32e03a3"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.knowledge.KnowledgeInfrastructureTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "fa3723dcd830d9153f98109dd5160647a39f2dd306fd0ce1c8e1ef5f22c9b962"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.knowledge.KnowledgeRerankingTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "d9cc8c44483a04f99f744d039a52beaa76414d33013fd97ede8091baae721077"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.knowledge.LocalOnnxRerankerTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "d28bc505bd41b5d49c72427afd5feb407e43419dfd94e99f15009d55048afefc"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.knowledge.RerankingApiTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "2c67d2832e98790c3b96c316d8775df01f8934a985218dd5d1f659c5eb093f0b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.ops.ReadOnlyDoctorTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "d81b7c8bb26d9c118ef560139b150b7103feaf37a669716374b9411043615a2a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.ops.RuntimeConfigurationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "e567fd056738f867214041d80b58402a4bb08be74e6490932b89f3d490d56de1"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.outcome.OutcomeMigrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "f3dd3bf3e7adf933d84564a6ea573662dfb945e600ee6e0697b07a258a25a14a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.outcome.OutcomePersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "32efbdf2c7e9a84cdeaaee59b96c2cfd7c0a7666ad242db9ec922d78d7524c14"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.persistence.FeishuPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "0d25248a191b5818da4366cc10115da065132c730c44947a94d24ed2935c4c0d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.persistence.MybatisPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "be961025f7c50ac9f098d3af0f23cf1004675d68b6d85687403fc30ca5d7b63b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.persistence.UsageAnalysisTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "f2a9eddc1d22d92be5e2d11fc979539b5054c0ce66d9212387f3d5618b90a731"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.persistence.UserPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "3cddbced69f996b54f478bcbc495daee50acf322ce9146685591027f665e0cf1"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.ProviderRegistryTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "6819a0da26971ee921e7791ef70dfe6d82e80ffcccb0bc945c4708b37b4dfcc7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.remediation.RemediationCrashProcessTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "c9d21087e62bb76a01052f0d0cc7747f586d15f9b3ea2a7de3fad4dffecf4ebc"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.remediation.RemediationMigrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "8ad6bc05c72581d7f6133ad6b08d574f008dc3829967605aa0edee1625f8cc54"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.remediation.RemediationPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "8ee471cb00890ed33a83de2cc29e514d9378abe13d5697158525bcd09f34191c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.RunStreamSignalsTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "25b399d7bfdb65af98f69124a8f684d5ff3ca1a9e5687eb4af632b00bb22df1a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-third-reports/surefire-reports/TEST-io.supportops.SupportOpsIntegrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "2df2c238554f0975bf802a6f5dadf7ee6331c5a3644630dc21647c58ae8e4798"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.agent.service.support.DiagnosisTimeFormatterTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "7833c6ac19bd39003c193f40149a093049a590b0906ee244ceac7e47b5b972bc"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.config.ModelCatalogClientTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "57b784f0ee2b54f1cc09cf5ce6d4e81c8765b03c5223bda4bcb3f20677482be9"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.config.ModelSettingsTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "fc6ec6f77a5065c2a4bd0a068d393cf90bef086e773c674aae366b0578d27f7c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.demo.DemoScenarioPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "48a21a7fcac71035780e86baa272098caff58bcf587cee50eaa48b5c7cb32bff"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.evaluation.EvaluationApiTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "5b66de2737c4d559f1d3aca1a2bf6a45344f85a02973da1c86edc2c317938976"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.evaluation.EvaluationComparisonTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "5176146d5ddf62ebdb652e022a20582da058784481ac1dedca9f8eb4a492b2ed"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.evaluation.EvaluationLifecycleTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "9fdbef4c58ea812fb1679194dbe7afbef5eb3b16dcb1e66185aa0a9da98e38b2"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.evaluation.EvaluationMigrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "50fb607037f797a4a76e89dcfe3f4ddcf96b581cce539e353a644514072dc03f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.evaluation.EvaluationPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "fe927e33b1c459990c0743600cb1ca310ea01b360926f722fb1cb411a6c25143"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.feishu.transport.FeishuConnectionTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "938094ddfb2339c5fdde35a888b0a0faf952e849fadd7d8fc4680bcdf6a46ada"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.feishu.transport.FeishuProtocolTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "883825c3c28d7ebef4fbb1852618f519aebb3cb75e570bbcc078a8df69ce475a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.HarnessLifecycleTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "33329e871b7680c556b3170727ceca89ac3b0a9be0e276fc2d8895b03d57644e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.knowledge.DocumentParserTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "badf8aeed87c8a2cdad3e7a3a0945c35b7e70efaba5aedcfc46395956a779547"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.knowledge.KnowledgeInfrastructureTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "34c8882935ea737cecefd5ad21898cb90970cac70168d356b82c851856a0cda8"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.knowledge.KnowledgeRerankingTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "daf50f5688aab226dd89a02c5686538637bf40056f4171b9480389190761a626"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.knowledge.LocalOnnxRerankerTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "082c9d40ad42fe8698a8de21147482473f8750f19f284e4591cd75c0cadecb40"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.knowledge.RerankingApiTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "b0534767b8202ad25747b7b30e64c340b8db7c43b4cac9019c22c4afc121fadb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.ops.ReadOnlyDoctorTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "0e02b091bc8385b9ddd32c48ef5cadf11cfcbf220d2728d19a88e83c3d34482f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.ops.RuntimeConfigurationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "1810be35aaa9292253d8d7b87df5e41bac697844e6583da23f9b5e38947afadb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.outcome.OutcomeMigrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "e2dbe480fc0d74dc66dbad58f3db6b3e59909f8b309dcea5b064a6320dac3a1d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.outcome.OutcomePersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "f57ab95bd06eab30d323ce5db9f338c4b6714c6743e4a02e0bb864965d374476"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.persistence.FeishuPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "cf481dc3ed3736d8ad2e8b793a33ebc2c21c692921359d52c8e0615b9db674f7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.persistence.MybatisPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "995552487306608d6f440f907a6ecf71738bd377ba653ae0bcfc9b09556aba51"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.persistence.UsageAnalysisTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "9e531cad704f0b31760b6a68486224ef86a53c3ba7bcc8ef395451571396f76f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.persistence.UserPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "704e5beb10b11308e978c88c9cfd7461da4e3a47dc18a531659e966868f830cf"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.ProviderRegistryTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "7ac32513960f05a5f9a43b43a9990f1d9e45d679462aa519314e89304303b0c4"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.remediation.RemediationCrashProcessTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "5a4af1b9e97493d83055e97789a4e17c11e609961c0128e1be64ffd1a9a9a0bb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.remediation.RemediationMigrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "4ba130d0271c0ce0c0b54b5f4ebb9fb2cf929514f9a577dec853f2df7a5d9dd3"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.remediation.RemediationPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "4f3d0d47a5d1131519a3837f4871130ef8b055a2d1c8e18396a4f5ed377faa3d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.RunStreamSignalsTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "a8f79f2216717ff08d0de097312761df8e7660261718420e8a150bb4c7640fce"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fourth-reports/TEST-io.supportops.SupportOpsIntegrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "9b988619474a5dc2e540fcb26acf7610c9ca1963f0bbd467f090664a66ae197b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.agent.service.support.DiagnosisTimeFormatterTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "7833c6ac19bd39003c193f40149a093049a590b0906ee244ceac7e47b5b972bc"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.config.ModelCatalogClientTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "57b784f0ee2b54f1cc09cf5ce6d4e81c8765b03c5223bda4bcb3f20677482be9"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.config.ModelSettingsTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "b737739f179e5cdb1b90358395512b43e6b712ff392415bbdeed1b16d90911c7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.demo.DemoScenarioPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "48a21a7fcac71035780e86baa272098caff58bcf587cee50eaa48b5c7cb32bff"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.evaluation.EvaluationApiTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "5b66de2737c4d559f1d3aca1a2bf6a45344f85a02973da1c86edc2c317938976"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.evaluation.EvaluationComparisonTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "5176146d5ddf62ebdb652e022a20582da058784481ac1dedca9f8eb4a492b2ed"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.evaluation.EvaluationLifecycleTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "9fdbef4c58ea812fb1679194dbe7afbef5eb3b16dcb1e66185aa0a9da98e38b2"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.evaluation.EvaluationMigrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "50fb607037f797a4a76e89dcfe3f4ddcf96b581cce539e353a644514072dc03f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.evaluation.EvaluationPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "16ec46a41a3bcda53e92aad1fc44a5bd5820ffe9e25455e8e6ff20a343a53f12"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.feishu.transport.FeishuConnectionTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "938094ddfb2339c5fdde35a888b0a0faf952e849fadd7d8fc4680bcdf6a46ada"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.feishu.transport.FeishuProtocolTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "883825c3c28d7ebef4fbb1852618f519aebb3cb75e570bbcc078a8df69ce475a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.HarnessLifecycleTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "33329e871b7680c556b3170727ceca89ac3b0a9be0e276fc2d8895b03d57644e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.knowledge.DocumentParserTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "badf8aeed87c8a2cdad3e7a3a0945c35b7e70efaba5aedcfc46395956a779547"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.knowledge.KnowledgeInfrastructureTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "34c8882935ea737cecefd5ad21898cb90970cac70168d356b82c851856a0cda8"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.knowledge.KnowledgeRerankingTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "daf50f5688aab226dd89a02c5686538637bf40056f4171b9480389190761a626"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.knowledge.LocalOnnxRerankerTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "082c9d40ad42fe8698a8de21147482473f8750f19f284e4591cd75c0cadecb40"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.knowledge.RerankingApiTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "b0534767b8202ad25747b7b30e64c340b8db7c43b4cac9019c22c4afc121fadb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.ops.ReadOnlyDoctorTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "0e02b091bc8385b9ddd32c48ef5cadf11cfcbf220d2728d19a88e83c3d34482f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.ops.RuntimeConfigurationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "1810be35aaa9292253d8d7b87df5e41bac697844e6583da23f9b5e38947afadb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.outcome.OutcomeMigrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "e2dbe480fc0d74dc66dbad58f3db6b3e59909f8b309dcea5b064a6320dac3a1d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.outcome.OutcomePersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "f57ab95bd06eab30d323ce5db9f338c4b6714c6743e4a02e0bb864965d374476"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.persistence.FeishuPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "cf481dc3ed3736d8ad2e8b793a33ebc2c21c692921359d52c8e0615b9db674f7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.persistence.MybatisPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "995552487306608d6f440f907a6ecf71738bd377ba653ae0bcfc9b09556aba51"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.persistence.UsageAnalysisTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "9e531cad704f0b31760b6a68486224ef86a53c3ba7bcc8ef395451571396f76f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.persistence.UserPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "704e5beb10b11308e978c88c9cfd7461da4e3a47dc18a531659e966868f830cf"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.ProviderRegistryTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "7ac32513960f05a5f9a43b43a9990f1d9e45d679462aa519314e89304303b0c4"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.remediation.RemediationCrashProcessTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "5a4af1b9e97493d83055e97789a4e17c11e609961c0128e1be64ffd1a9a9a0bb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.remediation.RemediationMigrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "4ba130d0271c0ce0c0b54b5f4ebb9fb2cf929514f9a577dec853f2df7a5d9dd3"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.remediation.RemediationPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "4f3d0d47a5d1131519a3837f4871130ef8b055a2d1c8e18396a4f5ed377faa3d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.RunStreamSignalsTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "a8f79f2216717ff08d0de097312761df8e7660261718420e8a150bb4c7640fce"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-cleanup-legacy-retest-reports/TEST-io.supportops.SupportOpsIntegrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "9b988619474a5dc2e540fcb26acf7610c9ca1963f0bbd467f090664a66ae197b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.agent.service.support.DiagnosisTimeFormatterTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "01df86cfdd89f9ddee4aff371a23e3ff69f7f750e5f7bed8acbadfc35f3ca58e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.config.ModelCatalogClientTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "9289390fe71051285ddae0ea5c5bc7f62ce8a3e946d65cff9052cc669a0bface"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.config.ModelSettingsTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "9f3e1644402d66bdc6b1bcfb9f4df36f21d0d45c2e2b88f853c780583ad313fb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.demo.DemoScenarioPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "1a08375ee20a2a715dc487e7aa64a1d415432539ed669b551aa68110a395c789"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.evaluation.EvaluationApiTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "b38f5f604919c3997518a28c956845d57f53e780d85c6816aea6733bf0401f1f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.evaluation.EvaluationComparisonTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "59e19662ac87bd121b264db928b7962b2e67e583e82e13e7bb478467f8811ee7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.evaluation.EvaluationLifecycleTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "1c6e6df43b3e94d59bc67be04081cd389abfbbffed749e75aff49d8cdac8e98e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.evaluation.EvaluationMigrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "a94802cc16161e3f36c130d92a602c3f4a32819435105dd71c2a383c060a456b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.evaluation.EvaluationPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "2c034e43a39c813117a7922ce09ecec19ef478b7c97acf9a93af9a3ab20e9898"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.feishu.transport.FeishuConnectionTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "f11b7f926f46d7cb3717d6386643cbffcc46953926207d631772bc0572bd6f24"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.feishu.transport.FeishuProtocolTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "677f1ecb04546b9ad17d1eef9bacaacdb22d24abe5646bdbed469794a8d40c20"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.HarnessLifecycleTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "68d5a922fee4d7493de0ed4ffe00a6f220857778e89abc48b3d3e4502f58af5e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.knowledge.DocumentParserTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "55b1eb29320e6831325a8cab000495350f78d2670a1e85ad394fb53c933c7bff"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.knowledge.KnowledgeInfrastructureTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "b6c0b806a50f3417a5802e7a07e722b3188e16db73b58267c6686f337cef129c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.knowledge.KnowledgeRerankingTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "44c63899ef25d76b1e1d3d198b2a08934b66083b1948a5185e1766f20fdbe638"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.knowledge.LocalOnnxRerankerTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "f133ad6bc6a0169d3bf2701f04519a3bdbc9fbe4e2bd9da1ba97dfd3020ef3e4"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.knowledge.RerankingApiTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "24c680748a6f16fcb7cb1511e9a13e7d52a5b940ace664c8dcf479b9779cbae7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.ops.ReadOnlyDoctorTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "9b6a0f532e276bcc78ceb692356176a717fcb672f73ae188a110adfcb315af3e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.ops.RuntimeConfigurationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "3b7eeee96c1252495bf51b59001e4a2dbe44488a30ce03d76f9448a5fac59e2c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.outcome.OutcomeMigrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "487aef0b3b01d3bc84be23aa02c5a56e68f274adf642f0bfd75c8d9d49ae4b19"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.outcome.OutcomePersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "59247cccfaa1e0493a1433388877cb52f7d9c8e27ea933943e37cc51b7388711"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.persistence.FeishuPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "99e68da591963c36ebac7765ab5eba61c7a7d48773ed24fb37fb3d648f275443"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.persistence.MybatisPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "61a7aa25d330e8dbd10477988e922315e4f804e75c1ade07c89eaa94d5d9bf0d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.persistence.UsageAnalysisTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "b50d86c9fcae9ddc6b18e7c72874e41c5198335d79a069f0744d45ed662125b5"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.persistence.UserPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "5ba20e251ca1be4afac3c9732324d784dae69b47afe75c282c4c9542f69acc8e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.ProviderRegistryTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "4572ee415015df3613338d6d9f12e27bc6119717308f07cb2458ed2eaa172b5a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.remediation.RemediationCrashProcessTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "48cb3d6e4864980a803a96786265c2c14388b40c93a2410854a35a47e157bcaf"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.remediation.RemediationMigrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "11e6a68ecc4cd47a68c6071922818e1c71065fc8e82a3a7bb68f8cc2f5401a72"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.remediation.RemediationPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "a0a9c76581436275b23d4061a0bfcbb8d90a0d477e0619ca17679528fa0a4d5b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.RunStreamSignalsTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "9afbe342c141ea8bf1042552c11f18347fda0f8bfb1527875fac43b6f55eea3e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-fifth-environment-reports/TEST-io.supportops.SupportOpsIntegrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "ee9ce74264dc32565dae0b26216496e68dbdfa684d4f04c4dcee10305ab23e1c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.agent.service.support.DiagnosisTimeFormatterTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "19f8bc17622883bf5ad753c1aa7a60f0b616080873a60903de9af18b5b487f73"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.config.ModelCatalogClientTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "3f40f75899cea8a1a6780cb705239a6cb2df9c1e2b3a7a0a08fb6b1e14945ebc"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.config.ModelSettingsTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "28a718ee831449d39e95b89441c4f69db81380dd1995de125f7097ca232919e5"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.demo.DemoScenarioPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "5fef07ee0ff776fb4d176da93c089c88f98998ac1fe2a6deccb5d73741f4def8"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.evaluation.EvaluationApiTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "246693901d80ff21a1504d120f3dcec4760e2bb565755338d0fd33152f9877a0"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.evaluation.EvaluationComparisonTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "28d52a5a5b2a6ade35095b646fa6fa0dc188f8b84c947df7e23626b28bda8817"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.evaluation.EvaluationLifecycleTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "1c866b330ab554976cb7689147002c6acd28503d8a8a2acbb694d6349502494d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.evaluation.EvaluationMigrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "4d2f9f0fb54796cd1bcff0c9927df77f51ae75b287723267d704a84551526f72"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.evaluation.EvaluationPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "cd4cd8c6f7fc8a5ce670c411e118a6014c25f6e16cae48c1366099389d4cdfd4"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.feishu.transport.FeishuConnectionTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "27e435d91522cb3c30a9c7573db482069f9b3c5e5adddf07de71785809a3727f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.feishu.transport.FeishuProtocolTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "50fbbeca4df03ad088dcf509e0f844e231e697d0714a5a58151237ffdfc88eeb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.HarnessLifecycleTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "348c582b5e33ba4d7db30ee923b702c56b2fe30e6a10a0d71e015a2bf366e5f2"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.knowledge.DocumentParserTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "88c916f9b0bc21387f43208bf7087e00413d99498a579ec31c50005099a79c0a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.knowledge.KnowledgeInfrastructureTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "9019eef505fba44c4762371bef6a6e22863cac7411e3c82f97ea66c407368e39"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.knowledge.KnowledgeRerankingTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "e80c69fee228fb16638a7a68c7a17462e2bf89c91eb4f3434e7c31b316c27aa4"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.knowledge.LocalOnnxRerankerTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "c6ea97afa56a372a7fa49c154c4e879b378615879a316400564bb2560f65b860"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.knowledge.RerankingApiTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "5c0a25f1ff5bb05ab23e32d3a91bd81938cd81737a2982230ab3088f0a129de5"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.ops.ReadOnlyDoctorTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "006f9141f1c5d5547f9a94bda60226474075aa747e97164a16862975d5c0c1e0"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.ops.RuntimeConfigurationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "046c034fa422534c8faf7dfed31cbda1594edb0a5a865584cde84694ee213d20"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.outcome.OutcomeMigrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "1ab43531a20915207fc1bc5d19591d6bd0b27a24fe34cc648f6843d251536643"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.outcome.OutcomePersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "82c403e6ba3e825e88e520c5fe57fde648ab6ba5e40f67d679c6e6eb844afc36"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.persistence.FeishuPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "39cbfae2a47dcdec45439e0af949951384f16be0397ed8a9fbb567e76fbf11fa"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.persistence.MybatisPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "a94bcafe884af9e2fc974ff9fb5d0819b113afaee6b3aa749030117f59b27577"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.persistence.UsageAnalysisTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "e3f6294fae232840f0008d72ec5c0c33756860cd3166799b9f7f3257118f4e79"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.persistence.UserPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "58c4cb3f9ac0ad4bd01d65fad23371972ece239292baacc58077f996e58ab999"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.ProviderRegistryTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "072d8eaed619d4ffa8a95d6f43e5d748a1ffd69ce444a25077ba059e76dccc1b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.remediation.RemediationCrashProcessTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "feb2e241be5b45f6a074cda74b314a941d38222f0b10c119a9d710ae36aafdea"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.remediation.RemediationMigrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "b418418b47aeaf1d7cd18e2a2a225a99ea9fcf9f0b452c20d4d43fe7aec1ede8"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.remediation.RemediationPersistenceTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "73e9ddde5c2c7f461b632e856af9bb3bf68f733a7936f1480fb34be5a54e75b9"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.RunStreamSignalsTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "b2613a18295bdba646643e70b037684e4c0a185675db65e840dcba343997212a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/java-sixth-reports/TEST-io.supportops.SupportOpsIntegrationTest.xml",
+      "kind": "ORIGINAL_JAVA_RESULT",
+      "checks": [],
+      "sha256": "87f5c5d48a90f1df20e7d6d6cd2e6aa2acbcf684f024e7031cdd48bd53b81690"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/private/failure.txt",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "2b741bdafdcfe496efbadc5715f9c5b1d3ea4a405f813da2cb574ae523af18f7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/private/javascript.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "bd7aafd0215c64be6931c7ac7cd9e11f60f3682755c5e27f76c24192abac0e29"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/public/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "98ab8d25ecdd73c375b3102ccb28c73939f8d4b38b91dd947ee5f7b371bbe935"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/windows/private/application-3cbb396a-adf4-4c55-a696-cc6087ce2613.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "71ab5a4aea7572bc107fbc63f3f94bfb1bb59e8d1756de75651887e355e58407"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/windows/private/application-3ce155fb-9d80-4004-8a11-3ce87dc77c49.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "71efbed94069af3b2703b600772067d96823ae1b4a5ae5ad40e3a2811ded3107"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/windows/private/C09-failure.txt",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "45df02ee221cdb0260d703d528a01042b0f119f6d7ca69375110dfb2302cdf28"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/windows/private/functional-snapshots.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "9b5dfae6851c471be55cdbfd73bee7604c7c5e3ba5f55878af5ca71f90ec17bf"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/windows/private/model-requests.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/windows/private/source-check-results.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "cb491d103b67a0dc5aceb76a76b63143b4ec47d07821b99d36c52ae3900b9f26"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/windows/private/suite-failure.txt",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "45df02ee221cdb0260d703d528a01042b0f119f6d7ca69375110dfb2302cdf28"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/windows/public/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "b882beaa150669279936d3ad2e81d12d32c78a029b41c945dcd1eafe90c4dc4a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/windows/storage/evaluation/13cc9314-16b5-4293-af2d-1290581f0cbf/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "5ecbcf1575c9c95f63bcbc383e9ed0df25816fbba5d0a7ea7529823b8002bed2"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/windows/storage/evaluation/13cc9314-16b5-4293-af2d-1290581f0cbf/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f318fc18dc60eca9ebaffe03a702f9e8960f10ff74241ed186e4d1370e7b3adc"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/windows/storage/evaluation/f4206bdb-670d-4425-90f4-7b5e8674d683/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "90b454525871c024be427db7122ec462f846aaf7ce9fe9bd3647c8222c223276"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt1/windows/storage/evaluation/f4206bdb-670d-4425-90f4-7b5e8674d683/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "406c47171b19e65bd82c72b39bddd2ec08dd6860b24f3663bccf57f9ed9df24c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/private/failure.txt",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "2b741bdafdcfe496efbadc5715f9c5b1d3ea4a405f813da2cb574ae523af18f7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/private/javascript.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "89cc064ae72c4b78da9b6f2e6d897c0c1fbcf0dab6a391b8622d028613c8c736"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/public/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "4099a7450fb494b12c720146e705774a862db8e6dbcdee3566833d59b2eabfa4"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/browser-results/outcome-cases-U01-浏览器结果确认、冻结案例、组成评测集、模型夹具实验、七维审阅与报告/error-context.md",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "794a0e42fa55c190c4e09621f68a1d6fa829e2120c36d35875ab42c2b5379845"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/browser-results/outcome-cases-U01-浏览器结果确认、冻结案例、组成评测集、模型夹具实验、七维审阅与报告/test-failed-1.png",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "326189304bdc237878f85b21f91fa003261cbb3d0a2e9e449cdcfd2d2a5ab4a6"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/browser-results/outcome-cases-U02-保存、发布和组成响应丢失，401或404查询及刷新保留原请求/error-context.md",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "2a7cfc8e91a91e93c8ab0e21f95c9eca89430ed7c85e46b0a09c9eac7f2845d3"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/browser-results/outcome-cases-U02-保存、发布和组成响应丢失，401或404查询及刷新保留原请求/test-failed-1.png",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "01a2a6e6e125953f622c7eaeab4e553116732d4ee650844bebb44aab3165b847"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/browser-results/outcome-cases-U03-双标签页冲突、切换案例和迟到响应、登出换账号隔离/error-context.md",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "c19ed8067dea1b35fee65372f47d40b6a93def5c9638832db914f4a374c87281"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/browser-results/outcome-cases-U03-双标签页冲突、切换案例和迟到响应、登出换账号隔离/test-failed-1.png",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "b26fad9357580eb4d41f8fa9362e2a25de77180b2512ca6e453335724145985a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/browser-results/outcome-cases-U03-双标签页冲突、切换案例和迟到响应、登出换账号隔离/test-failed-2.png",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "b8f412dcc2a81c986f83e7e89f2938cbe1c0ce9ee52decad60a1aa97d0d1f618"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/browser-results/playwright-private.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "62222cff8af9a1df4918d9a86834a6da1413ad41e817703b46da743d56c29799"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/evidence-U04.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "e3ea19a6e2d41d8c886eff1b5c954e57e9e3f3c790909bfafa3dd20564e1d4b8"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/application-0fc9c2da-3f2e-48b8-b5a2-afd7133fdc99.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "93efcb0c05bbb81df5b875a9d3ab8b18eca41ffd0cea9560201769cd7e40bfbe"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/application-13d09949-6d13-4463-81b6-5d423d802e59.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "7eb7b229f392bd24e63ae72b73045bd37ccf822769ed748d104da05280a77edb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/application-5bc2f2d8-5fd6-4575-a3a1-d7809c1255fe.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "b8a94a68aa4eed72360562a034d8be273f6517c154b2e423ae1aa40395cfbb11"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/application-6f499f63-9884-4408-892f-146eca13dee0.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "8e38ccba1c1098bf417ee9aa329a6628c344e4c7b22d9915a12a99d04658e7da"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/application-7e6575d0-fc23-4866-b683-b1ed5cb9e690.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "2a376950bf7251c4a73558eae047f5c870f35f79b52126225c32a809dbb28476"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/application-d7b60b33-7df8-4663-a5d7-78db714dd3ae.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "9a5a74fce7f7c1ed671a98e8db5dfbf43cf792329292dd83a5305b123f495480"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/browser-console.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "baa8caab2af0e5202a1c8b7248d9a6607b06aa920a028f11719c0a04b2c735ff"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/cancel-restart.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "4bb4cb8ae109563c6656f35142a93f91ca71378fcb49637339460e447b401e7d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/comparison.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "fe32e283249427809e158ba16ac7d70fce15c4ff652b68e931326d5a097614d4"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/functional-snapshots.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "3de7cd91fbd7b54cfa9fcc03b1b3d220d8021fc188eaae384828c4aec5010fdb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/injection-followed.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "3f0714879fe5b33f627072ffa35ff65cf12d4515024883ccf74e91c0583cccac"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/input-capture.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "37ff00c293922bbb9706824ab4151da5cc1bdb94eaede20a9942d451939ca765"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/model-experiment.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "cfd9e2733e4cc65bfe49b1a6a42226d027452fff05e9b3859add3ab9450ae458"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/model-requests.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "3bab52252d99db1b8b83acdfbcb179fd00e2c69ae88312b8e3acf6165150d9c7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/old-format.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "d3ff77be5603bf2fe5400bfa710b3d8ef824f5b37f2872f6912f7300fd46b970"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "7ecbe2e79798340441016f4e64f9ca538e857444a62558a6f36e521609f35ed3"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/report.md",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "11800003150c4708b7d7b7d2e177a8b74f7ca0a6085936c6b652fe1b3d1cd655"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/source-check-results.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f099434fd5b77e5f87b5af1a84752c7e2d2e88dd5a4e2150c6b836d4bee39da7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/suite-failure.txt",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f9971709afed65d43a737f5f4e514ca4c8edfe52146a0cf83f8ae829858824e5"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/U01-failure.txt",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "38a3ad616588e3d3c62844c33f70d95d5b1a79dcc442a5713d21ebbd3f01fc5c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/U02-failure.txt",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "966c59b485b607927970574b0be470ca8e71c48018fada65cd3463c934235666"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/private/U03-failure.txt",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "953f6cf4703ca7230a090ca74006e0a26949dcdaafb0b79a3b632193437e719f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/public/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "8b2497fd310128b81d103cc4b0f9db3796a7e48191806b660888e8e3aa6cfc48"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/public/U04.png",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "5a0e944c98e8cb8979573ac17b0a41147c2c846e5a5d036e9118902b27d5d5ad"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/554c04b7-a1ef-4c4f-a43f-0cf3a689d98d/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "26bbded8c69e1a691e6dca291671e5184018285da1ef4a06827a0ed40b3137d5"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/554c04b7-a1ef-4c4f-a43f-0cf3a689d98d/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "c0a862fcd41a38413767d7f82f0ea999171f3729d98fb5479cc257502ae18553"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/56c14bea-a3ee-466f-986a-6ebb23f34f9d/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "a3325bc775b9f7e67a1e9b7906375f702422df46d0d43373a069397de3661551"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/56c14bea-a3ee-466f-986a-6ebb23f34f9d/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f6c263cc00d89d572aba6ec1a0fd7f435df161b7908c7e8baef1ba0ffbdd3cbd"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/7a66ad54-cf40-42fb-9f5f-fab0fd692402/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "8740257815965bd261b6bb99540b3b5d81491c00754df444d14e47c08a825cfc"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/7a66ad54-cf40-42fb-9f5f-fab0fd692402/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "1680fe36dcb16eff22f1dcc0879c38afca897b253fa407e6cb2f41bdc20a60cb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/839ada3c-ffe7-4323-9e99-49753056ef1e/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "aded33406ea894a81a1f2ab4700a86fd522931d5260ba052e9ad398b12be1136"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/839ada3c-ffe7-4323-9e99-49753056ef1e/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f87cdb7c2fc5c787668344fae9576f0c4acdf31fda4e443de0df5458f9592a7e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/839ada3c-ffe7-4323-9e99-49753056ef1e/group-2/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "69419c4f1ba2567f31e09d7d3f71050dfa2661a4fe1ce216a0562f7423824e4e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/839ada3c-ffe7-4323-9e99-49753056ef1e/group-2/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "2fd2978afe6f76f11f81ce5b7f9a1a11c836831d7ccb022c89f6f7aca6a4edfd"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/8baf44f5-75d3-4425-a47e-b100c3af7826/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "083d8b8c50f47115f488233993aaa64d11b4e6bbb2523745c4f8b6e5f52bdfc1"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/8baf44f5-75d3-4425-a47e-b100c3af7826/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "ab4a3387266b1d3404d73a82ca1b1b99be47e9d56ae7e53a6e3172a0e6967f03"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/928b7b1c-8a52-4a4b-b96b-540f271d6856/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "640a377306ed448c408a7a8b5d41605c50fcd49c1ffab9da2d0ba300f537f53b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/storage/evaluation/928b7b1c-8a52-4a4b-b96b-540f271d6856/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "426e8702d4ac2736e34a6b82905b9c8b372e50bf5e3556490f2e8c7b1d2ab353"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/unknown-submission/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "ce88dd3dc3c7e756a890275d44b3261c199f6ffa12bdd1aae028508c9cf95a0a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt2/windows/unknown-submission/result/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "e7144341f7f0dcc85fb47c9662c65c3e8d63e4e80a7ed8423e5a8898bdcb192e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/private/failure.txt",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "2b741bdafdcfe496efbadc5715f9c5b1d3ea4a405f813da2cb574ae523af18f7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/private/javascript.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "8934a36d4a222d04349d7c00c7cda24637a905bd58e9e0c9552a852b6212d84f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/public/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "2ed82e550593275326a8d2cd47772ffdf29679220de7fdde4422242c149cc7c7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/browser-results/outcome-cases-U01-浏览器结果确认、冻结案例、组成评测集、模型夹具实验、七维审阅与报告/error-context.md",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "3f8b0e6350227856aab9bd98fa9b4ca1adefb2a94664a092ce024a200c8e8e14"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/browser-results/outcome-cases-U01-浏览器结果确认、冻结案例、组成评测集、模型夹具实验、七维审阅与报告/test-failed-1.png",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "a8048809832783b9b9b209e0a6002287873098cc014567b224e1dae64fba4308"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/browser-results/outcome-cases-U02-保存、发布和组成响应丢失，401或404查询及刷新保留原请求/error-context.md",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "74e989583caf4666920b65f2a9eb3a8e8ae0113712a67739a97bce1edf7a8744"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/browser-results/outcome-cases-U02-保存、发布和组成响应丢失，401或404查询及刷新保留原请求/test-failed-1.png",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "1edfee3c2724341e7de48105b42c758d754b211d8242515b0cefd494ced1d860"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/browser-results/outcome-cases-U03-双标签页冲突、切换案例和迟到响应、登出换账号隔离/error-context.md",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "9aef04cad202d0da6e5dd98e86619a562c614b327b894b2ea29977ad639a28b1"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/browser-results/outcome-cases-U03-双标签页冲突、切换案例和迟到响应、登出换账号隔离/test-failed-1.png",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "3fb7fc1261c678d5338164f2270f897c2d1f527ad06597e5ead5fd6dde5cdcd0"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/browser-results/playwright-private.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "bb0167c6afb0c9ea568ffacc2ca14113ea1be2fac469b685e67d25b977760d72"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/evidence-U04.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "e3ea19a6e2d41d8c886eff1b5c954e57e9e3f3c790909bfafa3dd20564e1d4b8"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/application-1a8a0b38-a6a9-4ce1-beb9-45683c9936b3.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "004445821c393280bcb46a6c65b03d4a4413ad961669157b2d6005e464726ff3"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/application-2f4128ff-f4e7-4858-b2eb-5d8564d5e59d.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "560e9e36c4d6686c0d58c9f48870dffe706bcd8bedf94ae268dcce89faa76b49"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/application-3b9ac818-9c51-428b-9d8c-ab226294468e.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "dccab7e62b36f8235be0292937156c02f01cabf18c00c13dcedf1e1935e080b7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/application-9e955437-1ffe-4b14-bd64-1e9a0edabd83.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "8fda3020129805880cde1a9f165fb61de1adadd370e1e58bed25bfe232ea11ae"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/application-e0fb1f32-be16-4d3e-b470-b39e1c36324f.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "308eb2b15b640b7e062e460021ef40bf0b8b7c40cbc7e65e6094d1d80e4e3c97"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/application-e9a608e7-f960-4604-b0df-94e0ebf9c5ad.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "8984f6b3c849fcdf18cc8bbc49b6c756678cfcb142bbf81ee799664594b16a73"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/browser-console.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "73336fed5406806e3eebc6ca62247dd332a94f79f91c46b91786d93fdbf00086"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/cancel-restart.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "5b1824bbb4410f271949213faec083a38cbf49b19c7e2b914bc271a162bc2c97"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/comparison.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "9577e6ab816589297e602191df5ff5386c8d1ef3387e91cd15a1410c237745ab"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/functional-snapshots.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "8e4b887a57d64c47817db6e97d3e97d9240b3b44d043d8c176470565a5e2bd30"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/injection-followed.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "b2759803580cccba4271f54eae1ea95c8f6109b397e7c5bd9ce50f72f4b466fb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/input-capture.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "5e95839eb01f082abfcf05b13fbca7522e05a23a7e235c316736f73b45b1b844"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/model-experiment.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "d7827fd55d0b56bc2030a934f09fbc2edcdf59d74396c091d2cc80754a947f6c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/model-requests.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "32bde4e59468b1bec322ed3c9446256f58de46e4c3ac42e54ed075db32bb804c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/old-format.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "6b14db88dfc89e520f32c7579e4bb891340b75aa078e406b9370a71cb77d7712"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "c344d073379e3babf5d71627cc7a0ccbbd3bf5b197ce965c2a05a01d1b5a52c3"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/report.md",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "2aeb8584155e298adaf3c7278bfcb80f77df181ad2b35e45e747656f7ce1ef28"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/source-check-results.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "1516a1a8b2a6d119305a9849fb7482f89af75c320e7e42a8b5d17a2a296ab221"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/suite-failure.txt",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f9971709afed65d43a737f5f4e514ca4c8edfe52146a0cf83f8ae829858824e5"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/U01-failure.txt",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "38a3ad616588e3d3c62844c33f70d95d5b1a79dcc442a5713d21ebbd3f01fc5c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/U02-failure.txt",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "966c59b485b607927970574b0be470ca8e71c48018fada65cd3463c934235666"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/private/U03-failure.txt",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "953f6cf4703ca7230a090ca74006e0a26949dcdaafb0b79a3b632193437e719f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/public/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "2809d95cbc779374d8b64d8b95cedfaf146c1a2c9024b461bb40d1d48fbeba90"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/public/U04.png",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "ce4e2aedb787a5da9479f9b2b9d45678a2b60c5a8e0dfae216dd13cc5d34ea74"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/6481df51-c42d-4247-9e33-407f63af2c8d/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "69a16d82fa6dde74667733a55a8e33192ccce36bbad4a94ef61da48fc763637e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/6481df51-c42d-4247-9e33-407f63af2c8d/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "c01c4b152f4d63296e6efe5811f7cf512c718745e1f96ad0cb6173e21466190e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/87b96ed4-8643-4e33-b2c6-0b77a7f5c082/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "d3f2a168764dba649f14d062fa0065f34fdd1cae557d6290f44817fd9efab8cc"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/87b96ed4-8643-4e33-b2c6-0b77a7f5c082/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "7fed568951dea58d921828138b325d18d136e2a4a9a541cc72f1c5645cb91f11"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/a0b52987-52b6-4608-a715-568efa6790f6/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "9785f3dcd76395e3b200ab1b9bbcf6b1c329edf82b83c95b346186f0ae95cbfd"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/a0b52987-52b6-4608-a715-568efa6790f6/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "7a21617e0a5ff3f545246d579935788c08f8b2bad62c111172afcdaed95299ab"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/a6dcf862-63e1-40cc-b442-2a9626dcf58a/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "9f76fe55122bd168612d65dcad738a8a61e3c2d6ddcc9eff4c6d21ac976f94b9"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/a6dcf862-63e1-40cc-b442-2a9626dcf58a/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "51b25664669e54ff6b471f33ac6ae37b9e5956ed419dc0621ce30d7cd3b5ba09"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/b4d50024-9e27-4dfb-82ed-ef2033cd84d3/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "ebe85ec93b637fca463d80a987132e4fb8801ba3b9e9cfef46ca0a9b6728026d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/b4d50024-9e27-4dfb-82ed-ef2033cd84d3/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "9c7f43d3c2e47439992266cd3f9f09b26c455ab91a64f598038a333230fda521"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/da260a00-47cc-42b3-a13e-c70a11182338/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "5dad39394ba87f41e9bf6830d13a41574781368583e51ba06d18e524ba43ddd1"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/da260a00-47cc-42b3-a13e-c70a11182338/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "10f7ca7491c858e083cd9fef55719f8549471c44be84966665ce95226162c0a0"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/da260a00-47cc-42b3-a13e-c70a11182338/group-2/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "608c42096defe4f83823de972aa2f56f4b227ea244455db6364960bc011036bd"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/storage/evaluation/da260a00-47cc-42b3-a13e-c70a11182338/group-2/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "c0d8b80777b18d7eda20ef363713e1850a8cda7318a992773bf8638fb879b98a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/unknown-submission/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "2563c9f1395897514e8b67e8152c170fa528887c6b2b913fe8d9e212c6cff824"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt3/windows/unknown-submission/result/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "cb08742c88cfddab55f94056c026f9d058367221267683f7a5c2a8d555122757"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/private/failure.txt",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "cf0d4359af8f360bb6374d40c913ca093896cca72bdb4a422dc92386ddcdb235"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/private/javascript.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "984ca7365ceccdb6d69478dffd4f2203dc87ef0b1c0d97abae117ebb8b573714"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/private/legacy-regression.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "b9b8291cd73866dd99bc98a085c2ccc8b211167e358e6e44d600e626e3d3d28d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/public/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "fd7dc24c39aab9d4c3571f18985e8d3dfef080b9a3f1a334c0d4dc4f413505e6"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/upgrade/private/application-37768875-6459-4bbc-9b98-d30cc7690784.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "b18d6d851d431e0a4d48135c0e8d990a45a0c0de0b15429c5d0be382910f3613"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/upgrade/private/application-e784e956-5994-4598-a737-85a202cfd927.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "5bed64907737f65d3131df66252566f088680086d0c5700028ce31eada789e9a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/upgrade/private/upgrade-snapshot.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "29433635831cfe948fa0967584c43cbf65c9442a7002c508b39f065b198b864b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/upgrade/public/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "24c990b515744725220406c903e4a5a97e4d347ed78bdcc02d2eb584c5e00698"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/12c62f8f-799c-4de2-a4ee-d928a1f9f2b0/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "cab5fafc4a9f6e0017a37f5e242f8c007002dfb6447672c127ea426784a2382e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/12c62f8f-799c-4de2-a4ee-d928a1f9f2b0/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f54ab61da3046211074be024e20b1b432520068b8325a820b6a7f0b52f98df89"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/13c747c8-03d9-4ce7-a98b-deffdc2bc2b4/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "afb25f239e044519b12f6b838d3405f7d9255957f330f9295b0a4670dbb4b228"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/13c747c8-03d9-4ce7-a98b-deffdc2bc2b4/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "9a5abbe01d63ad84a9a6836aeaf311cd6eb9a5c05e478f7b7d8ddcb28e8ff768"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/13c747c8-03d9-4ce7-a98b-deffdc2bc2b4/group-2/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "206089261e0b3c60aa173fa1cc059e6f28e571bcf6ffbca417f0b5dcf7c7f394"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/13c747c8-03d9-4ce7-a98b-deffdc2bc2b4/group-2/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "895efc8e013eb7876ddb7831d303122bf30f3cb6e9e6d3656e99494f0556601a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/14e12986-5509-4586-8e37-683346a2ebc1/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f7220e72885cb7b82637b46355af0b199545467fb99c5af8f968aafe81739196"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/14e12986-5509-4586-8e37-683346a2ebc1/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "40f9501fc0b6f27d1b3bd0620f311e3805eb14a2e21a709a0864817da96a5d59"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/16cfbf68-c96e-4fe2-82c9-9503acfe9d56/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "8e14dd800c07f4d2c9d1687160f7d6bb50eb3114381dd070008de30897b8709e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/16cfbf68-c96e-4fe2-82c9-9503acfe9d56/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "ad3aee4b24d465ece2b45d68cbbc3def1e9b642b5720ce1db7d23272883273b7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/39133beb-105c-4b06-b160-3213a48f3495/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "0646083c0673aff834fee8c6eb47f7749ec12e32e24ace052e97068832db360b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/39133beb-105c-4b06-b160-3213a48f3495/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f7a5abfec5647b256bd97c4978b8e060c179776c0644eb5bf86eadb3ebb6c0a1"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/69acab50-5e3a-4993-b979-0aa8746ee8c6/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "fd76a6bce3e0bf0231234e07edb8363406f81a44ab7290ef6df3c28712ac0399"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/69acab50-5e3a-4993-b979-0aa8746ee8c6/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "1a6b17466ee787f0e9671ccea19f3e6121f859dfcf50426de464a8f5bc4fae62"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/cd310aaf-341a-4bf1-932e-2c19946eb78a/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "797d9ac22f6a3d8af65b6d299a1da3adbc641398bc244bf4c842ee493320a34e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/backup/evaluation-materials/cd310aaf-341a-4bf1-932e-2c19946eb78a/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "b0f98675cdebbe0a72f3dd45225a69cd8c9990ef17a9dca8eb49bed7bef9cede"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/browser-results/playwright-private.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "cb515524dd3dac49c7f63c86cfaa908ab83e8885304027023cecd4d993270adc"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/evidence-U01.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f3080f8fbb0505676e747b6190bf18f2023beee245ce8278b0cb764133c50b43"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/evidence-U02.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "de5ebb660b8847069e5bf10c78979380ce3814ef41da93ac68cfb036e1d9857a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/evidence-U03.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "e18c37090c3dcfaca5ffb234a507c5bc015e2392d43a982a53d27ca50c7a65ff"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/evidence-U04.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "e3ea19a6e2d41d8c886eff1b5c954e57e9e3f3c790909bfafa3dd20564e1d4b8"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/application-2399402c-33b7-4bb3-8e0e-1652356fec75.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "c4503c7fed8baf4116e3a8be3849d3792a8b492e25aada036c095c995e7c63ec"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/application-54e7ed07-46be-4c9f-8942-a3c50d883ebe.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "167ff7b703f083399c9f849e1eac4126ce8a0a449dcded32e42687da78e1566d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/application-6ef5efa7-365b-4951-a612-4f71769a29eb.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "e80fda2f4e94d8ef81f5f7603b0c2011c871ba4a1e79ec1349809f24fdd9308c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/application-b2706812-5b48-40b0-b842-070601db97c7.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "8aa5a2fba6179c627b9e4e8f75da0423da4577016ff3ac1f5eab52cd1719d192"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/application-e1f862c5-b673-4fbd-8c75-fddcacdf7875.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "8555fb8e9a19a898853e3d1cd7dc43bb7e494b346ce95e205786140b6426ee5a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/application-e656df4f-1aaa-477f-a71f-16970e04d285.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "cf31c630d6b0d93a981fb2eef9a7d80c26b7a13c8662517be42ff97010684d0e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/application-fe8d52d9-65ef-480a-a089-6eb2d39935c6.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "ab9d75506cd524d93615a97cf718d05cb3be0ed4fafa3a25a7d7dafad6bec7d7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/browser-console.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "350a07f7f8c7e36a0406a346849b36514ecf148e493c7b6d788e3ab8c7beab6c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/cancel-restart.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "754197efb1b9201ae236dd9d167d939c07cfc2bf850f61744649f85b81d84f79"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/comparison.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "3c44c245433c5d8394cb0f5673f83d8f24ab892fb9bd8d12f3dd07cba7c85bd3"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/functional-snapshots.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "b8043e270b57e62b5e976988320887e4e9ec3c669044e7254bbdd2403fa771d9"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/injection-followed.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f981821798a75b07485d4b3f15b0534556c9a73d63566eedaa3a7058e91b6921"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/input-capture.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "9b9de6d90698ad7510175e4a324df0c3b317f13711a866475fbfa2acea0cc62e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/model-experiment.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "41b693a9fde1b5b3eadfaa9bf0c94944b775444166ede0ea348264d0a5b60a74"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/model-requests.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "979b93887ad959473fd9cf03c492aa2164b2bd280503880f167e459adb50e73f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/old-format.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "a1fa6eca26f6a19c3c6aa7f4634a889858134dd19814d89e7fecfd7525d8c5fd"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "95300d88e0d5ad08a1d3f45d4a402d1b19438b10d5d4348346b3cd4790997f14"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/report.md",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "6381f8cf53de7a60afe2bc9aa3ef4f0f45387f32c51d2d33e9e1a032de24c3c1"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/restored-snapshot.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "98d5e7efcb0638444c139dc7a5cd2ec525a79e86c25df082b7505b306e870233"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/source-check-results.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "9deceb82f3748bfb714a8c594d6fad4ae147698717d63126af0e7832782481b1"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/private/U01-report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "2db98d37449cdb47b6dbcda2057a9049f1e8532687d0cec8111eb5cadb0bbe76"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/public/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "7e04d73397aa1df32a2e64a79bdb25ea5240d3c708885329db02fab5204df790"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/public/U01.png",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "e63c17f4c33dc4e7d8c758c418a4145dfb745daf588860b7005b9d196c029936"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/public/U02.png",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "37244d1f3c17e2ceb4d77c2d21ebd40bd79db328c09c3ab891059bc25e99b36b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/public/U03.png",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "2da96e614b96386ac0191867dda9491c33c7e78507265fc3768f5653273c920c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/public/U04.png",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "47c7fda203a2bc85147bb6fd9771c57ae2ea3a4af0b03aae894ffa8cff840703"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/12c62f8f-799c-4de2-a4ee-d928a1f9f2b0/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "cab5fafc4a9f6e0017a37f5e242f8c007002dfb6447672c127ea426784a2382e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/12c62f8f-799c-4de2-a4ee-d928a1f9f2b0/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f54ab61da3046211074be024e20b1b432520068b8325a820b6a7f0b52f98df89"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/13c747c8-03d9-4ce7-a98b-deffdc2bc2b4/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "afb25f239e044519b12f6b838d3405f7d9255957f330f9295b0a4670dbb4b228"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/13c747c8-03d9-4ce7-a98b-deffdc2bc2b4/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "9a5abbe01d63ad84a9a6836aeaf311cd6eb9a5c05e478f7b7d8ddcb28e8ff768"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/13c747c8-03d9-4ce7-a98b-deffdc2bc2b4/group-2/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "206089261e0b3c60aa173fa1cc059e6f28e571bcf6ffbca417f0b5dcf7c7f394"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/13c747c8-03d9-4ce7-a98b-deffdc2bc2b4/group-2/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "895efc8e013eb7876ddb7831d303122bf30f3cb6e9e6d3656e99494f0556601a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/14e12986-5509-4586-8e37-683346a2ebc1/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f7220e72885cb7b82637b46355af0b199545467fb99c5af8f968aafe81739196"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/14e12986-5509-4586-8e37-683346a2ebc1/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "40f9501fc0b6f27d1b3bd0620f311e3805eb14a2e21a709a0864817da96a5d59"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/16cfbf68-c96e-4fe2-82c9-9503acfe9d56/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "8e14dd800c07f4d2c9d1687160f7d6bb50eb3114381dd070008de30897b8709e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/16cfbf68-c96e-4fe2-82c9-9503acfe9d56/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "ad3aee4b24d465ece2b45d68cbbc3def1e9b642b5720ce1db7d23272883273b7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/39133beb-105c-4b06-b160-3213a48f3495/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "0646083c0673aff834fee8c6eb47f7749ec12e32e24ace052e97068832db360b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/39133beb-105c-4b06-b160-3213a48f3495/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f7a5abfec5647b256bd97c4978b8e060c179776c0644eb5bf86eadb3ebb6c0a1"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/69acab50-5e3a-4993-b979-0aa8746ee8c6/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "fd76a6bce3e0bf0231234e07edb8363406f81a44ab7290ef6df3c28712ac0399"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/69acab50-5e3a-4993-b979-0aa8746ee8c6/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "1a6b17466ee787f0e9671ccea19f3e6121f859dfcf50426de464a8f5bc4fae62"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/cd310aaf-341a-4bf1-932e-2c19946eb78a/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "797d9ac22f6a3d8af65b6d299a1da3adbc641398bc244bf4c842ee493320a34e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/restored/evaluation-archive/cd310aaf-341a-4bf1-932e-2c19946eb78a/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "b0f98675cdebbe0a72f3dd45225a69cd8c9990ef17a9dca8eb49bed7bef9cede"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/12c62f8f-799c-4de2-a4ee-d928a1f9f2b0/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "cab5fafc4a9f6e0017a37f5e242f8c007002dfb6447672c127ea426784a2382e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/12c62f8f-799c-4de2-a4ee-d928a1f9f2b0/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f54ab61da3046211074be024e20b1b432520068b8325a820b6a7f0b52f98df89"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/13c747c8-03d9-4ce7-a98b-deffdc2bc2b4/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "afb25f239e044519b12f6b838d3405f7d9255957f330f9295b0a4670dbb4b228"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/13c747c8-03d9-4ce7-a98b-deffdc2bc2b4/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "9a5abbe01d63ad84a9a6836aeaf311cd6eb9a5c05e478f7b7d8ddcb28e8ff768"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/13c747c8-03d9-4ce7-a98b-deffdc2bc2b4/group-2/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "206089261e0b3c60aa173fa1cc059e6f28e571bcf6ffbca417f0b5dcf7c7f394"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/13c747c8-03d9-4ce7-a98b-deffdc2bc2b4/group-2/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "895efc8e013eb7876ddb7831d303122bf30f3cb6e9e6d3656e99494f0556601a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/14e12986-5509-4586-8e37-683346a2ebc1/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f7220e72885cb7b82637b46355af0b199545467fb99c5af8f968aafe81739196"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/14e12986-5509-4586-8e37-683346a2ebc1/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "40f9501fc0b6f27d1b3bd0620f311e3805eb14a2e21a709a0864817da96a5d59"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/16cfbf68-c96e-4fe2-82c9-9503acfe9d56/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "8e14dd800c07f4d2c9d1687160f7d6bb50eb3114381dd070008de30897b8709e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/16cfbf68-c96e-4fe2-82c9-9503acfe9d56/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "ad3aee4b24d465ece2b45d68cbbc3def1e9b642b5720ce1db7d23272883273b7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/39133beb-105c-4b06-b160-3213a48f3495/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "0646083c0673aff834fee8c6eb47f7749ec12e32e24ace052e97068832db360b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/39133beb-105c-4b06-b160-3213a48f3495/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f7a5abfec5647b256bd97c4978b8e060c179776c0644eb5bf86eadb3ebb6c0a1"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/69acab50-5e3a-4993-b979-0aa8746ee8c6/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "fd76a6bce3e0bf0231234e07edb8363406f81a44ab7290ef6df3c28712ac0399"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/69acab50-5e3a-4993-b979-0aa8746ee8c6/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "1a6b17466ee787f0e9671ccea19f3e6121f859dfcf50426de464a8f5bc4fae62"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/cd310aaf-341a-4bf1-932e-2c19946eb78a/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "797d9ac22f6a3d8af65b6d299a1da3adbc641398bc244bf4c842ee493320a34e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/storage/evaluation/cd310aaf-341a-4bf1-932e-2c19946eb78a/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "b0f98675cdebbe0a72f3dd45225a69cd8c9990ef17a9dca8eb49bed7bef9cede"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/unknown-submission/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "fd705777381bcaa1bfbd98fedf49d2cf373068f8677402ec15342124af0e7550"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt4/windows/unknown-submission/result/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "721e9758b669ca7d684ff0bab197a3dfde7104421c3a65db3e8d27d3ffff35d6"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/excluded-program-copies.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "b1db6290c47588d0f03aff0effdb4e363dab93dcc3a4d234ac49e174d28e4bc3"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/js.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "2f53901d6c11354f31bf80bfff16611ae1b783c1b11e7c880cbee28fc30a8110"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/private/application-7780b466-3775-4b79-a279-6e460622d066.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f4ca55025ab5a6c831764bdd054470fd17d47fe8a732abe4255abc05090f1d4e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/private/application-7f224acc-afb3-4590-964f-8fe31848c39a.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "7b8b6ce5e96a8bb61b771da38cd8340be716463862143a6a3053586e584e35f8"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/private/application-af6916e2-2ebb-40ad-ad02-d16a3e91fb1f.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f2512f76132414d23c4a7b6f632e3c229f39b799e5b7400d7be1fc10fe495cd4"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/private/application-b0b27367-4937-4608-b698-913c70f0ffda.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "4dd6ebdfbdc6764de01dcfdf3c0c495a71e34bbff7dbdc201da65d7159eceeb3"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/private/application-cc367456-1587-424a-8f4c-9146ab7c21f0.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "baf0ba7b810f344d4f996378fa60ebe7fb776bde84bd8695498f77991b489a6f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/private/application-e2ec57ca-449c-4c14-b7b8-a23c6feec0e4.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "68a7e8ca73d409acbfd97bbbce4e49d128532f32fec5f5c5ffeb509bc34d7f70"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/private/cancel-restart.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "c2d7eea73e088dd7b2d9ae569b8dcf5f436321ed5913b696d5eb16dd213b3b43"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/private/comparison.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "be4c3f7ae52a68fb4624ab383a31dfa38a8027835ee3e3ac6acdaf1732d51b59"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/private/functional-snapshots.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "2f1908ec765fb71a0b47971adb65c331e2ba76ced9d8c5bce1f8a3fc001a573d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/private/injection-followed.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "e7efca426dc1b6415b2cf234d68b445c2cb239640e99ebb510fdebf0902e4829"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/private/input-capture.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "c7888d28f36c93cabd1c80e0aa7f581bd06fe86b5eadb20923c9062b726bdd33"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/private/model-experiment.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "c241e8e83fd3cdbddb887bec54ec34810066537f57f993714a4150ecc68bd67f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/private/model-requests.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "425c76a2019c80825a12219ec06ffb3592e92845f1580ee463c2143ebe189189"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/private/old-format.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "edeca39a1e694aa6f9a1a0da7a8f4de78cc84c84fb163c1f0d28d4adfa9e94ff"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/private/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "6ac808fc84a21f7cee32f44e40ecf234dbf810b5a5b6144a74d6be8aa49d96d2"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/private/report.md",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "1e4bd1ef151de3ac6db91ec4286226bff41b1aaaade17014722efb41a63189b9"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/private/source-check-results.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "36e6377406c24c6fc84ebdb8142f1fabad1fa283d735a2e3d6c360756307609c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/public/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "7b2705ac03617e95e4157fd0214dd61480dfa1a9e7cf9e23390f0bdcbe164905"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/0cff403f-fe8e-4563-b780-ff499c7902c7/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "a6fd93f3d37a9c036b9ed306e25ed442ac1dd48b6703eb409186b3a6215e46ee"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/0cff403f-fe8e-4563-b780-ff499c7902c7/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "c4573a56420899347c5d99cfd02adc684afbe12194b9b658ccd6504e4f9b7f25"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/0cff403f-fe8e-4563-b780-ff499c7902c7/group-2/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "8edac961bd0128573f88801ee230f2113739a308d89132239ef7d420afbdea2d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/0cff403f-fe8e-4563-b780-ff499c7902c7/group-2/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "db28064abadb8981a213237ef88bcdc132f7988b488df51d9679bada7ad63e2b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/1a654db6-f019-40f8-b222-33962c07caaf/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "b534be590c3e6b1466a5904149f43ba886012830e8e9b6ce5e7ec6db75406367"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/1a654db6-f019-40f8-b222-33962c07caaf/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "bcd1d461aafecc0e8aef2adabbce99a4d6a201cb018256e4adeb3fcc8cede12b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/a473b9fc-19f5-47ba-85c1-9313cde70bf1/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "4ceb2a2fdbdc16880640216a5ecedde8bba5e64419398749c579119ead8c3ae8"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/a473b9fc-19f5-47ba-85c1-9313cde70bf1/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "07c2ec64c83c0dcfc88fdb68a81ec7cb3ed3e068bd6447f26b4823ad03f77b01"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/cc381f9a-cd8e-4073-b9b2-e8d21cf71875/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "6ee935e42f38271136137db8dcabcbfb2a95c446790bf8dabca22248c47f0af7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/cc381f9a-cd8e-4073-b9b2-e8d21cf71875/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "b75f078d781c8606ee23221545cde0b3312ef4bbd11d80edb8eb6358df1b3424"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/ccfe41ab-6ceb-4afe-9229-951bab32fd52/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "e7533de5fe7259a083524a64aea6176d00a81ea493d0c614893a429b84e4738e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/ccfe41ab-6ceb-4afe-9229-951bab32fd52/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "d0a5450ffb6eddad7827c7567bff8e44eae6157082a3d80fb4e7b1d2c60a3524"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/d59cf456-edf9-4254-8ae8-7e40d29d5eb7/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "990a4cac0ee5e80406663c288d847285fb010794184f7a8f20e2aac1feb5dfc4"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/storage/evaluation/d59cf456-edf9-4254-8ae8-7e40d29d5eb7/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f6e56a9eee512db7d6d752d32a7443e88cbfc9e3ad9c2d74910b20c505f3ab05"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/unknown-submission/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "e66dcdfdbcd1b5b0cc2a73a88ba1482cbc406e6ae1374895988bb3275fbe6164"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/captured/unknown-submission/result/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "68006dca20cc8043ed928d74fdbb7fd8ac25e5311ef10effbc9852ffdd9eac3e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/private/console.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "2ed5ea561e8cec7a86423b77ba9dc5d3938f97ce37887ed18a0b453b7d499e1d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/linux/public/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f6b909543bb776081db5a46004a3a4db3b0929defb49c106b16ec768d6ab490b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/private/javascript.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "9dff2621972fafedfd678e393403cb0fe53a505a4df5635210d3ef83a46f78a3"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/private/legacy-regression.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "b785649f8db275b5e2f9d0dbc41dc6e0b1c98c74e4bb48b0b25127716ca20e8a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/public/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "4bfbbe5aaf4b05e73358b591f24510f9d3d9b9a851746717d7064fdf644580f1"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/upgrade/private/application-aab8771e-478f-4a11-a6d9-3cb3eabcb0a7.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "b736c69d2817c346d0b1acbc3ff1197d61948b83a2f8ee53a371c1de9d7d328e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/upgrade/private/application-b007cb5f-dd02-4dea-8c65-c791f5543814.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "c38e5c8943f35181df55af3057498bf52dbe7c6b85c89958a5d1abdd440993c8"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/upgrade/private/upgrade-snapshot.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "59825125824605c48f9ec74d083e57d3aacb22e5d461419fe10215e8ed94c0b4"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/upgrade/public/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "d8ab3945ea0045ff4a61d684f7ea6a5298596c09c6e1c41a0cd8f196a7843ba7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/14f57892-6378-4d4d-ac81-05019558609c/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "af81df55076b88ff0619a9c9d15493a408c3d1bc1a7094aeefe2a48b5a0b0702"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/14f57892-6378-4d4d-ac81-05019558609c/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "8588e63c4bcf6e8b220bbad9700093e565f2ca3c914873cb52db3be24ce4f8b2"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "5e1e1102f0cd067a8df7341834b56a5114c4ecdf79d0b3ca25dbf550e613a2bb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "ec4f05fec16c637ea003aea10d47aeba89780cba56c3a35b356d1d03b77edcc0"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3/group-2/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "ba292df355d354f7ee22b34017929d97ee3b8499c0a42ad284756f2906321a42"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3/group-2/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "60f8d670edc4e22d5efb52cfde5107502bae25de6501a0abbba0058369ade5fa"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/4ffca2d1-1655-4704-94a5-043cb81d3f20/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "c293badfa91190372454e0821ddb1c44e3d32df7d43d771e7a8ad0ac29dd5264"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/4ffca2d1-1655-4704-94a5-043cb81d3f20/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "59aa4fee4a30f73ce5a3dcdac522b319ad0d869979c14848d117328e9e9aa2c3"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/7bebc6df-196a-4477-93e5-cb70aa7c536f/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "2f31b90d6dd900b95d51df4245a9aae83adde73b308206948986bf027d18be4c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/7bebc6df-196a-4477-93e5-cb70aa7c536f/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "63c1ca32da74b148d209225ca947f09ac6b72daacd9e1041ef5e982b3ca8b4bc"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/7efe7417-8d2e-41ca-8df7-c88d5767a295/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "e27c312840acc7524337f5e85b295a835c39db4f0bbae8fdac76f67c740ce975"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/7efe7417-8d2e-41ca-8df7-c88d5767a295/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "166604aa899e951c86f2e91953bfecbb5db52fb48f518178a47dd054670707d4"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/d2033b4d-947b-4bae-a9bd-e9dd2b0d1197/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "c3e44302d8931fe29190ad32dbd50c4496777166fbcc9e09e2cde6abad474541"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/d2033b4d-947b-4bae-a9bd-e9dd2b0d1197/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "27828b87cda13412b64921bef8584ad5d0e90ea197ced91665f34af7b6350379"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/e513cfd4-65f3-4c47-bfbe-98732fe6b920/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "80a7cdacb25a194bbc110a3ccb451c8a28c19753c556ea0aad9aff8cc416154b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/backup/evaluation-materials/e513cfd4-65f3-4c47-bfbe-98732fe6b920/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "1c16ed1a98299d51c79fcfaa4143c14497a0c56ac4f76e031328df926e17b584"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/browser-results/playwright-private.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "194d1e0cce3c43866748da67a3fbd1ad206be54244374ba4a5629e81d20de69e"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/evidence-U01.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "91101195f9e03a7f463b393eed720690b07a08e8eb213e1f7d6305190632c909"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/evidence-U02.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "e7292c7753e355a620321ef77517bf07ec44a26429d29301a0e0db5f7ad8d381"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/evidence-U03.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "e18c37090c3dcfaca5ffb234a507c5bc015e2392d43a982a53d27ca50c7a65ff"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/evidence-U04.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "e3ea19a6e2d41d8c886eff1b5c954e57e9e3f3c790909bfafa3dd20564e1d4b8"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/application-2aa2ec8e-7dbd-4831-8f0f-8654e4ddb766.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "41b9e5dd0c83cc78c0b67d06e8fc02f7609223df5693d60994307269a2178138"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/application-39b0b555-624b-40ce-94fc-b5fbbb5fcf99.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "d4fcdb7cdca91a010fdabf5f391e5a001a629d03d33e7c5d7ae8352d91e41449"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/application-489dd86f-81b6-4819-93a2-ce212d98a0c9.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "8d6d20cc59c1f410818972fd8fbcc3afaf3adac7b56d6990cde50b2805f84c4a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/application-9f6f64b1-26ac-4baf-98f8-7752b240d9ec.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "e9b374f87d200baf0211b71df410429879ec15433e56fbb19cc6c86e46606bd7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/application-b42be54e-aa75-4805-aea9-e7e305e0d216.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "e7d5c954395351ed5138b517364b4651aaba05a8c8da2dbc0653fe651fdd5d1d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/application-cf8957cd-ea2f-42c9-b9c6-a5b958cad849.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "53e3418384796ddccc03f317a7de0bd431fd7eb14b1dba277e49b246ff2d68f4"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/application-f462f6d9-ce98-4820-aae1-867441b205fb.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "c6c57619d754ff3b14fc2e405c7a31f7f71157b9322ce2f97119fe63ca609055"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/browser-console.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "1d91b468d4832b5f78c9405fadaeb51fc8509099aa06a88f9feb0fa1ae315759"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/cancel-restart.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f2be77d0c8b00e76999b102b4cdfc21bdf5d8757f43dfc8456ac9bae084e4ee5"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/comparison.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "2d3ce7e024fa2c5a8de4d193cacdba58fe63f1f7c06f2c4340e65b1718a1b068"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/functional-snapshots.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "f1067da76eceaa17f6cf0b32780b9c5b008162fad815d7a2687259e30e42878b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/injection-followed.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "8eb11181ef6cf4b56b02916f263c86d8e184bc5d0175a8f493969500c123fcd6"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/input-capture.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "e18df6e9dad8f1aebf5a6c60f9128e03abc199bcb878f550143c948263aaf9ae"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/model-experiment.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "612eea3eedba942865f7dd574194180fa433b501db062f794388c26030c6f9f7"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/model-requests.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "3579d4540b478ee00343a066d811a21cd7aa776c09bd5daf335d80dcaa817306"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/old-format.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "a20f5a1197e9eaff10496642f95fd7aceb6fbf164f1dbee46b9611499b892042"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "41c346536c6a18a9901866d9d2125dfc462ed0958fc8a695abfcf1e431f3a75a"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/report.md",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "dac981dd0b6ded3825ab8aa37c730d5f643cf182a22deca6dac9a74357c85d8c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/restored-snapshot.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "98fa383dd9d7b4e728de033afb2bc4a8c280ee7f3d038abd462ccc5396387800"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/source-check-results.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "d6a420bce856d7ef5ec2ec9fe01668e20995bcc043067eafab5d4304986f7775"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/private/U01-report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "362b5a878421d52f52069f5cb015aee63e20e2308615c3a87356c09ae997449d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/public/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "33561ab1d09d31070289a01dce7549b9a95e4cd327c7fe170224abd5aeb7482d"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/public/U01.png",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "a1d9e093045a73f4977ad8f8baab604a40910abcc128729393555d574f2a4612"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/public/U02.png",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "89dda52011accd1d12e65e3034378a39fdb3d8dc423c6264de4d86529edd9353"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/public/U03.png",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "54644e1f0aa3674c039d2bfd118550128c3a26aab7f7957a42ba01a774f20798"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/public/U04.png",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "8d9441a08d674d5c12bcec8c44559b85bf403f223c650733476834a8df184760"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/14f57892-6378-4d4d-ac81-05019558609c/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "af81df55076b88ff0619a9c9d15493a408c3d1bc1a7094aeefe2a48b5a0b0702"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/14f57892-6378-4d4d-ac81-05019558609c/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "8588e63c4bcf6e8b220bbad9700093e565f2ca3c914873cb52db3be24ce4f8b2"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "5e1e1102f0cd067a8df7341834b56a5114c4ecdf79d0b3ca25dbf550e613a2bb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "ec4f05fec16c637ea003aea10d47aeba89780cba56c3a35b356d1d03b77edcc0"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3/group-2/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "ba292df355d354f7ee22b34017929d97ee3b8499c0a42ad284756f2906321a42"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3/group-2/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "60f8d670edc4e22d5efb52cfde5107502bae25de6501a0abbba0058369ade5fa"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/4ffca2d1-1655-4704-94a5-043cb81d3f20/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "c293badfa91190372454e0821ddb1c44e3d32df7d43d771e7a8ad0ac29dd5264"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/4ffca2d1-1655-4704-94a5-043cb81d3f20/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "59aa4fee4a30f73ce5a3dcdac522b319ad0d869979c14848d117328e9e9aa2c3"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/7bebc6df-196a-4477-93e5-cb70aa7c536f/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "2f31b90d6dd900b95d51df4245a9aae83adde73b308206948986bf027d18be4c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/7bebc6df-196a-4477-93e5-cb70aa7c536f/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "63c1ca32da74b148d209225ca947f09ac6b72daacd9e1041ef5e982b3ca8b4bc"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/7efe7417-8d2e-41ca-8df7-c88d5767a295/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "e27c312840acc7524337f5e85b295a835c39db4f0bbae8fdac76f67c740ce975"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/7efe7417-8d2e-41ca-8df7-c88d5767a295/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "166604aa899e951c86f2e91953bfecbb5db52fb48f518178a47dd054670707d4"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/d2033b4d-947b-4bae-a9bd-e9dd2b0d1197/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "c3e44302d8931fe29190ad32dbd50c4496777166fbcc9e09e2cde6abad474541"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/d2033b4d-947b-4bae-a9bd-e9dd2b0d1197/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "27828b87cda13412b64921bef8584ad5d0e90ea197ced91665f34af7b6350379"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/e513cfd4-65f3-4c47-bfbe-98732fe6b920/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "80a7cdacb25a194bbc110a3ccb451c8a28c19753c556ea0aad9aff8cc416154b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/restored/evaluation-archive/e513cfd4-65f3-4c47-bfbe-98732fe6b920/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "1c16ed1a98299d51c79fcfaa4143c14497a0c56ac4f76e031328df926e17b584"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/14f57892-6378-4d4d-ac81-05019558609c/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "af81df55076b88ff0619a9c9d15493a408c3d1bc1a7094aeefe2a48b5a0b0702"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/14f57892-6378-4d4d-ac81-05019558609c/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "8588e63c4bcf6e8b220bbad9700093e565f2ca3c914873cb52db3be24ce4f8b2"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "5e1e1102f0cd067a8df7341834b56a5114c4ecdf79d0b3ca25dbf550e613a2bb"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "ec4f05fec16c637ea003aea10d47aeba89780cba56c3a35b356d1d03b77edcc0"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3/group-2/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "ba292df355d354f7ee22b34017929d97ee3b8499c0a42ad284756f2906321a42"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/3dcbb9cf-b303-49b5-bf8a-4f85faf8a3e3/group-2/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "60f8d670edc4e22d5efb52cfde5107502bae25de6501a0abbba0058369ade5fa"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/4ffca2d1-1655-4704-94a5-043cb81d3f20/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "c293badfa91190372454e0821ddb1c44e3d32df7d43d771e7a8ad0ac29dd5264"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/4ffca2d1-1655-4704-94a5-043cb81d3f20/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "59aa4fee4a30f73ce5a3dcdac522b319ad0d869979c14848d117328e9e9aa2c3"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/7bebc6df-196a-4477-93e5-cb70aa7c536f/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "2f31b90d6dd900b95d51df4245a9aae83adde73b308206948986bf027d18be4c"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/7bebc6df-196a-4477-93e5-cb70aa7c536f/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "63c1ca32da74b148d209225ca947f09ac6b72daacd9e1041ef5e982b3ca8b4bc"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/7efe7417-8d2e-41ca-8df7-c88d5767a295/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "e27c312840acc7524337f5e85b295a835c39db4f0bbae8fdac76f67c740ce975"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/7efe7417-8d2e-41ca-8df7-c88d5767a295/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "166604aa899e951c86f2e91953bfecbb5db52fb48f518178a47dd054670707d4"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/d2033b4d-947b-4bae-a9bd-e9dd2b0d1197/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "c3e44302d8931fe29190ad32dbd50c4496777166fbcc9e09e2cde6abad474541"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/d2033b4d-947b-4bae-a9bd-e9dd2b0d1197/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "27828b87cda13412b64921bef8584ad5d0e90ea197ced91665f34af7b6350379"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/e513cfd4-65f3-4c47-bfbe-98732fe6b920/group-1/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "80a7cdacb25a194bbc110a3ccb451c8a28c19753c556ea0aad9aff8cc416154b"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/storage/evaluation/e513cfd4-65f3-4c47-bfbe-98732fe6b920/group-1/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "1c16ed1a98299d51c79fcfaa4143c14497a0c56ac4f76e031328df926e17b584"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/unknown-submission/application.log",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "c5a8d08c52ee79357edd829a1779d0b5608f081216988e00d754ada7377fe96f"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/package-final-attempt5/windows/unknown-submission/result/report.json",
+      "kind": "ORIGINAL_PACKAGE_EVIDENCE",
+      "checks": [],
+      "sha256": "b35829aa5e625930f0b110e689f2a13c7d41bd5b77427f7c40673cd8a6b80429"
+    },
+    {
+      "path": ".local/outcome-cases-20261002/delivery-final/openapi.json",
+      "kind": "GENERATED_OPENAPI",
+      "checks": [],
+      "sha256": "6cb9f947c76c12917747da850e638f2c1113cf3f0bc95263ecbee63fd56b26d6"
+    }
+  ],
+  "privacy": {
+    "rawConfigurationIncluded": false,
+    "accountPasswordCookieOrKeyIncluded": false,
+    "privateEvidenceClass": "SYNTHETIC_ISOLATED_ONLY"
+  },
+  "boundaries": {
+    "realModelCalls": 0,
+    "realEmbeddingCalls": 0,
+    "qualityBaseline": "NOT_RUN",
+    "independentAcceptance": "NOT_RUN",
+    "dailyWorkbenchReplaced": false,
+    "commitPushOrExternalPublish": false
+  }
+}

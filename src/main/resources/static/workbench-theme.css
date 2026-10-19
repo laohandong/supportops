@@ -1,0 +1,190 @@
+/* 组合主题：主体采用灰蓝与白色面板，导航和状态组件采用深绿色视觉。 */
+body:has(#page-diagnosis) {
+    --canvas: #f8fafc;
+    --sidebar: #f1f5f9;
+    --ink: #1e293b;
+    --muted: #526174;
+    --line: #e2e8f0;
+    --accent: #356350;
+    --accent-hover: #2a4f40;
+    --accent-soft: #e1ede6;
+    --warning: #8a5a12;
+    --warning-bg: #fdf1dc;
+    --radius: 9px;
+    --sidebar-width: 252px;
+    background: var(--canvas);
+    -webkit-font-smoothing: antialiased;
+}
+::selection { background: #c5dcd0; color: #1e352c; }
+* { scrollbar-color: #cbd5e1 transparent; }
+input::placeholder, textarea::placeholder { color: #64748b; opacity: 1; }
+input, textarea { caret-color: var(--accent); }
+.primary, .secondary { min-height: 36px; padding: 7px 12px; font-size: 13px; border-radius: 6px; }
+.secondary, textarea, input:not([type=checkbox]), select { border-color: #cbd5e1; }
+textarea, input:not([type=checkbox]), select { padding: 8px 10px; font-size: 13px; }
+
+/* 导航颜色独立作用于外壳，避免正文表格继承深色底。 */
+.sidebar {
+    --ink: #fff; --muted: #b9cfc3; --line: #ffffff22; --accent-soft: #ffffff14;
+    padding: 20px 12px 16px;
+    background: linear-gradient(180deg, #1c4537 0%, #14342a 100%);
+    color: #cfe0d7; border-right-color: #14342a;
+    scrollbar-color: #648575 transparent; overflow: hidden;
+}
+.sidebar-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding-top: 22px; margin-bottom: 16px; scrollbar-color: #648575 transparent; }
+.brand { font-size: 16px; gap: 11px; padding: 0 4px; color: #fff; letter-spacing: -.01em; }
+.brand svg { width: 32px; height: 32px; flex: 0 0 32px; padding: 7px; border-radius: 9px; background: #4e9a7c; fill: #14342a; }
+.sidebar-caption { display: block; position: static; width: auto; height: auto; clip-path: none; overflow: visible; font-size: 11px; color: #b9cfc3; margin: 5px 0 0 47px; }
+.nav-group-title { margin: 0 8px 8px; color: #b9cfc3; font-size: 11px; }
+.customer-navigation { margin-top: 0; }
+.sidebar .nav-item, .new-conversation { min-height: 44px; gap: 12px; padding: 8px 12px; font-size: 13px; color: #cfe0d7; border-radius: 6px; }
+.sidebar .ui-icon { width: 18px; height: 18px; flex-basis: 18px; opacity: .85; }
+.sidebar .nav-item:hover, .sidebar .history-item:hover { background: #ffffff14; color: #fff; }
+.sidebar .nav-item.active { background: #358066; color: #fff; box-shadow: inset 0 0 0 1px #ffffff1f; }
+.new-conversation { width: 100%; background: #358066; color: #fff; border: 1px solid #ffffff1f; font-weight: 600; }
+.new-conversation:hover { background: #2b6b53; }
+.history-heading { margin: 16px 8px 8px; font-size: 11px; color: #b9cfc3; }
+.history { max-height: 128px; scrollbar-color: #648575 transparent; }
+.history-item { padding: 8px 8px 8px 32px; margin-bottom: 2px; color: #cfe0d7; }
+.history-item::before { width: 15px; height: 15px; top: 12px; background: #b9cfc3; }
+.sidebar .history-item.selected { background: #ffffff14; color: #fff; box-shadow: inset 0 0 0 1px #ffffff1f; }
+.history-item .history-question { font-size: 12px; }
+.history-item small { margin-top: 2px; font-size: 10px; color: #b9cfc3; }
+.history-archive { color: #cfe0d7; font-size: 11px; }
+.history-archive:hover { background: #ffffff14; color: #fff; }
+.admin-navigation { margin-top: 18px; border-color: #ffffff22; }
+.sidebar-bottom { margin-top: auto; padding: 16px 4px 0; border-top: 1px solid #ffffff22; color: #b9cfc3; }
+.sidebar-bottom .status-dot { background: #7dbda3; }
+.sidebar :focus-visible { outline-color: #b6ddcb; }
+.navigation-close { color: #cfe0d7; }
+.navigation-close:hover { background: #ffffff14; }
+.navigation-backdrop { background: #12201980; }
+main { background: var(--canvas); }
+.topbar { padding: 10px 20px; font-size: 13px; }
+.workspace-breadcrumb { font-weight: 600; }
+#current-user { padding: 5px 12px; border: 1px solid var(--line); border-radius: 999px; background: #f8faf9; }
+.account-controls button { padding: 5px 9px; min-height: 32px; border-color: var(--line); }
+
+/* 顶部选择诊断目标；底部输入区与对话列分区，长结果仍能滚动回填。 */
+#page-diagnosis .conversation-column > .page-heading { padding: 12px 16px; gap: 12px; background: #f8fafc; }
+#page-diagnosis h1 { font-size: 18px; line-height: 1.4; }
+#page-diagnosis .page-heading > div:first-child { flex: 1; }
+#page-diagnosis .conversation-column > .page-heading p.field-help { display: block; }
+.header-actions { gap: 6px; }
+#export-run { border: 1px solid #cbd5e1; color: var(--ink); gap: 6px; }
+#export-run .ui-icon { width: 15px; height: 15px; flex-basis: 15px; }
+.diagnosis-layout { height: calc(100dvh - 128px); min-height: 620px; }
+.conversation-column { background: #fff; }
+.conversation { padding: 24px 16px; background: #f8fafc; }
+.message { margin-bottom: 20px; padding-left: 44px; }
+.message-avatar { width: 30px; height: 30px; background: #1e293b; font-size: 18px; }
+.user-message { max-width: 88%; margin-right: 0; padding-left: 0; padding-right: 40px; }
+.user-message .message-avatar { left: auto; right: 0; background: var(--accent); font-size: 12px; }
+.message-role { font-size: 12px; margin-bottom: 8px; }
+.message-body, .message-body.markdown-body { font-size: 14px; line-height: 1.85; }
+.message:not(.user-message) > .message-body { background: #fff; padding: 16px; border: 1px solid var(--line); border-radius: 8px; }
+.user-message .message-body { background: var(--accent); color: #fff; padding: 12px 16px; border-radius: 8px; }
+.markdown-body h2 { font-size: 16px; }
+.markdown-body h3 { font-size: 14px; }
+.empty-diagnosis { margin: 16px auto; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 24px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+.empty-diagnosis .empty-symbol { width: 46px; height: 46px; margin: 0 0 12px; padding: 9px; border-radius: 50%; background: #f2f7f4; }
+.empty-diagnosis h2 { font-size: 17px; margin: 0 0 8px; }
+.empty-diagnosis > p { margin: 0 0 12px; font-size: 13px; line-height: 1.8; }
+.empty-diagnosis .subtle { font-size: 11px; margin: 12px 0 0; }
+.example-prompt { width: 100%; font-size: 13px; background: #f8fafc; border-color: var(--line); margin: 0; padding: 12px; }
+.composer { width: 100%; max-width: none; align-self: stretch; margin: 0; padding: 12px 16px; border: 0; border-top: 1px solid var(--line); border-radius: 0; }
+.composer-target { flex-basis: 100%; padding: 0; border: 0; gap: 4px 10px; }
+.composer-target label { font-size: 12px; font-weight: 600; }
+.composer-target select { font-size: 12px; min-height: 36px; padding: 6px 8px; max-width: 580px; }
+.composer-target .field-help { grid-column: 2; margin: 0; font-size: 11px; line-height: 1.6; }
+.composer textarea { border: 1px solid #cbd5e1; padding: 10px; min-height: 80px; background: #fff; font-size: 13px; }
+.composer textarea:focus { outline-offset: 2px; }
+.composer-footer { margin: 0; }
+.composer-footer > .checkbox-label, .composer .primary { min-height: 40px; }
+.composer .primary { gap: 8px; }
+.composer .primary::before { display: none; }
+.composer .primary::after { content: ''; width: 16px; height: 16px; background: currentColor; mask: url('/vendor/tabler/send.svg') center / contain no-repeat; }
+.evidence-column { padding: 0 12px 16px; background: #f8fafc; }
+.evidence-column > .section-heading { margin: 0 -12px; padding: 14px 12px; background: #fff; border-bottom: 1px solid var(--line); }
+.section-heading h2 { font-size: 13px; }
+.evidence-intro { font-size: 11px; margin: 10px 0; }
+.evidence-filters { gap: 4px; margin: 0 -12px 12px; padding: 0 12px 10px; }
+.evidence-filters button { border: 0; border-radius: 4px; padding: 6px 4px; font-size: 12px; }
+.evidence-filters button[aria-pressed=true] { color: #fff; background: var(--accent); }
+.evidence-filters button:hover:not([aria-pressed=true]) { background: #e2e8f0; }
+.event, .citation { padding: 12px; margin: 10px 0; background: #fff; border-radius: 8px; }
+.event summary { font-size: 12px; line-height: 1.7; }
+.event-time { margin-bottom: 6px; font-size: 10px; }
+.event pre { margin-top: 10px; background: #f8fafc; font-size: 11px; }
+.citation-title { font-size: 13px; gap: 8px; color: var(--ink); }
+.citation-title::before { width: 18px; height: 20px; flex-basis: 18px; }
+.citation > .markdown-body { margin-top: 10px; padding: 10px; background: #f8fafc; font-size: 12px; }
+.empty-evidence { padding: 20px 0; font-size: 12px; }
+.page:not(#page-diagnosis) { padding: 24px; }
+.page:not(#page-diagnosis) h1 { font-size: 22px; }
+.page:not(#page-diagnosis) > .page-heading { margin-bottom: 20px; }
+.page-heading p { font-size: 13px; }
+.form-panel { padding: 20px; }
+.raw-data, .ec-raw, .oc-raw { background: #f8fafc; }
+
+/* 状态卡片沿用参考的细边框、9px圆角和语义颜色，值由现有业务数据提供。 */
+.badge { display: inline-flex; align-items: center; gap: 5px; border: 1px solid #b6ddcb; border-radius: 999px; padding: 2px 8px; font-size: 11px; font-weight: 600; background: #e2f3ea; color: #1f6b4d; }
+.badge::before { content: ''; width: 5px; height: 5px; flex: 0 0 5px; border-radius: 50%; background: currentColor; }
+.badge.error { border-color: #eeb0ac; background: #fceceb; color: #9a2f28; }
+.badge.pending { border-color: #e8c489; background: #fdf1dc; color: #8a5a12; }
+#run-state:not([data-state]), #run-state[data-state=CANCELLED], #run-state[data-state=INTERRUPTED] { border-color: #ccd6d1; background: #eef2f0; color: #4a5a52; }
+#run-state[data-state=RUNNING], #run-state[data-state=QUEUED] { border-color: #a9bde3; background: #e6ecf8; color: #2f4f8a; }
+.run-metrics { padding: 12px; border: 1px solid #e6ece9; border-radius: 9px; background: #fff; margin: 12px 0; }
+.usage-page { --usage-line: #e6ece9; --usage-muted: #526174; }
+.usage-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding: 0; border: 0; margin: 16px 0; }
+.usage-stats .usage-stat { padding: 14px 16px; border: 1px solid #e6ece9; border-radius: 9px; background: #fff; }
+.usage-stat dd { margin: 6px 0; font-size: 22px; font-weight: 700; letter-spacing: -.02em; line-height: 1.3; }
+.usage-coverage.incomplete, .config-notice, .ec-warning, .oc-warning, .rem-warning { border: 1px solid #e8c489; border-radius: 9px; background: #fdf1dc; color: #8a5a12; }
+.notice { border: 1px solid #eeb0ac; border-radius: 9px; background: #fceceb; color: #9a2f28; }
+.notice.success { border-color: #9ed4ba; background: #e2f3ea; color: #1f6b4d; }
+.enterprise-state span { border: 1px solid #b6ddcb; border-radius: 999px; background: #dceee5; color: #1c4537; padding: 2px 8px; font-size: 12px; }
+.oc-entry { border-color: #e6ece9; border-radius: 9px; background: #fff; }
+#diagnosis-outcome { margin: 16px; padding: 20px; border-color: #e6ece9; border-radius: 9px; background: #fff; }
+
+@media (min-width: 1800px) {
+    .message-body, .message-body.markdown-body { font-size: 15px; }
+    .conversation { padding-inline: 28px; }
+}
+@media (max-width: 1150px) {
+    .diagnosis-layout { height: auto; min-height: 0; }
+    .conversation { min-height: 280px; }
+    .evidence-filters { max-width: none; }
+    .usage-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 1080px) {
+    .sidebar { width: min(300px, calc(100vw - 48px)); }
+    .topbar { padding: 8px 16px; }
+}
+@media (max-width: 680px) {
+    .topbar { padding: 8px 12px; font-size: 12px; }
+    #page-diagnosis .conversation-column > .page-heading { padding: 12px; gap: 10px; }
+    #page-diagnosis h1 { font-size: 17px; }
+    .conversation { padding: 16px 12px; min-height: 0; }
+    .empty-diagnosis { margin: 0; padding: 16px; }
+    .empty-diagnosis .empty-symbol { width: 36px; height: 36px; margin-bottom: 8px; padding: 6px; }
+    .empty-diagnosis h2 { font-size: 17px; }
+    .empty-diagnosis p { font-size: 12px; line-height: 1.7; }
+    .empty-diagnosis .subtle { margin-top: 8px; font-size: 11px; }
+    .example-prompt { padding: 10px; font-size: 12px; }
+    .message { padding-left: 36px; }
+    .message-avatar { width: 26px; height: 26px; font-size: 16px; }
+    .user-message { max-width: 94%; padding-left: 0; padding-right: 34px; }
+    .user-message .message-avatar { font-size: 11px; }
+    .message:not(.user-message) > .message-body { padding: 12px; }
+    .composer { padding: 12px; }
+    .composer-target select { min-height: 44px; }
+    .composer-target .field-help { grid-column: 1; }
+    .composer-footer > .checkbox-label, .composer .primary { min-height: 44px; }
+    .page:not(#page-diagnosis) { padding: 20px 16px; }
+    .form-panel { padding: 20px 16px; }
+    .primary, .secondary { min-height: 44px; }
+    .usage-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .usage-stats .usage-stat { padding: 12px; }
+    .usage-stat dd { font-size: 20px; white-space: normal; overflow-wrap: anywhere; }
+    #diagnosis-outcome { margin: 12px; padding: 16px; }
+}

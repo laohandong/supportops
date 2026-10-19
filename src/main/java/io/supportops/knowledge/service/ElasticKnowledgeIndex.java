@@ -8,6 +8,7 @@ import io.supportops.knowledge.dto.ChunkSource;
 import io.supportops.knowledge.service.support.KnowledgeValues;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.URI;
@@ -38,23 +39,31 @@ public class ElasticKnowledgeIndex {
     /** 保存有来源和排名的 ES 命中，不返回向量载荷。 */
     public record Hit(ChunkSource source, double score) {}
 
-    /** 校验固定地址与索引前缀；凭据只放在请求头。 */
+    /** 本地示例和隔离测试保留只允许回环HTTP的构造语义。 */
+    public ElasticKnowledgeIndex(
+            ObjectMapper json, String endpoint, String user, String password, String prefix) {
+        this(json, endpoint, user, password, prefix, false);
+    }
+
+    /** 校验固定地址与索引前缀；企业包仅额外允许专属内部网络中的固定ES服务名。 */
+    @Autowired
     public ElasticKnowledgeIndex(
             ObjectMapper json,
             @Value("${supportops.knowledge.elastic.endpoint}") String endpoint,
             @Value("${supportops.knowledge.elastic.username:}") String user,
             @Value("${supportops.knowledge.elastic.password:}") String password,
-            @Value("${supportops.knowledge.elastic.prefix:supportops}") String prefix) {
+            @Value("${supportops.knowledge.elastic.prefix:supportops}") String prefix,
+            @Value("${supportops.enterprise.enabled:false}") boolean enterprise) {
         this.json = json;
         this.endpoint = endpoint.replaceAll("/+$", "");
         URI uri = URI.create(this.endpoint);
+        boolean internalHttp = "http".equals(uri.getScheme())
+                && (Set.of("localhost", "127.0.0.1", "[::1]").contains(uri.getHost())
+                        || (enterprise && "elasticsearch".equals(uri.getHost()) && uri.getPort() == 9200));
         if (!prefix.matches("[a-z][a-z0-9_-]{0,40}")
                 || uri.getUserInfo() != null
                 || uri.getQuery() != null
-                || (!"https".equals(uri.getScheme())
-                        && !("http".equals(uri.getScheme())
-                                && Set.of("localhost", "127.0.0.1", "[::1]")
-                                        .contains(uri.getHost())))) {
+                || (!"https".equals(uri.getScheme()) && !internalHttp)) {
             throw new IllegalArgumentException("INVALID_ES_CONFIGURATION");
         }
         this.prefix = prefix;
@@ -83,6 +92,19 @@ public class ElasticKnowledgeIndex {
                 + KnowledgeValues.hash(profile).substring(0, 20)
                 + "-"
                 + dimensions;
+    }
+    /** 企业系统采用独立物理命名空间；历史示例保留原索引名称。 */
+    public String scopedKeywordIndex(String systemId) {
+        io.supportops.integration.service.support.IntegrationInputs.uuid(systemId);
+        return io.supportops.integration.service.support.EnterpriseIds.SYSTEM.equals(systemId) ? textIndex()
+                : prefix + "-system-" + systemId.replace("-", "") + "-keyword";
+    }
+    /** 向量命名空间同时包含系统、模型指纹与维度。 */
+    public String scopedVectorIndex(String systemId, String profile, int dimensions) {
+        String compatible = vectorIndex(profile, dimensions);
+        return io.supportops.integration.service.support.EnterpriseIds.SYSTEM.equals(systemId) ? compatible
+                : prefix + "-system-" + io.supportops.integration.service.support.IntegrationInputs.uuid(systemId).replace("-", "")
+                        + compatible.substring(prefix.length());
     }
 
     /** 显式建立字段映射，拒绝元数据自动扩张索引结构。 */
@@ -168,6 +190,11 @@ public class ElasticKnowledgeIndex {
     public void putText(List<ChunkSource> sources, int epoch) {
         bulk(textIndex(), sources, null, null, epoch);
     }
+    /** 将同系统分片写入确定的物理索引，调用方固定名称且不接收模型输入。 */
+    public void putScopedText(String index, List<ChunkSource> sources, int epoch) {
+        if (!index.matches("[a-z0-9_-]{1,200}")) { throw new IllegalArgumentException("INVALID_INDEX_NAME"); }
+        bulk(index, sources, null, null, epoch);
+    }
 
     /** 写入一个已校验的向量，任务 ID 隔离并行重建。 */
     public void putVector(
@@ -245,6 +272,10 @@ public class ElasticKnowledgeIndex {
 
     /** 关键词召回覆盖所有已发布批次，与是否向量化无关。 */
     public List<Hit> lexical(String query, String version, List<String> batchIds, int size) {
+        return lexicalScoped(io.supportops.integration.service.support.EnterpriseIds.SYSTEM, query, version, batchIds, size);
+    }
+    /** 召回在指定系统物理索引和 MySQL 发布批次交集内执行。 */
+    public List<Hit> lexicalScoped(String systemId, String query, String version, List<String> batchIds, int size) {
         if (batchIds.isEmpty()) {
             return List.of();
         }
@@ -261,7 +292,7 @@ public class ElasticKnowledgeIndex {
         return hits(
                 request(
                         "POST",
-                        "/" + textIndex() + "/_search",
+                        "/" + scopedKeywordIndex(systemId) + "/_search",
                         Map.of(
                                 "size",
                                 size,

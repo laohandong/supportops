@@ -9,6 +9,7 @@ import io.supportops.config.dto.UpdateModelSettingsRequest;
 import io.supportops.config.vo.ModelSettingsView;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.springframework.boot.env.YamlPropertySourceLoader;
@@ -18,6 +19,8 @@ import org.springframework.mock.env.MockEnvironment;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.DirectoryNotEmptyException;
+import java.util.stream.Stream;
 
 /** 验证配置持久化、并发修订检查与密钥隔离，不调用真实模型服务。 */
 class ModelSettingsTest {
@@ -37,6 +40,37 @@ class ModelSettingsTest {
         }
         file = directory.resolve("settings.json");
         registry = new ProviderRegistry(env, new LocalModelSettings(file, new ObjectMapper()));
+    }
+
+    /** 仅清理本用例文件；空目录删除的短暂延迟有界重试，未知文件及持续删除失败仍使测试失败。 */
+    @AfterEach
+    void removeOwnedFixtureBeforeFrameworkCleanup() throws Exception {
+        if (file != null) {
+            Files.deleteIfExists(file);
+        }
+        Path failedWriteFixture = directory.resolve("not-a-directory");
+        if (Files.exists(failedWriteFixture)) {
+            assertThat(Files.isRegularFile(failedWriteFixture)).isTrue();
+            assertThat(Files.readString(failedWriteFixture)).isEqualTo("fixture");
+            Files.delete(failedWriteFixture);
+        }
+        for (int attempt = 0; attempt < 100; attempt++) {
+            try {
+                Files.deleteIfExists(directory);
+                return;
+            } catch (DirectoryNotEmptyException exception) {
+                // 只对确认空的临时目录重试，未知遗留文件和持续失败仍使测试失败。
+                try (Stream<Path> entries = Files.list(directory)) {
+                    if (entries.findAny().isPresent()) {
+                        throw exception;
+                    }
+                }
+                if (attempt == 99) {
+                    throw exception;
+                }
+                Thread.sleep(10);
+            }
+        }
     }
 
     /** 基于最新修订标记构造测试配置请求。 */

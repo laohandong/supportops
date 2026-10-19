@@ -17,7 +17,15 @@ public record KnowledgeDocument(
         @Schema(description = "当前目标处理批次，旧记录可空。") String batchId,
         @Schema(description = "目标批次处理状态。") String processingStatus,
         @Schema(description = "关键词索引状态。") String textStatus,
-        @Schema(description = "向量任务状态；只有 SUCCEEDED 且配置匹配才可用于向量检索。") String vectorStatus) {
+        @Schema(description = "向量任务状态；只有 SUCCEEDED 且配置匹配才可用于向量检索。") String vectorStatus,
+        @Schema(description = "所属系统 UUID；同版本不同系统资料独立") String systemId) {
+    /** 原文档元数据构造器兼容历史示例资料。 */
+    public KnowledgeDocument(String id, String title, String version, String filename, String createdAt,
+            String embeddingKey, int chunks, String versionId, String batchId, String processingStatus,
+            String textStatus, String vectorStatus) {
+        this(id, title, version, filename, createdAt, embeddingKey, chunks, versionId, batchId,
+                processingStatus, textStatus, vectorStatus, io.supportops.integration.service.support.EnterpriseIds.SYSTEM);
+    }
     /** 兼容旧元数据构造；无原件的旧记录不能虚构完成状态。 */
     public KnowledgeDocument(
             String id,

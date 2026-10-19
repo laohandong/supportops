@@ -1,0 +1,36 @@
+{
+  "namespace": "supportops-evaluation-target",
+  "schemaVersion": 1,
+  "targetId": "supportops-3aff0b5f63f17e9c",
+  "adapterId": "SUPPORTOPS_V1",
+  "adapterVersion": "1.0.0",
+  "jar": "application.jar",
+  "jarSha256": "3aff0b5f63f17e9c9ce739ea71efdf353dc82af6507c33b1f2c96fe8d7964366",
+  "resources": {
+    "bundled-knowledge/manifest.json": "a8d28dbb1f460c060dd7c1921e1dd9ec6eac210937f4940de186d43518549d8a",
+    "bundled-knowledge/migration-2.0.md": "672a111debca7d217b5689d68ad2c1597129fb0d5897de09eeaabeb481848c35",
+    "bundled-knowledge/orderbridge-1.0.md": "633b42f493902397c21d92ab7a4ffd0c512d275a27b7fe1f67628ccfb3565abc",
+    "bundled-knowledge/orderbridge-2.0.md": "c8407821145eac439650336feddab54b8dd1d40b764542a12a4a8a7808b9203e",
+    "prompts/diagnosis.txt": "709a48d7f32494387b2d52c4f8bc53c39c54f69eefa96ce8e5abf4af1e6964ae",
+    "skills/incident-triage/SKILL.md": "d3e89df6538176fe8baf3a9c297c3d20443207df3c96474d3f8689d7ed698cb7",
+    "skills/upgrade-check/SKILL.md": "c937a54d037e1e104fcdf81663bb4d1f94a89ff1c40999ac6343d8ba9b0be212"
+  },
+  "chunkSize": 100,
+  "overlap": 10,
+  "helperMain": "io.supportops.migration.IsolatedKnowledgeWorkspace",
+  "submitIdempotency": "UNSUPPORTED_STOP_ON_UNKNOWN",
+  "scenarios": [
+    "unavailable",
+    "credentials",
+    "migration",
+    "stale-docs",
+    "insufficient",
+    "injection"
+  ],
+  "buildProvenance": "UNKNOWN",
+  "sourceHead": null,
+  "sourceDirty": null,
+  "sourceSnapshotSha256": "59402a80fb87cba37bba263f05c8fe2830b0e35378609f0ecd87301acf0ec76a",
+  "sourceSnapshotFileCount": 412,
+  "createdAt": "2000-01-01T00:00:00Z"
+}

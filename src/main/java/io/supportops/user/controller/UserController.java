@@ -7,6 +7,8 @@ import io.supportops.user.dto.CreateUserRequest;
 import io.supportops.user.service.UserService;
 import io.supportops.user.vo.SetupStatus;
 import io.supportops.user.vo.UserView;
+import io.supportops.integration.service.support.EnterpriseSetup;
+import org.springframework.beans.factory.annotation.Autowired;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,21 +30,28 @@ import java.util.List;
 public class UserController {
     public static final String SESSION_USER = "supportops.userId";
     private final UserService users;
+    private final EnterpriseSetup setup;
     /** 注入用户业务服务。 */
     public UserController(UserService users) {
+        this(users, null);
+    }
+    /** 企业初始化走一次性 Secret 边界，本地测试保留旧构造入口。 */
+    @Autowired public UserController(UserService users, EnterpriseSetup setup) {
         this.users = users;
+        this.setup = setup;
     }
     /** 查询是否需要首次创建管理员，不返回账号列表。 */
     @GetMapping("/auth/setup")
     @Operation(summary = "查询首次初始化状态", description = "匿名可读；setupRequired 为 true 时可在本机创建首个管理员。")
     public SetupStatus setupStatus() {
-        return new SetupStatus(users.setupRequired());
+        return new SetupStatus(users.setupRequired(), setup != null && setup.requiredSecret());
     }
     /** 首次初始化成功后轮换会话，避免会话固定。 */
     @PostMapping("/auth/setup")
     @Operation(summary = "创建首个管理员", description = "仅限尚无账号时；成功建立登录会话；已初始化返回 409 SETUP_COMPLETED。")
     public UserView setup(@Valid @RequestBody Credentials input, HttpServletRequest request) {
-        return signedIn(users.setup(input.username(), input.password()), request);
+        return signedIn(setup == null ? users.setup(input.username(), input.password())
+                : setup.create(input.username(), input.password(), request.getHeader("X-SupportOps-Setup-Secret")), request);
     }
     /** 验证账号密码并创建服务端会话。 */
     @PostMapping("/auth/login")

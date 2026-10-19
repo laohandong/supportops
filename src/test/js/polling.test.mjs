@@ -8,12 +8,28 @@ import {validChunkOptions, batchChunkOptions, batchChunkLabel} from '../../main/
 const knowledgeSource = (await readFile(new URL('../../main/resources/static/knowledge.js', import.meta.url), 'utf8'))
     .replace("import {validChunkOptions, batchChunkOptions, batchChunkLabel} from './chunk-settings.mjs';", '');
 const usageSource = (await readFile(new URL('../../main/resources/static/usage-charts.js', import.meta.url), 'utf8')).replaceAll('export function ', 'function ');
+const enterpriseSource = (await readFile(new URL('../../main/resources/static/enterprise.js', import.meta.url), 'utf8')).replace('export function initializeEnterprise', 'function initializeEnterprise');
+const shellSource = (await readFile(new URL('../../main/resources/static/workspace-shell.js', import.meta.url), 'utf8')).replace('export function initializeWorkspaceShell', 'function initializeWorkspaceShell');
 const feishuSource = (await readFile(new URL('../../main/resources/static/feishu.js', import.meta.url), 'utf8')).replace('export function initializeFeishu', 'function initializeFeishu');
-const source = usageSource + '\n' + feishuSource + '\n' + knowledgeSource.replace('export function initializeKnowledge', 'function initializeKnowledge') + '\n'
+const remediationModule = (await readFile(new URL('../../main/resources/static/remediation.js', import.meta.url), 'utf8')).replaceAll('export function ', 'function ');
+const remediationSource = `const initializeRemediation = (() => {${remediationModule}\n return initializeRemediation;})();`;
+const outcomeModules = await Promise.all(['fixed-command','outcome'].map(async name => {
+    const content = (await readFile(new URL(`../../main/resources/static/${name}.js`, import.meta.url), 'utf8')).replaceAll('export function ', 'function ');
+    const entry = {'fixed-command':'initializeFixedCommands', outcome:'initializeOutcome', 'case-library':'initializeCaseLibrary'}[name];
+    return `const ${entry} = (() => {${content}\n return ${entry};})();`;
+}));
+const source = shellSource + '\n' + enterpriseSource + '\n' + usageSource + '\n' + feishuSource + '\n' + remediationSource + '\n' + outcomeModules.join('\n') + '\n' + knowledgeSource.replace('export function initializeKnowledge', 'function initializeKnowledge') + '\n'
     + (await readFile(new URL('../../main/resources/static/app.js', import.meta.url), 'utf8'))
         .replace("import {initializeKnowledge} from './knowledge.js';", '')
+        .replace("import {initializeEnterprise} from './enterprise.js';", '')
+        .replace(/import \{initializeWorkspaceShell\} from '\.\/workspace-shell\.js(?:\?[^']*)?';/, '')
         .replace("import {renderUsageDashboard} from './usage-charts.js';", '')
-        .replace("import {initializeFeishu} from './feishu.js';", '');
+        .replace("import {initializeFeishu} from './feishu.js';", '')
+        .replace("import {initializeEvaluation} from './evaluation.js';", '')
+        .replace(/import \{initializeRemediation\} from '\.\/remediation\.js(?:\?[^']*)?';/, '')
+        .replace("import {initializeFixedCommands} from './fixed-command.js';", '')
+        .replace("import {initializeOutcome} from './outcome.js';", '')
+        .replace("import {initializeCaseLibrary} from './case-library.js';", '');
 const markdownLibrary = await readFile(new URL('../../main/resources/static/vendor/markdown-it.min.js', import.meta.url), 'utf8');
 const markdownSource = await readFile(new URL('../../main/resources/static/markdown.js', import.meta.url), 'utf8');
 
@@ -52,6 +68,7 @@ function fixture() {
             value: '',
             className: '',
             children: [],
+            get options() { return this.children; },
             dataset: {},
             style: {},
             scrollIntoView() {},
@@ -87,12 +104,15 @@ function fixture() {
     };
     const env = {
         validChunkOptions, batchChunkOptions, batchChunkLabel,
-        document: {body: node(), querySelector: get, querySelectorAll: selector => selector === '#evidence > [data-evidence-category]' ? get('#evidence').children.filter(child => child.dataset?.evidenceCategory) : [], createElement: node, createTextNode: text => ({textContent:text})},
+        document: {body: node(), addEventListener() {}, querySelector: get, querySelectorAll: selector => selector === '#evidence > [data-evidence-category]' ? get('#evidence').children.filter(child => child.dataset?.evidenceCategory) : [], createElement: node, createTextNode: text => ({textContent:text})},
+        window: {addEventListener() {}, matchMedia: () => ({matches: false, addEventListener() {}}), MutationObserver: class { observe() {} }, history: {replaceState() {}}}, location: {hash: ''},
+        localStorage: {getItem() {return null;}, removeItem() {}, setItem() {}},
         crypto: {randomUUID: () => 'test-session'},
         FormData: class {
         },
         URL,
         URLSearchParams,
+        Option: function(text, value) { const result = node(); result.textContent = text; result.value = value; return result; },
         Blob,
         console,
         Date,
@@ -194,6 +214,8 @@ test('terminal snapshot reads events after status and retains final evidence', a
     assert.equal(f.calls[1], '/runs/run-1/events?after=0');
     assert.equal(f.controller.read().currentEvents[0].id, 9);
     assert.equal(f.controller.read().currentRun.status, 'FAILED');
+    assert.equal(f.get('#run-state').dataset.state, 'FAILED');
+    assert.equal(f.get('#run-state').textContent, '失败');
 });
 test('transient read failure retries same task and reveals recovery after three retries', async () => {
     const f = await fixture().init();

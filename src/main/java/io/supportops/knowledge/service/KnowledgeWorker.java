@@ -20,6 +20,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 /** 定时器只负责领取和续租，实际 I/O 在有容量限制的虚拟线程中运行。 */
 @Component
+@org.springframework.context.annotation.DependsOn("deploymentRuntimeGuard")
 public class KnowledgeWorker {
     private static final Logger LOGGER = LoggerFactory.getLogger(KnowledgeWorker.class);
     private final KnowledgeTaskService tasks;
@@ -151,10 +152,16 @@ public class KnowledgeWorker {
     }
 
     /** 停止领取并中断工作，遗留租约由下一实例恢复。 */
+    @org.springframework.beans.factory.annotation.Autowired
+    public void protectGuard(io.supportops.integration.service.support.DeploymentRuntimeGuard guard) { guard.protect(active::isEmpty); }
+
+    /** 停止调度并等待实际资源边界，未退出消费者使 guard 保持阻塞。 */
     @PreDestroy
     public void close() {
         closed = true;
         timer.shutdownNow();
         workers.shutdownNow();
+        try { workers.awaitTermination(15, TimeUnit.SECONDS); }
+        catch (InterruptedException exception) { Thread.currentThread().interrupt(); }
     }
 }
