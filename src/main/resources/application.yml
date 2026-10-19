@@ -1,5 +1,5 @@
 server:
-  address: 127.0.0.1
+  address: ${SUPPORTOPS_LISTEN_ADDRESS:127.0.0.1}
   port: ${PORT:18080}
   servlet:
     session:
@@ -7,6 +7,7 @@ server:
       cookie:
         http-only: true
         same-site: strict
+        secure: ${SUPPORTOPS_ENTERPRISE_ENABLED:false}
       tracking-modes: cookie
   error:
     include-message: never
@@ -41,7 +42,7 @@ mybatis-plus:
     banner: false
 springdoc:
   packages-to-scan: io.supportops
-  paths-to-match: /api/**
+  paths-to-match: /api/**,/open-api/v1/**
   override-with-generic-response: false
   writer-with-default-pretty-printer: true
   api-docs:
@@ -56,6 +57,7 @@ springdoc:
     persist-authorization: false
     try-it-out-enabled: false
 supportops:
+  evaluation-platform-url: ${SUPPORTOPS_EVALUATION_PLATFORM_URL:}
   feishu:
     enabled: ${SUPPORTOPS_FEISHU_ENABLED:false}
     app-id: ${SUPPORTOPS_FEISHU_APP_ID:}

@@ -8,6 +8,12 @@ import com.baomidou.mybatisplus.annotation.TableName;
 /** 知识文档持久化实体，保持原有 UUID 和 ISO 8601 时间格式。 */
 @TableName("documents")
 public class KnowledgeDocumentEntity {
+    /** 所属系统 UUID，通用星号资料也不得跨系统。 */
+    private String systemId;
+    /** 返回系统归属。 */
+    public String getSystemId() { return systemId; }
+    /** 设置不可变系统归属。 */
+    public void setSystemId(String value) { systemId = value; }
     /** 活跃内容去重键；删除后为空，允许再次上传形成新文档。 */
     private String canonicalKey;
 

@@ -26,6 +26,8 @@ import io.supportops.knowledge.vo.KnowledgeViews;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import io.supportops.integration.service.DataPolicyService;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,6 +51,7 @@ public class KnowledgeServiceImpl implements KnowledgeService {
     private final EmbeddingClient embedding;
     private final ElasticKnowledgeIndex elastic;
     private final PassageReranker reranker;
+    private final DataPolicyService policies;
 
     /** 注入发布目录与外部检索协议边界。 */
     public KnowledgeServiceImpl(
@@ -59,6 +62,14 @@ public class KnowledgeServiceImpl implements KnowledgeService {
             EmbeddingClient embedding,
             ElasticKnowledgeIndex elastic,
             PassageReranker reranker) {
+        this(library, catalog, releases, tasks, embedding, elastic, reranker, null);
+    }
+
+    /** 企业向量查询在每次外发前核对系统资料策略，旧构造器保留隔离测试兼容。 */
+    @Autowired
+    public KnowledgeServiceImpl(DocumentLibraryService library, KnowledgeCatalogMapper catalog,
+            DocumentReleaseMapper releases, IndexTaskMapper tasks, EmbeddingClient embedding,
+            ElasticKnowledgeIndex elastic, PassageReranker reranker, DataPolicyService policies) {
         this.library = library;
         this.catalog = catalog;
         this.releases = releases;
@@ -66,6 +77,7 @@ public class KnowledgeServiceImpl implements KnowledgeService {
         this.embedding = embedding;
         this.elastic = elastic;
         this.reranker = reranker;
+        this.policies = policies;
     }
 
     /** 受理原件与异步处理，返回最新文档状态。 */
@@ -120,6 +132,12 @@ public class KnowledgeServiceImpl implements KnowledgeService {
     @Override
     public KnowledgeSearchResult search(
             String query, String version, int limit, boolean lexicalOnly) {
+        return searchScoped(query, io.supportops.integration.service.support.EnterpriseIds.SYSTEM, version, limit, lexicalOnly);
+    }
+
+    /** 系统与版本在召回前和返回前共同过滤，通用星号资料仍限定在本系统。 */
+    @Override public KnowledgeSearchResult searchScoped(String query, String systemId, String version, int limit, boolean lexicalOnly) {
+        io.supportops.integration.service.support.IntegrationInputs.uuid(systemId);
         if (query == null
                 || query.isBlank()
                 || query.length() > 2000
@@ -129,8 +147,10 @@ public class KnowledgeServiceImpl implements KnowledgeService {
             throw new IllegalArgumentException("INVALID_INPUT");
         }
         int count = Math.clamp(limit, 1, 5);
-        List<String> batchIds = catalog.applicableBatches(version);
-        List<Hit> lexical = elastic.lexical(query, version, batchIds, 50);
+        List<String> batchIds = io.supportops.integration.service.support.EnterpriseIds.SYSTEM.equals(systemId)
+                ? catalog.applicableBatches(version) : catalog.scopedBatches(systemId, version);
+        List<Hit> lexical = io.supportops.integration.service.support.EnterpriseIds.SYSTEM.equals(systemId)
+                ? elastic.lexical(query, version, batchIds, 50) : elastic.lexicalScoped(systemId, query, version, batchIds, 50);
         List<Hit> vectors = List.of();
         Endpoint endpoint = embedding.snapshot();
         String profile = embedding.fingerprint(endpoint);
@@ -140,6 +160,7 @@ public class KnowledgeServiceImpl implements KnowledgeService {
                         : activeVectors(batchIds, profile);
         String mode = "LEXICAL";
         if (!active.isEmpty()) {
+            if (policies != null) { policies.requireEmbedding(systemId); }
             double[] vector = embedding.embed(endpoint, query);
             List<IndexTaskEntity> compatible =
                     active.stream().filter(task -> task.getDimensions() == vector.length).toList();
@@ -148,7 +169,8 @@ public class KnowledgeServiceImpl implements KnowledgeService {
             }
             vectors =
                     elastic.vector(
-                            elastic.vectorIndex(profile, vector.length),
+                    io.supportops.integration.service.support.EnterpriseIds.SYSTEM.equals(systemId)
+                            ? elastic.vectorIndex(profile, vector.length) : elastic.scopedVectorIndex(systemId, profile, vector.length),
                             version,
                             batchIds,
                             compatible.stream().map(IndexTaskEntity::getId).toList(),
@@ -157,7 +179,8 @@ public class KnowledgeServiceImpl implements KnowledgeService {
             mode = "HYBRID";
         }
         // 网络请求期间可能发布新版或删除文档，返回前再次收紧可见集合。
-        Set<String> visible = new HashSet<>(catalog.applicableBatches(version));
+        Set<String> visible = new HashSet<>(io.supportops.integration.service.support.EnterpriseIds.SYSTEM.equals(systemId)
+                ? catalog.applicableBatches(version) : catalog.scopedBatches(systemId, version));
         Map<String, ChunkSource> sources = new LinkedHashMap<>();
         Map<String, Double> scores = new HashMap<>();
         rank(lexical, visible, sources, scores);
@@ -190,7 +213,8 @@ public class KnowledgeServiceImpl implements KnowledgeService {
             }
         }
         // 模型可能耗时较长，不能在精排后返回期间被删除或替换的资料。
-        Set<String> finalVisible = new HashSet<>(catalog.applicableBatches(version));
+        Set<String> finalVisible = new HashSet<>(io.supportops.integration.service.support.EnterpriseIds.SYSTEM.equals(systemId)
+                ? catalog.applicableBatches(version) : catalog.scopedBatches(systemId, version));
         Map<String, Double> finalScores = modelRanked ? modelScores : scores;
         List<KnowledgePassage> passages = candidates.stream()
                 .filter(source -> finalVisible.contains(source.batchId()))
@@ -199,6 +223,10 @@ public class KnowledgeServiceImpl implements KnowledgeService {
                 .limit(count)
                 .map(source -> passage(source, scores.get(source.id()), modelScores.get(source.id())))
                 .toList();
+        // 向量和精排期间可能撤销外发批准；返回前再次核对，避免迟到结果继续作为获准检索展示。
+        if ("HYBRID".equals(mode) && policies != null) {
+            policies.requireEmbedding(systemId);
+        }
         return new KnowledgeSearchResult(mode, passages, reranked.ranking());
     }
 

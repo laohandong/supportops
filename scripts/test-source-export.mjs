@@ -1,0 +1,44 @@
+import assert from 'node:assert/strict';
+import {randomUUID} from 'node:crypto';
+import {mkdir, writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+const base=process.env.SUPPORTOPS_SOURCE_TEST_BASE;
+if (!base || !/^http:\/\/127\.0\.0\.1:(?!18080\b)\d+$/.test(base)) throw new Error('EXPLICIT_ISOLATED_SOURCE_REQUIRED');
+let cookie;
+async function api(path,body,status=200) {
+  const response=await fetch(base+path,{method:body===undefined?'GET':'POST',headers:{'Content-Type':'application/json','X-SupportOps-Request':'1',...(cookie?{Cookie:cookie}:{})},body:body===undefined?undefined:JSON.stringify(body)});
+  cookie=response.headers.get('set-cookie')?.split(';')[0]||cookie;
+  const text=await response.text();assert.equal(response.status,status,path+' '+text);return text ? JSON.parse(text) : null;
+}
+const state=await api('/api/auth/setup');
+await api(state.setupRequired?'/api/auth/setup':'/api/auth/login',{username:'source_admin',password:'synthetic-source-password-20261011'});
+const run=process.env.SUPPORTOPS_SOURCE_TEST_RUN_ID ? await api('/api/runs/'+process.env.SUPPORTOPS_SOURCE_TEST_RUN_ID) : await api('/api/runs',{sessionId:randomUUID(),question:'订单同步失败，合成来源导出验收。'});
+let final=run;
+for(let i=0;i<120&&['QUEUED','RUNNING'].includes(final.status);i++){await new Promise(done=>setTimeout(done,500));final=await api('/api/runs/'+run.id);}
+assert.ok(!['QUEUED','RUNNING'].includes(final.status));
+const before=await api('/api/runs/'+run.id+'/outcome');
+const result=await api('/api/runs/'+run.id+'/outcome',{requestId:randomUUID(),expectedVersion:before.version,status:'UNCONFIRMED',actionsTaken:'隔离验证，没有执行真实处理。',verificationSummary:'合成记录',remainingIssue:'尚未确认',changeReason:before.version?'再次隔离验证':'',evidence:[]});
+const detail=await api('/api/runs/'+run.id+'/outcome');
+const body={requestId:randomUUID(),expectedOutcomeRevisionId:detail.outcome.id,redactedQuestion:'订单同步失败，已去除私密信息。',redactedSummary:'人员确认仍缺少现场验证。',redactionConfirmed:true};
+const exported=await api('/api/runs/'+run.id+'/evaluation-exports',body,201);
+assert.deepEqual(await api('/api/runs/'+run.id+'/evaluation-exports',body,201),exported);
+assert.deepEqual(await Promise.all([api('/api/runs/'+run.id+'/evaluation-exports',body,201),api('/api/runs/'+run.id+'/evaluation-exports',body,201)]),[exported,exported]);
+await api('/api/runs/'+run.id+'/evaluation-exports',{...body,redactedSummary:'不同正文'},409);
+await api('/api/runs/'+run.id+'/evaluation-exports',{...body,requestId:randomUUID(),expectedOutcomeRevisionId:randomUUID()},409);
+assert.deepEqual(await api('/api/evaluation-exports/requests/'+body.requestId),exported);
+const pack=await api('/api/evaluation-exports/'+exported.exportId);
+assert.equal(pack.content.redactedQuestion,body.redactedQuestion);
+const rejected={...body,requestId:randomUUID(),actorId:randomUUID()};
+await api('/api/runs/'+run.id+'/evaluation-exports',rejected,400);
+const rejectedReceipt=await api('/api/evaluation-exports/requests/'+rejected.requestId);
+assert.equal(rejectedReceipt.httpStatus,400);assert.equal(rejectedReceipt.errorCode,'INVALID_INPUT');assert.equal(rejectedReceipt.exportId,null);
+await api('/api/runs/'+run.id+'/evaluation-exports',{...body,requestId:rejected.requestId},409);
+const duplicateId=randomUUID();
+const duplicated='{"requestId":"'+duplicateId+'","redactionConfirmed":true,"redactionConfirmed":false,"expectedOutcomeRevisionId":"'+detail.outcome.id+'","redactedQuestion":"合成","redactedSummary":""}';
+const bad=await fetch(base+'/api/runs/'+run.id+'/evaluation-exports',{method:'POST',headers:{'Content-Type':'application/json','X-SupportOps-Request':'1',Cookie:cookie},body:duplicated});assert.equal(bad.status,400);
+await api('/api/runs/'+run.id+'/archive',{},200);
+assert.deepEqual(await api('/api/evaluation-exports/'+exported.exportId),pack);
+const directory=resolve(process.env.SUPPORTOPS_SOURCE_TEST_OUTPUT||'.local/source-export-test');await mkdir(directory,{recursive:true});
+await writeFile(resolve(directory,'exported-source.json'),JSON.stringify(pack,null,2));
+await writeFile(resolve(directory,'source-export-evidence.json'),JSON.stringify({runId:run.id,outcomeRevision:detail.outcome.id,exportId:exported.exportId,contentSha256:pack.contentSha256,checks:['TERMINAL_SOURCE','CURRENT_REVISION','SAME_REQUEST_REPLAY','CONCURRENT_SAME_REQUEST','DIFFERENT_BODY_CONFLICT','STALE_REVISION_CONFLICT','RECEIPT_RECOVERY','IMMUTABLE_DOWNLOAD','UNKNOWN_FIELDS_REJECTED','DURABLE_REJECTION','REJECTED_KEY_CONFLICT','DUPLICATE_JSON_REJECTED','ARCHIVED_SOURCE_READABLE']},null,2));
+console.log(JSON.stringify({passed:true,exportId:exported.exportId}));

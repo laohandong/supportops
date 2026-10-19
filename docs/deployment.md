@@ -1,13 +1,15 @@
 # 本地部署与启动依赖
 
-SupportOps 的本地部署由三个存储服务和一个 Java 应用组成。根目录 [docker-compose.yml](../docker-compose.yml) 启动 MySQL、MinIO 和 Elasticsearch；应用通过 Maven 构建，再由 Node 脚本启动。Compose 不包含应用镜像。
+## 评测中心的独立部署
+
+AgentEval使用独立Java21应用、数据库、Cookie、模型档案和运行目录。SupportOps无需评测执行器。可用SUPPORTOPS_EVALUATION_PLATFORM_URL配置外部首页，详见[协作说明](evaluation-split.md)。
 
 ## 环境要求
 
 | 依赖 | 版本或要求 | 作用 | 默认地址 |
 | --- | --- | --- | --- |
 | JDK | 21，`JAVA_HOME` 指向该 JDK | 构建与运行后端 | 本机进程 |
-| Node.js | 22 或更新版本 | 配置初始化、启动、导入、评测与前端测试 | 本机命令 |
+| Node.js | 运行入口接受 22 或更新版本；可靠性工具固定验证 22.16.0 | 配置初始化、启动、导入、评测与前端测试 | 本机命令 |
 | Docker Engine / Docker Desktop | 后端处于运行状态 | 运行三个存储容器 | 本机 Docker 服务 |
 | Docker Compose | 2.20.0 或更新版本 | 解析根目录入口并等待依赖健康 | `docker compose` |
 | MySQL | 8.4 | 业务记录、任务、用户、文档分片及 Excel 关系表 | `127.0.0.1:13306` |
@@ -74,7 +76,7 @@ docker compose stop
 docker compose up -d --wait --wait-timeout 180
 ```
 
-默认 Compose 项目名为 `supportops`，卷为 `supportops_mysql-data`、`supportops_minio-data`、`supportops_es-data`。`.local/` 保存模型配置、运行目录和本地报告，不由 Compose 管理；容器重建不会恢复这些文件。备份应同时考虑 MySQL、MinIO 原件和本地配置，ES 索引可重建但不替代原始业务数据。
+默认 Compose 项目名为 `supportops`，卷为 `supportops_mysql-data`、`supportops_minio-data`、`supportops_es-data`。`.local/` 保存模型配置、运行目录和本地报告，不由 Compose 管理；容器重建不会恢复这些文件。完整备份应配套保存主库、Excel 动态库、MinIO 原件、ES 索引与本地配置。已登记的独占可靠性部署支持停止应用写入后导出官方 ES 快照，并恢复至全新目标，见 [可靠性运行与恢复](reliability-delivery.md)；日常默认部署不自动获得该工具的资源归属授权。
 
 `docker compose down` 删除容器与网络、保留命名卷；`down --volumes` 会删除卷及其中数据，日常停止不要使用。不要随意改变项目名，否则 Compose 会连接另一组卷，看起来像全新数据库。
 
@@ -105,7 +107,6 @@ $env:ES_PORT='29200'
 docker compose -p supportops-tests up -d --wait --wait-timeout 180
 .\mvnw.cmd -s .mvn/settings.xml verify
 node --test src/test/js/*.test.mjs
-node scripts/evaluate.mjs --sources-only --config=infrastructure/local.env.example
 docker compose -p supportops-tests stop
 Remove-Item Env:MYSQL_PORT, Env:MINIO_PORT, Env:ES_PORT
 ```
@@ -116,14 +117,17 @@ macOS / Linux：
 MYSQL_PORT=23306 MINIO_PORT=29000 ES_PORT=29200 docker compose -p supportops-tests up -d --wait --wait-timeout 180
 sh ./mvnw -s .mvn/settings.xml verify
 node --test src/test/js/*.test.mjs
-node scripts/evaluate.mjs --sources-only --config=infrastructure/local.env.example
 MYSQL_PORT=23306 MINIO_PORT=29000 ES_PORT=29200 docker compose -p supportops-tests stop
 ```
 
-测试创建随机数据库、桶和索引并清理自身资源。来源评测额外从打包 JAR 启动独立应用、创建一次性管理员、导入资料并等待异步索引，覆盖六个故障环境与版本检索场景；不调用外部模型，不评价诊断准确率。测试不要求普通工作台先启动。更多配置及报告含义见 [知识存储](knowledge.md#隔离测试与评测)和 [评测说明](../evaluation/README.md)。
+测试创建随机数据库、桶和索引并清理自身资源。六场景来源评测在AgentEval通过固定程序包完成，不要求当前工作台在线。
 
-[GitHub Actions](../.github/workflows/verify.yml) 使用相同 Compose 定义和测试端口，等待三个依赖健康后执行 Maven `verify` 与来源评测；JavaScript 测试独立运行。失败时输出服务日志，上传测试与评测记录，结束时清理本次 CI 环境。CI 不读取本地模型密钥，不下载可选 ONNX 权重；相应真实模型用例需按重排序文档单独启用。
+[GitHub Actions](../.github/workflows/verify.yml) 使用同一 Compose 基础和专属资源清单，等待依赖健康后完整执行 Maven 验证、六个来源场景、真实 Chromium 回归和全新目标恢复；JavaScript 测试独立运行。公开产物仅上传脱敏 JSON 与合成截图，不上传应用日志、原始配置、数据库或运行登记。清理只作用于该清单的资源。CI 不读取本地模型密钥，不下载可选 ONNX 权重；相应真实模型用例需按重排序文档单独启用。精确命令和安全边界见 [可靠性运行与恢复](reliability-delivery.md)。
 
 ## 适用边界
 
 此 Compose 面向本机开发与演示，端口仅绑定回环地址，使用公开的合成凭据，ES 关闭认证。不应直接改为公网监听投入企业生产环境。应用默认也监听本机；生产部署需要独立凭据、传输加密、备份和企业访问边界，当前仓库不提供生产编排。
+
+## 受控修复部署
+
+修复功能本身不需要模型密钥或新增外部服务。按正常流程备份并应用V9及V10；已有V9只增量应用V10，不改写历史迁移。应用启动产生新的内置目标实例身份，旧未执行提案失效，确认退出的旧RUNNING执行转UNKNOWN，不自动续写。内存原回执不会跨进程保存，缺证据须人工核查；场景审计来自持久化历史，读取不会重做操作。受控修复隔离验收必须使用专用数据库、端口和运行目录；不能据此替换日常工作台。见 [受控修复中心](controlled-remediation.md)。

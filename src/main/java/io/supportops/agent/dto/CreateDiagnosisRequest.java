@@ -18,4 +18,10 @@ public record CreateDiagnosisRequest(
                         example = "11111111-1111-4111-8111-111111111111")
                 String sessionId,
         @Schema(description = "true 强制关键词检索；false 根据配置和索引决定实际检索方式。", defaultValue = "false")
-                boolean lexicalOnly) {}
+                boolean lexicalOnly,
+        @Schema(description = "明确诊断环境 UUID；省略只兼容历史示例，不猜测企业环境") String environmentId) {
+    /** 兼容原示例调用对象。 */
+    public CreateDiagnosisRequest(String question, String sessionId, boolean lexicalOnly) {
+        this(question, sessionId, lexicalOnly, null);
+    }
+}

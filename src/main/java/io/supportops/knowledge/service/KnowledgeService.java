@@ -28,6 +28,11 @@ public interface KnowledgeService {
 
     /** 先执行版本过滤，再按明确的关键词或混合模式检索。 */
     KnowledgeSearchResult search(String query, String version, int limit, boolean lexicalOnly);
+    /** 服务器绑定系统范围；旧实现禁止把全局结果用于企业系统。 */
+    default KnowledgeSearchResult searchScoped(String query, String systemId, String version, int limit, boolean lexicalOnly) {
+        if (!io.supportops.integration.service.support.EnterpriseIds.SYSTEM.equals(systemId)) { throw new IllegalArgumentException("SYSTEM_SCOPE_REQUIRED"); }
+        return search(query, version, limit, lexicalOnly);
+    }
 
     /** 导入三份内置资料，重复调用依照内容摘要和版本去重。 */
     List<KnowledgeDocument> importExamples();

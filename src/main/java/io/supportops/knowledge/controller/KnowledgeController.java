@@ -137,6 +137,7 @@ public class KnowledgeController {
             summary = "异步重建向量索引",
             description = "要求文本分片和关键词索引已经完成。新向量代完整成功后切换发布指针，失败保留旧可用代；进度和补偿见 tasks 接口。")
     @ApiResponse(responseCode = "200", description = "新任务已受理后的文档状态。")
+    @ApiResponse(responseCode = "403", description = "EMBEDDING_POLICY_DENIED：所属系统未批准向量外发。")
     @ApiResponse(
             responseCode = "400",
             description = "DOCUMENT_NOT_SEARCHABLE、EXCEL_USES_SQL：文档暂不适合向量重建。")
@@ -168,6 +169,7 @@ public class KnowledgeController {
                             + " 不可用也明确报错。")
     @ApiResponse(responseCode = "200", description = "实际模式和带修订原文链接的引用。")
     @ApiResponse(responseCode = "400", description = "INVALID_INPUT：查询或版本参数无效。")
+    @ApiResponse(responseCode = "403", description = "EMBEDDING_POLICY_DENIED：所属系统未批准向量外发，不发送问题给向量服务。")
     @ApiResponse(responseCode = "503", description = "重排序错误：RERANK_MODEL_MISSING、RERANK_MODEL_INVALID、RERANK_TIMED_OUT、RERANK_CANCELLED、RERANK_INFERENCE_FAILED、RERANK_OUTPUT_INVALID、RERANK_UNAVAILABLE；不会降级为 RRF。")
     @GetMapping("/search")
     public KnowledgeSearchResult search(
@@ -180,7 +182,9 @@ public class KnowledgeController {
                     @RequestParam
                     String version,
             @Parameter(description = "是否只用关键词召回；不关闭已启用的本地模型重排序") @RequestParam(defaultValue = "false")
-                    boolean lexicalOnly) {
-        return knowledge.search(query, version, 5, lexicalOnly);
+                    boolean lexicalOnly,
+            @Parameter(description = "所属系统UUID；省略保留历史示例范围") @RequestParam(required = false) String systemId) {
+        return systemId == null ? knowledge.search(query, version, 5, lexicalOnly)
+                : knowledge.searchScoped(query, systemId, version, 5, lexicalOnly);
     }
 }

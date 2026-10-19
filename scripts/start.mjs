@@ -1,42 +1,46 @@
-import {spawn, execFile} from 'node:child_process';
-import {copyFile, mkdir, writeFile} from 'node:fs/promises';
-import {randomUUID} from 'node:crypto';
-import {dirname, join, resolve} from 'node:path';
-import {fileURLToPath} from 'node:url';
-import {promisify} from 'node:util';
-import {loadLocalConfig, configurationSecrets} from './local-config.mjs';
+import {dirname, resolve, join} from 'node:path';
+import {fileURLToPath, pathToFileURL} from 'node:url';
+import {loadLocalConfig} from './local-config.mjs';
+import {options} from './reliability/common.mjs';
+import {launch} from './reliability/runtime.mjs';
+import {readFile} from 'node:fs/promises';
+import {verifyDeployment} from './reliability/deployment.mjs';
+import {restoreArguments} from './reliability/maintenance.mjs';
+import {explicitPort} from './reliability/port.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const args = process.argv.slice(2);
-if (args.length > 1 || args.some(arg => !arg.startsWith('--config='))) throw new Error('Usage: node scripts/start.mjs [--config=path]');
-const config = resolve(root, args[0]?.slice('--config='.length) || '.local/model.env');
-const env = await loadLocalConfig(config);
-try {
-  const java = env.JAVA_HOME ? join(env.JAVA_HOME, 'bin', process.platform === 'win32' ? 'java.exe' : 'java') : 'java';
-  const version = await promisify(execFile)(java, ['-version'], {env, windowsHide: true, timeout: 10000});
-  if (!(Number(/version "(\d+)/.exec(version.stderr || version.stdout)?.[1]) >= 21)) throw new Error('Set JAVA_HOME to JDK 21 or newer.');
-  const runtime = join(root, '.local/runtime', `${Date.now()}-${randomUUID().slice(0, 8)}`);
-  await mkdir(runtime, {recursive: true});
-  const jar = join(runtime, 'application.jar');
-  await copyFile(join(root, 'target/supportops-0.1.0-SNAPSHOT.jar'), jar);
-  const child = spawn(java, ['-Dpdfbox.fontcache=.cache/pdfbox', '-jar', jar], {cwd: root, env, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe']});
-  const lifecycle = {pid: child.pid, startedAt: new Date().toISOString(), jar};
-  const secrets = configurationSecrets(env);
-  for (const [source, destination] of [[child.stdout, process.stdout], [child.stderr, process.stderr]]) {
-    source.setEncoding('utf8'); let pending = '';
-    const emit = line => destination.write(secrets.reduce((text, key) => text.replaceAll(key, '[REDACTED]'), line));
-    source.on('data', chunk => { pending += chunk; let end; while ((end = pending.indexOf('\n')) >= 0) { emit(pending.slice(0, end + 1)); pending = pending.slice(end + 1); } });
-    source.on('end', () => { if (pending) emit(pending); });
+
+/** 默认入口保持兼容；隔离路径、端口、设置与提供商来源显式选择。 */
+export async function start(args = process.argv.slice(2)) {
+  try {
+    const input = options(args, ['config', 'jar', 'runtime-root', 'workdir', 'settings', 'providers', 'port', 'deployment']);
+    let deployment;
+    if(input.deployment){
+      deployment=JSON.parse(await readFile(resolve(root,input.deployment),'utf8'));await verifyDeployment(deployment);
+      try{
+        const progress=JSON.parse(await readFile(join(deployment.directory,'restore.json'),'utf8'));
+        if(progress.status!=='RESTORED_STOPPED')throw new Error('RESTORE_PARTIAL_START_REFUSED');
+      }catch(error){if(error.code!=='ENOENT')throw error;}
+    }
+    const safeArgs=deployment?.restoreApplicationArgs?restoreArguments(deployment.directory):[];
+    const previousSafeArgs=safeArgs.filter(argument=>argument!=='--supportops.rerank.enabled=false');
+    if(deployment?.restoreApplicationArgs&&JSON.stringify(deployment.restoreApplicationArgs)!==JSON.stringify(safeArgs)&&JSON.stringify(deployment.restoreApplicationArgs)!==JSON.stringify(previousSafeArgs))throw new Error('RESTORE_PROFILE_INVALID');
+    const env = await loadLocalConfig(resolve(root, input.config || deployment?.config || '.local/model.env'));
+    const runtime = await launch({root, env, jar: resolve(root, input.jar || deployment?.jar || 'target/supportops-0.1.0-SNAPSHOT.jar'),
+      runtimeRoot: resolve(root, input['runtime-root'] || deployment?.runtimeRoot || '.local/runtime'), cwd: resolve(root, input.workdir || deployment?.directory || '.'),
+      settings: input.settings?resolve(root,input.settings):deployment?.settings,
+      providers: input.providers === undefined ? (deployment?.providers||undefined) : input.providers === 'none' ? '' : resolve(root, input.providers),
+      port: explicitPort(input.port), deployment: input.deployment && resolve(root, input.deployment),applicationArgs:safeArgs});
+    console.log(`READY runtimeId=${runtime.record.runtimeId} port=${runtime.record.port} jarSha256=${runtime.record.jarSha256}`);
+    console.log(`Runtime record: ${join(runtime.directory, 'runtime.json')}`);
+    const stop = () => runtime.stop().catch(() => { console.error('STOP_IDENTITY_UNCONFIRMED'); process.exitCode = 3; });
+    process.on('SIGINT', stop); process.on('SIGTERM', stop);
+    await runtime.completion;
+    process.off('SIGINT', stop); process.off('SIGTERM', stop);
+    process.exitCode = runtime.record.phase === 'FAILED' ? 1 : 0;
+  } catch (error) {
+    console.error(error.code === 'ENOENT' ? 'JDK_OR_JAR_NOT_FOUND' : /^[A-Z][A-Z0-9_]+$/.test(error.message) ? error.message : 'START_FAILED');
+    process.exitCode = error.message === 'INPUT_INVALID' ? 2 : 1;
   }
-  const stop = () => { if (child.exitCode === null && child.signalCode === null) child.kill('SIGTERM'); };
-  process.on('SIGINT', stop); process.on('SIGTERM', stop);
-  const completion = new Promise(resolveExit => { child.on('error', () => resolveExit(1)); child.on('close', code => resolveExit(code ?? 0)); });
-  await writeFile(join(runtime, 'runtime.json'), JSON.stringify(lifecycle, null, 2));
-  process.exitCode = await completion;
-  lifecycle.stoppedAt = new Date().toISOString(); lifecycle.exitCode = process.exitCode;
-  await writeFile(join(runtime, 'runtime.json'), JSON.stringify(lifecycle, null, 2));
-  process.off('SIGINT', stop); process.off('SIGTERM', stop);
-} catch (error) {
-  console.error(error.code === 'ENOENT' ? 'JDK or packaged JAR not found. Set JAVA_HOME and run Maven verify first.' : error.message);
-  process.exitCode = 1;
 }
+if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) await start();

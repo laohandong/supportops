@@ -7,6 +7,12 @@ import com.baomidou.mybatisplus.annotation.TableName;
 /** 飞书身份绑定与一次性绑定码摘要；绑定码原文只返回管理员一次。 */
 @TableName("feishu_bindings")
 public class FeishuBindingEntity {
+    /** 管理员指定的默认环境，消息内容不得覆盖该目标。 */
+    private String defaultEnvironmentId;
+    /** 返回绑定默认环境。 */
+    public String getDefaultEnvironmentId() { return defaultEnvironmentId; }
+    /** 设置绑定默认环境。 */
+    public void setDefaultEnvironmentId(String value) { defaultEnvironmentId = value; }
     /** 绑定记录 UUID。 */
     @TableId(value = "id", type = IdType.INPUT)
     private String id;

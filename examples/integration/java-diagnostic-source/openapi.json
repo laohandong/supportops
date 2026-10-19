@@ -1,0 +1,696 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "SupportOps 标准只读诊断源",
+    "version": "1.0",
+    "description": "独立源协议；不支持任意MCP或写操作"
+  },
+  "paths": {
+    "/v1/app-info": {
+      "get": {
+        "operationId": "APP_INFO",
+        "summary": "只读APP_INFO",
+        "security": [
+          {
+            "SourceBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "X-SupportOps-Request-Id",
+            "in": "header",
+            "required": true,
+            "description": "平台请求UUID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-SupportOps-Run-Id",
+            "in": "header",
+            "required": false,
+            "description": "诊断时的任务UUID，连接测试可省略",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "严格身份匹配的JSON，最大1MiB，深度20",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppInfoEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "源Bearer无效"
+          },
+          "403": {
+            "description": "源权限不足"
+          },
+          "503": {
+            "description": "源不可用；不能包装成成功"
+          }
+        }
+      }
+    },
+    "/v1/effective-config": {
+      "get": {
+        "operationId": "EFFECTIVE_CONFIG",
+        "summary": "只读EFFECTIVE_CONFIG",
+        "security": [
+          {
+            "SourceBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "X-SupportOps-Request-Id",
+            "in": "header",
+            "required": true,
+            "description": "平台请求UUID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-SupportOps-Run-Id",
+            "in": "header",
+            "required": false,
+            "description": "诊断时的任务UUID，连接测试可省略",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "严格身份匹配的JSON，最大1MiB，深度20",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EffectiveConfigEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "源Bearer无效"
+          },
+          "403": {
+            "description": "源权限不足"
+          },
+          "503": {
+            "description": "源不可用；不能包装成成功"
+          }
+        }
+      }
+    },
+    "/v1/recent-logs": {
+      "get": {
+        "operationId": "RECENT_LOGS",
+        "summary": "只读RECENT_LOGS",
+        "security": [
+          {
+            "SourceBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "X-SupportOps-Request-Id",
+            "in": "header",
+            "required": true,
+            "description": "平台请求UUID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-SupportOps-Run-Id",
+            "in": "header",
+            "required": false,
+            "description": "诊断时的任务UUID，连接测试可省略",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": true,
+            "description": "ISO8601时间，窗口最多900秒",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "description": "ISO8601时间，窗口最多900秒",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "请求最多200条，连接测试最多5条",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "严格身份匹配的JSON，最大1MiB，深度20",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecentLogsEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "源Bearer无效"
+          },
+          "403": {
+            "description": "源权限不足"
+          },
+          "503": {
+            "description": "源不可用；不能包装成成功"
+          }
+        }
+      }
+    },
+    "/v1/downstream-health": {
+      "get": {
+        "operationId": "DOWNSTREAM_HEALTH",
+        "summary": "只读DOWNSTREAM_HEALTH",
+        "security": [
+          {
+            "SourceBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "X-SupportOps-Request-Id",
+            "in": "header",
+            "required": true,
+            "description": "平台请求UUID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-SupportOps-Run-Id",
+            "in": "header",
+            "required": false,
+            "description": "诊断时的任务UUID，连接测试可省略",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "严格身份匹配的JSON，最大1MiB，深度20",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DownstreamHealthEnvelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "源Bearer无效"
+          },
+          "403": {
+            "description": "源权限不足"
+          },
+          "503": {
+            "description": "源不可用；不能包装成成功"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "SourceBearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "专用现场Bearer，仅由秘密文件注入"
+      }
+    },
+    "schemas": {
+      "Target": {
+        "type": "object",
+        "description": "必须匹配管理资源的现场身份",
+        "additionalProperties": false,
+        "required": [
+          "systemCode",
+          "environmentCode",
+          "productKey",
+          "productVersion"
+        ],
+        "properties": {
+          "systemCode": {
+            "type": "string",
+            "description": "系统编码",
+            "maxLength": 64
+          },
+          "environmentCode": {
+            "type": "string",
+            "description": "环境编码",
+            "maxLength": 64
+          },
+          "productKey": {
+            "type": "string",
+            "description": "产品标识",
+            "maxLength": 64
+          },
+          "productVersion": {
+            "type": "string",
+            "description": "实际版本",
+            "maxLength": 30
+          }
+        }
+      },
+      "Source": {
+        "type": "object",
+        "description": "现场来源，不含凭据或地址",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "instanceId"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "APPLICATION"
+            ],
+            "description": "固定来源类型"
+          },
+          "instanceId": {
+            "type": "string",
+            "description": "实例安全标识",
+            "maxLength": 128
+          }
+        }
+      },
+      "AppInfo": {
+        "type": "object",
+        "description": "应用信息",
+        "additionalProperties": false,
+        "required": [
+          "applicationName",
+          "capabilities"
+        ],
+        "properties": {
+          "applicationName": {
+            "type": "string",
+            "description": "应用名称",
+            "maxLength": 160
+          },
+          "capabilities": {
+            "type": "array",
+            "description": "固定能力集合",
+            "items": {
+              "type": "string",
+              "enum": [
+                "APP_INFO",
+                "EFFECTIVE_CONFIG",
+                "RECENT_LOGS",
+                "DOWNSTREAM_HEALTH"
+              ]
+            },
+            "maxItems": 4
+          }
+        }
+      },
+      "ConfigItem": {
+        "type": "object",
+        "description": "秘密配置必须脱敏且值为空",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "value",
+          "redacted",
+          "valueSource"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "配置键",
+            "maxLength": 128
+          },
+          "value": {
+            "type": "string",
+            "description": "公开值或空",
+            "maxLength": 4096,
+            "nullable": true
+          },
+          "redacted": {
+            "type": "boolean",
+            "description": "脱敏标记"
+          },
+          "valueSource": {
+            "type": "string",
+            "description": "值来源",
+            "maxLength": 128
+          }
+        }
+      },
+      "EffectiveConfig": {
+        "type": "object",
+        "description": "源批准公开的配置",
+        "additionalProperties": false,
+        "required": [
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "配置项",
+            "items": {
+              "$ref": "#/components/schemas/ConfigItem"
+            },
+            "maxItems": 200
+          }
+        }
+      },
+      "Log": {
+        "type": "object",
+        "description": "已脱敏日志",
+        "additionalProperties": false,
+        "required": [
+          "timestamp",
+          "level",
+          "message",
+          "traceId"
+        ],
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "发生时间"
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "TRACE",
+              "DEBUG",
+              "INFO",
+              "WARN",
+              "ERROR"
+            ],
+            "description": "日志级别"
+          },
+          "message": {
+            "type": "string",
+            "description": "消息",
+            "maxLength": 4096
+          },
+          "traceId": {
+            "type": "string",
+            "description": "可空追踪标识",
+            "maxLength": 128,
+            "nullable": true
+          }
+        }
+      },
+      "RecentLogs": {
+        "type": "object",
+        "description": "有界日志",
+        "additionalProperties": false,
+        "required": [
+          "entries",
+          "truncated"
+        ],
+        "properties": {
+          "entries": {
+            "type": "array",
+            "description": "日志条目",
+            "items": {
+              "$ref": "#/components/schemas/Log"
+            },
+            "maxItems": 200
+          },
+          "truncated": {
+            "type": "boolean",
+            "description": "是否截断更多记录"
+          }
+        }
+      },
+      "Dependency": {
+        "type": "object",
+        "description": "只读健康事实",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "status",
+          "observedAt",
+          "responseCode",
+          "reason"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "依赖名称",
+            "maxLength": 160
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "UP",
+              "DOWN",
+              "UNKNOWN"
+            ],
+            "description": "健康状态"
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "观测时间"
+          },
+          "responseCode": {
+            "type": "integer",
+            "minimum": 100,
+            "maximum": 599,
+            "nullable": true,
+            "description": "可空响应码"
+          },
+          "reason": {
+            "type": "string",
+            "description": "可空安全原因",
+            "maxLength": 512,
+            "nullable": true
+          }
+        }
+      },
+      "DownstreamHealth": {
+        "type": "object",
+        "description": "依赖健康集合",
+        "additionalProperties": false,
+        "required": [
+          "dependencies"
+        ],
+        "properties": {
+          "dependencies": {
+            "type": "array",
+            "description": "依赖",
+            "items": {
+              "$ref": "#/components/schemas/Dependency"
+            },
+            "maxItems": 50
+          }
+        }
+      },
+      "AppInfoEnvelope": {
+        "type": "object",
+        "description": "APP_INFO响应外壳",
+        "additionalProperties": false,
+        "required": [
+          "protocolVersion",
+          "requestId",
+          "target",
+          "observedAt",
+          "source",
+          "data"
+        ],
+        "properties": {
+          "protocolVersion": {
+            "type": "string",
+            "enum": [
+              "1.0"
+            ],
+            "description": "固定协议版本"
+          },
+          "requestId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "回显请求UUID"
+          },
+          "target": {
+            "$ref": "#/components/schemas/Target"
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "最近5分钟观测时间，最多未来1分钟"
+          },
+          "source": {
+            "$ref": "#/components/schemas/Source"
+          },
+          "data": {
+            "$ref": "#/components/schemas/AppInfo"
+          }
+        }
+      },
+      "EffectiveConfigEnvelope": {
+        "type": "object",
+        "description": "EFFECTIVE_CONFIG响应外壳",
+        "additionalProperties": false,
+        "required": [
+          "protocolVersion",
+          "requestId",
+          "target",
+          "observedAt",
+          "source",
+          "data"
+        ],
+        "properties": {
+          "protocolVersion": {
+            "type": "string",
+            "enum": [
+              "1.0"
+            ],
+            "description": "固定协议版本"
+          },
+          "requestId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "回显请求UUID"
+          },
+          "target": {
+            "$ref": "#/components/schemas/Target"
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "最近5分钟观测时间，最多未来1分钟"
+          },
+          "source": {
+            "$ref": "#/components/schemas/Source"
+          },
+          "data": {
+            "$ref": "#/components/schemas/EffectiveConfig"
+          }
+        }
+      },
+      "RecentLogsEnvelope": {
+        "type": "object",
+        "description": "RECENT_LOGS响应外壳",
+        "additionalProperties": false,
+        "required": [
+          "protocolVersion",
+          "requestId",
+          "target",
+          "observedAt",
+          "source",
+          "data"
+        ],
+        "properties": {
+          "protocolVersion": {
+            "type": "string",
+            "enum": [
+              "1.0"
+            ],
+            "description": "固定协议版本"
+          },
+          "requestId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "回显请求UUID"
+          },
+          "target": {
+            "$ref": "#/components/schemas/Target"
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "最近5分钟观测时间，最多未来1分钟"
+          },
+          "source": {
+            "$ref": "#/components/schemas/Source"
+          },
+          "data": {
+            "$ref": "#/components/schemas/RecentLogs"
+          }
+        }
+      },
+      "DownstreamHealthEnvelope": {
+        "type": "object",
+        "description": "DOWNSTREAM_HEALTH响应外壳",
+        "additionalProperties": false,
+        "required": [
+          "protocolVersion",
+          "requestId",
+          "target",
+          "observedAt",
+          "source",
+          "data"
+        ],
+        "properties": {
+          "protocolVersion": {
+            "type": "string",
+            "enum": [
+              "1.0"
+            ],
+            "description": "固定协议版本"
+          },
+          "requestId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "回显请求UUID"
+          },
+          "target": {
+            "$ref": "#/components/schemas/Target"
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "最近5分钟观测时间，最多未来1分钟"
+          },
+          "source": {
+            "$ref": "#/components/schemas/Source"
+          },
+          "data": {
+            "$ref": "#/components/schemas/DownstreamHealth"
+          }
+        }
+      }
+    }
+  }
+}

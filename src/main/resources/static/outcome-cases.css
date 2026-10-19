@@ -1,0 +1,10 @@
+.oc-form { display:grid; gap:.55rem; max-width:960px; margin-block:1rem; }
+.oc-form textarea,.oc-form input,.oc-form select { width:100%; max-width:100%; box-sizing:border-box; }
+.oc-actions { display:flex; flex-wrap:wrap; gap:.5rem; margin-block:.75rem; }
+.oc-warning { padding:.75rem; background:#fff3d6; border-left:3px solid #c78a21; overflow-wrap:anywhere; }
+.oc-raw { white-space:pre-wrap; overflow-wrap:anywhere; padding:.75rem; background:#f4f6fa; max-height:420px; overflow:auto; }
+.oc-facts { display:grid; grid-template-columns:110px minmax(0,1fr); gap:.5rem; }
+.oc-facts dd { margin:0; white-space:pre-wrap; overflow-wrap:anywhere; }
+.oc-entry { border:1px solid #dce2eb; border-radius:8px; padding:1rem; margin-block:.7rem; }
+#diagnosis-outcome { margin-top:1.25rem; padding:1.1rem; border:1px solid #dce2eb; border-radius:10px; }
+@media(max-width:700px) { .oc-facts { grid-template-columns:1fr; } .oc-actions button { flex:1 1 auto; } }

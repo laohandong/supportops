@@ -1,0 +1,878 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-02",
+  "status": "PASS_FUNCTIONAL_VALIDATION_RESOURCE_DISCREPANCY",
+  "independentReacceptance": "NOT_RUN",
+  "jar": {
+    "path": "target/supportops-0.1.0-SNAPSHOT.jar",
+    "sha256": "d94c36f2a4a06544164b035f1ae2bbd395944b7c921db00c8301294feedf575f"
+  },
+  "evidenceRoot": ".local/reliability-fixes-20261002/final/public-delivery",
+  "baselines": {
+    "windows": {
+      "platform": "Windows native",
+      "jdk": "Microsoft OpenJDK 21.0.11",
+      "node": "22.16.0",
+      "jarSha256": "d94c36f2a4a06544164b035f1ae2bbd395944b7c921db00c8301294feedf575f",
+      "maven": {
+        "total": 167,
+        "passed": 162,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 5,
+        "skipReason": "existing optional ONNX weights/tokenizer not loaded"
+      },
+      "javascript": {
+        "total": 90,
+        "passed": 90,
+        "failed": 0,
+        "skipped": 0
+      },
+      "D01": {
+        "status": "PASS",
+        "realChildJvm": true,
+        "stages": [
+          "ACCEPTED",
+          "APPLIED",
+          "VERIFIED"
+        ],
+        "expectedExitCode": 23,
+        "zeroReplay": true,
+        "osSkip": false,
+        "durationSeconds": "17.801"
+      }
+    },
+    "linux": {
+      "platform": "Ubuntu 24.04.3 / WSL2 Linux x86_64",
+      "jdk": "OpenJDK 21.0.12.1",
+      "node": "22.16.0",
+      "jarSha256": "d94c36f2a4a06544164b035f1ae2bbd395944b7c921db00c8301294feedf575f",
+      "maven": {
+        "total": 167,
+        "passed": 162,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 5,
+        "skipReason": "existing optional ONNX weights/tokenizer not loaded"
+      },
+      "javascript": {
+        "total": 90,
+        "passed": 90,
+        "failed": 0,
+        "skipped": 0
+      },
+      "D01": {
+        "status": "PASS",
+        "realChildJvm": true,
+        "stages": [
+          "ACCEPTED",
+          "APPLIED",
+          "VERIFIED"
+        ],
+        "expectedExitCode": 23,
+        "zeroReplay": true,
+        "osSkip": false,
+        "durationSeconds": "14.74"
+      },
+      "nativeBuildJarSha256": "0fb00278666e37691511d6c2cc7ddabec4fdcbeff1016c55fa840543d5b5711a"
+    }
+  },
+  "cases": [
+    {
+      "id": "D01",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/baseline-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/baseline-report.json"
+      }
+    },
+    {
+      "id": "D02",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/runtime-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/runtime-report.json"
+      }
+    },
+    {
+      "id": "D03",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/runtime-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/runtime-report.json"
+      }
+    },
+    {
+      "id": "D04",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/runtime-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/runtime-report.json"
+      }
+    },
+    {
+      "id": "D05",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/runtime-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/runtime-report.json"
+      }
+    },
+    {
+      "id": "D06",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/runtime-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/runtime-report.json"
+      }
+    },
+    {
+      "id": "E01",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/browser/browser-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/browser/browser-report.json"
+      }
+    },
+    {
+      "id": "E02",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/browser/browser-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/browser/browser-report.json"
+      }
+    },
+    {
+      "id": "E03",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/browser/browser-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/browser/browser-report.json"
+      }
+    },
+    {
+      "id": "E04",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/browser/browser-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/browser/browser-report.json"
+      }
+    },
+    {
+      "id": "E05",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/browser/browser-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/browser/browser-report.json"
+      }
+    },
+    {
+      "id": "E06",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/browser/browser-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/browser/browser-report.json"
+      }
+    },
+    {
+      "id": "E07",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/browser/browser-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/browser/browser-report.json"
+      }
+    },
+    {
+      "id": "E08",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/browser/browser-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/browser/browser-report.json"
+      }
+    },
+    {
+      "id": "B01",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/recovery/recovery-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/recovery/recovery-report.json"
+      }
+    },
+    {
+      "id": "B02",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/recovery/recovery-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/recovery/recovery-report.json"
+      }
+    },
+    {
+      "id": "B03",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/recovery/recovery-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/recovery/recovery-report.json"
+      }
+    },
+    {
+      "id": "B04",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/recovery/recovery-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/recovery/recovery-report.json"
+      }
+    },
+    {
+      "id": "B05",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/recovery/recovery-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/recovery/recovery-report.json"
+      }
+    },
+    {
+      "id": "B06",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/recovery/recovery-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/recovery/recovery-report.json"
+      }
+    },
+    {
+      "id": "B07",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/recovery/recovery-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/recovery/recovery-report.json"
+      }
+    }
+  ],
+  "boundaries": [
+    {
+      "id": "RD-F03-ENV",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/boundaries-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/boundaries-report.json"
+      }
+    },
+    {
+      "id": "RD-F03-FILE",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/boundaries-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/boundaries-report.json"
+      }
+    },
+    {
+      "id": "RD-F03-EXPLICIT",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/boundaries-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/boundaries-report.json"
+      }
+    },
+    {
+      "id": "RD-F03-DEFAULT",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/boundaries-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/boundaries-report.json"
+      }
+    },
+    {
+      "id": "RD-F03-ZERO",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/boundaries-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/boundaries-report.json"
+      }
+    },
+    {
+      "id": "RD-F03-INVALID",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/boundaries-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/boundaries-report.json"
+      }
+    },
+    {
+      "id": "RD-F03-BUSY",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/boundaries-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/boundaries-report.json"
+      }
+    },
+    {
+      "id": "RD-F02",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/boundaries-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/boundaries-report.json"
+      }
+    },
+    {
+      "id": "RD-F01",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/boundaries-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/boundaries-report.json"
+      }
+    }
+  ],
+  "artifact": {
+    "status": "PASS",
+    "jarSha256": "d94c36f2a4a06544164b035f1ae2bbd395944b7c921db00c8301294feedf575f",
+    "applicationClassesAndResources": 425,
+    "differences": 0
+  },
+  "privateEvidence": {
+    "root": ".local/reliability-fixes-20261002/final",
+    "windowsRecovery": "windows-delivery-complete/recovery",
+    "windowsBoundaries": "windows-boundaries",
+    "linux": "linux/captured"
+  },
+  "limitations": [
+    "Remote Actions not run; no commit/push/publish.",
+    "No real model, embedding or Feishu calls; HTTP fixtures cover protocol only.",
+    "5 existing optional ONNX tests skipped on each platform; no weights loaded.",
+    "D03 inaccessible identity uses targeted UNKNOWN injection; live PID with mismatched start time covers PID reuse.",
+    "B05 real SQL termination/import plus callback failure and owned ES pause; physical disk exhaustion not performed.",
+    "B06 UNKNOWN history synthetic; D01 separately proves real child JVM crashes.",
+    "npm audit: 2 associated moderate vulnerabilities, 0 high/critical.",
+    "ES V1 limit remains 10000 documents per index; larger deployments explicitly refused.",
+    "Windows transient process identity refusal occurred once during parallel validation; later same-jar fresh deployment revalidation passed. Host root cause unconfirmed; no permissions or identity assertions relaxed.",
+    "Original container preservation FAILED: 28/31 remain; 3 historical Testcontainers received Windows Docker DELETE requests at 2026-10-02 15:46:40–15:46:41 +08:00. Initiator unconfirmed. All 34 original volumes and the 3 missing containers mounted volumes remain. No historical replacement attempted."
+  ],
+  "functionalValidation": "PASS",
+  "resourcePreservation": "FAIL_ORIGINAL_CONTAINER_SET_CHANGED",
+  "artifacts": [
+    {
+      "path": "acceptance-entry.json",
+      "bytes": 514,
+      "sha256": "26279f8e396734b4cecf4832d33c32e2a691cd8ef2794b023ae1c38ba64be06d"
+    },
+    {
+      "path": "artifact-alignment.json",
+      "bytes": 167,
+      "sha256": "683112299bfa03c4c0af0a97c42767f87362e37a031b3d634df4ba14f6f7d145"
+    },
+    {
+      "path": "artifact-repackage.json",
+      "bytes": 482,
+      "sha256": "5c7fd1de5680ea6342378ae0b9c374255edfaf8a14565fffdd282d79e5963b27"
+    },
+    {
+      "path": "linux/baseline-report.json",
+      "bytes": 797,
+      "sha256": "089742cafcf0d89f5417d10ef967d8b746913313e2def82b148dba45da660a7a"
+    },
+    {
+      "path": "linux/boundaries-report.json",
+      "bytes": 6575,
+      "sha256": "e111de3e0551e201124f569f80a6c445430906fadd3af21980109427d3c8800d"
+    },
+    {
+      "path": "linux/browser-report.json",
+      "bytes": 2407,
+      "sha256": "d0d21a3b0cced63b2435af94b99e1ec986372c9476e7bb9c9dcf9bc617fb5b98"
+    },
+    {
+      "path": "linux/browser/E01.png",
+      "bytes": 135509,
+      "sha256": "3d9f48d33f847483f2a80032f5b235e6937f3840683dd47bb2df6151381ab76c"
+    },
+    {
+      "path": "linux/browser/E02.png",
+      "bytes": 156747,
+      "sha256": "f0c2b0e472cf47d05357c74ddd09fda214eb78adab881bf37a0125af39e7dc71"
+    },
+    {
+      "path": "linux/browser/E03.png",
+      "bytes": 123757,
+      "sha256": "c5f5719290c6f4cc7ffc5470d02f1efec88ccb6afac76377a6714964d552c243"
+    },
+    {
+      "path": "linux/browser/E04.png",
+      "bytes": 140484,
+      "sha256": "35328c0e5583ca80dfc437a3ceb31c93d797e5400317b729dcf7ab70c8e7b74f"
+    },
+    {
+      "path": "linux/browser/E05-1440.png",
+      "bytes": 279195,
+      "sha256": "b20e1e35768aa448ffc8549633af9b387facedb02e330836ef4703f0d05ceda4"
+    },
+    {
+      "path": "linux/browser/E05-390.png",
+      "bytes": 267915,
+      "sha256": "d130b39aebe6e6cf6231a04fbf3593df53b037289f33066b6419e3019d99e9b1"
+    },
+    {
+      "path": "linux/browser/E05.png",
+      "bytes": 267915,
+      "sha256": "d130b39aebe6e6cf6231a04fbf3593df53b037289f33066b6419e3019d99e9b1"
+    },
+    {
+      "path": "linux/browser/E06.png",
+      "bytes": 177401,
+      "sha256": "a485e307835e25ed532d73fad744aa7dfd8dbb35746bd4415a0d02afd08b2719"
+    },
+    {
+      "path": "linux/browser/E07.png",
+      "bytes": 177401,
+      "sha256": "a485e307835e25ed532d73fad744aa7dfd8dbb35746bd4415a0d02afd08b2719"
+    },
+    {
+      "path": "linux/browser/E08.png",
+      "bytes": 194969,
+      "sha256": "fb9ff02c6b0415cd36e5551b1b3d59605253a2f7e7d64b8270eb84e269796fa4"
+    },
+    {
+      "path": "linux/browser/browser-report.json",
+      "bytes": 2407,
+      "sha256": "d0d21a3b0cced63b2435af94b99e1ec986372c9476e7bb9c9dcf9bc617fb5b98"
+    },
+    {
+      "path": "linux/delivery-report.json",
+      "bytes": 504,
+      "sha256": "ec04593b87b0ff14c4e1c6b14a6a5ea65c60016a9756d085c506cb97c07a4fc8"
+    },
+    {
+      "path": "linux/dependency-report.json",
+      "bytes": 438,
+      "sha256": "b4c49441d3ee9ae65be1c7d338de7e548195b4851c2433d518904a2812eb5920"
+    },
+    {
+      "path": "linux/evidence-copy-report.json",
+      "bytes": 521,
+      "sha256": "7259f7b0ec02e669be1bb3d8d7fa1cbdb3a1c6838ceba884d30b9a46f387bb56"
+    },
+    {
+      "path": "linux/isolation-report.json",
+      "bytes": 380,
+      "sha256": "79803b4074bab86c3df25a80aa95750698d982963d8b288c63607ef7903aa65b"
+    },
+    {
+      "path": "linux/recovery-report.json",
+      "bytes": 5470,
+      "sha256": "ae99ad3982b9c8b0b900d73617ee68902d645ffa7689b7a674d15c64ecf676d3"
+    },
+    {
+      "path": "linux/recovery/B02-restored-documents.png",
+      "bytes": 197990,
+      "sha256": "937172c617b6ac77d18be5e625345b217dcacab9258ceef02c7645777d1d426c"
+    },
+    {
+      "path": "linux/recovery/B06-old-approval.png",
+      "bytes": 215013,
+      "sha256": "3028168cd98e37852fea987205b467f0aaa47db1600338ab6c9cf3f6ed03b35b"
+    },
+    {
+      "path": "linux/recovery/B06-unknown.png",
+      "bytes": 291682,
+      "sha256": "7837e32e8f1ecd0edbb398799fcf3c05100cfcec44322fc9e197046ea4ddf3c9"
+    },
+    {
+      "path": "linux/recovery/recovery-report.json",
+      "bytes": 5470,
+      "sha256": "ae99ad3982b9c8b0b900d73617ee68902d645ffa7689b7a674d15c64ecf676d3"
+    },
+    {
+      "path": "linux/runtime-report.json",
+      "bytes": 2433,
+      "sha256": "78d24d821ef5ba10bf04cec4576cef95852516efdd046c274979d7345a09a85d"
+    },
+    {
+      "path": "linux/source-report.json",
+      "bytes": 3243,
+      "sha256": "17f204cc15330d0841bff6a14b3bb2634d4281fe09df8de69e1f634edea547e4"
+    },
+    {
+      "path": "resource-preservation.json",
+      "bytes": 3576,
+      "sha256": "d0169f3c597a23fd65260a3a24f354da180674179e28ac4c543884a34e5706a9"
+    },
+    {
+      "path": "source-checksums.json",
+      "bytes": 80716,
+      "sha256": "7e12005d1e938b935477c9b2eefb571fa464e506399832c4c820b1953607e066"
+    },
+    {
+      "path": "windows/atomic-record-report.json",
+      "bytes": 266,
+      "sha256": "6d0f2c28110b85a08309b01a2c15b38e9847a9a74ef7841b8c163537f989155c"
+    },
+    {
+      "path": "windows/baseline-report.json",
+      "bytes": 692,
+      "sha256": "91e440d422b940eecc15fe50bd133a0eab71d88df250768ded653a3d9c7c75d7"
+    },
+    {
+      "path": "windows/boundaries-report.json",
+      "bytes": 6575,
+      "sha256": "72cc0e40375e23b680d35222478a9dc1cf79e69220f8e7be0549eefab7e31970"
+    },
+    {
+      "path": "windows/browser-report.json",
+      "bytes": 2407,
+      "sha256": "ddb1efe662f7bfaa3b7e4c53c5f133c63cbb1df1ae8f0045382a967495761acb"
+    },
+    {
+      "path": "windows/browser/E01.png",
+      "bytes": 82674,
+      "sha256": "6b9e6056b5d3ba7a1d41b134748c5607bb369d15e4cb1dbfd19f6499d596853f"
+    },
+    {
+      "path": "windows/browser/E02.png",
+      "bytes": 94900,
+      "sha256": "48c2114e23a770d2e6900d8ffb0b6906c42c4b0d3c31049237a80efdd27295e0"
+    },
+    {
+      "path": "windows/browser/E03.png",
+      "bytes": 77536,
+      "sha256": "9c7a0bed47adaa3c89f866085c8d837e65e488dd0317eeee191117c6879f41b6"
+    },
+    {
+      "path": "windows/browser/E04.png",
+      "bytes": 85294,
+      "sha256": "9c4cbf3fd5a65016af7d6d6875680388263016acaabe982db5f54180bb29de97"
+    },
+    {
+      "path": "windows/browser/E05-1440.png",
+      "bytes": 161977,
+      "sha256": "ba05571776717060e7d2685f56f78189dd7cca8ad0120265c9be8e6b34abf878"
+    },
+    {
+      "path": "windows/browser/E05-390.png",
+      "bytes": 153081,
+      "sha256": "b1a99f5beb511e1fd0b2fa83d3ca9bfd80c655c8edb47d1507362dd07169da63"
+    },
+    {
+      "path": "windows/browser/E05.png",
+      "bytes": 153081,
+      "sha256": "b1a99f5beb511e1fd0b2fa83d3ca9bfd80c655c8edb47d1507362dd07169da63"
+    },
+    {
+      "path": "windows/browser/E06.png",
+      "bytes": 101734,
+      "sha256": "e6cba1698fd6d06894a7819068e80b003cdd3babfc332cb2723b10a019507961"
+    },
+    {
+      "path": "windows/browser/E07.png",
+      "bytes": 101734,
+      "sha256": "e6cba1698fd6d06894a7819068e80b003cdd3babfc332cb2723b10a019507961"
+    },
+    {
+      "path": "windows/browser/E08.png",
+      "bytes": 112953,
+      "sha256": "8360b01a5e5c31ddea69ff16f0ef9d73a87ecb4f52b2f9857b19c437d8a418d8"
+    },
+    {
+      "path": "windows/browser/browser-report.json",
+      "bytes": 2407,
+      "sha256": "ddb1efe662f7bfaa3b7e4c53c5f133c63cbb1df1ae8f0045382a967495761acb"
+    },
+    {
+      "path": "windows/delivery-report.json",
+      "bytes": 504,
+      "sha256": "7c6d7252948d6ec4c42388ac614274c2e5d22c524289472cb68a0b663430af61"
+    },
+    {
+      "path": "windows/dependency-report.json",
+      "bytes": 438,
+      "sha256": "7ad6dc22bad79b7ce0fcfa6d22c4ba3a079523fec2d352eb3fb4564e1b6bc47d"
+    },
+    {
+      "path": "windows/isolation-report.json",
+      "bytes": 380,
+      "sha256": "fe8151a372eb1b4e78510550defda713225990fc398f58e1b33e33c361b199d8"
+    },
+    {
+      "path": "windows/recovery-report.json",
+      "bytes": 5476,
+      "sha256": "1fd576dd50d9eb53cc41a2c5512e8db6de493b85a3f99f2215466ddcfa93fc20"
+    },
+    {
+      "path": "windows/recovery/B02-restored-documents.png",
+      "bytes": 121699,
+      "sha256": "c877a110e13e05b93cf286b21b6d5c7ea1a7ec8334b82202e84dac6111a68c3a"
+    },
+    {
+      "path": "windows/recovery/B06-old-approval.png",
+      "bytes": 124135,
+      "sha256": "c998e511e742e25161d253f90fa5858897d6fb4ca4729d1c824177a7bd21902c"
+    },
+    {
+      "path": "windows/recovery/B06-unknown.png",
+      "bytes": 144699,
+      "sha256": "044cb1bb915fde704c28f1118ca6bece64a467a2ccfbdb683a958a9f4cecbe7a"
+    },
+    {
+      "path": "windows/recovery/recovery-report.json",
+      "bytes": 5476,
+      "sha256": "1fd576dd50d9eb53cc41a2c5512e8db6de493b85a3f99f2215466ddcfa93fc20"
+    },
+    {
+      "path": "windows/runtime-report.json",
+      "bytes": 2433,
+      "sha256": "1669156b7476828ef17e7603642ee9980a3b0eacd244b886f20dddda6ef1c435"
+    },
+    {
+      "path": "windows/source-report.json",
+      "bytes": 3243,
+      "sha256": "59c3aed3a94cf9830608266b39bf54ac92109e62048d509551efa464b6b7894c"
+    }
+  ],
+  "resources": {
+    "status": "FAIL_ORIGINAL_CONTAINER_SET_CHANGED",
+    "observedAt": "2026-10-02T08:05:50.153Z",
+    "originalContainers": {
+      "status": "FAIL",
+      "expected": 31,
+      "preserved": 28,
+      "missing": [
+        {
+          "id": "5bfbc9915f16d691f0b51aafecfb4481c5b907c6cece350c361f05b74b7529a5",
+          "name": "amazing_heyrovsky",
+          "image": "redis:7.4",
+          "initialState": "exited",
+          "initialCreatedAt": "2026-09-18 15:04:32 +0800 CST",
+          "mountedVolumeNames": [
+            "4295572e3cc63f16c0c5ff02dd8488263bee873e722d1f6633e3009042e1a6bd"
+          ],
+          "mountedVolumesStillPresent": true,
+          "deleteRequestUtc": "2026-10-02T07:46:40.088885307Z",
+          "userAgent": "Docker-Client/29.7.2 (windows)",
+          "request": ">> DELETE /v1.55/containers/5bfbc9915f16d691f0b51aafecfb4481c5b907c6cece350c361f05b74b7529a5",
+          "initiator": "UNCONFIRMED"
+        },
+        {
+          "id": "fddc6b2fc72ef7f62ed622eac044636885b76c98598ef07cc26bf815721f7b68",
+          "name": "clever_ishizaka",
+          "image": "mysql:8.4",
+          "initialState": "exited",
+          "initialCreatedAt": "2026-09-18 15:04:31 +0800 CST",
+          "mountedVolumeNames": [
+            "43c348dae1f7b8ff981b8d710d1b2c072beac1c5103aa0f2cb91f5322527d03f"
+          ],
+          "mountedVolumesStillPresent": true,
+          "deleteRequestUtc": "2026-10-02T07:46:40.517739273Z",
+          "userAgent": "Docker-Client/29.7.2 (windows)",
+          "request": ">> DELETE /v1.55/containers/fddc6b2fc72ef7f62ed622eac044636885b76c98598ef07cc26bf815721f7b68",
+          "initiator": "UNCONFIRMED"
+        },
+        {
+          "id": "9f41eeaac158cb7893d8ad1de8ff3d1817aa172bab58f69b6b9ef9d3651a915a",
+          "name": "sleepy_vaughan",
+          "image": "mysql:8.4",
+          "initialState": "exited",
+          "initialCreatedAt": "2026-09-18 15:04:14 +0800 CST",
+          "mountedVolumeNames": [
+            "fcf5eecfdf73763e4594077e326aaddbeeeb1a3d7c444ea0ce6974e24e210d3a"
+          ],
+          "mountedVolumesStillPresent": true,
+          "deleteRequestUtc": "2026-10-02T07:46:40.981007657Z",
+          "userAgent": "Docker-Client/29.7.2 (windows)",
+          "request": ">> DELETE /v1.55/containers/9f41eeaac158cb7893d8ad1de8ff3d1817aa172bab58f69b6b9ef9d3651a915a",
+          "initiator": "UNCONFIRMED"
+        }
+      ],
+      "preservedIdentityNameImageLabelsUnchanged": true
+    },
+    "originalVolumes": {
+      "status": "PASS",
+      "expected": 34,
+      "preserved": 34,
+      "nameDriverMountpointLabelsUnchanged": true
+    },
+    "retainedDeployment": {
+      "status": "PASS",
+      "deploymentId": "65fddfb3-94d2-4a87-af40-e5d0ddc07a2a",
+      "containers": 3,
+      "volumes": 4,
+      "application": "STOPPED",
+      "purpose": "fresh restored independent acceptance"
+    },
+    "totalContainers": 31,
+    "totalVolumes": 38,
+    "otherRoundResources": "CLEANED",
+    "linuxRunnerAndWorkVolume": "CLEANED",
+    "migrations": {
+      "count": 8,
+      "sha256Unchanged": true
+    },
+    "initialDirtyPathsPreserved": 102,
+    "gitDiffCheck": "PASS",
+    "existingWorkbench": "NOT_STOPPED_OR_REPLACED",
+    "commitPushPublish": "NOT_PERFORMED",
+    "investigation": {
+      "status": "UNRESOLVED_INITIATOR",
+      "deleteWindowLocal": "2026-10-02 15:46:40–15:46:41 +08:00",
+      "evidence": "historical-container-removal-matches-private.txt",
+      "originalStrictPreservationCheck": "FAILED_NOT_OVERRIDDEN",
+      "recordedTaskCleanupScope": "registered isolation UUIDs plus exact Linux runner ID",
+      "noReplacementCreated": true,
+      "alternative": "retain original volumes and evidence; investigate requester before any reconstruction of historical resources"
+    }
+  },
+  "acceptance": {
+    "status": "PASS",
+    "jarSha256": "d94c36f2a4a06544164b035f1ae2bbd395944b7c921db00c8301294feedf575f",
+    "deploymentId": "65fddfb3-94d2-4a87-af40-e5d0ddc07a2a",
+    "entry": "node scripts/start.mjs --deployment=.local/reliability-fixes-20261002/final/acceptance-target/deployment.json --port=0",
+    "actualReadyAndAccountLogin": true,
+    "openapiOperations": 92,
+    "modelConfigured": false,
+    "embeddingConfigured": false,
+    "evaluationEnabled": false,
+    "feishuEnabled": false,
+    "stoppedAfterVerification": true
+  },
+  "extraWindows": {
+    "atomicRecord": {
+      "status": "PASS",
+      "evidence": "windows/atomic-record-report.json",
+      "fault": "REAL_WINDOWS_FILE_SHARE_LOCK"
+    }
+  },
+  "fullJavaVerification": {
+    "phase": "before final one-byte static resource line-ending normalization",
+    "testsUnchanged": true,
+    "javaClassesByteIdentical": true,
+    "evidence": "artifact-repackage.json",
+    "finalRuntimeMatricesRerun": true
+  },
+  "historicalFailures": [
+    {
+      "round": "initial",
+      "windows": "E07 navigation race",
+      "linux": "E05 duplicate rendering",
+      "resolution": "helper and product fixed; all 8 cases rerun"
+    },
+    {
+      "round": "round2",
+      "linux": "B01 UNKNOWN_DATABASE_WRITER",
+      "resolution": "wait for actual database close; real held-connection refusal added; all 7 cases rerun"
+    },
+    {
+      "round": "first final SHA Windows run",
+      "case": "E04",
+      "code": "EVALUATION_PROCESS_IDENTITY_UNCONFIRMED",
+      "dependentRecovery": "NOT_RUN",
+      "source": ".local/reliability-fixes-20261002/final/windows-delivery",
+      "resolution": "same jar full D/E/B on fresh deployment after other Windows verification JVMs exited",
+      "hostRootCause": "UNCONFIRMED",
+      "permissionOrAssertionRelaxed": false
+    },
+    {
+      "round": "second final SHA Windows run",
+      "case": "B06",
+      "code": "PLAYWRIGHT_BROWSER_PATH_NOT_CONFIGURED",
+      "dependentB02": "FAIL_RESTORED_BUSINESS_ACCEPTANCE_FAILED",
+      "source": ".local/reliability-fixes-20261002/final/windows-delivery-retry",
+      "resolution": "configure already installed Chromium through PLAYWRIGHT_BROWSERS_PATH for the entire verification process; full fresh D/E/B revalidation",
+      "productOrAssertionsChanged": false
+    }
+  ],
+  "publicSecretScan": {
+    "status": "PASS",
+    "method": "exact synthetic credentials and session control token from both platform private suites/configs",
+    "publicFiles": 55,
+    "screenshotCheck": "manual visual review and password masking"
+  },
+  "sourceFiles": {
+    "count": 418,
+    "evidence": "source-checksums.json"
+  }
+}

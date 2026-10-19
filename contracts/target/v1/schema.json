@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SupportOps 被测目标包 v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "namespace",
+    "schemaVersion",
+    "targetId",
+    "adapterId",
+    "adapterVersion",
+    "jar",
+    "jarSha256",
+    "resources",
+    "chunkSize",
+    "overlap",
+    "helperMain",
+    "submitIdempotency",
+    "scenarios",
+    "buildProvenance",
+    "sourceHead",
+    "sourceDirty",
+    "createdAt"
+  ],
+  "properties": {
+    "namespace": {
+      "const": "supportops-evaluation-target"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "targetId": {
+      "type": "string",
+      "pattern": "^supportops-[a-f0-9]{16}$"
+    },
+    "adapterId": {
+      "const": "SUPPORTOPS_V1"
+    },
+    "adapterVersion": {
+      "const": "1.0.0"
+    },
+    "jar": {
+      "const": "application.jar"
+    },
+    "jarSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "resources": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^(prompts|skills|bundled-knowledge)/"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      }
+    },
+    "chunkSize": {
+      "const": 100
+    },
+    "overlap": {
+      "const": 10
+    },
+    "helperMain": {
+      "const": "io.supportops.migration.IsolatedKnowledgeWorkspace"
+    },
+    "submitIdempotency": {
+      "const": "UNSUPPORTED_STOP_ON_UNKNOWN"
+    },
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "unavailable",
+          "credentials",
+          "migration",
+          "stale-docs",
+          "insufficient",
+          "injection"
+        ]
+      },
+      "minItems": 6,
+      "maxItems": 6,
+      "uniqueItems": true
+    },
+    "buildProvenance": {
+      "const": "UNKNOWN"
+    },
+    "sourceHead": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sourceDirty": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "sourceSnapshotSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sourceSnapshotFileCount": {
+      "type": "integer",
+      "minimum": 1
+    }
+  }
+}

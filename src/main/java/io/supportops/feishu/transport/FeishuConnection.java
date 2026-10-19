@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 /** 应用就绪后建立出站长连接并扫描持久化消息，默认停用，不开放公网入站接口。 */
 @Component
 @ConditionalOnProperty(name = "supportops.feishu.enabled", havingValue = "true")
+@org.springframework.context.annotation.DependsOn("deploymentRuntimeGuard")
 public class FeishuConnection {
     private static final Logger LOG = LoggerFactory.getLogger(FeishuConnection.class);
     private final FeishuProperties properties;

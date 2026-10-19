@@ -13,6 +13,11 @@
   </select>
   <select id="applicableBatches" resultType="string">
     SELECT r.batch_id FROM document_releases r JOIN documents d ON d.id=r.document_id
-    WHERE d.deleted=FALSE AND (r.product_version=#{version} OR r.product_version='*')
+    WHERE d.deleted=FALSE AND d.system_id='00000000-0000-4000-8000-000000000002'
+      AND (r.product_version=#{version} OR r.product_version='*')
+  </select>
+  <select id="scopedBatches" resultType="string">
+    SELECT r.batch_id FROM document_releases r JOIN documents d ON d.id=r.document_id
+    WHERE d.deleted=FALSE AND d.system_id=#{systemId} AND (r.product_version=#{version} OR r.product_version='*')
   </select>
 </mapper>

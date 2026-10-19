@@ -1,0 +1,63 @@
+name: supportops-${SUPPORTOPS_DEPLOYMENT_SHORT}
+services:
+  app:
+    image: __APP_IMAGE__
+    restart: "no"
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    labels: {io.supportops.deployment: "${SUPPORTOPS_DEPLOYMENT_ID}", io.supportops.kind: ENTERPRISE_V1}
+    environment:
+      SUPPORTOPS_DEPLOYMENT_ID: ${SUPPORTOPS_DEPLOYMENT_ID}
+      SUPPORTOPS_PUBLIC_ORIGIN: ${SUPPORTOPS_PUBLIC_ORIGIN}
+    ports: ["${SUPPORTOPS_BIND_IP:-127.0.0.1}:${SUPPORTOPS_HTTPS_PORT:-8443}:8443"]
+    healthcheck:
+      test: [CMD, node, -e, 'const s=require("net").connect(8443,"127.0.0.1");s.setTimeout(3000);s.once("connect",()=>{s.end();process.exit(0)});s.once("error",()=>process.exit(1));s.once("timeout",()=>process.exit(1))']
+      interval: 3s
+      timeout: 5s
+      retries: 60
+    volumes: ["./secrets:/run/secrets:ro", "./tls:/run/tls:ro", "application-data:/var/lib/supportops"]
+    tmpfs: [/tmp]
+    depends_on:
+      mysql: {condition: service_healthy}
+      minio: {condition: service_started}
+      elasticsearch: {condition: service_healthy}
+    networks: [storage, egress]
+  mysql:
+    image: __MYSQL_IMAGE__
+    environment: {MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql-root}
+    volumes: ["mysql-data:/var/lib/mysql", "./mysql-secrets:/run/secrets:ro", "./mysql-init.sh:/docker-entrypoint-initdb.d/01-supportops.sh:ro"]
+    labels: {io.supportops.deployment: "${SUPPORTOPS_DEPLOYMENT_ID}"}
+    healthcheck:
+      test: [CMD-SHELL, 'MYSQL_PWD=$$(cat /run/secrets/mysql-root) mysql -uroot -Dsupportops -e "SELECT 1" --silent']
+      interval: 5s
+      timeout: 5s
+      retries: 40
+    networks: [storage]
+  minio:
+    image: __MINIO_IMAGE__
+    entrypoint: [/bin/sh, /run/minio-entrypoint.sh]
+    volumes: ["minio-data:/data", "./secrets:/run/secrets:ro", "./minio-entrypoint.sh:/run/minio-entrypoint.sh:ro"]
+    labels: {io.supportops.deployment: "${SUPPORTOPS_DEPLOYMENT_ID}"}
+    networks: [storage]
+  elasticsearch:
+    image: __ES_IMAGE__
+    environment: {discovery.type: single-node, xpack.security.enabled: "false", ES_JAVA_OPTS: "-Xms512m -Xmx512m", path.repo: /snapshots}
+    volumes: ["es-data:/usr/share/elasticsearch/data", "es-snapshots:/snapshots"]
+    labels: {io.supportops.deployment: "${SUPPORTOPS_DEPLOYMENT_ID}"}
+    healthcheck:
+      test: [CMD-SHELL, 'curl --fail --silent "http://127.0.0.1:9200/_cluster/health?wait_for_status=yellow&timeout=3s" > /dev/null']
+      interval: 5s
+      timeout: 5s
+      retries: 40
+    networks: [storage]
+networks:
+  storage: {internal: true}
+  egress: {}
+volumes:
+  mysql-data: {}
+  minio-data: {}
+  es-data: {}
+  es-snapshots: {}
+  application-data: {}

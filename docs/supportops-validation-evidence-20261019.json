@@ -1,0 +1,332 @@
+{
+  "namespace": "supportops-validation-evidence",
+  "schemaVersion": 1,
+  "updatedOn": "2026-10-19",
+  "scope": "SUPPORTOPS_ONLY",
+  "artifactRoot": ".local/supportops-github-prepare-20261019",
+  "fullRegression": {
+    "executedOn": "2026-10-11",
+    "executionMode": "SINGLE_COMPLETE_VERIFY",
+    "testsFiltered": false,
+    "tests": 171,
+    "passed": 166,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 5,
+    "suites": 34,
+    "buildSuccess": true,
+    "jar": {
+      "bytes": 238149647,
+      "sha256": "e23d23feed2fbc0245b22098cf9ba18857ac1600faf2e4f1b63eac839204b264"
+    },
+    "skippedCases": [
+      {
+        "class": "io.supportops.knowledge.KnowledgeInfrastructureTest",
+        "method": "realLocalRerankingWorksAfterHybridAndLexicalRecall",
+        "kind": "skipped",
+        "reason": "System property [rerank.test.model] does not exist"
+      },
+      {
+        "class": "io.supportops.knowledge.LocalOnnxRerankerTest",
+        "method": "longPairsAreTruncatedAndTwentyCandidatesStayBounded",
+        "kind": "skipped",
+        "reason": "System property [rerank.test.model] does not exist"
+      },
+      {
+        "class": "io.supportops.knowledge.LocalOnnxRerankerTest",
+        "method": "relevantChinesePassageScoresAboveUnrelatedContent",
+        "kind": "skipped",
+        "reason": "System property [rerank.test.model] does not exist"
+      },
+      {
+        "class": "io.supportops.knowledge.LocalOnnxRerankerTest",
+        "method": "timeoutDoesNotReturnPartialResults",
+        "kind": "skipped",
+        "reason": "System property [rerank.test.model] does not exist"
+      },
+      {
+        "class": "io.supportops.knowledge.LocalOnnxRerankerTest",
+        "method": "cancellationStopsInferenceAndDoesNotPoisonSession",
+        "kind": "skipped",
+        "reason": "System property [rerank.test.model] does not exist"
+      }
+    ],
+    "node": {
+      "tests": 79,
+      "passed": 79,
+      "failures": 0
+    }
+  },
+  "currentChecks": {
+    "node": {
+      "executedOn": "2026-10-19",
+      "runtime": "22.16.0",
+      "tests": 79,
+      "passed": 79,
+      "failures": 0,
+      "skipped": 0,
+      "initialAttempt": "77 passed; 2 failed due to sandbox TEMP rename EPERM under Node 24; original log retained",
+      "retest": "All 79 passed with workspace-owned TEMP on Node 24 and the project-pinned Node 22.16.0"
+    },
+    "npmAudit": {
+      "high": 0,
+      "critical": 0,
+      "moderate": 2,
+      "affectedPackages": [
+        "minio",
+        "stream-json"
+      ],
+      "policy": "audit-level=high",
+      "exitCode": 0
+    },
+    "publication": {
+      "status": "PASS_WITH_DOCUMENTED_LIMITS",
+      "sourceFiles": 639,
+      "publishedLocalLinks": 392,
+      "brokenLinks": 0,
+      "testedInputFilesMatched": 503,
+      "unchangedMigrationFiles": 17,
+      "evidenceFilesMatched": 44,
+      "excludedContent": "AgentEval implementation, frontend prototype, generated output, runtime directories and joint split records",
+      "commonSecretPatternSignals": 0,
+      "secretScanScope": "Common key-format patterns only, not a complete secret audit",
+      "existingWhitespaceIssues": [
+        "scripts/reliability/recovery-checks.mjs",
+        "src/main/resources/db/migration/V17__evaluation_single_writer_gate.sql",
+        "src/test/js/fixtures/legacy-outcome.mjs"
+      ],
+      "whitespaceDisposition": "Pre-existing files preserved, including applied V17; no new whitespace issues."
+    }
+  },
+  "limits": [
+    "No new Maven run on 2026-10-19; Java/build/test inputs are compared byte-for-byte with the complete verified root.",
+    "Five real ONNX tests skipped because rerank.test.model was absent; no real model quality or provider verification in this regression.",
+    "2026-10-11 post-run Docker container state and database set recheck unavailable; no global Docker/WSL restart or volume deletion.",
+    "Remote CI has not run for the prepared changes. Current workbench and business databases were not accessed."
+  ],
+  "evidenceFiles": [
+    {
+      "path": "evidence/java/TEST-io.supportops.agent.service.support.DiagnosisTimeFormatterTest.xml",
+      "bytes": 47187,
+      "sha256": "941e4d8005ee7a39e66479a945d58dda1b8e642ff39955e5c49e5cf2dad2c229"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.api.support.FixedCommandJsonTest.xml",
+      "bytes": 46319,
+      "sha256": "e9c850a1ca69f18ba9a9048346275c6c6b83c28ef441a01fde8ba70974c17714"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.config.ModelCatalogClientTest.xml",
+      "bytes": 46371,
+      "sha256": "9dc5165c0c73142003bc6ecb7bff8e9f4c86f8dfa2463af1256e0c709294696e"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.config.ModelSettingsTest.xml",
+      "bytes": 47249,
+      "sha256": "d5275f80dd57684925c88e468ca881bf0f7b933856d2b874915d785eaa740005"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.demo.DemoScenarioPersistenceTest.xml",
+      "bytes": 60610,
+      "sha256": "1a59c617643098f80bfdfb771904723f726c7737328e42e026a7a6622c0a072e"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.evaluation.EvaluationApiTest.xml",
+      "bytes": 56656,
+      "sha256": "8d4343e3c579bdec041aa2de12c7d634e1db4cd2c869f1d5094ea62377628125"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.evaluation.EvaluationMigrationTest.xml",
+      "bytes": 50989,
+      "sha256": "954f38c0f9f48e7fe4b194147e8ad0f63f7e05a429a7607af03baaaf3a164316"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.feishu.transport.FeishuConnectionTest.xml",
+      "bytes": 46891,
+      "sha256": "6a2d11dae7695e28b51176b4e97a2064092e6d423d02c97d82d64cff5b7850ec"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.feishu.transport.FeishuProtocolTest.xml",
+      "bytes": 47200,
+      "sha256": "2ce1af584fdecfdf0db0ace59a6838eb9d39d65291703bbf9cc51deb1865f272"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.HarnessLifecycleTest.xml",
+      "bytes": 75544,
+      "sha256": "2b6744d01f9f7ef8adc88a763201a68fc61e531c4c7bede3b71e55ef4c48d41a"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.integration.EnterpriseBoundaryTest.xml",
+      "bytes": 48258,
+      "sha256": "fd28739e88632dc77c33e75c2d47fd50d2c16c9f905ddabceda748f9133e841b"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.integration.EnterpriseCredentialTest.xml",
+      "bytes": 52514,
+      "sha256": "716c9c29e1daa40bfa7c8f57b3e7844b418baaf00e4b534cf728ea4251200ea6"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.integration.EnterpriseIntegrationTest.xml",
+      "bytes": 56732,
+      "sha256": "a9109e1369385a1986bb749b6eae7c500cc77b3bb635e71328fecff8e9454dd5"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.integration.EnterpriseUpgradeTest.xml",
+      "bytes": 53758,
+      "sha256": "099497aaba60ffcdcf9bdee932fc3fc5888fdeaf39f793cf2bb988184c5a00dd"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.knowledge.DocumentParserTest.xml",
+      "bytes": 47178,
+      "sha256": "297ee9c0f4871f594d809be953b8b36c6a9f20ac683f5d2c774b3d3ca25a4d8f"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.knowledge.KnowledgeInfrastructureTest.xml",
+      "bytes": 111039,
+      "sha256": "28cb767d4118eaba48bab44ff6a18efa45e2e379bd0bfd81342bf6ad5e4a2623"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.knowledge.KnowledgeRerankingTest.xml",
+      "bytes": 47627,
+      "sha256": "4c7c1ba3f5e3e553e885ddba5b1223cddc80715a60f6b01aef93b3ff4c6d25c6"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.knowledge.LocalOnnxRerankerTest.xml",
+      "bytes": 47641,
+      "sha256": "73a18cd05e821b165509fac10b8c9677247be82dab2715e02b2678fe66191e82"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.knowledge.RerankingApiTest.xml",
+      "bytes": 50373,
+      "sha256": "528eee62cd7fad4c9acde3a7ae8916e3901c6f7fced8113e409e82a13e6115dd"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.ops.ReadOnlyDoctorTest.xml",
+      "bytes": 48333,
+      "sha256": "6d3d0b2f278c08ea0fd48d4c2e38091d3959185b99ec03b36ea5c4e777173f0c"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.ops.RuntimeConfigurationTest.xml",
+      "bytes": 47085,
+      "sha256": "239beb0ed4d5a224a50669d71ebdda4e8ed14a02131dd909711aa5994956aad5"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.outcome.OutcomeMigrationTest.xml",
+      "bytes": 51187,
+      "sha256": "b65d5e08a075a9837ebbd852471f1d765afaa36080e26b9732b79a43d0939b31"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.outcome.OutcomePersistenceTest.xml",
+      "bytes": 52630,
+      "sha256": "45ba9e83c323278c50d64c5e87396aa733bf8a294607b57d56fdb4651ac809c0"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.persistence.FeishuPersistenceTest.xml",
+      "bytes": 87370,
+      "sha256": "3bc851eef19d9d527acce7e37aaa9fa3a66ada5cad3bdf45894684a4c9af1698"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.persistence.MybatisPersistenceTest.xml",
+      "bytes": 75676,
+      "sha256": "7963e3ed1ba48b0d58e9a03d0d4952fcdf97f61287747942e3973dfc7985548b"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.persistence.UsageAnalysisTest.xml",
+      "bytes": 58688,
+      "sha256": "cf94a7dfada1e5fa2e0ba397fd4aa37def4d04027151954de5379c5a5208b0f0"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.persistence.UserPersistenceTest.xml",
+      "bytes": 65345,
+      "sha256": "e3e85d9cf1c3c0a2a39b53d1380ad0934feb1b8fa1635fa510ea9632c6c27422"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.ProviderRegistryTest.xml",
+      "bytes": 48028,
+      "sha256": "6a3e91671d2f0bb3a786db89e67e9cfae42318552edb82c24c2eed74789ac464"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.remediation.RemediationCrashProcessTest.xml",
+      "bytes": 46895,
+      "sha256": "aabb3dadb7b7435ce22994c757f09cb4d88c465d7e3260179b412e22b0a169c8"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.remediation.RemediationMigrationTest.xml",
+      "bytes": 52068,
+      "sha256": "44b959fca688dd62a1126ae84105bfb8319f9461fad7f03236a0db26aa99d332"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.remediation.RemediationPersistenceTest.xml",
+      "bytes": 55049,
+      "sha256": "69b437337a0aacad5059ee66d70cb620ea6c624388f2fa91dba7b176cb82c20e"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.RunStreamSignalsTest.xml",
+      "bytes": 46990,
+      "sha256": "a7a6d4cc7eebbba62e8867061bd9d6f30c0e685060bf65ea716416f91165dd19"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.source.SourceContractTest.xml",
+      "bytes": 46976,
+      "sha256": "4fd8f76366d302b78ccebbcfbf950bf2792a1298f67fcd533f6aec81ebadbc4e"
+    },
+    {
+      "path": "evidence/java/TEST-io.supportops.SupportOpsIntegrationTest.xml",
+      "bytes": 130639,
+      "sha256": "146b5b88f5b2d205382f0ec436b4872236640d8b2a562193ac4d2d665bfc875b"
+    },
+    {
+      "path": "evidence/maven-full-verify-20261011.log",
+      "bytes": 349858,
+      "sha256": "656410024e776e34df49d18e3cbbd9b8211236980aa9b748563717577605cd45"
+    },
+    {
+      "path": "evidence/maven-run-20261011.json",
+      "bytes": 575,
+      "sha256": "01214cd5d82d65bd20488ba4cdbb97b0933e8069e548d97c527a88e0e16b0e5e"
+    },
+    {
+      "path": "evidence/java-results-20261011.json",
+      "bytes": 14994,
+      "sha256": "fce02272c2ef768a55ae369c587e978e99d9822c74ba07e3788d232e3eb4c9e8"
+    },
+    {
+      "path": "evidence/node-tests-20261011.log",
+      "bytes": 7061,
+      "sha256": "61ed7d7029ebadb86f50f3e4ba87ea558538d566be784cd6e958440e72c684b8"
+    },
+    {
+      "path": "evidence/resources-after-20261011.json",
+      "bytes": 1268,
+      "sha256": "e7d3885f82a65dcbcf32a4a665c70cfdd4685806f7673bba38b164fd03b735e9"
+    },
+    {
+      "path": "evidence/tested-source-manifest-20261011.json",
+      "bytes": 122331,
+      "sha256": "02c0bce35ad0ce1c795528dbb920dbfe507f34b6b21183583f2fc50c9db201c3"
+    },
+    {
+      "path": "evidence/node-tests.log",
+      "bytes": 10766,
+      "sha256": "b99b2512704357b952d8416ef8f67e53514ab0773f1d4d94c6c62cf5b585a0ae"
+    },
+    {
+      "path": "evidence/node-tests-workspace-temp.log",
+      "bytes": 7063,
+      "sha256": "c314d11c9b91f8a59d32c9523b38d81444d677adb7457b64d4fc67e495b26f0f"
+    },
+    {
+      "path": "evidence/node22-tests.log",
+      "bytes": 17292,
+      "sha256": "a07c91fe71ff20cdb4f49f7c30a9a08017d75bd44ec8d92cbe18cdad0dd3a3e6"
+    },
+    {
+      "path": "evidence/npm-audit-20261019.json",
+      "bytes": 2979,
+      "sha256": "2137eeeee38af80ae3814cde46f7a3b1d02ee0ba335e5dd43d8f6e535f23eabd"
+    }
+  ],
+  "SP18": "NOT_RUN",
+  "commit": "NOT_RUN",
+  "push": "NOT_RUN"
+}

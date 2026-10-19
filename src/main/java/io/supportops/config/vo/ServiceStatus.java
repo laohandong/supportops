@@ -17,4 +17,12 @@ public record ServiceStatus(
         @Schema(description = "向量服务路由。", schemaResolution = Schema.SchemaResolution.ALL_OF)
                 ModelRoute embeddingRoute,
         @Schema(description = "对话生成参数。", schemaResolution = Schema.SchemaResolution.ALL_OF)
-                GenerationOptions generation) {}
+                GenerationOptions generation,
+        @Schema(description = "是否按企业独立部署运行") boolean enterprise,
+        @Schema(description = "是否允许合成示例现场操作") boolean demoEnabled) {
+    /** 保留原本地状态构造契约，新增部署字段有明确默认值。 */
+    public ServiceStatus(boolean modelConfigured, String model, boolean embeddingConfigured, String embeddingModel,
+            String environment, ModelRoute modelRoute, ModelRoute embeddingRoute, GenerationOptions generation) {
+        this(modelConfigured, model, embeddingConfigured, embeddingModel, environment, modelRoute, embeddingRoute, generation, false, true);
+    }
+}

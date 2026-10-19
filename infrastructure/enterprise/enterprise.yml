@@ -1,0 +1,47 @@
+spring:
+  config:
+    import: configtree:/run/secrets/
+  datasource:
+    url: jdbc:mysql://mysql:3306/supportops?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: supportops
+server:
+  address: 0.0.0.0
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: file:/run/tls/server.p12
+    key-store-type: PKCS12
+  servlet:
+    session:
+      cookie:
+        secure: true
+supportops:
+  enterprise:
+    enabled: true
+    demo-enabled: false
+    deployment-id: ${SUPPORTOPS_DEPLOYMENT_ID}
+    public-origin: ${SUPPORTOPS_PUBLIC_ORIGIN}
+    trusted-proxies: ${SUPPORTOPS_TRUSTED_PROXIES:}
+    master-key-file: /run/secrets/master-key.json
+    setup-secret-file: /run/secrets/setup-secret
+    trust-store-file: /run/tls/truststore.p12
+    trust-store-password-file: /run/secrets/java-truststore-password
+  settings:
+    file: /var/lib/supportops/model-settings.json
+  model:
+    provider: disabled
+  embedding:
+    provider: disabled
+  feishu:
+    enabled: false
+  evaluation:
+    enabled: false
+  knowledge:
+    storage:
+      endpoint: http://minio:9000
+      access-key: supportops-storage
+    elastic:
+      endpoint: http://elasticsearch:9200
+    excel:
+      schema: supportops_excel
+      query-user: supportops_reader

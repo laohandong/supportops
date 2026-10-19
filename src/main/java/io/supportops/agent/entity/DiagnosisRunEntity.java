@@ -8,6 +8,18 @@ import com.baomidou.mybatisplus.annotation.TableName;
 /** 诊断任务的持久化状态，时间与计量字段兼容已有记录。 */
 @TableName("runs")
 public class DiagnosisRunEntity {
+    /** 独立调用应用 UUID；应用任务不设置 userId。 */
+    private String applicationId;
+    /** USER、APPLICATION 或 LEGACY_UNKNOWN。 */
+    private String actorType;
+    /** 返回独立应用归属。 */
+    public String getApplicationId() { return applicationId; }
+    /** 设置服务端确认的应用归属。 */
+    public void setApplicationId(String value) { applicationId = value; }
+    /** 返回执行主体类型。 */
+    public String getActorType() { return actorType; }
+    /** 设置执行主体类型，不由客户端指定。 */
+    public void setActorType(String value) { actorType = value; }
     /** 对话逻辑归档时间，UTC ISO 8601；null 表示仍显示在历史列表。 */
     @TableField("archived_at")
     private String archivedAt;

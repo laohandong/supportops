@@ -70,12 +70,17 @@ public class DocumentLibraryServiceImpl implements DocumentLibraryService {
     private final TransactionTemplate transactions;
     private final ObjectMapper json;
     private final DocumentRevisionService revisions;
+    private io.supportops.project.service.ProjectService projects;
+    /** 在正式应用中校验资料系统归属；独立历史持久化测试使用已初始化的示例系统。 */
+    @org.springframework.beans.factory.annotation.Autowired
+    public void projects(io.supportops.project.service.ProjectService value) { projects = value; }
     private final DocumentImportService imports;
     private final DocumentIndexService indexing;
     private final ApplicationEventPublisher events;
 
     /** 结构化摘要保留字段边界，标题或说明中的分隔符不会造成幂等载荷混淆。 */
     private record UploadFingerprint(
+            String systemId,
             String filename,
             String checksum,
             String title,
@@ -138,6 +143,14 @@ public class DocumentLibraryServiceImpl implements DocumentLibraryService {
             String source,
             byte[] bytes,
             ImportOptions options) {
+        return submitScoped(io.supportops.integration.service.support.EnterpriseIds.SYSTEM, filename, title, productVersion,
+                documentId, note, requestKey, source, bytes, options);
+    }
+    /** 系统归属在受理摘要、文档去重和修订检查中始终显式传递。 */
+    @Override public KnowledgeViews.Upload submitScoped(String systemId, String filename, String title, String productVersion,
+            String documentId, String note, String requestKey, String source, byte[] bytes, ImportOptions options) {
+        io.supportops.integration.service.support.IntegrationInputs.uuid(systemId);
+        if (projects != null) { projects.validateSystem(systemId); }
         String name = filename == null ? "document.md" : filename.replace('\\', '/');
         name = name.substring(name.lastIndexOf('/') + 1);
         if (requestKey == null || requestKey.isBlank()) {
@@ -148,6 +161,7 @@ public class DocumentLibraryServiceImpl implements DocumentLibraryService {
         }
         UploadFingerprint fingerprint =
                 new UploadFingerprint(
+                        systemId,
                         name,
                         KnowledgeValues.hash(bytes),
                         title,
@@ -165,7 +179,7 @@ public class DocumentLibraryServiceImpl implements DocumentLibraryService {
             String type = fileType(name);
             KnowledgeDocumentEntity document =
                     findOrCreateDocument(
-                            documentId, title, productVersion, name, fingerprint.checksum());
+                            systemId, documentId, title, productVersion, name, fingerprint.checksum());
             upload.setDocumentId(document.getId());
             uploads.updateById(upload);
             DocumentVersionEntity duplicate =
@@ -196,7 +210,12 @@ public class DocumentLibraryServiceImpl implements DocumentLibraryService {
         upload.setUserId(CurrentUser.id());
         upload.setId(KnowledgeValues.id());
         upload.setRequestKey(requestKey);
-        upload.setRequestHash(KnowledgeValues.hash(json.valueToTree(fingerprint).toString()));
+        com.fasterxml.jackson.databind.node.ObjectNode payload = json.valueToTree(fingerprint);
+        if (io.supportops.integration.service.support.EnterpriseIds.SYSTEM.equals(fingerprint.systemId())) {
+            // 历史示例请求保持原摘要，已提交且响应丢失的旧上传仍可恢复。
+            payload.remove("systemId");
+        }
+        upload.setRequestHash(KnowledgeValues.hash(payload.toString()));
         upload.setFilename(fingerprint.filename());
         upload.setSizeBytes((long) size);
         upload.setChecksum(fingerprint.checksum());
@@ -343,13 +362,16 @@ public class DocumentLibraryServiceImpl implements DocumentLibraryService {
 
     /** 新上传可按内容和适用版本去重，更新修订必须绑定明确文档 ID。 */
     private KnowledgeDocumentEntity findOrCreateDocument(
-            String id, String title, String version, String name, String checksum) {
+            String systemId, String id, String title, String version, String name, String checksum) {
         if (id != null && !id.isBlank()) {
-            return revisions.requireDocument(id, false);
+            KnowledgeDocumentEntity existing = revisions.requireDocument(id, false);
+            if (!systemId.equals(existing.getSystemId())) { throw invalid("DOCUMENT_SYSTEM_MISMATCH"); }
+            return existing;
         }
         KnowledgeDocumentEntity existing =
                 documents.selectOne(
                         Wrappers.<KnowledgeDocumentEntity>lambdaQuery()
+                                .eq(KnowledgeDocumentEntity::getSystemId, systemId)
                                 .eq(KnowledgeDocumentEntity::getChecksum, checksum)
                                 .eq(KnowledgeDocumentEntity::getVersion, version)
                                 .eq(KnowledgeDocumentEntity::getDeleted, false)
@@ -367,7 +389,10 @@ public class DocumentLibraryServiceImpl implements DocumentLibraryService {
                         KnowledgeValues.now(),
                         "");
         document.setDeleted(false);
-        document.setCanonicalKey(KnowledgeValues.hash(checksum + "|" + version));
+        document.setSystemId(systemId);
+        String canonical = io.supportops.integration.service.support.EnterpriseIds.SYSTEM.equals(systemId)
+                ? checksum + "|" + version : systemId + "|" + checksum + "|" + version;
+        document.setCanonicalKey(KnowledgeValues.hash(canonical));
         try {
             documents.insert(document);
             return document;
@@ -533,7 +558,7 @@ public class DocumentLibraryServiceImpl implements DocumentLibraryService {
                     document.getFilename(),
                     document.getCreatedAt(),
                     "",
-                    0);
+                    0, null, null, "LEGACY", "PENDING", "PENDING", document.getSystemId());
         }
         ProcessingBatchEntity batch =
                 batches.selectOne(
@@ -564,7 +589,7 @@ public class DocumentLibraryServiceImpl implements DocumentLibraryService {
                 batch == null ? null : batch.getId(),
                 batch == null ? "PENDING" : batch.getStatus(),
                 batch == null ? "PENDING" : batch.getTextStatus(),
-                batch == null ? "PENDING" : batch.getVectorStatus());
+                batch == null ? "PENDING" : batch.getVectorStatus(), document.getSystemId());
     }
 
     /** 内容使用数字序号，引用批次不会因新版本发布而改变。 */

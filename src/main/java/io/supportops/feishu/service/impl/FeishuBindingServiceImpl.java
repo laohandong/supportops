@@ -20,6 +20,9 @@ import java.util.Objects;
 import java.util.UUID;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import io.supportops.project.service.ProjectService;
+import io.supportops.integration.service.support.EnterpriseIds;
 import org.springframework.web.server.ResponseStatusException;
 
 /** 使用高熵一次性码完成绑定，数据库仅保存摘要，身份以应用和企业为边界。 */
@@ -30,30 +33,44 @@ public class FeishuBindingServiceImpl implements FeishuBindingService {
     private final FeishuProperties properties;
     private final Clock clock;
     private final SecureRandom random = new SecureRandom();
+    private final ProjectService projects;
 
     /** 注入账号服务、绑定持久化和时钟。 */
     public FeishuBindingServiceImpl(FeishuBindingMapper bindings, UserService users,
             FeishuProperties properties, Clock clock) {
+        this(bindings, users, properties, clock, null);
+    }
+    /** 企业签发必须核对绑定人的当前环境授权。 */
+    @Autowired public FeishuBindingServiceImpl(FeishuBindingMapper bindings, UserService users,
+            FeishuProperties properties, Clock clock, ProjectService projects) {
         this.bindings = bindings;
         this.users = users;
         this.properties = properties;
         this.clock = clock;
+        this.projects = projects;
     }
 
     /** 绑定码只允许关联已存在的工作台账号，不在飞书侧创建或升级角色。 */
     @Override
     public FeishuViews.BindingCode issue(String userId) {
+        return issue(userId, EnterpriseIds.ENVIRONMENT);
+    }
+    /** 默认目标创建后固定，消息不能提交其他环境。 */
+    @Override public FeishuViews.BindingCode issue(String userId, String environmentId) {
         if (!properties.configured()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "FEISHU_NOT_CONFIGURED");
         }
         if (users.find(userId) == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "USER_NOT_FOUND");
         }
+        String target = environmentId == null ? EnterpriseIds.ENVIRONMENT : environmentId;
+        if (projects != null) { projects.resolve(target, userId, users.find(userId).isAdmin()); }
         byte[] bytes = new byte[24];
         random.nextBytes(bytes);
         String code = HexFormat.of().formatHex(bytes);
         FeishuBindingEntity binding = new FeishuBindingEntity();
         binding.setId(UUID.randomUUID().toString());
+        binding.setDefaultEnvironmentId(target);
         binding.setAppId(properties.appId());
         binding.setTenantKey(properties.tenantKey());
         binding.setUserId(userId);
@@ -63,6 +80,13 @@ public class FeishuBindingServiceImpl implements FeishuBindingService {
         binding.setCreatedAt(clock.instant().toString());
         requireWrite(bindings.insert(binding));
         return new FeishuViews.BindingCode(binding.getId(), userId, "绑定 " + code, binding.getCodeExpiresAt());
+    }
+    /** 绑定撤销、平台不匹配或环境缺失时不回退其他现场。 */
+    @Override public String environment(FeishuInboxEntity message) {
+        FeishuBindingEntity binding = bindings.selectById(message.getBindingId());
+        if (binding == null || Boolean.TRUE.equals(binding.getRevoked())
+                || !properties.appId().equals(binding.getAppId()) || !properties.tenantKey().equals(binding.getTenantKey())) { return null; }
+        return binding.getDefaultEnvironmentId();
     }
 
     /** 按创建时间倒序返回公开字段，禁止回显摘要。 */
@@ -74,7 +98,7 @@ public class FeishuBindingServiceImpl implements FeishuBindingService {
                 .orderByDesc(FeishuBindingEntity::getCreatedAt).orderByDesc(FeishuBindingEntity::getId)
                 .last("LIMIT 100")).stream().map(binding -> new FeishuViews.Binding(
                         binding.getId(), binding.getUserId(), binding.getOpenId(), binding.getRevoked(),
-                        binding.getCodeExpiresAt(), binding.getCreatedAt())).toList();
+                        binding.getCodeExpiresAt(), binding.getCreatedAt(), binding.getDefaultEnvironmentId())).toList();
     }
 
     /** 撤销同时销毁绑定码并释放平台身份的唯一约束，历史收件保留原身份快照。 */

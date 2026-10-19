@@ -12,7 +12,10 @@ const messages = {
 try {
     const response = await fetch('/api/auth/setup');
     if (!response.ok) throw new Error('无法读取账号状态，请刷新页面重试。');
-    setupRequired = (await response.json()).setupRequired;
+    const status = await response.json();
+    setupRequired = status.setupRequired;
+    document.querySelector('#setup-secret-field').hidden = !(setupRequired && status.setupSecretRequired);
+    document.querySelector('#setup-secret').required = setupRequired && status.setupSecretRequired;
     if (setupRequired) {
         document.querySelector('#login-title').textContent = '创建首个管理员';
         document.querySelector('#login-description').textContent = '首次使用需先创建管理员。之后可在用户管理中为同事创建账号。';
@@ -30,7 +33,9 @@ form.addEventListener('submit', async event => {
     button.disabled = true; error.hidden = true;
     try {
         const response = await fetch('/api/auth/' + (setupRequired ? 'setup' : 'login'), {
-            method: 'POST', headers: {'Content-Type': 'application/json', 'X-SupportOps-Request': '1'},
+            method: 'POST', headers: {'Content-Type': 'application/json', 'X-SupportOps-Request': '1',
+                ...(setupRequired && form.querySelector('#setup-secret').value
+                    ? {'X-SupportOps-Setup-Secret': form.querySelector('#setup-secret').value} : {})},
             body: JSON.stringify({username: form.username.value, password: form.password.value})
         });
         if (!response.ok) {
@@ -38,6 +43,7 @@ form.addEventListener('submit', async event => {
             throw new Error(messages[data.error] || '操作未完成，请检查输入和本地服务后重试。');
         }
         form.password.value = '';
+        form.querySelector('#setup-secret').value = '';
         location.replace('/');
     } catch (failure) {
         error.textContent = failure.message; error.hidden = false;

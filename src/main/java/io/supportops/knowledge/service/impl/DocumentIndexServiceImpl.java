@@ -19,6 +19,8 @@ import io.supportops.knowledge.service.KnowledgeTaskService;
 import io.supportops.knowledge.service.support.KnowledgeValues;
 
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import io.supportops.integration.service.DataPolicyService;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import java.util.List;
@@ -35,6 +37,7 @@ public class DocumentIndexServiceImpl implements DocumentIndexService {
     private final ElasticKnowledgeIndex elastic;
     private final TransactionTemplate transactions;
     private final DocumentRevisionService revisions;
+    private final DataPolicyService policies;
 
     /** 注入本阶段使用的持久化、事务及外部服务边界。 */
     public DocumentIndexServiceImpl(
@@ -47,6 +50,15 @@ public class DocumentIndexServiceImpl implements DocumentIndexService {
             ElasticKnowledgeIndex elastic,
             TransactionTemplate transactions,
             DocumentRevisionService revisions) {
+        this(batches, releases, taskRows, catalog, tasks, embedding, elastic, transactions, revisions, null);
+    }
+
+    /** 企业索引调用之前逐页检查资料外发许可，避免撤销后继续发送分片。 */
+    @Autowired
+    public DocumentIndexServiceImpl(ProcessingBatchMapper batches, DocumentReleaseMapper releases,
+            IndexTaskMapper taskRows, KnowledgeCatalogMapper catalog, KnowledgeTaskService tasks,
+            EmbeddingClient embedding, ElasticKnowledgeIndex elastic, TransactionTemplate transactions,
+            DocumentRevisionService revisions, DataPolicyService policies) {
         this.batches = batches;
         this.releases = releases;
         this.taskRows = taskRows;
@@ -56,14 +68,18 @@ public class DocumentIndexServiceImpl implements DocumentIndexService {
         this.elastic = elastic;
         this.transactions = transactions;
         this.revisions = revisions;
+        this.policies = policies;
     }
 
     /** 先完整写入关键词索引，再在短事务内发布并受理向量任务。 */
     @Override
     public void indexText(IndexTaskEntity task, ProcessingBatchEntity batch) {
-        elastic.ensure(elastic.textIndex(), 0);
+        String index = elastic.scopedKeywordIndex(revisions.requireDocument(batch.getDocumentId(), false).getSystemId());
+        task.setIndexName(index);
+        tasks.progress(task, "ES_WRITING", 0);
+        elastic.ensure(index, 0);
         writeTextChunks(task, batch);
-        elastic.verify(elastic.textIndex(), "batchId", batch.getId(), batch.getChunkCount());
+        elastic.verify(index, "batchId", batch.getId(), batch.getChunkCount());
         publishTextAndScheduleVector(task, batch);
     }
 
@@ -76,7 +92,7 @@ public class DocumentIndexServiceImpl implements DocumentIndexService {
             if (sources.isEmpty()) {
                 return;
             }
-            elastic.putText(sources, task.getAttemptCount());
+            elastic.putScopedText(task.getIndexName(), sources, task.getAttemptCount());
             after = sources.getLast().chunkIndex();
             tasks.progress(task, "ES_WRITING", after);
         }
@@ -114,6 +130,7 @@ public class DocumentIndexServiceImpl implements DocumentIndexService {
     /** 固定模型快照，补齐向量后核对完整性；模型和 ES 请求始终在事务外。 */
     @Override
     public void indexVector(IndexTaskEntity task, ProcessingBatchEntity batch) {
+        if (policies != null) { policies.requireEmbedding(revisions.requireDocument(batch.getDocumentId(), false).getSystemId()); }
         Endpoint endpoint = requireTaskEndpoint(task);
         String profile = embedding.fingerprint(endpoint);
         int completed = writeVectorChunks(task, batch, endpoint, profile);
@@ -172,12 +189,13 @@ public class DocumentIndexServiceImpl implements DocumentIndexService {
             return;
         }
         tasks.progress(task, "EMBEDDING", completed);
+        if (policies != null) { policies.requireEmbedding(revisions.requireDocument(source.documentId(), false).getSystemId()); }
         double[] vector = embedding.embed(endpoint, source.content());
         if (task.getDimensions() > 0 && task.getDimensions() != vector.length) {
             throw new IllegalStateException("EMBEDDING_DIMENSIONS_CHANGED");
         }
         task.setDimensions(vector.length);
-        task.setIndexName(elastic.vectorIndex(profile, vector.length));
+        task.setIndexName(elastic.scopedVectorIndex(revisions.requireDocument(source.documentId(), false).getSystemId(), profile, vector.length));
         elastic.ensure(task.getIndexName(), vector.length);
         tasks.progress(task, "ES_WRITING", completed);
         elastic.putVector(

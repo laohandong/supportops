@@ -38,7 +38,8 @@ public class FeishuServiceImpl implements FeishuService {
     // 飞书 uuid 去重保证一小时；本地只在首次尝试后五十分钟内重试，留出网络余量。
     private static final long RETRY_WINDOW_MS = 50 * 60_000L;
     private static final Set<String> ADMISSION_ERRORS = Set.of(
-            "MODEL_NOT_CONFIGURED", "INVALID_QUESTION", "DIAGNOSIS_IN_PROGRESS", "EXTERNAL_REQUEST_CONFLICT");
+            "MODEL_NOT_CONFIGURED", "INVALID_QUESTION", "DIAGNOSIS_IN_PROGRESS", "EXTERNAL_REQUEST_CONFLICT",
+            "AUTHORIZATION_REVOKED", "TARGET_NOT_AVAILABLE", "CONNECTOR_NOT_ENABLED", "DATA_EXTERNALIZATION_DENIED");
     private final FeishuInboxMapper inbox;
     private final FeishuOutboxMapper outbox;
     private final FeishuBindingService bindings;
@@ -184,7 +185,13 @@ public class FeishuServiceImpl implements FeishuService {
         }
         if ("RECEIVED".equals(message.getState())) {
             try {
-                runs.startExternal(message.getId(), message.getQuestion(), owner);
+                String environment = bindings.environment(message);
+                if (environment == null) { throw new ResponseStatusException(org.springframework.http.HttpStatus.FORBIDDEN, "AUTHORIZATION_REVOKED"); }
+                if (io.supportops.integration.service.support.EnterpriseIds.ENVIRONMENT.equals(environment)) {
+                    runs.startExternal(message.getId(), message.getQuestion(), owner);
+                } else {
+                    runs.startExternalTarget(message.getId(), message.getQuestion(), owner, environment);
+                }
                 transactions.executeWithoutResult(status -> {
                     enqueue(message, "ACCEPTED", "已受理诊断，任务编号：" + message.getId()
                             + "。完成后会在此私聊返回结果。每条新消息会创建独立诊断。");

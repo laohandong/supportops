@@ -1,0 +1,29 @@
+{
+  "name": "supportops-reliability-tools",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "test": "node --test src/test/js/*.test.mjs",
+    "test:e2e": "node scripts/test-e2e.mjs",
+    "test:restore": "node scripts/test-recovery.mjs",
+    "test:runtime": "node scripts/test-runtime.mjs",
+    "test:boundaries": "node scripts/test-reliability-boundaries.mjs",
+    "test:delivery": "node scripts/test-delivery.mjs",
+    "test:isolation": "node scripts/test-isolation.mjs",
+    "test:dependencies": "node scripts/test-dependencies.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "mysql2": "3.24.4",
+    "minio": "8.0.7",
+    "fflate": "0.8.3"
+  },
+  "overrides": {
+    "fast-xml-parser": "5.9.2",
+    "decode-uri-component": "0.5.0",
+    "stream-json": "1.9.1"
+  }
+}

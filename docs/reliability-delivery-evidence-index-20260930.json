@@ -1,0 +1,435 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-09-30",
+  "status": "PASS",
+  "jar": {
+    "path": "target/supportops-0.1.0-SNAPSHOT.jar",
+    "sha256": "153001ea40ab98dfc408222e91bf517371dce59509ce93b38c1fffe76f960c6a"
+  },
+  "generatedEvidenceRoot": ".local/reliability-20260929/public-delivery",
+  "evidencePathsRelativeTo": "generatedEvidenceRoot",
+  "tasks": [
+    {
+      "id": "RD-01",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "RD-02",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "RD-03",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "RD-04",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "RD-05",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "RD-06",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "RD-07",
+      "status": "COMPLETE"
+    }
+  ],
+  "cases": [
+    {
+      "id": "D01",
+      "title": "子 JVM 三阶段退出与零重放",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/baseline-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/baseline-report.json"
+      }
+    },
+    {
+      "id": "D02",
+      "title": "正常就绪、启动失败与退出",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/runtime-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/runtime-report.json"
+      }
+    },
+    {
+      "id": "D03",
+      "title": "PID 身份、未知与端口冲突",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/runtime-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/runtime-report.json"
+      }
+    },
+    {
+      "id": "D04",
+      "title": "JDK/JAR/配置/依赖错误",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/runtime-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/runtime-report.json"
+      }
+    },
+    {
+      "id": "D05",
+      "title": "可选模型与 UI 覆盖配置",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/runtime-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/runtime-report.json"
+      }
+    },
+    {
+      "id": "D06",
+      "title": "doctor 无写入及运行 API 权限",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/runtime-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/runtime-report.json"
+      }
+    },
+    {
+      "id": "E01",
+      "title": "初始化、登录退出与 USER 权限",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/browser/browser-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/browser/browser-report.json"
+      }
+    },
+    {
+      "id": "E02",
+      "title": "SSE 断线、游标与刷新",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/browser/browser-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/browser/browser-report.json"
+      }
+    },
+    {
+      "id": "E03",
+      "title": "评测预检复制与迟到响应",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/browser/browser-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/browser/browser-report.json"
+      }
+    },
+    {
+      "id": "E04",
+      "title": "评测受理后丢响应",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/browser/browser-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/browser/browser-report.json"
+      }
+    },
+    {
+      "id": "E05",
+      "title": "审批执行、结果历史与两种视口",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/browser/browser-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/browser/browser-report.json"
+      }
+    },
+    {
+      "id": "E06",
+      "title": "修复丢响应、404 与旧 pending",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/browser/browser-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/browser/browser-report.json"
+      }
+    },
+    {
+      "id": "E07",
+      "title": "账号切换的 pending 隔离",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/browser/browser-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/browser/browser-report.json"
+      }
+    },
+    {
+      "id": "E08",
+      "title": "配置冲突与旧审批失效",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/browser/browser-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/browser/browser-report.json"
+      }
+    },
+    {
+      "id": "B01",
+      "title": "活动或未知写入拒绝备份",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/recovery/recovery-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/recovery/recovery-report.json"
+      }
+    },
+    {
+      "id": "B02",
+      "title": "完整备份和全新恢复",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/recovery/recovery-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/recovery/recovery-report.json"
+      }
+    },
+    {
+      "id": "B03",
+      "title": "不完整或不兼容备份拒绝",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/recovery/recovery-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/recovery/recovery-report.json"
+      }
+    },
+    {
+      "id": "B04",
+      "title": "非空目标与路径/身份复用拒绝",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/recovery/recovery-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/recovery/recovery-report.json"
+      }
+    },
+    {
+      "id": "B05",
+      "title": "中断、写失败和依赖超时",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/recovery/recovery-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/recovery/recovery-report.json"
+      }
+    },
+    {
+      "id": "B06",
+      "title": "历史审批、UNKNOWN 与恢复后业务读取",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/recovery/recovery-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/recovery/recovery-report.json"
+      }
+    },
+    {
+      "id": "B07",
+      "title": "私密权限与公开产物检查",
+      "windows": {
+        "status": "PASS",
+        "evidence": "windows/recovery/recovery-report.json"
+      },
+      "linux": {
+        "status": "PASS",
+        "evidence": "linux/recovery/recovery-report.json"
+      }
+    }
+  ],
+  "supplementary": [
+    {
+      "id": "S01-S02",
+      "windows": "PASS",
+      "linux": "PASS",
+      "purpose": "未登记容器/卷禁止清理"
+    },
+    {
+      "id": "X01-X03",
+      "windows": "PASS",
+      "linux": "PASS",
+      "purpose": "外置依赖摘要、缺失和损坏拒绝"
+    }
+  ],
+  "notRun": [
+    {
+      "id": "OPTIONAL_ONNX_5",
+      "reason": "model/tokenizer files absent"
+    },
+    {
+      "id": "REMOTE_ACTIONS",
+      "reason": "no commit/push authorized"
+    },
+    {
+      "id": "REAL_PROVIDERS",
+      "reason": "outside authorized scope"
+    },
+    {
+      "id": "INDEPENDENT_ACCEPTANCE",
+      "reason": "separate verification pending"
+    }
+  ],
+  "limitations": [
+    "D03 的不可读分支使用定向 UNKNOWN 协议注入；PID_REUSED 用真实存活 PID 与不匹配开始时间验证。未强制操作系统分配相同 PID，未改变宿主访问权限。",
+    "B05 包含真实 SQL 子进程终止、实际导入后故障回调和真实 ES 暂停超时；未耗尽物理磁盘。",
+    "B06 的 UNKNOWN 历史行由真实成功执行后的一次合成 SQL 故障准备，单独登记；真实 JVM 崩溃恢复另由 D01 验证。",
+    "真实模型与飞书平台未调用；本地夹具不证明鉴权、模型质量或企业生产恢复。",
+    "5 项原有 ONNX 可选测试因缺少权重/tokenizer 未执行；外置文件只记录摘要与可用性，不打包或加载。",
+    "npm 审计保留 2 项关联的 moderate 项，高危与严重为 0；未使用不兼容跨主版本覆盖。",
+    "远端 GitHub Actions 未执行；已接入工作流并完成本地实际 Linux 命令链。",
+    "本记录为开发验证；独立验收尚未执行。"
+  ],
+  "privateEvidenceRoot": ".local/reliability-20260929",
+  "failuresPreserved": true,
+  "publicArtifactsContainCredentials": false,
+  "resourceReport": "resource-report.json",
+  "resources": {
+    "schemaVersion": 1,
+    "status": "PASS",
+    "retained": [
+      {
+        "deploymentId": "21e60261-78c6-4933-af00-190298829fb0",
+        "state": "RESTORED_STOPPED",
+        "containers": 3,
+        "volumes": 4,
+        "purpose": "independent acceptance"
+      }
+    ],
+    "finalCleanup": [
+      {
+        "deploymentId": "09707e41-e0b1-4cfc-b159-f39ba9f4f8ab",
+        "status": "CLEANED_OWNED_CONTAINERS_AND_VOLUMES",
+        "containers": 3,
+        "volumes": 4
+      },
+      {
+        "deploymentId": "5ce6e3f0-da48-410c-b661-7723a7d6039c",
+        "status": "CLEANED_OWNED_CONTAINERS_AND_VOLUMES",
+        "containers": 3,
+        "volumes": 4
+      },
+      {
+        "deploymentId": "89335d35-1658-429f-bcb0-58a1d44891d2",
+        "status": "CLEANED_OWNED_CONTAINERS_AND_VOLUMES",
+        "containers": 3,
+        "volumes": 4
+      },
+      {
+        "deploymentId": "204c78a7-bd3f-413c-87d9-9e31c867b30a",
+        "status": "CLEANED_OWNED_LINUX_RUNNER_AND_WORK_VOLUME",
+        "containers": 1,
+        "volumes": 1
+      }
+    ],
+    "linuxEvidenceCaptured": true,
+    "linuxCompleteBackupValidOnWindows": true,
+    "initialResources": {
+      "containers": 28,
+      "volumes": 30,
+      "allIdsAndVolumesStillPresent": true,
+      "runningStatesNotAsserted": true
+    },
+    "initialGitPathsPresent": 72,
+    "migrationFilesUnchanged": 8,
+    "unrelatedResourcesStoppedOrRemovedByThisTask": false,
+    "committed": false,
+    "pushed": false,
+    "published": false,
+    "generatedEvidenceRetained": true,
+    "toolCachesRetained": true,
+    "zeroByteDockerSocketQuarantinePreserved": true
+  },
+  "finalCheckReport": "final-check-report.json",
+  "environments": {
+    "windows": {
+      "jdk": "Microsoft OpenJDK 21.0.11",
+      "node": "22.16.0",
+      "baseline": "windows/baseline-report.json"
+    },
+    "linux": {
+      "distribution": "Ubuntu 24.04.3 / WSL2 Linux x86_64",
+      "jdk": "OpenJDK 21.0.12.1",
+      "node": "22.16.0",
+      "baseline": "linux/baseline-report.json"
+    }
+  },
+  "historicalFailures": [
+    {
+      "id": "WINDOWS_INITIAL_RECOVERY_UI",
+      "status": "FAIL_THEN_REVALIDATED",
+      "publicEvidence": "windows-history/recovery/initial-report-with-failed-ui.json",
+      "revalidation": "windows/recovery/recovery-report.json"
+    },
+    {
+      "id": "MAVEN_INITIAL_RUNS",
+      "status": "FAIL_THEN_FULL_VERIFY_PASS",
+      "privateEvidence": "windows-verify-first.log; linux-final/native-evidence/maven-verify-first-private.log; linux-final/native-evidence/maven-verify-second-private.log; linux-final/native-evidence/maven-verify-third-private.log"
+    },
+    {
+      "id": "LINUX_INCOMPATIBLE_JSON_PARSER",
+      "status": "FAIL_THEN_COMPATIBLE_VERSION_AND_MATRIX_PASS",
+      "limitation": "2 linked moderate audit entries remain"
+    },
+    {
+      "id": "LINUX_SOURCE_WRONG_TEST_ENDPOINT",
+      "status": "FAIL_THEN_EXPLICIT_ENDPOINT_PASS",
+      "privateEvidence": "linux-final/native-evidence/source-final-private.log",
+      "revalidation": "linux/source-report.json"
+    }
+  ]
+}

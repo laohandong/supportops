@@ -10,6 +10,10 @@ import java.util.List;
 public interface FeishuBindingService {
     /** 为已有账号签发十分钟有效的随机绑定码。 */
     FeishuViews.BindingCode issue(String userId);
+    /** 显式环境签发绑定码；原入口保留示例环境兼容。 */
+    default FeishuViews.BindingCode issue(String userId, String environmentId) { return issue(userId); }
+    /** 返回当前有效绑定的固定目标，失效时不回退其他环境。 */
+    default String environment(FeishuInboxEntity message) { return io.supportops.integration.service.support.EnterpriseIds.ENVIRONMENT; }
     /** 返回当前应用和企业最近一百条绑定。 */
     List<FeishuViews.Binding> list();
     /** 撤销绑定，后续准入与尚未开始的投递均拒绝该身份。 */

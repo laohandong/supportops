@@ -65,6 +65,7 @@ public class DocumentLibraryController {
             @Parameter(description = "标题，1 至 180 字符", required = true) @RequestParam String title,
             @Parameter(description = "适用产品版本或 *，最长 30 字符", required = true) @RequestParam
                     String version,
+            @Parameter(description = "所属系统 UUID；省略只兼容历史示例系统") @RequestParam(required = false) String systemId,
             @Parameter(description = "新增修订所属文档；新文档省略") @RequestParam(required = false)
                     String documentId,
             @Parameter(description = "修订说明，最长 1000 字符") @RequestParam(defaultValue = "")
@@ -77,7 +78,9 @@ public class DocumentLibraryController {
             throws IOException {
         return ResponseEntity.accepted()
                 .body(
-                        library.submit(
+                        library.submitScoped(
+                                systemId == null ? io.supportops.integration.service.support.EnterpriseIds.SYSTEM
+                                        : io.supportops.integration.service.support.IntegrationInputs.uuid(systemId),
                                 file.getOriginalFilename(),
                                 title,
                                 version,

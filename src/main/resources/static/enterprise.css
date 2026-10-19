@@ -1,0 +1,40 @@
+.enterprise-layout{display:grid;grid-template-columns:minmax(200px,240px) minmax(0,1fr);gap:24px;align-items:start}
+.enterprise-tree{border-right:1px solid var(--line);padding-right:22px;min-width:0}
+.enterprise-tree ul{list-style:none;margin:0;padding:0}.enterprise-tree li{margin:6px 0}
+.enterprise-tree button{width:100%;text-align:left;background:transparent;white-space:normal;overflow-wrap:anywhere;min-height:44px}
+.enterprise-tree .enterprise-actions{gap:6px}
+.enterprise-tree .enterprise-actions button{width:auto;flex:1 1 60px;font-size:12px;padding:8px}
+.enterprise-tree button[aria-pressed=true]{background:var(--accent-soft);color:var(--accent)}
+.enterprise-tree .enterprise-system{padding-left:12px}.enterprise-tree .enterprise-environment{padding-left:28px}
+.enterprise-actions{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}.enterprise-editor{min-width:0}
+.enterprise-editor h2{margin:8px 0 16px}.enterprise-editor section+section{border-top:1px solid var(--line);margin-top:32px;padding-top:24px}
+.enterprise-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:18px 0}
+.enterprise-fields label{display:block;margin:0 0 6px}.enterprise-fields input,.enterprise-fields select{width:100%;margin:0}
+.enterprise-policy{border:0;padding:0;margin:20px 0}.enterprise-policy legend{font-weight:600;margin-bottom:12px}
+.enterprise-policy label{display:flex;gap:10px;align-items:center;margin:10px 0}.enterprise-policy input{width:auto}
+.enterprise-state{display:flex;gap:8px;flex-wrap:wrap;font-size:13px}.enterprise-state span{padding:4px 9px;background:var(--accent-soft);border-radius:5px}
+.enterprise-revision{padding:16px 0;border-bottom:1px solid var(--line)}.enterprise-revision p{margin:8px 0;overflow-wrap:anywhere}
+.enterprise-feedback{min-height:24px;max-width:78ch;overflow-wrap:anywhere}.enterprise-feedback.error{color:var(--danger)}
+.enterprise-secret{background:var(--accent-soft);padding:20px;margin-top:16px;border-radius:8px;overflow-wrap:anywhere}
+.enterprise-secret code{display:block;user-select:all;margin:12px 0;white-space:normal}.enterprise-muted{color:var(--muted);max-width:75ch}
+.enterprise-editor [hidden],#page-enterprise [hidden]{display:none!important}
+.enterprise-tabs{display:flex;gap:8px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.enterprise-tabs button{flex:1 1 auto;min-height:44px;padding:10px 12px;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--muted);font-size:14px;white-space:nowrap}
+.enterprise-tabs button[aria-selected=true]{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+.enterprise-tabs button:hover{background:var(--accent-soft)}
+[data-enterprise-panel]{min-width:0}
+.enterprise-selection-hint{padding:20px 0;line-height:1.8}
+#enterprise-panel-connections:has(#enterprise-environment-settings:not([hidden]))>.enterprise-selection-hint{display:none}
+.enterprise-editor .enterprise-muted{font-size:13px;line-height:1.8}
+.enterprise-editor .enterprise-fields{margin:20px 0;gap:20px 16px}
+.enterprise-editor .enterprise-policy{padding:16px 0;border-top:1px solid var(--line)}
+.enterprise-editor .enterprise-policy label{min-height:32px}
+.enterprise-editor #enterprise-data-policy{margin-top:24px;padding:20px 0;border:0;border-top:1px solid var(--line);border-radius:0;background:transparent}
+.enterprise-editor #enterprise-data-policy label{display:flex;align-items:center;gap:8px;min-height:36px}
+.enterprise-editor #enterprise-data-policy input[type=checkbox]{width:16px}
+.enterprise-editor #enterprise-member-form{padding-bottom:8px}
+.enterprise-editor #enterprise-member-form .enterprise-fields{margin-top:16px}
+#enterprise-environment-settings>h2:not(:first-child){margin-top:32px;padding-top:24px;border-top:1px solid var(--line)}
+@media(max-width:850px){.enterprise-layout{grid-template-columns:minmax(0,1fr)}.enterprise-tree{border-right:0;border-bottom:1px solid var(--line);padding:0 0 20px}.enterprise-tree ul{max-height:260px;overflow:auto}}
+@media(max-width:560px){.enterprise-fields{grid-template-columns:minmax(0,1fr);gap:12px}.enterprise-actions button{flex:1 1 auto;min-height:44px}}
+@media(max-width:680px){.enterprise-layout{gap:20px}.enterprise-tree ul{max-height:180px}.enterprise-tabs{gap:0;margin-bottom:20px}.enterprise-tabs button{padding-inline:6px;font-size:13px}.enterprise-editor .enterprise-fields{gap:16px}.enterprise-editor .enterprise-policy label{min-height:44px}}

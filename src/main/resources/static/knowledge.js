@@ -91,6 +91,7 @@ async function documents() {
 
 function selectRevisionUpload(item) {
     $('#document-owner').value = item.id; $('#document-title').value = item.title;
+    $('#document-system').value = item.systemId; $('#document-system').disabled = true;
     $('#document-version').value = item.version;
     $('#revision-target').textContent = `将为“${item.title}”新增修订，旧修订会保留。`;
     $('#revision-target').hidden = false; $('#cancel-revision').hidden = false;
@@ -98,7 +99,7 @@ function selectRevisionUpload(item) {
 }
 
 $('#cancel-revision').addEventListener('click', () => {
-    $('#document-owner').value = ''; $('#revision-target').hidden = true; $('#cancel-revision').hidden = true;
+    $('#document-owner').value = ''; $('#document-system').disabled = false; $('#revision-target').hidden = true; $('#cancel-revision').hidden = true;
 });
 
 function uploadOptions() {
@@ -117,10 +118,12 @@ $('#upload-form').addEventListener('submit', async event => {
         if (!file || file.size > 20 * 1024 * 1024) throw new Error(errors.FILE_TOO_LARGE);
         const options = uploadOptions();
         const signature = JSON.stringify([file.name, file.size, file.lastModified, $('#document-title').value,
-            $('#document-version').value, $('#document-owner').value, $('#document-note').value, options]);
+            $('#document-version').value, $('#document-system').value, $('#document-owner').value, $('#document-note').value, options]);
         if (!uploadRequest || uploadRequest.signature !== signature) uploadRequest = {signature, key: crypto.randomUUID()};
         const data = new FormData();
         data.set('file', file); data.set('title', $('#document-title').value); data.set('version', $('#document-version').value);
+        if (!$('#document-system').value) throw new Error('请先选择所属系统。');
+        data.set('systemId', $('#document-system').value);
         if ($('#document-owner').value) data.set('documentId', $('#document-owner').value);
         data.set('note', $('#document-note').value); data.set('requestKey', uploadRequest.key);
         data.set('options', new Blob([JSON.stringify(options)], {type: 'application/json'}));

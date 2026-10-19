@@ -12,9 +12,6 @@ public interface DemoService {
     /** 切换合成故障条件并实际发起一次同步。 */
     DemoState configure(String name);
 
-    /** 人工应用新版配置并实际验证同步结果。 */
-    SyncResult repairConfiguration();
-
     /** 根据当前有效配置向本地下游发送一次请求。 */
     SyncResult synchronizeOrder();
 

@@ -20,4 +20,6 @@ public interface KnowledgeCatalogMapper {
 
     /** 返回可检索的批次 ID，版本过滤在数据库执行。 */
     List<String> applicableBatches(@Param("version") String version);
+    /** 系统和版本先于外部索引召回限定，返回前需再次查询。 */
+    List<String> scopedBatches(@Param("systemId") String systemId, @Param("version") String version);
 }

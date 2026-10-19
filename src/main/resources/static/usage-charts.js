@@ -40,6 +40,14 @@ export function renderUsageDashboard(root, data, {el, onSession, Chart}) {
     health.append(el('span', summary.unreported ? '计量有缺口' : '计量说明', 'usage-coverage-label'),
         el('span', summary.unreported ? usageNumber(summary.unreported) + ' 轮尚无用量报告，图中数值可能低于实际消耗。' : '已报告 Token 用于分析消耗；不等同于供应商账单。'));
     root.append(health);
+    if (data.applications?.length) {
+        const applications = el('section', undefined, 'usage-details');
+        applications.append(el('h3', '应用调用用量'), el('p', '应用拥有独立身份；以下属于总量的应用子集，不再次累计。', 'muted'));
+        for (const item of data.applications) {
+            applications.append(el('p', `${item.question || item.groupId} · ${usageNumber(totalTokens(item))} Token · ${item.runs}轮诊断 · ${item.unreported}轮未报告`));
+        }
+        root.append(applications);
+    }
     if (!summary.runs) {
         const empty = el('div', undefined, 'usage-empty');
         empty.append(el('h2', '这个时间段还没有诊断记录'), el('p', '选择其他日期，或完成一次诊断后更新图表。空白范围不会被显示为已有消耗。'));

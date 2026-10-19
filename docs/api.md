@@ -1,6 +1,14 @@
 # 后端接口文档
 
-SupportOps 使用 springdoc-openapi 与 Swagger UI，从控制器和数据模型生成 OpenAPI 3 文档。接口名称、用途、参数、响应字段、枚举含义和错误说明均以中文维护在代码中。
+## 实际运行身份
+
+`GET /api/ops/runtime` 仅管理员可读，匿名返回 401，普通用户返回 403。`RuntimeView` 返回运行协议版本、唯一运行编号、当前 JVM PID、操作系统进程开始时间、实际 JAR SHA-256、应用版本、构建修订、源码状态、启动阶段、真实就绪时间和监听端口。无法证明的构建字段为 `unknown`；没有就绪信号时不能以文件更新时间宣称 READY。响应不含本机路径、连接串、账号、密钥或会话值。
+
+原 `GET /api/status` 继续表达模型与功能配置，配置完整不等于鉴权成功。运行信息接口不探测模型或迁移数据；命令行 `doctor/status` 的只读、有界探针及退出码见 [可靠性运行与恢复](reliability-delivery.md)。
+
+## 评测集成与旧接口兼容
+
+旧/api/evaluations/**经身份和角色校验返回410 EVALUATION_MOVED，GET/POST均不转发。GET /api/evaluation-integration读取可选首页。外部评测平台不共享本项目会话或凭据，详见[协作说明](evaluation-split.md)。
 
 ## 访问入口
 
@@ -25,15 +33,18 @@ SupportOps 使用 springdoc-openapi 与 Swagger UI，从控制器和数据模型
 | --- | ---: | --- |
 | 用户与登录 | 7 | 首次初始化、登录、退出、当前账号、用户列表与创建 |
 | 运行状态 | 1 | 本地配置状态、当前模型路由及生成参数 |
+| 运行维护 | 1 | 管理员可读的实际 JAR、JVM 与就绪身份 |
 | 诊断任务 | 7 | 创建、列表、详情、取消、归档、增量事件与 SSE |
 | 用量分析 | 2 | 用量汇总、趋势、排行与会话历史 |
 | 知识文档 | 7 | 上传、列表、原文、删除、索引、示例导入和检索 |
 | 文档版本与处理任务 | 15 | 上传历史、修订、批次、原件、补偿与 Excel 查询 |
 | 项目记忆 | 3 | 查询、显式确认保存和删除项目约束 |
-| 示例环境 | 4 | 查询现场、切换故障、人工同步和配置修复 |
+| 示例环境 | 5 | 查询现场、场景审计、切换故障、人工同步和配置修复 |
 | 模型配置 | 4 | 读取、模型列表查询、保存指定角色和恢复文件配置 |
+| 飞书机器人 | 5 | 绑定码、绑定及消息查询、撤销和原请求投递 |
+| 受控修复中心 | 14 | 预检查、不可变提案、人工审批、一次执行、原请求核查和报告 |
 
-共 50 个业务接口、9 个中文分组。`/mcp` 使用独立的 Streamable HTTP JSON-RPC 协议，通过 MCP 客户端初始化和 `tools/list` 获取工具定义，不与 REST 接口混合展示。自建下游的随机端口用于内部故障环境，不属于工作台公共 API。
+当前生成OpenAPI含113个GET/POST操作和22个标签，覆盖企业接入、来源导出与兼容边界。MCP保持独立JSON-RPC协议。
 
 ## 请求方式
 
@@ -139,3 +150,23 @@ Excel 通过 `GET /api/documents/batches/{batchId}/datasets` 查看预览，确�
 - GET /api/usage/sessions/{sessionId}?offset=0：按创建时间和任务 ID 升序返回会话历史，每页最多 50 轮，offset 范围 0–1000000；包含统计范围以外的问答。空数组表示没有记录或没有更多记录。任务事件仍通过已有 /api/runs/{id}/events 读取。
 
 参数错误统一返回 HTTP 400 和 INVALID_INPUT；查询不调用外部模型，不修改记录。用量分析仅管理员可用。
+
+## 受控修复 API
+
+全部 `/api/remediations` 接口仅 ADMIN，使用 GET/POST、Cookie、来源检查和 `X-SupportOps-Request: 1`。命令绑定 requestId、expectedVersion、planHash，拒绝任意目标和未知字段。旧 `/api/demo/repair-config` 必须引用已批准提案；无提案返回409 `REPAIR_APPROVAL_REQUIRED`。完整路径、状态和恢复协议见 [受控修复中心](controlled-remediation.md#api-与旧入口)。
+
+有合法requestId的有界可解析写请求，字段拒绝也保存400/INVALID_INPUT回执供原请求查询；同编号正文变化仍409冲突，无法解析或无合法编号的请求不产生可确认回执。`GET /api/demo/environment-events?after=0` 为管理员只读场景历史，最多200条升序记录，包含跨实例的原修订和操作身份。场景结果保存失败返回503/SCENARIO_RESULT_NOT_PERSISTED，原STARTED记录保留，不能据此认定现场已回滚。
+
+## 处理结果与来源导出 API
+
+人工结果保留当前结果、history、remediation-options、POST保存、requests原回执及原访问控制。
+
+| 新来源接口 | 用途 |
+| --- | --- |
+| POST /api/runs/{runId}/evaluation-exports | 管理员确认脱敏，绑定当前结果修订 |
+| GET /api/evaluation-exports/{id} | 原包下载 |
+| GET /api/evaluation-exports/requests/{requestId} | 当前操作者原回执 |
+
+来源正文上限128KiB，拒绝重复键、未知字段和伪造身份。修订冲突或同键异文返回409，同键同文返回原结果。原包和摘要不随来源改变，安装身份、账号、时间由服务端捕获。404或网络异常不能换键盲写。
+
+案例、实验和审阅属于AgentEval。2026-10-11 隔离验证的生成定义含 113 个 GET/POST 操作和 22 个标签；完整约束以运行OpenAPI为准。旧接口见[兼容清单](evaluation-split-ownership.md)。

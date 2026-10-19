@@ -1,0 +1,1092 @@
+{
+  "kind": "PROJECT_REVIEW_FOLLOWUP_V1",
+  "completedAt": "2026-10-05T11:26:08.211Z",
+  "baseline": {
+    "githubMain": "22ad97f0eded446c42512c08a4570bc70f936b02",
+    "githubCommitDate": "2026-09-30",
+    "localHead": "b7a34c3ca953a1df60c92fc7afc05ace40855edb",
+    "gitHistorySynchronized": false,
+    "localHeadUnchanged": true
+  },
+  "program": {
+    "jarSha256": "1fa357351d3bb2654b46e5df7f4832d2998a8fa6e21a2d79e1555fd9857f3270",
+    "jar": ".local/project-followup-20261005/candidate-3.jar",
+    "bundle": ".local/project-followup-20261005/enterprise-bundle-3",
+    "bundleManifestSha256": "83eda4589d7107018113807ce8b9fbd4301740ff6af2ab51634a4eff87f6c8cf",
+    "applicationImage": {
+      "name": "supportops-enterprise:8ae1f98f2a182941",
+      "id": "sha256:8ae1f98f2a18294187bb6cd5f7f8118847ce4f7221a0df6d581d791b1ed1f441",
+      "registryDigest": "supportops-enterprise-build@sha256:8ae1f98f2a18294187bb6cd5f7f8118847ce4f7221a0df6d581d791b1ed1f441"
+    }
+  },
+  "validation": {
+    "windowsJava": {
+      "tests": 184,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 184,
+      "xmlReports": 35,
+      "realOnnxScope": true,
+      "scopeProof": {
+        "systemsSeparated": 2,
+        "status": "PASSED",
+        "wrongVersionEmpty": true,
+        "modelId": "onnx-sha256:dd98f3e67837d23210a6b7550c08cced4f61845b940ac45be3565840a10f3244;tokenizer-sha256:48564c5c7d3fa64d85d95e65414a542385f88b0f128fd8d4163fd7a57f2be05c",
+        "storage": "REAL_MYSQL_MINIO_ES"
+      }
+    },
+    "windowsJavascript": {
+      "passed": 123,
+      "failures": 0
+    },
+    "linuxJavascript": {
+      "passed": 123,
+      "failures": 0
+    },
+    "casePackage": {
+      "checks": 29,
+      "status": "PASS",
+      "linuxExecutedChecks": 21,
+      "resourcePreservation": "PASS"
+    },
+    "enterpriseLinux": {
+      "checks": 26,
+      "status": "PASSED"
+    },
+    "linuxBoundary": {
+      "passed": 11,
+      "skipped": 0
+    },
+    "v10Upgrade": {
+      "status": "PASS",
+      "legacyJarSha256": "d94c36f2a4a06544164b035f1ae2bbd395944b7c921db00c8301294feedf575f"
+    },
+    "v11Upgrade": {
+      "status": "PASSED",
+      "legacyJarSha256": "9424fe69ddc13fe9e2e078e44e7fcc7d4ef2e5e7ad7a5848fd3c5ea0fb74be31"
+    },
+    "eit": [
+      {
+        "id": "EIT-01",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [],
+          "reports": [
+            ".local/project-followup-20261005/enterprise-upgrade-1/report.json"
+          ],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.integration.EnterpriseUpgradeTest.xml"
+          ]
+        }
+      },
+      {
+        "id": "EIT-02",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [],
+          "reports": [],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.integration.EnterpriseIntegrationTest.xml"
+          ]
+        }
+      },
+      {
+        "id": "EIT-03",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [],
+          "reports": [],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.integration.EnterpriseIntegrationTest.xml"
+          ]
+        }
+      },
+      {
+        "id": "EIT-04",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [],
+          "reports": [],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.integration.EnterpriseIntegrationTest.xml",
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.persistence.UserPersistenceTest.xml"
+          ]
+        }
+      },
+      {
+        "id": "EIT-05",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [],
+          "reports": [],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.integration.EnterpriseIntegrationTest.xml",
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.integration.EnterpriseUpgradeTest.xml"
+          ]
+        }
+      },
+      {
+        "id": "EIT-06",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [],
+          "reports": [],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.integration.EnterpriseCredentialTest.xml"
+          ]
+        }
+      },
+      {
+        "id": "EIT-07",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-07"
+          ],
+          "reports": [],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.integration.EnterpriseCredentialTest.xml"
+          ]
+        }
+      },
+      {
+        "id": "EIT-08",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-08"
+          ],
+          "reports": [],
+          "javaXml": []
+        }
+      },
+      {
+        "id": "EIT-09",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-09",
+            "EIT-09-GUARD"
+          ],
+          "reports": [],
+          "javaXml": []
+        }
+      },
+      {
+        "id": "EIT-10",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-10-OPTIONAL",
+            "EIT-34"
+          ],
+          "reports": [],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.integration.EnterpriseBoundaryTest.xml"
+          ]
+        }
+      },
+      {
+        "id": "EIT-11",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [],
+          "reports": [],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.integration.EnterpriseBoundaryTest.xml"
+          ]
+        }
+      },
+      {
+        "id": "EIT-12",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [],
+          "reports": [
+            ".local/project-followup-20261005/linux-boundary/report.json"
+          ],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.integration.EnterpriseBoundaryTest.xml"
+          ]
+        }
+      },
+      {
+        "id": "EIT-13",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [],
+          "reports": [],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.integration.EnterpriseIntegrationTest.xml"
+          ]
+        }
+      },
+      {
+        "id": "EIT-14",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-14"
+          ],
+          "reports": [],
+          "javaXml": []
+        }
+      },
+      {
+        "id": "EIT-15",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-15-21-23"
+          ],
+          "reports": [],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.HarnessLifecycleTest.xml"
+          ]
+        }
+      },
+      {
+        "id": "EIT-16",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [],
+          "reports": [],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.HarnessLifecycleTest.xml",
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.SupportOpsIntegrationTest.xml"
+          ]
+        }
+      },
+      {
+        "id": "EIT-17",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-17",
+            "EIT-17-COMMITTED"
+          ],
+          "reports": [],
+          "javaXml": []
+        }
+      },
+      {
+        "id": "EIT-18",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-18-VECTOR"
+          ],
+          "reports": [],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.integration.EnterpriseIntegrationTest.xml",
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.knowledge.KnowledgeInfrastructureTest.xml",
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.knowledge.LocalOnnxRerankerTest.xml"
+          ]
+        }
+      },
+      {
+        "id": "EIT-19",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [],
+          "reports": [],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.integration.EnterpriseIntegrationTest.xml",
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.persistence.MybatisPersistenceTest.xml"
+          ]
+        }
+      },
+      {
+        "id": "EIT-20",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-20-STORAGE"
+          ],
+          "reports": [],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.knowledge.KnowledgeInfrastructureTest.xml"
+          ]
+        }
+      },
+      {
+        "id": "EIT-21",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-15-21-23"
+          ],
+          "reports": [],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.integration.EnterpriseIntegrationTest.xml"
+          ]
+        }
+      },
+      {
+        "id": "EIT-22",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-22-CLIENT"
+          ],
+          "reports": [],
+          "javaXml": []
+        }
+      },
+      {
+        "id": "EIT-23",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-23-RATE",
+            "EIT-23-ACTIVE",
+            "EIT-15-21-23"
+          ],
+          "reports": [],
+          "javaXml": []
+        }
+      },
+      {
+        "id": "EIT-24",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-24",
+            "EIT-24-MATRIX"
+          ],
+          "reports": [],
+          "javaXml": []
+        }
+      },
+      {
+        "id": "EIT-25",
+        "status": "NOT_RUN",
+        "evidence": {
+          "enterpriseChecks": [],
+          "reports": [],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.integration.EnterpriseIntegrationTest.xml",
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.persistence.FeishuPersistenceTest.xml"
+          ]
+        },
+        "remaining": "真实企业飞书平台"
+      },
+      {
+        "id": "EIT-26",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [],
+          "reports": [
+            ".local/project-followup-20261005/case-package-7/public/report.json",
+            ".local/project-followup-20261005/enterprise-upgrade-1/report.json"
+          ],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.outcome.OutcomePersistenceTest.xml",
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.evaluation.EvaluationPersistenceTest.xml",
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.remediation.RemediationPersistenceTest.xml"
+          ]
+        }
+      },
+      {
+        "id": "EIT-27",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-27"
+          ],
+          "reports": [],
+          "javaXml": []
+        }
+      },
+      {
+        "id": "EIT-28",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-28-BROWSER"
+          ],
+          "reports": [],
+          "javaXml": []
+        }
+      },
+      {
+        "id": "EIT-29",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-29"
+          ],
+          "reports": [],
+          "javaXml": [
+            ".local/project-followup-20261005/java-verify-4-xml/TEST-io.supportops.persistence.UsageAnalysisTest.xml"
+          ]
+        }
+      },
+      {
+        "id": "EIT-30",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-30-INSTALL",
+            "EIT-30"
+          ],
+          "reports": [],
+          "javaXml": []
+        }
+      },
+      {
+        "id": "EIT-31",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-32"
+          ],
+          "reports": [
+            ".local/project-followup-20261005/enterprise-upgrade-1/report.json"
+          ],
+          "javaXml": []
+        }
+      },
+      {
+        "id": "EIT-32",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-32",
+            "EIT-32-NO-KEY"
+          ],
+          "reports": [],
+          "javaXml": []
+        }
+      },
+      {
+        "id": "EIT-33",
+        "status": "PASSED",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-33"
+          ],
+          "reports": [],
+          "javaXml": []
+        }
+      },
+      {
+        "id": "EIT-34",
+        "status": "NOT_RUN",
+        "evidence": {
+          "enterpriseChecks": [
+            "EIT-34",
+            "EIT-34-DIAGNOSIS"
+          ],
+          "reports": [],
+          "javaXml": []
+        },
+        "remaining": "未参与开发的人独立接入"
+      }
+    ]
+  },
+  "resourcePreservation": {
+    "checkedUtc": "2026-10-05T11:24:52.5905742Z",
+    "status": "PASS_WITH_RECORDED_RUNTIME_INTERRUPTION",
+    "originalContainers": 141,
+    "originalVolumes": 143,
+    "missingOriginalContainers": [],
+    "missingOriginalVolumes": [],
+    "baselineStorageIdsUnchangedAndRunning": true,
+    "workbench": {
+      "originalPid": 58956,
+      "originalStarted": "2026-10-05T14:01:50.163464+08:00",
+      "originalProcessAbsent": true,
+      "runtimeContinuity": "INTERRUPTED",
+      "terminationInitiator": "UNCONFIRMED",
+      "recoveredPid": 11808,
+      "recoveredStartedUtc": "2026-10-05T11:03:02.3817807Z",
+      "sameRecoveredProcessStart": true,
+      "port": 18080,
+      "listenerOwnedByRecoveredPid": true,
+      "loginUrl": "http://127.0.0.1:18080/login.html",
+      "loginStatus": 200,
+      "originalRuntimeMetadataSha256": "ccefd369df00c8460ddefbfd7771256b4d71c0bf520b7bff9260bb2da58bc9ef",
+      "originalRuntimeMetadataUnchanged": true,
+      "originalJarSha256": "9660c30e8839ed5db02604924214c9f48c518df691cde9211222b7a1e1fca832",
+      "jarMatchesOriginalRuntime": true,
+      "recoveredJarSha256": "9660c30e8839ed5db02604924214c9f48c518df691cde9211222b7a1e1fca832",
+      "recoveredSameOriginalProgram": true,
+      "originalConfigurationSha256": "a6f17adf392d1ca5cb7658c011830fcc03f142f2077efb3c2cb208e73de0dee4",
+      "recoveredSameOriginalConfiguration": true
+    },
+    "currentHead": "b7a34c3ca953a1df60c92fc7afc05ace40855edb",
+    "originalHead": "b7a34c3ca953a1df60c92fc7afc05ace40855edb",
+    "interruptionEvidence": "java-verify-3-interruption.json",
+    "recoveryEvidence": "workbench-recovery.json"
+  },
+  "cleanup": {
+    "deletedDuplicateJars": 111,
+    "deletedGiB": 24.603,
+    "originalRetentionVerification": ".local/project-review-20261005/cleanup-summary.json"
+  },
+  "sourcePreservation": {
+    "baselineModifiedOrUntrackedFiles": 760,
+    "missing": [],
+    "changed": [
+      "docs/README.md",
+      "docs/deployment.md",
+      "docs/validation.md",
+      "evaluation/README.md",
+      "evaluation/run.mjs",
+      "src/main/java/io/supportops/api/ApiErrors.java",
+      "src/main/resources/static/app.js",
+      "src/main/resources/static/index.html",
+      "src/test/js/evaluation.test.mjs",
+      "docs/enterprise-integration-acceptance-20261004.md",
+      "scripts/enterprise/linux-acceptance.mjs",
+      "scripts/enterprise/package.mjs",
+      "scripts/outcome-cases/browser.mjs",
+      "scripts/outcome-cases/cleanup.mjs",
+      "scripts/outcome-cases/functional.mjs",
+      "scripts/reliability/deployment.mjs",
+      "scripts/test-enterprise-linux.mjs",
+      "scripts/test-enterprise-upgrade.mjs",
+      "scripts/test-outcome-cases-package.mjs",
+      "scripts/test-outcome-cases-upgrade.mjs",
+      "scripts/test-outcome-cases.mjs",
+      "src/main/java/io/supportops/integration/controller/OpenDiagnosisController.java",
+      "src/test/e2e/enterprise-model-fixture.mjs",
+      "src/test/e2e/helpers.mjs",
+      "src/test/e2e/outcome-cases.spec.mjs",
+      "src/test/java/io/supportops/integration/EnterpriseBoundaryTest.java",
+      "src/test/java/io/supportops/integration/EnterpriseIntegrationTest.java"
+    ],
+    "unexpected": [],
+    "additionalTrackedChanges": [
+      {
+        "path": "infrastructure/compose.yml",
+        "sha256": "37c8485ac65415a40f75963ffb43961f6a11f1b2e850f759810051248cdbd40f"
+      },
+      {
+        "path": "src/test/java/io/supportops/config/ModelSettingsTest.java",
+        "sha256": "c855ff5fa474e247bd70b0b8fe60d17988733a5b1262022d336614e0a9ce2e0b"
+      },
+      {
+        "path": "src/test/js/release-scripts.test.mjs",
+        "sha256": "0ad7a5cfb116fc9bcade6f957bbe00001f6a55ab3a274c9a0c872e6b050b36f2"
+      }
+    ],
+    "newSourceFiles": [
+      {
+        "path": "infrastructure/minio/Dockerfile",
+        "sha256": "830d4cab6f079f63bc17b2f00494dd401bd0ede30a3a153ccb2a87b7eb10dac6"
+      },
+      {
+        "path": "scripts/enterprise/FaultWindow.java",
+        "sha256": "9f1cbc9d652d70f95b0c6479f611edc048a187e7188ffc4395a80753e68b86a7"
+      },
+      {
+        "path": "scripts/enterprise/followup-acceptance.mjs",
+        "sha256": "4d5b0de1d47035b10470f8db75609974d8825559a7406648ad049d0dfbffa17f"
+      },
+      {
+        "path": "src/test/e2e/enterprise-source-fault-fixture.mjs",
+        "sha256": "feeb30b075be935184514ffd9cfe363717e8b2b8698d3c11c853204bdc4c408e"
+      }
+    ],
+    "unexpectedAdditionalPaths": []
+  },
+  "externalNotRun": [
+    {
+      "id": "EIT-25",
+      "scope": "真实企业飞书平台；本地默认环境端到端已验证"
+    },
+    {
+      "id": "EIT-34",
+      "scope": "未参与开发的人独立接入；两套实际Java源工程链路已验证"
+    },
+    {
+      "id": "MODEL_QUALITY",
+      "scope": "当前构建真实模型效果、完整注入抵抗及策略对照"
+    }
+  ],
+  "remainingDependencyFinding": {
+    "id": "DEPENDENCY_MODERATE",
+    "status": "UNRESOLVED",
+    "severity": "moderate",
+    "affectedPackages": [
+      "minio",
+      "stream-json"
+    ],
+    "advisory": "GHSA-528h-pc64-c93x",
+    "exploitableProjectPath": "NOT_CONFIRMED",
+    "scope": "两项关联Node依赖告警尚未升级处理"
+  },
+  "evidence": [
+    {
+      "path": ".local/project-followup-20261005/java-verify-4-run.json",
+      "sha256": "39b88444a1d2c77d42e8f13db324c99fab326f398cb3f53af650aa238d7b2c17"
+    },
+    {
+      "path": ".local/project-followup-20261005/case-package-7/public/report.json",
+      "sha256": "3ab9bf887472821290d0e0c2276c6d4413cd56aa644f6b8ab4db378593151b32"
+    },
+    {
+      "path": ".local/project-followup-20261005/enterprise-linux-7/report.json",
+      "sha256": "385d46a3c527c62647d3393460aef7e18e7bc0038d6237b94d1f38368c51ec03"
+    },
+    {
+      "path": ".local/project-followup-20261005/enterprise-upgrade-1/report.json",
+      "sha256": "e314f8ad7d70e3c14c366afe168a703175a246e70312ad9a4325f864175610a8"
+    },
+    {
+      "path": ".local/project-followup-20261005/linux-boundary/report.json",
+      "sha256": "051db29a533a1d5250a7faf619dfb010f281d8da5bc97e7ebe57b3ac1ac255a2"
+    },
+    {
+      "path": ".local/project-followup-20261005/final-preservation.json",
+      "sha256": "dddc3b344a044032ba2b28be2fb248dd8a64ce4d27cd0d38eed5b3a30887fd4e"
+    },
+    {
+      "path": ".local/project-followup-20261005/candidate-3-identity.json",
+      "sha256": "3030bb83b9005bfebdcc2a40fb0055057c0b15b36002b30c17ff815ebadf6517"
+    },
+    {
+      "path": ".local/project-followup-20261005/case-identity-7.json",
+      "sha256": "db9da74dda578314a4b969f7dd53a23679d598d0adab7fcefeb3df937f206447"
+    },
+    {
+      "path": ".local/project-followup-20261005/java-formatting-equivalence.json",
+      "sha256": "938de899ae2895cd7e00ee04f4881f034e7ad89f7c7f4ea148a0393e3e2c3b66"
+    },
+    {
+      "path": ".local/project-followup-20261005/linux-boundary/final-program-compatibility.json",
+      "sha256": "e4f03c17dc3a95cb32adaee6810f73a47236b67535729f985865c31fad2e91f1"
+    },
+    {
+      "path": ".local/project-followup-20261005/onnx-model/identity.json",
+      "sha256": "67978e6ce76c009cc3f6004d2a9ef8f8f7d91d52a2d902d013cd95572db613d0"
+    },
+    {
+      "path": ".local/project-followup-20261005/enterprise-bundle-3/manifest.json",
+      "sha256": "83eda4589d7107018113807ce8b9fbd4301740ff6af2ab51634a4eff87f6c8cf"
+    },
+    {
+      "path": ".local/project-followup-20261005/case-package-7/windows/public/report.json",
+      "sha256": "9138bb9ba1a01052435f7480c80f89c5d631a409cec2b1a5bb6216ed9bacb2ab"
+    },
+    {
+      "path": ".local/project-followup-20261005/case-package-7/upgrade/public/report.json",
+      "sha256": "155bece70bc17c76b9c560ae4409ce565dfef59348c9fce06ac39dc5d2d41a6f"
+    },
+    {
+      "path": ".local/project-followup-20261005/case-package-7/linux/public/report.json",
+      "sha256": "b21cead30f0cc83dcb710e28dc44fe0c1a2a00c16dd8f3c3c9cd7ff9634e2470"
+    },
+    {
+      "path": ".local/project-followup-20261005/workbench-recovery.json",
+      "sha256": "73b928db2dda6b3059fd55fc69b05a3b4e1100cd1cd0965c4a7a1fb83d84c1a4"
+    },
+    {
+      "path": ".local/project-followup-20261005/java-verify-3-interruption.json",
+      "sha256": "3d5a465823db2cef5b58821ced2c7ae9c1ba567f9ba1305c8b7a6bb3864d3558"
+    },
+    {
+      "path": ".local/project-followup-20261005/isolated-storage-recovery.json",
+      "sha256": "fccbdc43c678bcd251a731063dfd3e15ca0ef2860b9f04188613c205ca31a5a8"
+    },
+    {
+      "path": ".local/project-followup-20261005/environment-recovery-4.json",
+      "sha256": "f3fe4d4ee85423b90929356fb979d1de4734ed4002fbde17fd88eee53b46732c"
+    },
+    {
+      "path": ".local/project-followup-20261005/docker-ipc-backup-1.json",
+      "sha256": "7bc0482fbe8a3eabfa5aac5c4c3619dc98fc9a85561de26974879b88fd8f813c"
+    },
+    {
+      "path": ".local/project-followup-20261005/docker-ipc-backup-2.json",
+      "sha256": "1a7657d3e3209a753da6dec890662124ab8cbed3dfd8e486a7e7cbe8d7ffff3a"
+    },
+    {
+      "path": ".local/project-followup-20261005/docker-ipc-backup-3.json",
+      "sha256": "4e8748a9dd44190afddfb8533bca43de4991d5cb92d303bb240870fd862e1de5"
+    },
+    {
+      "path": ".local/project-followup-20261005/final-validation-resources.json",
+      "sha256": "88c35bb872afaa998b78d482106a2ddbf75493eb50fbe6a1c7526065a1d6be06"
+    },
+    {
+      "path": ".local/project-followup-20261005/java-verify-4.log",
+      "sha256": "e71d7bc005f68346c4c6db2e16128dc246f6de2b892501473b5e975e2761b80a"
+    },
+    {
+      "path": ".local/project-followup-20261005/javascript-4.log",
+      "sha256": "d21768da342758075e577fc844b7fee427c4fe74d5c2cdeecfc0ccb884a27fce"
+    },
+    {
+      "path": ".local/project-review-20261005/cleanup-plan.json",
+      "sha256": "3f3f62e8859e5e3154cdf1d57a2979e7948b4c0e8bcf14583201f4e8aa126d69"
+    },
+    {
+      "path": ".local/project-review-20261005/cleanup-summary.json",
+      "sha256": "520772866ae5bc0386f94c2e0ab513309312e9f0f00f57759cd9c9cbb53c5f34"
+    },
+    {
+      "path": ".local/project-review-20261005/review-summary.json",
+      "sha256": "fa2c25dc5870f8808f74dce8f61f54cf5461f92750e8145f4f765bcec64343f8"
+    }
+  ],
+  "originalFailures": [
+    {
+      "path": ".local/project-followup-20261005/java-verify-1.log",
+      "sha256": "0d708341fa11795baf31e4a02aed098dd2c754f8e50e7e023d22274af792364d"
+    },
+    {
+      "path": ".local/project-followup-20261005/java-verify-2.log",
+      "sha256": "37bc61340582c6b0ac10a5dfc4ad72e3aeaf753c2b703ed83b61ece68d4f7171"
+    },
+    {
+      "path": ".local/project-followup-20261005/java-verify-3.log",
+      "sha256": "2c62e3a34b4346d19cdf1e79a38105d9736ee4acecdce9e29be52fe4e0ac79b2"
+    },
+    {
+      "path": ".local/project-followup-20261005/java-verify-3-interruption.json",
+      "sha256": "3d5a465823db2cef5b58821ced2c7ae9c1ba567f9ba1305c8b7a6bb3864d3558"
+    },
+    {
+      "path": ".local/project-followup-20261005/recovery-failed-start-stop.json",
+      "sha256": "55f1b6a5d9b9e99676533f5f59b10458da89bd82c244432d2e05ba3284048be8"
+    },
+    {
+      "path": ".local/project-followup-20261005/case-package-1/public/report.json",
+      "sha256": "7bf18f4d9de77b00787fa3871b83143e90e570743560e15e75b8cec58546eba5"
+    },
+    {
+      "path": ".local/project-followup-20261005/case-package-2/public/report.json",
+      "sha256": "8d3686301392ce28fe412ec88796f4e2c991b41bb16729fbdd744f4ce485e693"
+    },
+    {
+      "path": ".local/project-followup-20261005/case-package-3/public/report.json",
+      "sha256": "3897183f4b1f342b738b9348275c5f01e5415157326ebde196e54be1fedcbe20"
+    },
+    {
+      "path": ".local/project-followup-20261005/case-package-4/public/report.json",
+      "sha256": "a15637b2316dd0584f80714cb672091b8694330a3e2d2c85fb6b4779a11ca30b"
+    },
+    {
+      "path": ".local/project-followup-20261005/case-package-5/public/report.json",
+      "sha256": "446502cd8888fcc7c9370b3ef6ca06dfebaac735845754ccd1c0a380539ed069"
+    },
+    {
+      "path": ".local/project-followup-20261005/case-package-6/public/report.json",
+      "sha256": "43c5945fa9181d6e80267177e69fdea27b1b806cb44d6d7b59ffb81559668d4b"
+    },
+    {
+      "path": ".local/project-followup-20261005/enterprise-linux-1/report.json",
+      "sha256": "94323a10d4be3702eaf068a30b1e1993be667de7706071d7098790a65d9dee9b"
+    },
+    {
+      "path": ".local/project-followup-20261005/enterprise-linux-2/report.json",
+      "sha256": "83f5ac0fa38ebf66daa0c2e6f2494adbad1122a4b56186a172449a4b1a315d2d"
+    },
+    {
+      "path": ".local/project-followup-20261005/enterprise-linux-3/report.json",
+      "sha256": "b50fa0c5f674d091808df4a86b020839c649ea5322db62c66b02e1e210664980"
+    },
+    {
+      "path": ".local/project-followup-20261005/enterprise-linux-4/report.json",
+      "sha256": "bf916c78f1d5212a7b2e57f06f6c0aec50cc8aee0c0bd64bbd6eaf4247662854"
+    },
+    {
+      "path": ".local/project-followup-20261005/enterprise-linux-5/report.json",
+      "sha256": "4f7239fe0dd0d3851e3979e1c1b2bcc5d3d168a03443e118d4e6e54b8315ccb4"
+    },
+    {
+      "path": ".local/project-followup-20261005/case-package-6/partial-environment-cleanup.json",
+      "sha256": "85ea14cffa9cfa19187e5d4ea2b77d80813faa29d42455dfafa9dcfd27c1456e"
+    },
+    {
+      "path": ".local/project-followup-20261005/java-package-3-launch-1-tool-excerpt.txt",
+      "sha256": "960d6ef57e730f4da6a2fe738c7678776e37abba727b77475f418a4956e0ddad"
+    }
+  ],
+  "junit": [
+    {
+      "file": "TEST-io.supportops.agent.service.support.DiagnosisTimeFormatterTest.xml",
+      "sha256": "a88d4226ccdcb2a9f08f50ae4b348ae694ac541d81547209cf9b54d8fe553ff0",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.config.ModelCatalogClientTest.xml",
+      "sha256": "ecfacea05a0a679189eb4da4c869306b8c5e56871d2e753abe12018ed834ad6e",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.config.ModelSettingsTest.xml",
+      "sha256": "e684bece1f2f8b6aad40dfab719defda2fdc14453770fc8041ecd8e2af015e26",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.demo.DemoScenarioPersistenceTest.xml",
+      "sha256": "0db57ad248f2a90caa3ceebd1781da2bfda4fa75fe8c32bf32cbac8809f350f6",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.evaluation.EvaluationApiTest.xml",
+      "sha256": "71d60621e02fb66fc6d024faf695c54bc4d630989931872f705df4bd9f2e123b",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.evaluation.EvaluationComparisonTest.xml",
+      "sha256": "dbced0f7de01a62530326ab22f3ed2e5f01a6ee19081095a798aba21894a17df",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.evaluation.EvaluationLifecycleTest.xml",
+      "sha256": "ea58d5097dd6286410a205cf490b8d04f4d0cab0a2a6a7327d617b8793549f92",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.evaluation.EvaluationMigrationTest.xml",
+      "sha256": "3f2303f4032f942de65cc696dc39039d51e6e706a391be0df17e9c2482fdc80a",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.evaluation.EvaluationPersistenceTest.xml",
+      "sha256": "2686b265a38750f7fca8e6986a2132be0a520a8d9f262fd625fb63f0ef7053f7",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.feishu.transport.FeishuConnectionTest.xml",
+      "sha256": "9e5809631c036208423967669d9844faecd5d43db75a1fe9e28f2610c384bcf3",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.feishu.transport.FeishuProtocolTest.xml",
+      "sha256": "1ca9f3395c97d62543af20c4af2136cf5fb87a2f25e46c62b0fd1845d5ce390d",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.HarnessLifecycleTest.xml",
+      "sha256": "7a38a6531a82f8528682801287c5d06ad62e37964bd9866d0924d2ac5882af8b",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.integration.EnterpriseBoundaryTest.xml",
+      "sha256": "1ba815f49376f18516db1d93ab634facb23ae4027c622c63cab80b5af5455848",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.integration.EnterpriseCredentialTest.xml",
+      "sha256": "6ae77623a78f90eb261345c099a60774089c580344590529d0447419838d9772",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.integration.EnterpriseIntegrationTest.xml",
+      "sha256": "1906294cddb7be33841303b2240db1c528770a0448798cfcacacbd2ea8685d9c",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.integration.EnterpriseUpgradeTest.xml",
+      "sha256": "657a7427eaa3c0d325059e0eebb1f9509fafacb5bc186889ae27ce6456fc5fc1",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.knowledge.DocumentParserTest.xml",
+      "sha256": "97eb1581a19fafd756de5b72265da26ceaf7211e67d530425f89d9f69fdad19f",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.knowledge.KnowledgeInfrastructureTest.xml",
+      "sha256": "4518533a42910a0afe38e8eb798667e9b7dcde6e78e57e3fb2ff466f6d2bffbb",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.knowledge.KnowledgeRerankingTest.xml",
+      "sha256": "609af293587f322da761be82b0b72415eef615bed2ce120b44ba89ca423c3fa5",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.knowledge.LocalOnnxRerankerTest.xml",
+      "sha256": "6aee4aa474ab985a17a3c8bc453471358e6bdc4e6bb749375ec494d498ffc303",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.knowledge.RerankingApiTest.xml",
+      "sha256": "d882b26569bf6389b3b851472844af197e363e2dbe94400780ed5f105c5b0c65",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.ops.ReadOnlyDoctorTest.xml",
+      "sha256": "e5a86d6b917f661182b412cdc110c930634316386ecb1c0be44c500a8f78a17f",
+      "tests": 14,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.ops.RuntimeConfigurationTest.xml",
+      "sha256": "fd2a5845cbe937296af9c2dd294c5e5f2803a754348c53744c771c63a96dcd05",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.outcome.OutcomeMigrationTest.xml",
+      "sha256": "516821dfb5926b25ace9765e2d401d269d51f9c2617d1473da58204d938afd85",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.outcome.OutcomePersistenceTest.xml",
+      "sha256": "4aac66679261bb6b622b0eb6514ead94c701eebcf6cb1f9bd415cf94790a17d8",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.persistence.FeishuPersistenceTest.xml",
+      "sha256": "eec1973797bd085800677a67ba9342ba33aff203b7e506835f4e8f9a1d5f3196",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.persistence.MybatisPersistenceTest.xml",
+      "sha256": "92c6670c12aed9944414e911a2290ba99ac9af4db9ddeeceaa184fb05270d007",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.persistence.UsageAnalysisTest.xml",
+      "sha256": "d5f3acc3ea82bb5daf7168193bd963f74086f8fc1228d3e543416ecd0493717e",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.persistence.UserPersistenceTest.xml",
+      "sha256": "cae649064651e353a621070a2f0cc4c84fcf57037604d4ef16efc6e9774b4fab",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.ProviderRegistryTest.xml",
+      "sha256": "c3a2c6819423d2cd1af1c6f0cb22ac87d3b3c095ffc349b51b8779d7cda4ff27",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.remediation.RemediationCrashProcessTest.xml",
+      "sha256": "759e5eee299c07b32b80b28d319d8e5101077dccca1fcb6d0eb7445ca46e0f27",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.remediation.RemediationMigrationTest.xml",
+      "sha256": "a7cd1876d28dcc8207affad96ff76363ec2e5a4c8452ac69cc44b209517ea154",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.remediation.RemediationPersistenceTest.xml",
+      "sha256": "97e9f69b924f80aeec6d201a83fee1d1d20dc4c03bf4e5e07d9269c97de45131",
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.RunStreamSignalsTest.xml",
+      "sha256": "75fd5a8d9df8639489d9a298ca20a2db3df5e2ac8ab3c3c9dfbf5b94759cbe32",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "file": "TEST-io.supportops.SupportOpsIntegrationTest.xml",
+      "sha256": "d9cb59011f627cf579d0732a8318ca80c90733a292100a7501870b6cc6c9696a",
+      "tests": 29,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ]
+}

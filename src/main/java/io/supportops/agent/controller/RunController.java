@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import org.springframework.beans.factory.annotation.Value;
 
 /** 诊断任务与运行状态的 HTTP 入口，只负责请求和响应适配。 */
 @RestController
@@ -37,6 +38,10 @@ public class RunController {
     private final RunService runs;
     private final ProviderRegistry providers;
     private final RunEventStream stream;
+    @Value("${supportops.enterprise.enabled:false}")
+    private boolean enterprise;
+    @Value("${supportops.enterprise.demo-enabled:false}")
+    private boolean demoEnabled;
 
     /** 注入诊断服务与模型路由查询组件。 */
     public RunController(RunService runs, ProviderRegistry providers,
@@ -65,10 +70,10 @@ public class RunController {
                 model.model(),
                 embedding.configured(),
                 embedding.model(),
-                "local-demo",
+                enterprise ? "enterprise" : "local-demo",
                 model.descriptor(),
                 embedding.descriptor(),
-                model.generationDescriptor());
+                model.generationDescriptor(), enterprise, !enterprise || demoEnabled);
     }
 
     /** 查询最近诊断任务 */
@@ -107,7 +112,7 @@ public class RunController {
             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     @PostMapping("/runs")
     DiagnosisRun start(@RequestBody CreateDiagnosisRequest request) {
-        return runs.start(request.question(), request.sessionId(), request.lexicalOnly());
+        return runs.startTarget(request.question(), request.sessionId(), request.lexicalOnly(), request.environmentId());
     }
 
     /** 查询单个诊断任务 */

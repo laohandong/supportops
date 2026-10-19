@@ -14,14 +14,29 @@ if (!isAdmin) document.querySelector('#first-use-note').textContent = '资料与
 const userNames = new Map();
 userNames.set(signedInUser.id, signedInUser.username);
 const ownerLabel = id => id ? (userNames.get(id) || id) : '历史未归属';
-document.body.classList.remove('auth-pending');
 document.querySelector('.admin-navigation').hidden = !isAdmin;
 document.querySelectorAll('[data-page]:not([data-page="diagnosis"])').forEach(button => button.hidden = !isAdmin);
 document.querySelector('#current-user').textContent = signedInUser.username + ' · ' + (isAdmin ? '管理员' : '普通用户');
+if (isAdmin) {
+    document.querySelector('#runtime-information').hidden = false;
+    fetch('/api/ops/runtime').then(async response => {
+        if (!response.ok) throw new Error('RUNTIME_READ_FAILED');
+        const runtime = await response.json();
+        document.querySelector('#runtime-summary').textContent = `版本 ${runtime.applicationVersion} · ${runtime.phase} · 端口 ${runtime.port} · JAR SHA-256 ${runtime.jarSha256} · 运行身份 ${runtime.runtimeId}`;
+    }).catch(() => {
+        document.querySelector('#runtime-summary').textContent = '运行信息暂时无法核实，请使用本机 status 检查。';
+    });
+}
 
 import {renderUsageDashboard} from './usage-charts.js';
 import {initializeKnowledge} from './knowledge.js';
 import {initializeFeishu} from './feishu.js';
+import {initializeRemediation} from './remediation.js?v=20261002-reliability';
+import {initializeFixedCommands} from './fixed-command.js';
+import {initializeOutcome} from './outcome.js';
+import {initializeEnterprise} from './enterprise.js';
+import {initializeWorkspaceShell} from './workspace-shell.js?v=20261005-layout';
+const workspaceShell = initializeWorkspaceShell();
 let usageEpoch = 0, usageDetailEpoch = 0, historyEpoch = 0;
 let destroyUsageCharts = () => {};
 let usageReturnFocus = null;
@@ -84,10 +99,17 @@ const toolNames = {
     query_excel: 'Excel 数据查询',
     load_skill_through_path: '加载排障方法'
 };
-let selected = null, sessionId = crypto.randomUUID(), currentRun = null, currentEvents = [], status = null,
+let selected = null, sessionId = crypto.randomUUID(), currentRun = null, currentTarget = null, currentEvents = [], status = null,
     pollTimer = null, pollEpoch = 0, pollFailures = 0, runStream = null, draftAnswer = '';
 const {documents, showDocument, originalLink, sqlEvidence} = initializeKnowledge({api, el, ownerLabel, canManage: isAdmin, errors, notify, action, $, getStatus: () => status});
 const feishu = initializeFeishu({api, el, action, $, isAdmin});
+let commandStorage;
+try { commandStorage = localStorage; } catch { commandStorage = {getItem() { throw new Error('STORAGE_UNAVAILABLE'); }, setItem() { throw new Error('STORAGE_UNAVAILABLE'); }, removeItem() { throw new Error('STORAGE_UNAVAILABLE'); }}; }
+const remediations = initializeRemediation({api, el, $, notify, isAdmin, userId: signedInUser.id, storage:commandStorage});
+const commandScope = await api('/auth/command-scope').catch(() => ({scope:null}));
+const outcomeCommands = initializeFixedCommands({api, scope:commandScope.scope, userId:signedInUser.id, storage:commandStorage});
+const outcomes = initializeOutcome({api, el, $, commands:outcomeCommands, isAdmin});
+const enterprise = initializeEnterprise({api, el, $, isAdmin, scope:commandScope.scope, userId:signedInUser.id, storage:commandStorage});
 
 function el(tag, text, className) {
     const node = document.createElement(tag);
@@ -125,6 +147,7 @@ async function api(path, options = {}) {
     if (!response.ok) {
         const error = new Error(errors[data?.error] || `操作失败（${data?.error || response.status}），请检查输入或服务状态。`);
         error.code = data?.error;
+        error.status = response.status;
         throw error;
     }
     return data;
@@ -147,6 +170,10 @@ async function action(button, job) {
 }
 
 function page(name) {
+    enterprise.setActive(name === 'enterprise');
+    remediations.setActive(name === 'remediation');
+    if (name === 'remediation') window.history.replaceState(null, '', '#remediation');
+    else if (location.hash === '#remediation') window.history.replaceState(null, '', location.pathname);
     if (!isAdmin && name !== 'diagnosis') return;
     document.querySelectorAll('.page').forEach(p => p.hidden = p.id !== `page-${name}`);
     document.querySelectorAll('.nav-item[data-page]').forEach(b => {
@@ -157,6 +184,7 @@ function page(name) {
     const customerWorkspace = name === 'diagnosis';
     $('#workspace-context').textContent = customerWorkspace ? '客户工作区' : '后台管理';
     $('#workspace-purpose').textContent = customerWorkspace ? '只读诊断 · 人工处理' : '资料维护 · 配置管理';
+    workspaceShell.pageChanged(name);
     clearNotice();
 }
 
@@ -169,6 +197,7 @@ async function refreshPage(name) {
     if (!isAdmin && name !== 'diagnosis') return;
     if (name === 'users') await loadUsers();
     if (name === 'feishu') await feishu.refresh();
+    if (name === 'remediation') await remediations.refresh();
     if (name === 'usage') await loadUsage();
     if (name === 'knowledge') await documents();
     if (name === 'memory') await memoryList();
@@ -180,9 +209,14 @@ function updateButtons() {
     const busy = currentRun && ['QUEUED', 'RUNNING'].includes(currentRun.status);
     const foreignSession = currentRun && currentRun.userId !== signedInUser.id;
     $('#session-ownership-note').hidden = !foreignSession;
-    $('#start-run').disabled = !status?.modelConfigured || !!busy || !!foreignSession;
+    $('#start-run').disabled = !status?.modelConfigured || !!busy || !!foreignSession || !$('#diagnosis-environment').value;
     $('#cancel-run').hidden = !busy;
     $('#export-run').disabled = !currentRun || !!busy;
+    $('#create-remediation-from-run').hidden = status?.demoEnabled === false || !isAdmin || !currentRun || !!busy || currentTarget?.kind !== 'CAPTURED' || currentTarget?.target?.connectorRevisionId !== '00000000-0000-4000-8000-000000000004';
+}
+$('#diagnosis-environment').addEventListener('change', updateButtons);
+for (const scope of ['project','system','environment']) {
+    $(`#memory-${scope}`).addEventListener('change', () => memoryList().catch(error => notify(error.message)));
 }
 
 async function history() {
@@ -198,7 +232,7 @@ async function history() {
     for (const item of items) {
         const b = el('button', undefined, 'history-item');
         b.classList.toggle('selected', item.id === selected);
-        b.append(el('span', item.question, 'history-question'), el('small', `${statuses[item.status]} · ${new Date(item.createdAt).toLocaleDateString('zh-CN')}${isAdmin ? ' · ' + ownerLabel(item.userId) : ''}`));
+        b.append(el('span', item.question, 'history-question'), el('small', `${statuses[item.status]} · ${new Date(item.createdAt).toLocaleDateString('zh-CN')}${isAdmin ? ' · ' + (item.actorType==='APPLICATION' ? `应用 ${item.applicationId}` : ownerLabel(item.userId)) : ''}`));
         b.addEventListener('click', () => openRun(item.id).catch(e => notify(e.message)));
         const row = el('div', undefined, 'history-row');
         const archive = el('button', '归档', 'text-button history-archive');
@@ -254,6 +288,7 @@ function scheduleRunRender() {
 function renderRun() {
     const r = currentRun;
     if (!r) return;
+    outcomes.select(r);
     const conversation = $('#conversation');
     const scrollTop = conversation.scrollTop;
     const follow = conversation.scrollHeight - conversation.clientHeight - scrollTop < 64;
@@ -278,6 +313,7 @@ function renderRun() {
     conversationView.pending.textContent = active ? '正在收集证据与核查资料。执行记录会持续更新。' : errors[r.errorCode] || r.errorCode || '';
     const badge = $('#run-state');
     badge.textContent = statuses[r.status] || r.status;
+    badge.dataset.state = r.status;
     badge.className = 'badge' + (['FAILED', 'TIMED_OUT'].includes(r.status) ? ' error' : (['RUNNING', 'QUEUED'].includes(r.status) ? ' pending' : ''));
     const metrics = $('#run-metrics');
     metrics.hidden = false;
@@ -310,6 +346,11 @@ function addEvent(event) {
     const container = $('#evidence');
     if (container.querySelector('.empty-evidence')) container.replaceChildren();
     const c = event.content;
+    if (event.kind === 'SOURCE_EVIDENCE') {
+        const detail=el('details',undefined,'event');detail.dataset.evidenceCategory=c.capability==='RECENT_LOGS'?'logs':c.capability==='EFFECTIVE_CONFIG'?'config':'other';
+        detail.append(el('summary',`${c.capability} · 已核对来源`),el('pre',JSON.stringify(c.envelope||c,null,2)));
+        container.append(detail);applyEvidenceFilter();return;
+    }
     if (event.kind === 'SQL_RESULT') {
         const evidence = sqlEvidence(c);
         evidence.dataset.evidenceCategory = 'documents';
@@ -401,6 +442,16 @@ async function loadRun(id, epoch = pollEpoch) {
     const changed = !currentRun || run.status !== currentRun.status || run.answer !== currentRun.answer || events.some(e => e.kind === 'ANSWER_DELTA');
     currentRun = run;
     sessionId = run.sessionId;
+    const targetSnapshot = await api(`/runs/${id}/target`);
+    if (selected !== id || epoch !== pollEpoch) return;
+    currentTarget = targetSnapshot;
+    const targetSelect = $('#diagnosis-environment');
+    const targetId = targetSnapshot.target?.environmentId || '00000000-0000-4000-8000-000000000003';
+    if (!Array.from(targetSelect.options).some(option => option.value === targetId)) {
+        const target = targetSnapshot.target;
+        targetSelect.append(new Option(target ? `${target.projectName} / ${target.systemName} / ${target.environmentName}（受理时目标）` : '历史示例目标（推定）', targetId));
+    }
+    targetSelect.value = targetId; targetSelect.disabled = true;
     currentEvents.push(...events);
     events.forEach(addEvent);
     if (changed) renderRun(); else $('#run-metrics').textContent = metricsText(run);
@@ -453,6 +504,7 @@ function connectStream(id, epoch) {
 }
 
 async function openRun(id) {
+    outcomes.reset();
     resetEvidenceFilter();
     conversationView = null;
     closeStream();
@@ -474,7 +526,8 @@ $('#chat-form').addEventListener('submit', async event => {
     await action($('#start-run'), async () => {
         const run = await api('/runs', {
             method: 'POST',
-            body: {question: $('#question').value, sessionId, lexicalOnly: $('#lexical-only').checked}
+            body: {question: $('#question').value, sessionId, lexicalOnly: $('#lexical-only').checked,
+                environmentId: $('#diagnosis-environment').value || null}
         });
         $('#question').value = '';
         await openRun(run.id);
@@ -515,6 +568,7 @@ function renderEmptyConversation() {
     $('#conversation').replaceChildren(empty);
 }
 $('#new-session').addEventListener('click', () => {
+    outcomes.reset();
     conversationView = null;
     closeStream();
     draftAnswer = '';
@@ -525,11 +579,14 @@ $('#new-session').addEventListener('click', () => {
     currentRun = null;
     currentEvents = [];
     sessionId = crypto.randomUUID();
+    $('#diagnosis-environment').disabled = false;
     page('diagnosis');
     renderEmptyConversation();
     resetEvidenceFilter();
     $('#evidence').replaceChildren(el('div', '等待新的诊断证据。', 'empty-evidence'));
     $('#run-state').textContent = '待开始';
+    $('#run-state').className = 'badge';
+    delete $('#run-state').dataset.state;
     $('#diagnosis-title').textContent = '诊断工作台';
     $('#run-metrics').hidden = true;
     $('#refresh-run').hidden = true;
@@ -554,6 +611,8 @@ $('#search-form').addEventListener('submit', async e => {
     e.preventDefault();
     await action(e.submitter, async () => {
         const p = new URLSearchParams({query: $('#search-query').value, version: $('#search-version').value});
+        if (!$('#search-system').value) throw new Error('请先选择所属系统。');
+        p.set('systemId', $('#search-system').value);
         const data = await api(`/documents/search?${p}`);
         const out = $('#search-results');
         out.replaceChildren(el('p', `${data.mode === 'HYBRID' ? '向量 + 关键词' : '关键词'} · ${data.passages.length} 个片段`, 'muted'));
@@ -563,7 +622,9 @@ $('#search-form').addEventListener('submit', async e => {
 });
 
 async function memoryList() {
-    const values = await api('/memories');
+    const query = new URLSearchParams();
+    for (const key of ['project','system','environment']) { if ($(`#memory-${key}`).value) query.set(`${key}Id`,$(`#memory-${key}`).value); }
+    const values = await api('/memories' + (query.size ? `?${query}` : ''));
     const list = $('#memories');
     list.replaceChildren();
     if (!values.length) list.append(el('p', '暂无已确认的项目约束。', 'muted'));
@@ -585,7 +646,8 @@ $('#memory-form').addEventListener('submit', async e => {
     await action(e.submitter, async () => {
         await api('/memories', {
             method: 'POST',
-            body: {content: $('#memory-content').value, confirmed: $('#memory-confirmed').checked}
+            body: {content: $('#memory-content').value, confirmed: $('#memory-confirmed').checked,
+                projectId:$('#memory-project').value||null,systemId:$('#memory-system').value||null,environmentId:$('#memory-environment').value||null}
         });
         $('#memory-content').value = '';
         $('#memory-confirmed').checked = false;
@@ -606,9 +668,13 @@ $('#set-scenario').addEventListener('click', () => action($('#set-scenario'), as
     notify('已切换示例环境并产生一条新的同步记录。', true);
 }));
 $('#repair-demo').addEventListener('click', () => action($('#repair-demo'), async () => {
-    const result = await api('/demo/repair-config', {method: 'POST'});
-    await demo();
-    notify(result.success ? '配置已应用，本次业务请求返回 200。' : '配置已应用，本次请求仍未成功，请检查其他原因。', result.success);
+    page('remediation');
+    await remediations.newProposal();
+}));
+$('#create-remediation-from-run').addEventListener('click', () => action($('#create-remediation-from-run'), async () => {
+    if (!currentRun || ['QUEUED', 'RUNNING'].includes(currentRun.status)) return;
+    page('remediation');
+    await remediations.newProposal(currentRun.id);
 }));
 $('#sync-demo').addEventListener('click', () => action($('#sync-demo'), async () => {
     await api('/demo/sync', {method: 'POST'});
@@ -626,7 +692,7 @@ const providerNames = {
     deepseek: 'DeepSeek',
     openai: 'OpenAI',
     custom: '自定义兼容接口',
-    disabled: '关闭向量服务'
+    disabled: '关闭服务'
 };
 Object.assign(errors, {
     MODEL_NOT_CONFIGURED: '对话模型尚未配置，请在“模型配置”中选择服务商并填写密钥。',
@@ -643,6 +709,11 @@ Object.assign(errors, {
 
 async function refreshStatus() {
     status = await api('/status');
+    document.querySelectorAll('[data-page="demo"]').forEach(button => button.hidden = !isAdmin || status.demoEnabled === false);
+    $('#enterprise-local-http').disabled = !!status.enterprise;
+    $('#enterprise-local-http-field').hidden = !!status.enterprise;
+    $('#workspace-product').textContent = status.enterprise ? 'SupportOps' : 'OrderBridge';
+    $('#workspace-deployment').textContent = status.enterprise ? '企业独立部署' : '本地示例环境';
     $('#model-notice').hidden = status.modelConfigured;
     if (!isAdmin) $('#model-notice p').textContent = '对话服务尚未配置，请联系管理员完成设置。';
     $('#model-label').textContent = status.modelConfigured ? `对话模型：${status.modelRoute?.provider ?? ''} / ${status.model}` : `对话服务 ${status.modelRoute?.provider ?? ''} 尚未配置`;
@@ -692,8 +763,8 @@ function modelForm(role) {
         option.value = id;
         provider.append(option);
     }
-    if (vector) {
-        const option = el('option', providerNames.disabled);
+    {
+        const option = el('option', vector ? '关闭向量服务' : '关闭对话模型');
         option.value = 'disabled';
         provider.append(option);
     }
@@ -804,7 +875,7 @@ function modelForm(role) {
         fields.disabled = disabled;
         fields.hidden = disabled;
         disabledHelp.hidden = !disabled;
-        disabledHelp.textContent = current.provider === 'disabled' ? '向量服务已关闭，当前使用关键词检索。已有文档与索引会保留。' : '已选择关闭。保存后使用关键词检索，已有文档与索引会保留。';
+        disabledHelp.textContent = !vector ? '对话模型关闭后不能受理新诊断，历史记录和资料仍保留。' : current.provider === 'disabled' ? '向量服务已关闭，当前使用关键词检索。已有文档与索引会保留。' : '已选择关闭。保存后使用关键词检索，已有文档与索引会保留。';
     }
 
     function filterCatalog() {
@@ -1046,11 +1117,24 @@ document.querySelectorAll('[data-usage-days]').forEach(button => button.addEvent
     document.querySelectorAll('[data-usage-days]').forEach(item => item.setAttribute('aria-pressed', 'false'));
 }));
 try {
-    if (isAdmin) await loadUsers();
+    if (isAdmin) {
+        await loadUsers();
+        const integration = await api('/evaluation-integration');
+        const link = $('#agent-eval-link');
+        if (integration.platformUrl) { link.href = integration.platformUrl; link.hidden = false; }
+        if (['#evaluation','#case-library'].includes(location.hash)) notify('评测与案例库已移至独立 AgentEval，请使用侧栏入口。');
+    }
     await refreshStatus();
     await history();
+    if (isAdmin && location.hash === '#remediation') {
+        page('remediation');
+        await refreshPage('remediation');
+    }
 } catch (e) {
     notify('无法连接本地服务，请检查应用是否启动。');
+} finally {
+    // 初始读取和页面恢复结束后开放交互，迟到的初始化不能覆盖已开始的导航或恢复操作。
+    document.body.classList.remove('auth-pending');
 }
 
 async function loadUsers() {
@@ -1067,6 +1151,9 @@ async function loadUsers() {
 }
 $('#logout').addEventListener('click', () => action($('#logout'), async () => {
     await api('/auth/logout', {method: 'POST'});
+    outcomes.logout();
+    outcomeCommands.logout();
+    enterprise.logout();
     location.replace('/login.html');
 }));
 $('#create-user-form').addEventListener('submit', event => {

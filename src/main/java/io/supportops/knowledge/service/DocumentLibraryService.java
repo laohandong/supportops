@@ -11,6 +11,12 @@ import java.util.List;
 
 /** 上传记录、修订、处理批次及后台执行的完整业务边界。 */
 public interface DocumentLibraryService {
+    /** 显式系统上传，固定请求摘要覆盖系统；旧实现不能承接企业资料。 */
+    default KnowledgeViews.Upload submitScoped(String systemId, String filename, String title, String productVersion,
+            String documentId, String note, String requestKey, String source, byte[] bytes, ImportOptions options) {
+        if (!io.supportops.integration.service.support.EnterpriseIds.SYSTEM.equals(systemId)) { throw new IllegalArgumentException("SYSTEM_SCOPE_REQUIRED"); }
+        return submit(filename, title, productVersion, documentId, note, requestKey, source, bytes, options);
+    }
     /** 查询文档列表及最新目标批次的状态。 */
     List<KnowledgeDocument> documents();
 

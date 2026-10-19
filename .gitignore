@@ -1,7 +1,20 @@
 .cache/
 .local/
-target/
-**/target/
+/target/
+/projects/*/target/
+# 独立项目、前端试作与本地交付产物不属于 SupportOps 源码。
+/projects/agent-eval/
+/supportops-frontend-demo/
+/output/
+# 两项目联合拆分记录留在本地，公开验证见 SupportOps 专属文档。
+/docs/plans/agent-evaluation-split-design.md
+/docs/plans/agent-evaluation-split-tasks.md
+/docs/evaluation-split-acceptance-20261011.md
+/docs/evaluation-split-evidence-index-20261011.json
+/docs/evaluation-split-review-20261011.md
+/docs/evaluation-split-review-evidence-20261011.json
+/docs/evaluation-split-full-regression-20261011.md
+/docs/evaluation-split-full-regression-evidence-20261011.json
 .env
 .env.*
 !.env.example

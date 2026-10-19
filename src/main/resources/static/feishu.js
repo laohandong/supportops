@@ -66,6 +66,7 @@ export function initializeFeishu({api, el, action, $, isAdmin}) {
             else if (binding.expiresAt <= Date.now()) label = '绑定码已过期';
             info.append(el('strong', names.get(binding.userId) || binding.userId), el('p', label));
             if (binding.openId) info.append(el('p', binding.openId));
+            if (binding.defaultEnvironmentId) info.append(el('p', '默认诊断环境：' + binding.defaultEnvironmentId));
             row.append(info);
             if (!binding.revoked) {
                 const revoke = el('button', '撤销绑定', 'secondary');
@@ -106,7 +107,8 @@ export function initializeFeishu({api, el, action, $, isAdmin}) {
         event.preventDefault();
         if (!isAdmin) return;
         action($('#feishu-issue'), async () => {
-            const code = await api('/feishu/bindings', {method: 'POST', body: {userId: $('#feishu-user').value}});
+            if (!$('#feishu-environment').value) throw new Error('请先选择绑定的默认诊断环境。');
+            const code = await api('/feishu/bindings', {method: 'POST', body: {userId: $('#feishu-user').value, environmentId: $('#feishu-environment').value}});
             issuedId = code.id;
             $('#feishu-command').value = code.command;
             $('#feishu-expiry').textContent = `有效期至 ${new Date(code.expiresAt).toLocaleTimeString('zh-CN')}，请勿发送到群聊。`;

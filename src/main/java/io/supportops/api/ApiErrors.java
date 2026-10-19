@@ -14,6 +14,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
+import org.springframework.web.context.request.async.AsyncRequestNotUsableException;
 
 /** 将业务异常转换为稳定 HTTP 错误，不暴露服务商原始响应或密钥。 */
 @RestControllerAdvice
@@ -26,8 +27,12 @@ public class ApiErrors {
     /** 保留明确声明的业务 HTTP 状态和受控错误码。 */
     @ExceptionHandler(ResponseStatusException.class)
     ResponseEntity<ErrorResponse> status(ResponseStatusException e) {
-        return ResponseEntity.status(e.getStatusCode())
-                .body(new ErrorResponse(e.getReason() == null ? "REQUEST_FAILED" : e.getReason()));
+        ResponseEntity.BodyBuilder response = ResponseEntity.status(e.getStatusCode()).headers(e.getHeaders());
+        // 过滤器的速率限制和业务受理的活动/环境额度均给出同一有界等待提示。
+        if (e.getStatusCode().value() == 429) {
+            response.header("Retry-After", "60");
+        }
+        return response.body(new ErrorResponse(e.getReason() == null ? "REQUEST_FAILED" : e.getReason()));
     }
 
     /** 将缺失字段、类型错误及无效 JSON 统一映射为参数错误。 */
@@ -66,5 +71,11 @@ public class ApiErrors {
     @ExceptionHandler(Exception.class)
     ResponseEntity<ErrorResponse> unexpected(Exception e) {
         return ResponseEntity.internalServerError().body(new ErrorResponse("INTERNAL_ERROR"));
+    }
+
+    /** 浏览器已断开流式响应时仅结束连接，不向失效的 SSE 通道再次写入 JSON。 */
+    @ExceptionHandler(AsyncRequestNotUsableException.class)
+    void disconnected(AsyncRequestNotUsableException exception) {
+        // 任务继续由后台执行并持久化；新连接按游标读取，不重新受理诊断。
     }
 }

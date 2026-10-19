@@ -23,9 +23,19 @@ public interface ExcelDataService {
 
     /** 返回当前产品版本可查询的已发布数据集，模型仅看到注册结构。 */
     List<KnowledgeViews.Dataset> applicable(String productVersion);
+    /** 企业目录只能列出本系统发布的 Sheet。 */
+    default List<KnowledgeViews.Dataset> applicableScoped(String systemId, String productVersion) {
+        if (!io.supportops.integration.service.support.EnterpriseIds.SYSTEM.equals(systemId)) { throw new IllegalArgumentException("SYSTEM_SCOPE_REQUIRED"); }
+        return applicable(productVersion);
+    }
 
     /** 校验单表 SELECT 并用独立只读身份执行，保留来源。 */
     KnowledgeViews.SqlResult query(String datasetId, String sql, String productVersion);
+    /** 在执行 SQL 前再次核对数据集系统范围。 */
+    default KnowledgeViews.SqlResult queryScoped(String datasetId, String sql, String systemId, String productVersion) {
+        if (!io.supportops.integration.service.support.EnterpriseIds.SYSTEM.equals(systemId)) { throw new IllegalArgumentException("SYSTEM_SCOPE_REQUIRED"); }
+        return query(datasetId, sql, productVersion);
+    }
 
     /** 清理服务端注册的 Excel 物理表。 */
     void delete(String documentId);

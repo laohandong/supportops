@@ -39,7 +39,8 @@ public final class FeishuViews {
             @Schema(description = "飞书应用内用户编号；尚未绑定或已撤销时为空", nullable = true) String openId,
             @Schema(description = "是否已撤销") boolean revoked,
             @Schema(description = "绑定码到期时间，Unix 毫秒；已消费时为空", nullable = true) Long expiresAt,
-            @Schema(description = "创建时间，UTC ISO 8601") String createdAt) {}
+            @Schema(description = "创建时间，UTC ISO 8601") String createdAt,
+            @Schema(description = "管理员捕获的默认诊断环境 UUID，旧记录为示例环境") String defaultEnvironmentId) {}
 
     /** 投递状态用于区分诊断失败和消息未送达。 */
     @Schema(name = "FeishuDelivery", description = "一条冻结回复的投递结果")
