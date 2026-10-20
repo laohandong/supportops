@@ -53,7 +53,7 @@ https://github.com/user-attachments/assets/669a565e-0aa1-4b21-9b5a-3c141856840b
 
 ## 快速启动
 
-需要 JDK 21、Node.js 22+、已启动的 Docker Engine / Docker Desktop，以及 Docker Compose 2.20+。项目包含 Maven Wrapper，首次构建和拉取镜像需要联网；网页运行本身不依赖 Node.js。
+需要 JDK 21、Node.js 22.x、已启动的 Docker Engine / Docker Desktop，以及 Docker Compose 2.20+。项目包含 Maven Wrapper，首次构建和拉取镜像需要联网；网页运行本身不依赖 Node.js。
 
 以下命令用于本地示例。企业安装使用[独立部署手册](docs/enterprise-deployment.md)中的离线包与 HTTPS 初始化流程，存储不开放宿主机端口；模型和连接默认关闭，须由管理员明确批准。
 
@@ -86,7 +86,7 @@ node scripts/start.mjs
 
 打开 [本地工作台](http://127.0.0.1:18080)，按页面引导创建首个管理员；已有账号时进入登录页。没有预置默认密码。业务数据位于上述存储服务；本地模型设置和运行日志位于 `.local/`，该目录不纳入版本控制。停止应用使用终端的 Ctrl+C，停止依赖使用 `docker compose stop`，数据卷保留。
 
-侧栏按场景分为“客户工作区”和“后台管理”：诊断工作台、新建会话与最近诊断位于客户工作区；知识文档、项目约束、示例环境、用量分析、模型配置、用户管理及飞书机器人位于后台管理。管理员可访问全部菜单并创建账号；普通用户仅可使用客户工作区并查看自己的对话。操作与权限见 [用户系统](docs/users.md)。
+侧栏按场景分为“客户工作区”和“后台管理”：诊断工作台、新建会话与最近诊断位于客户工作区；知识文档、项目约束、企业接入、修复中心、示例环境、用量分析、模型配置、用户管理及飞书机器人位于后台管理。管理员可访问全部菜单并创建账号；普通用户仅可使用客户工作区并查看自己的对话。操作与权限见 [用户系统](docs/users.md)。
 
 `node scripts/start.mjs` 使用独立 JAR 副本，避免占用构建产物。开发调试也可使用 Maven `spring-boot:run`，但它不读取 `.local/model.env`，数据库与存储等参数必须另行设置为进程环境变量。
 
@@ -284,7 +284,7 @@ node --test src/test/js/*.test.mjs
 
 SupportOps 向独立评测项目提供固定程序包与人工确认的脱敏来源，见[集成说明](docs/evaluation-split.md)。本仓库不包含评测平台的实现、模型档案和执行器；旧 `scripts/evaluate.mjs` 与 `evaluation/run.mjs` 以退出码 2 停止，不读取工作台密钥执行实验。
 
-最近完整回归的程序身份、逐项结果与未覆盖范围见 [SupportOps 验证记录](docs/supportops-validation-20261019.md)。该记录区分 2026-10-11 的完整回归与 2026-10-19 的文档和源码交付检查；远端工作流结果须按实际提交另行核对。
+SupportOps 已通过 [PR #2](https://github.com/laohandong/supportops/pull/2) 合并到 `main`；合并提交 `5c0956132536cc51e0f021d44b7acc0b0e5286b0` 的 [GitHub Verify](https://github.com/laohandong/supportops/actions/runs/39248374704) 于 2026-10-19 通过，覆盖完整构建、真实隔离存储、浏览器和恢复矩阵。提交身份、检查范围与限制见 [主线验证记录](docs/github-validation-20261019.md)。2026-10-11 本地完整回归的逐项计数与 ONNX 跳过明细另见 [本地回归与提交准备记录](docs/supportops-validation-20261019.md)，不作为远端运行的测试数量。
 
 ## 使用边界
 
@@ -307,7 +307,7 @@ SupportOps 向独立评测项目提供固定程序包与人工确认的脱敏来
 | 飞书机器人接入与账号绑定 | [飞书私聊诊断](docs/feishu.md) |
 | 提案、审批与原执行核查 | [受控修复中心](docs/controlled-remediation.md) |
 | 数据库初始化与历史升级 | [数据库维护](docs/database.md) |
-| 验证与评测 | [验证结果与范围](docs/validation.md)、[评测集成与兼容](evaluation/README.md) |
+| 验证与评测 | [主线验证记录](docs/github-validation-20261019.md)、[验证结果与范围](docs/validation.md)、[评测集成与兼容](evaluation/README.md) |
 
 ## 许可证
 

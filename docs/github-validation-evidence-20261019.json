@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 1,
+  "project": "SupportOps",
+  "reviewedOn": "2026-10-20",
+  "repository": "https://github.com/laohandong/supportops",
+  "pullRequest": {
+    "number": 2,
+    "url": "https://github.com/laohandong/supportops/pull/2",
+    "state": "closed",
+    "merged": true,
+    "mergedAt": "2026-10-19T11:57:15Z",
+    "baseBranch": "main",
+    "headBranch": "prepare/supportops-20261019",
+    "headSha": "afb6e520df55e0b03950c876016f7c93a9ea791c",
+    "mergeCommitSha": "5c0956132536cc51e0f021d44b7acc0b0e5286b0"
+  },
+  "mainRef": {
+    "url": "https://api.github.com/repos/laohandong/supportops/git/ref/heads/main",
+    "sha": "5c0956132536cc51e0f021d44b7acc0b0e5286b0"
+  },
+  "runs": [
+    {
+      "id": 39244176350,
+      "url": "https://github.com/laohandong/supportops/actions/runs/39244176350",
+      "apiUrl": "https://api.github.com/repos/laohandong/supportops/actions/runs/39244176350",
+      "name": "Verify",
+      "event": "push",
+      "headBranch": "prepare/supportops-20261019",
+      "headSha": "afb6e520df55e0b03950c876016f7c93a9ea791c",
+      "runAttempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-10-19T11:22:33Z",
+      "runStartedAt": "2026-10-19T11:22:33Z",
+      "updatedAt": "2026-10-19T11:37:03Z"
+    },
+    {
+      "id": 39248215740,
+      "url": "https://github.com/laohandong/supportops/actions/runs/39248215740",
+      "apiUrl": "https://api.github.com/repos/laohandong/supportops/actions/runs/39248215740",
+      "name": "Verify",
+      "event": "pull_request",
+      "headBranch": "prepare/supportops-20261019",
+      "headSha": "afb6e520df55e0b03950c876016f7c93a9ea791c",
+      "runAttempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-10-19T11:55:56Z",
+      "runStartedAt": "2026-10-19T11:55:56Z",
+      "updatedAt": "2026-10-19T12:10:42Z"
+    },
+    {
+      "id": 39248374704,
+      "url": "https://github.com/laohandong/supportops/actions/runs/39248374704",
+      "apiUrl": "https://api.github.com/repos/laohandong/supportops/actions/runs/39248374704",
+      "name": "Verify",
+      "event": "push",
+      "headBranch": "main",
+      "headSha": "5c0956132536cc51e0f021d44b7acc0b0e5286b0",
+      "runAttempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-10-19T11:57:20Z",
+      "runStartedAt": "2026-10-19T11:57:20Z",
+      "updatedAt": "2026-10-19T12:14:15Z"
+    }
+  ],
+  "mainJobs": [
+    {
+      "id": 118045793595,
+      "name": "javascript",
+      "url": "https://github.com/laohandong/supportops/actions/runs/39248374704/job/118045793595",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-19T11:57:23Z",
+      "completedAt": "2026-10-19T11:57:38Z",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 2,
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 4,
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 5,
+          "name": "Run npm audit --audit-level=high",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 6,
+          "name": "Run node --test src/test/js/*.test.mjs",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 11,
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 12,
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 13,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 118045794073,
+      "name": "java",
+      "url": "https://github.com/laohandong/supportops/actions/runs/39248374704/job/118045794073",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-19T11:57:23Z",
+      "completedAt": "2026-10-19T12:14:14Z",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 2,
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/setup-java@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 4,
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 5,
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 6,
+          "name": "Run npm audit --audit-level=high",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 7,
+          "name": "Install pinned Chromium",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 8,
+          "name": "Start isolated storage",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 9,
+          "name": "Verify and package",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 10,
+          "name": "Package the independently consumable target",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 11,
+          "name": "Archive program artifact",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 12,
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 13,
+          "name": "Refuse unregistered resources before cleanup",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 14,
+          "name": "Record external dependencies without loading models",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 15,
+          "name": "Runtime, actual browser and fresh restore matrix",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 16,
+          "name": "Real index capacity, health response and port compatibility boundaries",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 17,
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 18,
+          "name": "Stop isolated CI storage",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 34,
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 35,
+          "name": "Post Run actions/setup-java@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 36,
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "number": 37,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 12185457236,
+      "name": "reliability-public-evidence",
+      "url": "https://github.com/laohandong/supportops/actions/runs/39248374704/artifacts/12185457236",
+      "apiUrl": "https://api.github.com/repos/laohandong/supportops/actions/artifacts/12185457236",
+      "sizeInBytes": 2677613,
+      "githubReportedDigest": "sha256:8cad4ecb33a16e5d7ea24d75e0e5dafd28bceb26c579a3ab7d4a36026d6323d5",
+      "expiredAtReview": false,
+      "expiresAt": "2027-01-17T11:57:20Z",
+      "workflowSha": "5c0956132536cc51e0f021d44b7acc0b0e5286b0"
+    },
+    {
+      "id": 12184946198,
+      "name": "supportops-evaluation-target",
+      "url": "https://github.com/laohandong/supportops/actions/runs/39248374704/artifacts/12184946198",
+      "apiUrl": "https://api.github.com/repos/laohandong/supportops/actions/artifacts/12184946198",
+      "sizeInBytes": 224477590,
+      "githubReportedDigest": "sha256:8bd640c4b66b001549fef0d89d1eb175c246fdf562beafba3a60768518e88c8e",
+      "expiredAtReview": false,
+      "expiresAt": "2027-01-17T11:57:20Z",
+      "workflowSha": "5c0956132536cc51e0f021d44b7acc0b0e5286b0"
+    }
+  ],
+  "scope": {
+    "remoteResult": "GitHub workflow, job, step and artifact metadata; original test XML and binary artifacts were not independently downloaded in this review.",
+    "testCaseCounts": "NOT_EXTRACTED_FROM_REMOTE_RUN",
+    "localRegressionSnapshot": "supportops-validation-evidence-20261019.json",
+    "localCountsAreRemoteCounts": false,
+    "artifactDigestSource": "GitHub API; not a local archive digest verification"
+  },
+  "limitations": [
+    "Real provider authentication and model quality were not validated by this workflow.",
+    "Optional ONNX weights were not downloaded or loaded.",
+    "No current workbench deployment or business switch is implied.",
+    "Historical 2026-10-11 local Docker final-state uncertainty remains unresolved.",
+    "Results apply to recorded SHAs; subsequent documentation changes require their own submission and verification."
+  ]
+}

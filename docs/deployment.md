@@ -1,15 +1,15 @@
 # 本地部署与启动依赖
 
-## 评测中心的独立部署
+## 外部评测集成边界
 
-AgentEval使用独立Java21应用、数据库、Cookie、模型档案和运行目录。SupportOps无需评测执行器。可用SUPPORTOPS_EVALUATION_PLATFORM_URL配置外部首页，详见[协作说明](evaluation-split.md)。
+SupportOps 提供版本化脱敏来源和固定目标程序包，不依赖相邻评测源码、评测执行器或评测数据库。可用 `SUPPORTOPS_EVALUATION_PLATFORM_URL` 配置外部平台首页；双方不共享 Cookie、模型档案与运行目录，详见 [评测集成](evaluation-split.md)。
 
 ## 环境要求
 
 | 依赖 | 版本或要求 | 作用 | 默认地址 |
 | --- | --- | --- | --- |
 | JDK | 21，`JAVA_HOME` 指向该 JDK | 构建与运行后端 | 本机进程 |
-| Node.js | 运行入口接受 22 或更新版本；可靠性工具固定验证 22.16.0 | 配置初始化、启动、导入、评测与前端测试 | 本机命令 |
+| Node.js | 使用 22.x；运行入口最低 22，CI 固定验证 22.16.0 | 配置初始化、启动、导入与自动化验证 | 本机命令 |
 | Docker Engine / Docker Desktop | 后端处于运行状态 | 运行三个存储容器 | 本机 Docker 服务 |
 | Docker Compose | 2.20.0 或更新版本 | 解析根目录入口并等待依赖健康 | `docker compose` |
 | MySQL | 8.4 | 业务记录、任务、用户、文档分片及 Excel 关系表 | `127.0.0.1:13306` |
@@ -122,11 +122,11 @@ MYSQL_PORT=23306 MINIO_PORT=29000 ES_PORT=29200 docker compose -p supportops-tes
 
 测试创建随机数据库、桶和索引并清理自身资源。六场景来源评测在AgentEval通过固定程序包完成，不要求当前工作台在线。
 
-[GitHub Actions](../.github/workflows/verify.yml) 使用同一 Compose 基础和专属资源清单，等待依赖健康后完整执行 Maven 验证、六个来源场景、真实 Chromium 回归和全新目标恢复；JavaScript 测试独立运行。公开产物仅上传脱敏 JSON 与合成截图，不上传应用日志、原始配置、数据库或运行登记。清理只作用于该清单的资源。CI 不读取本地模型密钥，不下载可选 ONNX 权重；相应真实模型用例需按重排序文档单独启用。精确命令和安全边界见 [可靠性运行与恢复](reliability-delivery.md)。
+[GitHub Actions](../.github/workflows/verify.yml) 使用同一 Compose 基础和专属资源清单，等待依赖健康后完整执行 Maven 验证与打包、固定 SupportOps 目标程序包、运行身份、真实 Chromium 回归、全新目标恢复与容量、健康和端口边界；JavaScript 测试独立运行。程序包产物包含 JAR、目标清单和来源快照；脱敏运行证据另行归档 JSON 与合成截图，不上传应用日志、原始配置、数据库或运行登记。清理只作用于该清单的资源。2026-10-19 合并主线的实际通过结果见 [GitHub 验证记录](github-validation-20261019.md)。CI 不读取本地模型密钥，不下载可选 ONNX 权重；相应真实模型用例需按重排序文档单独启用。精确命令和安全边界见 [可靠性运行与恢复](reliability-delivery.md)。
 
 ## 适用边界
 
-此 Compose 面向本机开发与演示，端口仅绑定回环地址，使用公开的合成凭据，ES 关闭认证。不应直接改为公网监听投入企业生产环境。应用默认也监听本机；生产部署需要独立凭据、传输加密、备份和企业访问边界，当前仓库不提供生产编排。
+此 Compose 面向本机开发与演示，端口仅绑定回环地址，使用公开的合成凭据，ES 关闭认证。企业独立部署使用 [企业部署入口](enterprise-deployment.md)，配置 HTTPS、独立秘密、登记的访问来源、项目与环境授权及停写备份，不能直接把本地示例改为公网监听。当前交付面向单企业、单实例；共享 SaaS 多租户、高可用集群与多实例灾备不在已验证范围。
 
 ## 受控修复部署
 

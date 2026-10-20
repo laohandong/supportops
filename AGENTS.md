@@ -23,7 +23,7 @@ SupportOps 是面向软件实施与技术支持人员的 Java Agent 诊断工作
 - [docs/database.md](docs/database.md)：自动初始化、手动维护和历史 MySQL / H2 数据迁移；空库依次应用 B3 与 V4–V19，已应用的迁移不得改写。
 - [docs/feishu.md](docs/feishu.md)：飞书私聊、一次性账号绑定、消息去重、固定请求恢复与真实平台验证边界。
 - [docs/users.md](docs/users.md)：账号角色、Cookie 会话、记录归属与对话归档权限。
-- [evaluation/README.md](evaluation/README.md)：场景与评测方法。
+- [evaluation/README.md](evaluation/README.md)：评测集成、独立项目边界及旧入口兼容。
 
 ## 目录与分层
 
