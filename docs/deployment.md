@@ -122,7 +122,7 @@ MYSQL_PORT=23306 MINIO_PORT=29000 ES_PORT=29200 docker compose -p supportops-tes
 
 测试创建随机数据库、桶和索引并清理自身资源。六场景来源评测在AgentEval通过固定程序包完成，不要求当前工作台在线。
 
-[GitHub Actions](../.github/workflows/verify.yml) 使用同一 Compose 基础和专属资源清单，等待依赖健康后完整执行 Maven 验证与打包、固定 SupportOps 目标程序包、运行身份、真实 Chromium 回归、全新目标恢复与容量、健康和端口边界；JavaScript 测试独立运行。程序包产物包含 JAR、目标清单和来源快照；脱敏运行证据另行归档 JSON 与合成截图，不上传应用日志、原始配置、数据库或运行登记。清理只作用于该清单的资源。2026-10-19 合并主线的实际通过结果见 [GitHub 验证记录](github-validation-20261019.md)。CI 不读取本地模型密钥，不下载可选 ONNX 权重；相应真实模型用例需按重排序文档单独启用。精确命令和安全边界见 [可靠性运行与恢复](reliability-delivery.md)。
+[GitHub Actions](../.github/workflows/verify.yml) [按变更范围执行](ci.md)：文档更新只做轻量核对；代码、测试、运行配置和共享依赖变化按影响执行 JavaScript、Maven 验证或运行矩阵，未知路径保守执行完整验证。需要存储和运行验证时，使用同一 Compose 基础和专属资源清单，等待依赖健康后执行对应检查；完整运行矩阵包含固定 SupportOps 目标程序包、运行身份、真实 Chromium、全新目标恢复与容量、健康和端口边界。程序包产物包含 JAR、目标清单和来源快照；脱敏运行证据另行归档 JSON 与合成截图，不上传应用日志、原始配置、数据库或运行登记。清理只作用于该清单的资源。2026-10-19 合并主线的实际通过结果见 [GitHub 验证记录](github-validation-20261019.md)。CI 不读取本地模型密钥，不下载可选 ONNX 权重；相应真实模型用例需按重排序文档单独启用。精确命令和安全边界见 [可靠性运行与恢复](reliability-delivery.md)。
 
 ## 适用边界
 

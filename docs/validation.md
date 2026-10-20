@@ -1,6 +1,6 @@
 # 验证结果与范围
 
-已归档的主线验证记录包括 **2026-10-19** 的 [GitHub Verify](https://github.com/laohandong/supportops/actions/runs/39248374704)，对应 PR #2 合并提交 `5c0956132536cc51e0f021d44b7acc0b0e5286b0`，`javascript` 与 `java` 作业均通过，详见 [主线验证记录](github-validation-20261019.md) 和[证据索引](github-validation-evidence-20261019.json)。后续提交的实际执行状态以 [Verify 工作流](https://github.com/laohandong/supportops/actions/workflows/verify.yml) 中对应 SHA 的结果为准。
+已归档的主线验证记录包括 **2026-10-19** 的 [GitHub Verify](https://github.com/laohandong/supportops/actions/runs/39248374704)，对应 PR #2 合并提交 `5c0956132536cc51e0f021d44b7acc0b0e5286b0`，`javascript` 与 `java` 作业均通过，详见 [主线验证记录](github-validation-20261019.md) 和[证据索引](github-validation-evidence-20261019.json)。后续提交的实际执行状态以 [Verify 工作流](https://github.com/laohandong/supportops/actions/workflows/verify.yml) 中对应 SHA 的结果为准。当前工作流[按变更范围选择检查](ci.md)，文档类提交的轻量检查通过不代表本次执行了应用完整回归。
 
 2026-10-11 本地单次完整回归为 171 项 Java：166 通过、0 失败、0 错误、5 项缺少真实 ONNX 文件的条件测试跳过；79 项 JavaScript 通过。该轮计数及 2026-10-19 提交准备检查保留在 [本地回归记录](supportops-validation-20261019.md) 和[快照证据索引](supportops-validation-evidence-20261019.json)，不冒充远端运行的逐用例计数。以下历史结果保留原日期及条件，不自动适用于当前程序或运行实例。
 

@@ -286,6 +286,8 @@ SupportOps 向独立评测项目提供固定程序包与人工确认的脱敏来
 
 SupportOps 已通过 [PR #2](https://github.com/laohandong/supportops/pull/2) 合并到 `main`；合并提交 `5c0956132536cc51e0f021d44b7acc0b0e5286b0` 的 [GitHub Verify](https://github.com/laohandong/supportops/actions/runs/39248374704) 于 2026-10-19 通过，覆盖完整构建、真实隔离存储、浏览器和恢复矩阵。提交身份、检查范围与限制见 [主线验证记录](docs/github-validation-20261019.md)。2026-10-11 本地完整回归的逐项计数与 ONNX 跳过明细另见 [本地回归与提交准备记录](docs/supportops-validation-20261019.md)，不作为远端运行的测试数量。
 
+当前 Verify [按变更范围选择检查](docs/ci.md)：文档更新只做轻量核对，代码与配置更新按影响运行相关检查，未知路径保守执行完整验证。候选分支通过 PR 验证，合并后核对主线提交；文档检查通过不等于本次执行了应用完整回归。
+
 ## 使用边界
 
 - 本地示例默认仅监听本机。企业包登记 HTTPS 来源、Host 和可信代理，采用项目成员与环境授权；一家企业一个部署、单应用实例，不提供共享 SaaS 多租户或高可用。
