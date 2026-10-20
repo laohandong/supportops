@@ -35,7 +35,8 @@ SupportOps 的项目介绍、两条核心流程和快速启动命令见 [项目 
 | --- | --- |
 | [数据库维护](database.md) | 自动初始化、手动导入、已有 MySQL 接管与 H2 离线迁移 |
 | [验证结果与范围](validation.md) | 最近构建、真实存储及 HTTP 检查结果，与尚未验证的范围 |
-| [SupportOps 当前验证与交付范围](supportops-validation-20261019.md) | 单次完整 Java 回归、ONNX 跳过明细、源码隔离、证据摘要与未覆盖范围 |
+| [2026-10-19 主线合并与 GitHub 验证](github-validation-20261019.md) | PR #2、合并提交、主线 Verify 两项作业及构建、浏览器、恢复与清理范围 |
+| [本地回归与提交准备记录](supportops-validation-20261019.md) | 2026-10-11 完整 Java 回归及 2026-10-19 提交准备快照，含 ONNX 跳过明细与源码隔离检查 |
 | [2026-10-05 整体复审与补修](validation.md) | GitHub基线、具体补修、184项完整Java、29项案例与企业32/34矩阵、清理及未完成验证 |
 | [2026-10-04 企业接入开发验证](enterprise-integration-acceptance-20261004.md) | 核心功能、34项覆盖与未执行子项、离线包、真实旧库升级和停写恢复证据 |
 | [2026-10-02 处理结果与案例开发验收](diagnosis-outcome-cases-acceptance-20261002.md) | OC-01～OC-08、29项验收矩阵、失败复验、最终身份与独立验收入口 |
@@ -60,8 +61,8 @@ SupportOps 的项目介绍、两条核心流程和快速启动命令见 [项目 
 | --- | --- |
 | [企业独立部署与系统接入 V1 设计](plans/enterprise-integration-design.md) | 本开发包实现契约；资源、标准只读连接器、应用 API、权限、迁移与企业交付 |
 | [企业独立部署与系统接入 V1 任务和验收](plans/enterprise-integration-tasks.md) | 已实施核心范围与34项验收要求；实际覆盖和未执行项见开发验证记录 |
-| [诊断处理结果与评测案例沉淀 V1 设计](plans/diagnosis-outcome-cases-design.md) | 本开发包范围契约；处理结果、来源证据、案例版本、受控复现与评测接入 |
-| [诊断处理结果与评测案例沉淀 V1 任务和验收](plans/diagnosis-outcome-cases-tasks.md) | 本开发包任务与验收定义；实际结果见对应开发验收记录 |
+| [诊断处理结果与评测案例沉淀 V1 设计](plans/diagnosis-outcome-cases-design.md) | 拆分前历史设计；当前 SupportOps 仅承担人工处理结果与脱敏来源导出，案例与实验由独立项目维护 |
+| [诊断处理结果与评测案例沉淀 V1 任务和验收](plans/diagnosis-outcome-cases-tasks.md) | 拆分前历史任务与验收定义，实际结果适用范围见对应日期的记录 |
 
 ## 示例与随附资源
 
@@ -74,4 +75,5 @@ SupportOps 的项目介绍、两条核心流程和快速启动命令见 [项目 
 部署命令以部署文档为准，模型默认值和优先级以配置文档及源码为准，数据库操作集中在维护文档。运行生成的日志、报告、模型权重与本地配置不属于源代码附件。
 
 - [历史文件归属与兼容清单](evaluation-split-ownership.md)：旧表、旧接口与 CLI 的保留行为。
-- [SupportOps 验证证据索引](supportops-validation-evidence-20261019.json)：完整回归的逐文件摘要及交付检查口径。
+- [主线 GitHub 验证证据索引](github-validation-evidence-20261019.json)：PR、提交、工作流和逐作业结果的公开身份。
+- [本地回归与交付快照证据索引](supportops-validation-evidence-20261019.json)：历史完整回归的逐文件摘要及提交准备检查口径。

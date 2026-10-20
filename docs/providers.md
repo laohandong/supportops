@@ -50,7 +50,7 @@ OPENAI_API_KEY=填写本地向量密钥
 
 两个选择均使用 OpenAI 时，同一个 `OPENAI_API_KEY` 可以用于两条路由。需要不同账号时，用 `SUPPORTOPS_API_KEY` 和 `SUPPORTOPS_EMBEDDING_API_KEY` 分别覆盖，或设置各自的 `SUPPORTOPS_MODEL_API_KEY_ENV`、`SUPPORTOPS_EMBEDDING_API_KEY_ENV`。
 
-没有模型密钥仍能在存储连接正常时启动应用、上传、分片、关键词检索和管理项目记忆。对话任务只要求对话路由可用。文档关键词索引完成后自动生成向量任务：未配置或禁用时任务显示 BLOCKED，补齐原先缺失的配置后自动唤醒；手动重建及混合评测要求向量配置。无兼容已发布向量时检索使用 `LEXICAL`，进入向量调用后的失败明确报错。Excel 关系查询不调用嵌入服务，模型生成 SQL 使用对话角色。
+没有模型密钥仍能在存储连接正常时启动应用、上传、分片、关键词检索和管理项目记忆。对话任务只要求对话路由可用。文档关键词索引完成后自动生成向量任务：未配置或禁用时任务显示 BLOCKED，补齐原先缺失的配置后自动唤醒；手动向量重建要求向量配置。无兼容已发布向量时检索使用 `LEXICAL`，进入向量调用后的失败明确报错。Excel 关系查询不调用嵌入服务，模型生成 SQL 使用对话角色。
 
 ## 自定义 Provider
 
@@ -104,8 +104,8 @@ OpenAI 预设使用 `max_completion_tokens` 并省略温度参数；DeepSeek 预
 
 ## 运行与检查
 
-工作台使用node scripts/start.mjs，可通过--config指定文件。/api/status只返回配置状态，不回显秘密或主动鉴权；configured不代表真实调用成功。
+工作台使用 `node scripts/start.mjs`，可通过 `--config` 指定文件。`/api/status` 只返回配置状态，不回显秘密或主动鉴权；`configured` 不代表真实调用成功。
 
-AgentEval不读取工作台界面设置或.local/model.env。评测模型保存为独立不可变修订，改变端点必须提供新密钥；实验冻结明确修订，后续编辑不改变已受理输入。
+外部评测项目独立管理模型与凭据，不读取工作台界面设置或 `.local/model.env`。SupportOps 的来源导出和固定目标程序包不携带模型密钥，见 [评测集成](evaluation-split.md)。
 
-工作台向量模型改变后需要重建匹配索引；评测报告记录实际检索模式，不把降级当作混合检索成功。
+工作台向量模型改变后需要重建匹配索引；诊断事件记录实际检索模式，进入向量调用后的错误明确报告，不伪装为关键词检索成功。

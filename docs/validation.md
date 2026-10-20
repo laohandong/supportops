@@ -1,8 +1,16 @@
 # 验证结果与范围
 
-最近的 SupportOps 单次完整回归执行于 **2026-10-11**：171 项 Java 检查，166 通过、0 失败、0 错误、5 项缺少真实 ONNX 文件的条件测试跳过；79 项 JavaScript 通过。2026-10-19 仅更新文档与源码交付边界，并重新检查 JavaScript、公开文件、证据摘要及待提交差异。完整回归与本轮交付检查分别记录于 [SupportOps 验证与交付范围](supportops-validation-20261019.md) 和[证据索引](supportops-validation-evidence-20261019.json)。以下历史结果保留原日期及条件，不自动适用于当前程序或运行实例。
+已归档的主线验证记录包括 **2026-10-19** 的 [GitHub Verify](https://github.com/laohandong/supportops/actions/runs/39248374704)，对应 PR #2 合并提交 `5c0956132536cc51e0f021d44b7acc0b0e5286b0`，`javascript` 与 `java` 作业均通过，详见 [主线验证记录](github-validation-20261019.md) 和[证据索引](github-validation-evidence-20261019.json)。后续提交的实际执行状态以 [Verify 工作流](https://github.com/laohandong/supportops/actions/workflows/verify.yml) 中对应 SHA 的结果为准。
+
+2026-10-11 本地单次完整回归为 171 项 Java：166 通过、0 失败、0 错误、5 项缺少真实 ONNX 文件的条件测试跳过；79 项 JavaScript 通过。该轮计数及 2026-10-19 提交准备检查保留在 [本地回归记录](supportops-validation-20261019.md) 和[快照证据索引](supportops-validation-evidence-20261019.json)，不冒充远端运行的逐用例计数。以下历史结果保留原日期及条件，不自动适用于当前程序或运行实例。
 
 本文记录工程行为、外部模型协议和真实诊断质量的验证依据。**2026-09-26** 完成评测中心 V1 的工程与隔离流程验证；随后完成对话及百炼嵌入的真实鉴权，以及六场景各一次的真实混合检索诊断。6/6 执行完成，Codex 逐例审阅为 5 项通过、1 项注入覆盖证据不足，详见 [真实服务与效果验收](real-provider-acceptance-20260926.md)。真实飞书私聊及两次真实对话模型诊断日期为 **2026-09-23**，见下文“诊断时间展示与原文留存”；**2026-09-18** 完成真实对话模型的 [18 次基线评测](model-evaluation-20260918.md)、[18 次恢复验证复测](recovery-evaluation-20260918.md)，以及 Java、JavaScript 回归。[诊断证据一致性改进评测](evidence-evaluation-20260918.md) 于 9 月 18 日完成前两组，**2026-09-22** 补齐第三组，共 18 次。结果仅适用于对应构建与评测条件，不表示运行实例持续健康或后续版本自动通过。
+
+## 2026-10-19 主线合并与远端 Verify
+
+候选分支、PR #2 和合并后 `main` 的 Verify 均已完成且成功。主线在隔离 Ubuntu 环境完成依赖审计、JavaScript 测试、真实 MySQL/MinIO/Elasticsearch 下的 Maven `verify` 与打包、固定 SupportOps 目标程序包、运行身份、真实 Chromium、全新目标恢复，以及索引容量、健康响应和端口兼容边界；资源归属检查与停止专属存储步骤均通过。
+
+公开程序包与脱敏运行证据分别归档，评测平台的实现和实验不在本仓库执行。上述结果仅对应指定提交，不包含真实服务商鉴权、模型质量、可选 ONNX 权重、当前工作台更新或业务切换，也不补足 2026-10-11 本地 Docker 最终状态未能复核的历史缺口。
 
 ## 2026-10-05 整体复审与补修
 
@@ -213,12 +221,12 @@ Maven 报告生成于 `target/surefire-reports/`，场景报告生成于 `.local
 
 ## 发布边界
 
-GitHub Actions 工作流已配置隔离 Ubuntu 下的 JavaScript、真实存储 Maven 验证与打包、首次启动、浏览器和完整恢复矩阵、清理归属与外置依赖检查。2026-09-30 完成本地实际 Linux 命令链，本轮没有提交或推送，不能宣称远端工作流已通过。每次远端提交的执行状态、日志与报告见 [Verify 工作流](https://github.com/laohandong/supportops/actions/workflows/verify.yml)，应按提交版本核对结果。
+2026-10-19 合并提交 `5c0956132536cc51e0f021d44b7acc0b0e5286b0` 的远端 Verify 已通过，覆盖隔离 Ubuntu 下的 JavaScript、真实存储 Maven 验证与打包、运行身份、浏览器与恢复矩阵、清理归属及外置依赖检查，详见 [主线验证记录](github-validation-20261019.md)。后续提交仍须按其 SHA 核对 [Verify 工作流](https://github.com/laohandong/supportops/actions/workflows/verify.yml)，不能沿用此结论。
 
 上述自动工程检查不提供外部模型质量结论；2026-09-18 的逐例审阅覆盖修改前后各 18 次诊断，均来自同一组六个合成场景。2026-09-30 浏览器覆盖约定的关键流程和 1440/390px 状态，不代表全面视觉验收；生产部署、多实例灾备和压力测试尚未验证。
 
 ## 2026-10-11 拆分修复后的单次完整回归
 
-修复后的 SupportOps 在新的独立源码根完成单次完整 Maven verify：171 项，166 通过、0 失败、0 错误、5 项可选 ONNX 因未提供模型文件跳过，打包成功。79 项 JavaScript 全部通过。逐用例 XML 与日志汇总一致，跳过项仅限已有的真实模型条件用例；没有使用定向测试拼接完整结果。原两阶段验证和失败日志保留，当前完整结论见 [SupportOps 验证记录](supportops-validation-20261019.md)与[证据索引](supportops-validation-evidence-20261019.json)。
+修复后的 SupportOps 在新的独立源码根完成单次完整 Maven verify：171 项，166 通过、0 失败、0 错误、5 项可选 ONNX 因未提供模型文件跳过，打包成功。79 项 JavaScript 全部通过。逐用例 XML 与日志汇总一致，跳过项仅限已有的真实模型条件用例；没有使用定向测试拼接完整结果。原两阶段验证和失败日志保留，该轮完整结论见 [SupportOps 本地回归记录](supportops-validation-20261019.md)与[证据索引](supportops-validation-evidence-20261019.json)。
 
 本轮仅更新文档和源码交付包，生产代码、测试代码及已有迁移未变；使用新测试根和随机隔离数据域，当前工作台及业务数据未访问。本轮 Java 已退出；Docker 管理接口不可用，容器最终状态及原数据库集合未能独立复核，未删除卷或重启共享 Docker/WSL。SP-18、提交、推送及真实模型验证未执行。

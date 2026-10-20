@@ -36,3 +36,9 @@
 ## 历史与兼容
 
 人工结果及修订留在SupportOps，旧评测表保留。旧API410、旧综合CLI退出2。历史验收记录只描述对应旧版程序，当前拆分证据另行记录。
+
+## 独立复验入口
+
+2026-10-02 的处理结果与案例联合验收曾使用 `scripts/test-outcome-cases-package.mjs`。该入口要求当时的冻结程序、配套执行文件、真实旧版本材料，以及全新专属数据库、端口和运行目录；程序与脚本身份、29 项矩阵及资源边界见 [历史开发验收记录](diagnosis-outcome-cases-acceptance-20261002.md) 和[对应证据索引](diagnosis-outcome-cases-evidence-index-20261002.json)。
+
+这条历史入口不适用于当前拆分后的 SupportOps，不能把旧案例管理或实验步骤直接用于当前程序。当前人工处理结果、脱敏来源和旧接口兼容以 [接口文档](api.md) 与 [评测集成](evaluation-split.md) 为准，当前验证范围见 [验证记录](validation.md)。
